@@ -15,15 +15,15 @@ import { takeLast } from 'rxjs/operators';
   styleUrls: ['./stories.component.css']
 })
 export class StoriesComponent implements OnInit {
-  public user: User | undefined;
-  public iconsCarouselOptions: {} | undefined;
-  public storiesCarouselOptions: {} | undefined;
-  modalRef: BsModalRef | undefined;
+  public user: User | any;
+  public iconsCarouselOptions: {} | any;
+  public storiesCarouselOptions: {} | any;
+  modalRef: BsModalRef | any;
 
   public title = '';
   public message = '';
   public togglePost = false;
-  public file: File;
+  public file: File | null;
   public accept: string;
   public userStoriesArchive: UserStory[] = [];
   public friendsData: FriendsData[] = [];
@@ -31,14 +31,14 @@ export class StoriesComponent implements OnInit {
   public currentFriendStories: UserStory[] = [];
   public allUserStories = false;
   // ----------------------------------------
-  formData: FormData | undefined;
+  formData: FormData | any;
   previewUrl: any;
   format: any;
-  public friendsUid = [];
-  public usersByUid = [];
-  public userStoriesBy24Hours = [];
-  public showStories = [];
-  public showUsers = [];
+  public friendsUid: any[] = [];
+  public usersByUid: any[] = [];
+  public userStoriesBy24Hours: any[] = [];
+  public showStories: any[] = [];
+  public showUsers: any[] = [];
   public storyCounter = 0;
   public bigFile = false;
 
@@ -109,28 +109,28 @@ export class StoriesComponent implements OnInit {
     };
   }
 
-  fetchData(data) {
+  fetchData(data: any) {
     this.storiesService
       .getUserAndFriendsStoriesData(data)
-      .subscribe(response => {
+      .subscribe((response: any) => {
         this.userStoriesArchive = response['user_data'];
         this.friendsData = response['friends_data'].filter(
-          friend => friend.count_new > 0
+          (friend: any) => friend.count_new > 0
         );
         // console.log('friends stories', this.friendsData);
       });
   }
 
-  getFriendStoriesById(id) {
+  getFriendStoriesById(id: any) {
     this.currentFriendId = id;
-    this.storiesService.getFriendsStoriesById(id).subscribe(data => {
+    this.storiesService.getFriendsStoriesById(id).subscribe((data: any) => {
       this.currentFriendStories = data['friend_data'];
       console.log('user ', id, ' stories', data);
     });
   }
 
-  getUserStoriesBy24Hours(id) {
-    this.storiesService.getFriendsStoriesById(id).subscribe(data => {
+  getUserStoriesBy24Hours(id:any) {
+    this.storiesService.getFriendsStoriesById(id).subscribe((data: any) => {
       this.userStoriesBy24Hours = data['friend_data'];
       // console.log('user stories', this.userStoriesBy24Hours);
       if (this.userStoriesBy24Hours.length) {
@@ -170,7 +170,7 @@ export class StoriesComponent implements OnInit {
     );
   }
 
-  addEmoji(event) {
+  addEmoji(event: any) {
     this.message = this.message + event.emoji.native;
   }
 
@@ -216,7 +216,7 @@ export class StoriesComponent implements OnInit {
     }
   }
 
-  deleteStory(id) {
+  deleteStory(id: any) {
     this.storiesService
       .deleteUserStory(id)
       .subscribe(data => this.getUserStoriesBy24Hours(this.user.id));
@@ -241,7 +241,7 @@ export class StoriesComponent implements OnInit {
     }
   }
 
-  safeImageUrl(image) {
+  safeImageUrl(image: any) {
     if (image) {
       return this.sanitizer.bypassSecurityTrustStyle(`url(${image})`);
     } else {
@@ -256,7 +256,7 @@ export class StoriesComponent implements OnInit {
       .collection('friends')
       .snapshotChanges()
       .subscribe(data => {
-        data.forEach(elem => {
+        data.forEach((elem: any) => {
           if (elem.payload.doc.data().uid) {
             this.friendsUid.push(elem.payload.doc.data().uid);
           }
@@ -272,9 +272,8 @@ export class StoriesComponent implements OnInit {
         .collection('users')
         .doc(elem)
         .valueChanges()
-        .subscribe(data => {
+        .subscribe((data: any) => {
           if (data) {
-            // console.log(data)
             this.usersByUid.push(data['email']);
             if (this.usersByUid.length === this.friendsUid.length) {
               this.fetchData({ emails: this.usersByUid });
