@@ -1,0 +1,9 @@
+@media (min-width: 992px) {
+  .app-content {
+    /*margin-left: 12.5rem;*/
+  }
+}
+
+.view-content {
+  padding-top: 1.5rem;
+}

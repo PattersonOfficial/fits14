@@ -1,0 +1,26 @@
+<br>
+<div class="box-header">
+  <h2>Questions asked to the client</h2>
+  <small>
+    The questions presented have been answered by the client when creating their profile. Some of these are mandatory, others are not classified as indispensable, use them as much as possible to understand the client's profile.
+  </small>
+</div>
+
+<div class="padding">
+  <div class="text-left">
+    <div *ngFor="let item of questions">
+      <h6> <strong> <i class="material-icons icon-drag to-left">{{item.question.icon}}</i> {{item.question.question}}</strong></h6>
+
+      <small>
+
+        {{item.response.label}}</small>
+
+      <small *ngIf="item.value != null">
+
+        {{item.value}}</small>
+
+
+      <hr>
+    </div>
+  </div>
+</div>

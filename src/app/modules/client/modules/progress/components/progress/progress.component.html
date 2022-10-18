@@ -1,0 +1,192 @@
+<!--<div class="container" id="main-container"  style="padding-top: 3rem;">-->
+<div class="container" id="main-container"  >
+  <div ui-view="" class="app-body">
+    <div class="padding">
+
+      <div class="row">
+        <div class="col-md-12">
+          <div class="box" style="min-height: 25rem;">
+            <div class="loading" *ngIf="loadingBox">
+              <div class="loader"></div>
+            </div>
+            <div class="box-tool">
+              <ul class="nav">
+                <li class="nav-item inline dropdown">
+                  <a class="nav-link text-muted" disabled data-toggle="dropdown">
+                    <i class="material-icons text-muted md-18"></i>
+                  </a>
+                  <!-- <div class="dropdown-menu dropdown-menu-scale pull-right dark">
+                    <a class="dropdown-item" (click)="openSettings()"><i class="fa fa-cogs"></i> Settings</a>
+                  </div> -->
+                </li>
+              </ul>
+            </div>
+
+            <div class="box-body text-center">
+
+              <div class="b-b nav-active-bg">
+                <ul class="nav nav-tabs">
+                  <li class="nav-item active" (click)="tab = 'meters'">
+                    <a class="nav-link" href="" data-toggle="tab" data-target="#tab1" aria-expanded="false"><i class="fa fa-cubes"></i> Wellness</a>
+                  </li>
+                  <li class="nav-item" (click)="tab = 'timeline'">
+                    <a class="nav-link" href="" data-toggle="tab" data-target="#tab2" aria-expanded="false"><i class="fa fa-camera"></i> Before and after</a>
+                  </li>
+                </ul>
+              </div>
+
+              <div *ngIf="tab == 'meters'">
+                <app-client-meters></app-client-meters>
+              </div>
+              <div *ngIf="tab == 'timeline'">
+                <br>
+                <div class="alert alert-info fade text-left in alert-dismissible">
+                  <a href="#" class="close" data-dismiss="alert" aria-label="close" title="close">×</a>
+                  <small>
+                    In this section you can add photos of your progress, which you expect to add a photograph of your current status right now. We recommend that the photograph be full body and as far as possible in the same place.</small>
+                </div>
+      <div class="row text-center">
+
+        <div class="col-md-12 text-left">
+          <a (click)="openImage(item)" *ngFor="let item of images">
+            <div class="item__timeline item__timeline--upload item__active" [style.background-image]="getBackground(item.image)" style="position:relative;">
+
+              <span style="font-size: 9px;
+          position: absolute;
+          bottom: 3px;
+          left: 15px;
+          background-color: #ffffff9c;
+          padding: 5px;
+          border-radius: 3px;">{{item.created_at}}</span>
+            </div>
+          </a>
+
+
+          <div class="item__timeline item__timeline--upload" (click)="openModalAttach()"></div>
+        </div>
+
+      </div>
+
+
+
+              </div>
+
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<div id="m" class="modal black-overlay" #modalGallery="bs-modal" [config]="{ show: false }" bsModal>
+  <div class="modal-dialog text-center">
+    <div class="box padding" style="position: absolute;
+  display: inline-block;
+  left: 32%;">
+            <img src="{{background}}" style="max-width:600px;">
+            <hr>
+            <div class="text-center">
+              {{date}}
+            </div>
+    </div>
+</div>
+</div>
+
+
+
+<div id="m" class="modal" #modalRef="bs-modal" [config]="{ show: false }" bsModal>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="box-header">
+          <h3>
+            <i class="fa fa-cloud-upload"></i>
+            Attach files </h3>
+          <small>Select the files to load if you wish you can also drag and drop.</small>
+        </div>
+      </div>
+      <div class="modal-body text-center p-lg">
+
+
+        <ngfFormData [files]="files" postName="file[]" [(FormData)]="toFormData"></ngfFormData>
+
+        <ngfUploadStatus [(percent)]="progress" [httpEvent]="httpEvent"></ngfUploadStatus>
+
+        <div class="inline-block" *ngIf="!files.length">
+          <div ngfDrop selectable="1" [(validDrag)]="validComboDrag" (filesChange)="changeComboDropFile()" [(files)]="files" [accept]="accept" [(dragFiles)]="dragFiles" class="well my-drop-zone" [class.invalid-drag]="validComboDrag===false"
+            [class.valid-drag]="validComboDrag">
+            <i class="fa fa-hand-o-right mr-10"></i> <strong>Drag and drop</strong> your file <strong>here</strong>
+          </div>
+        </div>
+
+
+        <div class="separe-table-files" *ngIf="files.length > 0">
+          <table class="table table-drop">
+            <thead>
+              <tr>
+                <th>Preview</th>
+                <th>Name</th>
+                <th>Format</th>
+                <th>Size</th>
+              </tr>
+            </thead>
+            <tbody>
+
+              <tr *ngFor="let item of files;let i=index">
+                <td>
+                  <div *ngIf="['image/gif','image/png','image/jpeg'].indexOf(item.type)>=0">
+                    <div class="previewIcon previewIconUpload" [ngfBackground]="item"></div>
+                  </div>
+
+
+                  <div *ngIf="['.mp4', '.3gp', '.avi', 'video/*', 'video/mp4'].indexOf(item.type)>=0">
+                    <i class="fa fa-video-camera" style="padding-top: 2px; font-size: 1rem; color: #00b2e494;"></i>
+                  </div>
+                </td>
+                <td align="left" class="valign-middle">
+                  <strong>{{ item.name }}</strong>
+                </td>
+                <td nowrap align="left" class="valign-middle">
+                  {{ item.type }}
+                </td>
+                <td nowrap align="left" class="valign-middle">
+                  {{ item.size/1024/1024 | number:'.2' }} MB
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div>
+            <div>
+              <div class="progress progress-striped progress-xs" style="">
+                <div class="progress-bar success" role="progressbar" [ngStyle]="{ 'width': progress + '%' }"></div>
+              </div>
+            </div>
+
+            <i *ngIf="progress==100" class="glyphicon glyphicon-ok"></i>
+
+            <button type="button" class="btn btn-info btn-sm" (click)="uploadFiles(files)" [disabled]="(!files.length)">
+              <i class="fa fa-cloud-upload"></i> Upload
+            </button>
+
+
+            <button type="button" class="btn btn-danger danger btn-sm" (click)="files.length=0" [disabled]="(!files.length)">
+              <i class="fa fa-trash"></i> Remove
+            </button>
+          </div>
+
+
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+  </div>
+<!--  <app-client-questions></app-client-questions>-->

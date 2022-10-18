@@ -1,0 +1,118 @@
+<!-- Payment Form -->
+<ng-container class="payment-container" *ngIf="!isLoaderActive && !isTransactionSuccessfully">
+
+
+    <!-- Navigation Section -->
+    <div class="navigation">
+        <!-- <i class="fa fa-chevron-left arrow-icon" aria-hidden="true"></i> -->
+        <!-- <div class="navigation-buttons"> -->
+        <!-- <button class="back-button" (click)="closeModal()">
+        Back
+       </button> -->
+
+        <div>
+            <span class="payment-heading" mat-dialog-title>
+                Payment Details
+            </span>
+        </div>
+
+        <div class="cancel-btn">
+            <button class="cancel-icon" (click)="closeModal()">
+                <img src="assets/images/cancel.svg" />
+            </button>
+        </div>
+        <!-- </div> -->
+    </div>
+
+    <!-- Order Picture -->
+    <div class="payment-image">
+        <img alt="Order Picture" src="../../../../../assets/images/journey.png" />
+    </div>
+
+    <div class="main-form-container">
+        <div class="main-form-container-content">
+            <form #paymentFormElement [formGroup]="paymentForm"
+                (ngSubmit)="params?.editPaymentMethod ? submitForm() : submitPayment()" id="payment-form">
+                <ng-container>
+
+                    <div class="form-controls">
+                        <input type="text" [ngClass]="
+                                        cardHolder.invalid && cardHolder.touched
+                                          ? 'form-control-input-error'
+                                          : 'form-control-input'
+                                      " placeholder="Card Holder Name" formControlName="cardHolder"
+                            (input)="checkErrorMessage()" />
+                        <span class="form-control-error" *ngIf="cardHolder.invalid && cardHolder.touched">
+                            Please enter the name on card.
+                        </span>
+                    </div>
+
+                    <div class="form-controls">
+                        <input type="text" [ngClass]="
+                      cardNumber.invalid && cardNumber.touched
+                        ? 'form-control-input-error card-class'
+                        :  cardNumber.errors?.minlength ? 'form-control-input-error card-class' : 'form-control-input card-class'
+                    " placeholder="Card Number" formControlName="cardNumber" data-bluesnap="encryptedCreditCard"
+                            NumbersOnly maxlength="19" minlength="12" (input)="checkErrorMessage()" />
+
+                        <span class="form-control-error"
+                            *ngIf="(cardNumber.dirty || cardNumber.touched) && cardNumber.errors?.required">
+                            Please enter a valid card number.
+                        </span>
+
+                        <span class="form-control-error"
+                            *ngIf="(cardNumber.dirty || cardNumber.touched) && cardNumber.errors?.maxlength">
+                            Card number exceeds maximum digits of 19
+                        </span>
+
+                        <span class="form-control-error"
+                            *ngIf="(cardNumber.dirty || cardNumber.touched) && cardNumber.errors?.minlength">
+                            Card number must meet the minimum length of 12 digits.
+                        </span>
+                    </div>
+
+                    <div class="form-controls form-controls-pair">
+                        <div class="form-control-cortege">
+                            <input type="text" [ngClass]="
+                          cardExpire.invalid && cardExpire.touched
+                            ? 'form-control-input-error'
+                            : 'form-control-input'
+                        " placeholder="Exp. (MM/YY)" maxlength="5" formControlName="cardExpire" name="exp"
+                                (input)="checkErrorMessage()" (keyup)="formatString($event);">
+                            <span class="form-control-error" *ngIf="cardExpire.invalid && cardExpire.touched">
+                                Please enter your card's expiration date.
+                            </span>
+                        </div>
+
+                        <div class="form-control-cortege">
+                            <input type="text" minlength="3" maxlength="3"
+                                [ngClass]="
+                                              cardSecurityCode.invalid && cardSecurityCode.touched
+                                                ? 'form-control-input-error cvv-class'
+                                                :  cardSecurityCode.errors?.minlength ? 'form-control-input-error cvv-class' : 'form-control-input form-control-csv cvv-class'"
+                                placeholder="CVC/CVV" formControlName="cardSecurityCode" (input)="checkErrorMessage()"
+                                name="cvv" data-bluesnap="encryptedCvv" NumbersOnly />
+                            <span class="form-control-error"
+                                *ngIf="(cardSecurityCode.dirty || cardSecurityCode.touched)  && cardSecurityCode.errors?.required">
+                                Please enter the CVV/CVC of your card.
+                            </span>
+                        </div>
+                    </div>
+
+                    <span class="form-control-error" *ngIf="transactionError">{{ transactionError }}</span>
+
+                   <div class="payment-button-container">
+                    <button [disabled]="paymentForm.invalid || transactionProcessing" type="submit" class="payment-btn">
+                        Pay Now
+                    </button>
+                   </div>
+                </ng-container>
+            </form>
+        </div>
+    </div>
+
+
+
+</ng-container>
+
+<div *ngIf="isLoaderActive" class="loader"></div>

@@ -1,0 +1,61 @@
+<div class="container">
+  <div ui-view="" class="app-body" id="view">
+    <div class="padding">
+        <app-client-flag></app-client-flag>
+      <div class="row">
+        <div class="col-md-6 p-right-0">
+          <div class="box">
+            <div class="box-header">
+              <h4>Assigned users</h4>
+              <div class="box-tool">
+                <ul class="nav">
+                  <li class="nav-item inline dropdown">
+                    <a class="nav-link text-muted" disabled data-toggle="dropdown">
+                      <i class="material-icons text-muted md-18"></i>
+                    </a>
+                    <!-- <div class="dropdown-menu dropdown-menu-scale pull-right dark">
+                      <a class="dropdown-item" (click)="openSettings()"><i class="fa fa-cogs"></i> Settings</a>
+                    </div> -->
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="list-group no-radius no-borders">
+
+              <ul class="list no-border p-b">
+			              <li class="list-item" *ngFor="let child of childs">
+                      <div class="pull-right">
+                        <button class="btn danger btn-sm" [routerLink]="['/board/t/assigned-user', child.client.user.firestore_uid]" [routerLinkActive]="['active']"><i class="fa fa-user-circle"></i> Manage</button>
+                      </div>
+
+			                <a [routerLink]="['/board/t/assigned-user', child.client.user.firestore_uid]" [routerLinkActive]="['active']" class="list-left">
+			                	<span class="w-40 avatar">
+				                  <img src="{{child.client.user.image}}" alt="...">				                
+				                </span>
+			                </a>
+			                <div class="list-body">
+			                  <div><a [routerLink]="['/board/t/assigned-user', child.client.user.firestore_uid]" [routerLinkActive]="['active']">{{child.client.user.name}}</a></div>
+			                  <small class="text-muted text-ellipsis">{{child.client.user.country}}, {{child.client.user.city}}</small>
+			                </div>
+			              </li>
+
+			            </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 p-left-0">
+          <div class="col-md-12 p-left-0">
+            <app-client-feed></app-client-feed>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+
+    <div>
+
+
+    </div>
+  </div>
+</div>

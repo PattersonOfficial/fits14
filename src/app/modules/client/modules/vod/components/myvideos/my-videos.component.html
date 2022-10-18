@@ -1,0 +1,109 @@
+<div class="loader" *ngIf="loading"></div>
+<div class="my-videos" *ngIf="!loading">
+  <div class="left-col">
+    <div *ngIf="!activeContentId">
+      <button
+        *ngIf="activeProgramId"
+        class="header_container"
+        (click)="previousPage()"
+      >
+        <i class="fa fa-chevron-left back_button_icon" aria-hidden="true"></i>
+        <h3>Back</h3>
+      </button>
+
+      <div *ngIf="!activeProgramId" class="mylist_top_separator"></div>
+      <div class="programs-list" *ngIf="!activeProgramId">
+        <app-my-videos-program
+          (onPlayVideo)="handlePlayVideo($event)"
+          [isSingle]="false"
+          [program]="program"
+          *ngFor="let program of programsList"
+        ></app-my-videos-program>
+      </div>
+      <div class="programs-list" *ngIf="activeProgramId">
+        <div class="programs_list_separator"></div>
+        <app-my-videos-program
+          (onPlayVideo)="handleActiveProgram($event)"
+          (onResetProgramChoose)="resetActiveProgram()"
+          [isSingle]="true"
+          [program]="activeProgramData"
+        ></app-my-videos-program>
+      </div>
+      <p
+        class="lessons-list-title"
+        *ngIf="activeProgramId && activeProgramData"
+      >
+        Classes
+      </p>
+      <div class="program-content" *ngIf="activeProgramId && activeProgramData">
+        <app-my-videos-lesson-card
+          [isSide]="false"
+          [lesson]="lesson"
+          [programId]="activeProgramId"
+          *ngFor="let lesson of activeProgramData.lessons"
+        ></app-my-videos-lesson-card>
+      </div>
+    </div>
+    <div *ngIf="activeProgramData && activeContentType">
+      <button class="header_container" (click)="previousPage()">
+        <i class="fa fa-chevron-left back_button_icon" aria-hidden="true"></i>
+        <h3>Back</h3>
+      </button>
+
+      <app-vod-content-viewer
+        (onPlayVideo)="handlePlayVideo($event)"
+        [content]="activeContent"
+        [contentType]="activeContentType"
+      ></app-vod-content-viewer>
+    </div>
+  </div>
+  <div class="right-col">
+    <div *ngIf="!activeContentId">
+      <h5 class="right-col-heading">
+        {{ activeProgramId ? "Articles" : "Recommended For You" }}
+      </h5>
+      <div class="programs_sub_list" *ngIf="!activeProgramId">
+        <div style="height: 38px"></div>
+        <app-client-programcategory
+          (onPlayVideo)="handlePlayVideo($event)"
+          [program]="program"
+          [user]="user"
+          [isMore]="true"
+          (onShowPaymentModal)="handlePaymentFormModal($event)"
+          (onSubscribeSlider)="handleProgramSubscription($event)"
+          *ngFor="let program of morePrograms"
+        ></app-client-programcategory>
+      </div>
+      <div class=".programs-list" *ngIf="activeProgramId && activeProgramData">
+        <div style="height: 20px"></div>
+        <app-my-videos-article-card
+          [programId]="activeProgramId"
+          [article]="article"
+          *ngFor="let article of activeProgramData.articles"
+        ></app-my-videos-article-card>
+      </div>
+    </div>
+    <div *ngIf="activeProgramData && activeContentType == 1">
+      <h5 class="right-col-heading">More From Program</h5>
+      <div class="programs-list">
+        <div style="height: 20px"></div>
+        <app-my-videos-lesson-card
+          [isSide]="true"
+          [lesson]="lesson"
+          [programId]="activeProgramId"
+          *ngFor="let lesson of activeProgramData.lessons"
+        ></app-my-videos-lesson-card>
+      </div>
+    </div>
+    <div *ngIf="activeProgramData && activeContentType == 4">
+      <h5 class="right-col-heading">Articles</h5>
+      <div class="programs-list">
+        <app-my-videos-article-card
+          [programId]="activeProgramId"
+          [article]="article"
+          *ngFor="let article of activeProgramData.articles"
+        ></app-my-videos-article-card>
+      </div>
+    </div>
+  </div>
+</div>

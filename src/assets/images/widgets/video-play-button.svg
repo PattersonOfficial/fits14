@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="112px" height="111px" viewBox="0 0 112 111" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
+    <title>Button - Play</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <filter x="-3.2%" y="-5.4%" width="106.4%" height="115.2%" filterUnits="objectBoundingBox" id="filter-1">
+            <feOffset dx="0" dy="5" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="9" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.07 0" type="matrix" in="shadowBlurOuter1" result="shadowMatrixOuter1"></feColorMatrix>
+            <feMerge>
+                <feMergeNode in="shadowMatrixOuter1"></feMergeNode>
+                <feMergeNode in="SourceGraphic"></feMergeNode>
+            </feMerge>
+        </filter>
+    </defs>
+    <g id="STRONGER-WOMEN" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="SW---Hub-Copy" transform="translate(-1259.000000, -898.000000)" fill="#FFFFFF">
+            <g id="Video-Card-Copy-2" filter="url(#filter-1)" transform="translate(649.000000, 800.000000)">
+                <g id="3Card.Image" transform="translate(403.000000, 0.000000)">
+                    <g id="Button---Play" transform="translate(225.171233, 110.619256)">
+                        <g>
+                            <path d="M37.8287671,75.5448578 C16.9365159,75.5448578 0,58.6335653 0,37.7724289 C0,16.9112924 16.9365159,0 37.8287671,0 C58.7210183,0 75.6575342,16.9112924 75.6575342,37.7724289 C75.6575342,58.6335653 58.7210183,75.5448578 37.8287671,75.5448578 Z M37.8287671,71.9474836 C56.7312801,71.9474836 72.0547945,56.6467904 72.0547945,37.7724289 C72.0547945,18.8980673 56.7312801,3.59737418 37.8287671,3.59737418 C18.9262541,3.59737418 3.60273973,18.8980673 3.60273973,37.7724289 C3.60273973,56.6467904 18.9262541,71.9474836 37.8287671,71.9474836 Z" id="Oval" fill-rule="nonzero"></path>
+                            <polygon id="Fill-1" points="31.5239726 26.0809628 31.5239726 49.463895 51.8062415 37.7724289"></polygon>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

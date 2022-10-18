@@ -1,0 +1,47 @@
+.text-xs {
+  font-size: .60rem;
+}
+
+.w-60 {
+  width: 60px;
+  height: 60px;
+  line-height: 40px;
+  display: inline-block;
+}
+
+.w-80 {
+  width: 80px;
+  height: 80px;
+  line-height: 40px;
+  display: inline-block;
+}
+
+.mb-10 {
+  margin-bottom: 10px;
+}
+
+.message-avatar {
+  display: flex;
+}
+
+.list-item-connect .img-circle {
+  border-radius: 50%;
+  border: 5px solid #d3eff3;
+}
+
+.mt-50 {
+  margin-top: 50%;
+}
+
+.list-item-connect {
+  padding: 15%;
+  color: #7a7d80 !important;
+  font-size: 13px;
+}
+
+.label-count {
+  position: absolute;
+  left: 0px;
+  top: 4px;
+  font-size: 10px;
+}

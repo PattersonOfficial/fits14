@@ -1,0 +1,110 @@
+.block-heading {
+    display: flex;
+    font-family: Montserrat, sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 15px;
+    border-top: 1px solid #D3CECE;
+    border-bottom: 1px solid #D3CECE;
+    padding: 10px 15px;
+    align-items: center;
+    cursor: pointer;
+}
+
+.block-heading.closed {
+    border-bottom: none;
+}
+
+.huy {
+    max-width: 100px;
+}
+.block-heading p {
+    margin: 0;
+}
+
+.block-heading .material-icons {
+    margin-right: 10px;
+}
+
+.block-data {
+    padding: 15px;
+    transition: all .25s;
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.column {
+    width: calc((100% - 15px) / 2);
+}
+
+.field {
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    height: 25px;
+}
+
+.field-name {
+    width: 40%;
+    font-size: 11px;
+    color: #857E7E;
+}
+
+.form-control {
+    font-size: 12px;
+    line-height: 15px;
+    color: #4A6288;
+    width: 50%;
+}
+
+.form-control.disabled {
+    pointer-events: none;
+    border: none;
+    background: transparent;
+}
+
+.fit {
+    width: fit-content;
+}
+
+input[type=checkbox].form-control {
+    margin-left: 5px;
+}
+
+input[type=checkbox].form-control:hover {
+    cursor: pointer;
+}
+
+.input-wrap {
+    width: 50%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.input-wrap .form-control {
+    width: calc((100% - 10px) / 2);
+}
+
+.edit {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    cursor: pointer;
+}
+
+.edit-buttons {
+    display: flex;
+    width: 100%;
+    justify-content: flex-end;
+}
+
+.field select.form-control {
+    height: unset;
+}
+
+::ng-deep svg.mat-datepicker-toggle-default-icon.ng-star-inserted {
+    color: #8B95A5;
+}

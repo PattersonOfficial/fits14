@@ -1,0 +1,41 @@
+<div id="m-b-b" class="modal in" data-backdrop="false" style="display: block;"
+     #modalRef="bs-modal" *ngIf="isModal" [config]="{ show: true }" (onHidden)="hideModal()" bsModal>
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="loader" *ngIf="loader"></div>
+            <div class="wrapper" *ngIf="!loader">
+                <div class="header">
+                    <h3 class="heading">Edit Ticket(s)</h3>
+                    <span class="close" (click)="hideModal()"><i class="material-icons sort-icon">close</i></span>
+                </div>
+                <div class="edit-fields">
+                    <div class="edit-field" *ngFor="let field of editFields">
+                        <div class="field-heading" (click)="showField = showField === field.fieldName ? '' : field.fieldName">
+                            <span class="field-name">{{field.name}}</span>
+                            <i class="material-icons sort-icon"
+                               *ngIf="showField !== field.fieldName"
+                            >arrow_drop_down</i>
+                            <i class="material-icons sort-icon"
+                               *ngIf="showField === field.fieldName"
+                            >arrow_drop_up</i>
+                        </div>
+                        <div class="select" *ngIf="showField === field.fieldName">
+                            <p class="option"
+                               [ngClass]="{'active': checkedOptions[field.fieldName] === option.id}"
+                               *ngFor="let option of field.options"
+                               (click)="checkOption(field.fieldName, option.id)"
+                            >
+                                {{option.name || option.title}}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="action-buttons">
+                    <button class="delete-btn" (click)="confirmModal.openModal()">Delete ticket(s)</button>
+                    <button class="save-btn" (click)="saveTicketsChanges()">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <app-confirm-modal (onConfirm)="deleteTickets()"></app-confirm-modal>
+</div>

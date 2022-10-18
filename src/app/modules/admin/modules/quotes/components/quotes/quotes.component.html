@@ -1,0 +1,115 @@
+<div class="container">
+  <div class="box-header">
+    <h3><i class="fa fa-file-text-o"></i> Quotes</h3>
+    <small>Manage the daily phrases to show in the system.</small>
+  </div>
+  <hr>
+  <div class="col-md-12">
+    <div class="white r box-shadow-z0 m-b navbar-md">
+      <div class="navbar"><a class="navbar-brand"></a>
+        <ul class="nav navbar-nav pull-right">
+          <li class="nav-item mt-10">
+
+          </li>
+          <li class="nav-item dropdown"><a class="nav-link p-l b-l" href="" data-toggle="dropdown" aria-expanded="false"><i class="material-icons mt-15"></i></a>
+
+          </li>
+        </ul>
+        <div class="collapse navbar-toggleable-sm">
+          <ul class="nav navbar-nav navbar-nav-inline text-center pull-left m-r text-primary-hover">
+            <li class="nav-item"><a class="nav-link"><span class="nav-text"><i class="material-icons">speaker_notes</i> <span class="text-xs">View Log </span></span></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-4">
+    <div class="box">
+      <div class="box-tool mt-3">
+
+        <ul class="nav">
+          <li class="nav-item inline dropdown">
+            <a class="nav-link text-muted" data-toggle="dropdown">
+				              <i class="material-icons md-18"></i>
+				      </a>
+            <div class="dropdown-menu dropdown-menu-scale pull-right white">
+              <a class="dropdown-item" href="">Activities</a>
+              <a class="dropdown-item" href="">Feed</a>
+              <a class="dropdown-item" href="">Photo</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item">Follow</a>
+            </div>
+          </li>
+        </ul>
+
+
+      </div>
+      <br><br>
+      <div class="box-body">
+          <label class="label-other">Author</label>
+          <input type="text" class="form-control input-sm" [(ngModel)]="fields.author">
+
+          <label class="label-other">Phrase</label>
+          <textarea name="" class="form-control input-sm" id="" cols="30" rows="5" [(ngModel)]="fields.phrase"></textarea>
+          <hr>
+          <div class="">
+              <button class="btn btn-primary btn-sm btn-green pull-right" *ngIf="!isEdit" (click)="setQuote()"><i class="fa fa-plus"></i> Create quote</button>
+              <button class="btn btn-primary btn-sm btn-warning pull-right" *ngIf="isEdit" (click)="updateQuote(fields)"><i class="fa fa-refresh"></i> Update quote</button>
+          </div>
+  <br><br>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-8">
+    <div class="box">
+      <div class="loading" *ngIf="loadingBox">
+        <div class="loader"></div>
+      </div>
+
+
+      <div class="box-body text-center">
+
+        <div>
+          <div class="text-left">
+            <div class="btn-group" id="nestable-menu">
+              <button type="button" class="btn btn-sm btn-green" (click)="emptyList()"><i class="fa fa-trash"></i> Empty</button>
+            </div>
+          </div>
+
+        </div>
+        <hr>
+        <img src="../../../../assets/images/template/drag-and-drop.png" *ngIf="list.length == 0">
+        <ngx-nestable [(list)]="list" #nestable [options]="options" [template]="itemTemplate">
+        </ngx-nestable>
+
+        <ng-template #itemTemplate let-row>
+
+          <i class="fa icon-collaps" *ngIf="row.item.children && row.item.children.length; else empty_item" [ngxNestableExpandCollapse]="row" [ngClass]="{
+          'fa-plus-circle': !row.item.$$expanded,
+          'fa-minus-circle': row.item.$$expanded
+          }"></i>
+
+          <div>
+            <i class="material-icons icon-drag">subject</i>
+            <span class="text-handle">{{row.item.phrase | slice:0:46}}... | <small>{{row.item.author}}</small></span>
+          </div>
+
+          <div class="right-05rem">
+            <button type="button" class="btn btn-list btn-primary-dark  btn-sm pull-right" name="button" title="Delete item" (mousedown)="trashQuote(row.item)"><i class="fa fa-trash"></i></button>
+            <button type="button" class="btn btn-list btn-primary-dark  btn-sm pull-right" name="button" (click)="toEdit(row.item)" title="Edit"><i class="fa fa-edit"></i></button>
+            <button type="button" class="btn btn-list btn-primary-dark  btn-sm pull-right" name="button" title="Move item" [ngxNestableDragHandle]="row"><i class="fa fa-arrows"></i></button>
+          </div>
+        </ng-template>
+
+        <ng-template #empty_item>
+        </ng-template>
+
+        <hr>
+
+        <button class="btn btn-primary btn-block" [disabled]="list.length == 0" (click)="saveQuotes()"><i class="fa fa-check-circle"></i> Save quotes</button>
+      </div>
+    </div>
+  </div>
+</div>

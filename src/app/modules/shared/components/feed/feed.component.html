@@ -1,0 +1,313 @@
+<div class="feed">
+  <div class="new-post collapse in m-a-0">
+    <a class="nav-link" (click)="openPickerPost()">
+      <!--<i class="material-icons md-18 icon-smile" [class.is-blue-hov]="togglePost">insert_emoticon</i>-->
+      <img src="../../../../../assets/images/icons/add-smile.svg" alt="add smile">
+    </a>
+    <form>
+      <textarea class="form-control no-border" rows="3" placeholder="Type message..." (keyup)="togglePost = false" name="content" [(ngModel)]="post.content" style="font-size:13px;"></textarea>
+      <emoji-mart (emojiClick)="addEmoji($event)" [showPreview]="false" [totalFrequentLines]="1" *ngIf="togglePost"></emoji-mart>
+    </form>
+
+    <a class="nav-link add-image-link" (click)="openModalAttach('post_image')">
+      <!--<i class="fa fa-camera text-muted"></i>-->
+      <img src="../../../../../assets/images/icons/add-picture.svg" alt="add picture">
+    </a>
+    <button class="btnsend-feed" (click)="publish()">
+      <!--Send to feed-->
+      <img src="../../../../../assets/images/icons/send-message.svg" alt="">
+    </button>
+
+    <!--<div class="box-footer clearfix">
+
+      <div class="pull-right">
+         &lt;!&ndash; <button class="btn is-kaky-button white btn-sm" (click)="isPublic()"><i class="fa text-muted" [ngClass]="{'fa-globe':post.public, 'fa-lock':!post.public }"></i></button>&ndash;&gt;
+          <button class="btnsend-feed" (click)="publish()">
+            &lt;!&ndash;Send to feed&ndash;&gt;
+            <img src="../../../../../assets/images/icons/send-message.svg" alt="">
+          </button>
+      </div>
+
+      <ul class="nav nav-pills nav-sm">
+        <li class="nav-item nav-blue" *ngIf="!files.length">
+          <a class="nav-link" (click)="openModalAttach('post_image')">
+            &lt;!&ndash;<i class="fa fa-camera text-muted"></i>&ndash;&gt;
+            <img src="../../../../../assets/images/icons/add-picture.svg" alt="add picture">
+          </a>
+        </li>
+        &lt;!&ndash;<li class="nav-item nav-blue" *ngIf="!files.length"><a class="nav-link" (click)="openModalAttach('post_video')"><i class="fa fa-video-camera text-muted"></i></a></li>&ndash;&gt;
+        <li class="nav-item is-link-at" *ngIf="files.length > 0" (click)="openModalAttach('')">({{files.length}}) attachments</li>
+        <li class="nav-item nav-blue" (click)="openPickerPost()" >
+          <a class="nav-link"   >
+            &lt;!&ndash;<i class="material-icons md-18 icon-smile" [class.is-blue-hov]="togglePost">insert_emoticon</i>&ndash;&gt;
+            <img src="../../../../../assets/images/icons/add-smile.svg" alt="add smile">
+          </a>
+        </li>
+
+
+      </ul>
+      <emoji-mart (emojiClick)="addEmoji($event)" [showPreview]="false" [totalFrequentLines]="1" *ngIf="togglePost"></emoji-mart>
+    </div>-->
+  </div>
+</div>
+
+<div class="">
+  <div class="loading" *ngIf="loadingBox">
+    <div class="loader"></div>
+  </div>
+  <div class="box-header">
+    <!--<h3>Feed</h3>-->
+    <div class="box-tool" *ngIf="(feed | async)?.length !== 0">
+      <ul class="nav">
+        <li class="nav-item inline dropdown">
+          <a class="nav-link text-muted" data-toggle="dropdown">
+              <i class="fa fa-align-center dashboardModelIcon" aria-hidden="true"></i>
+          </a>
+          <div class="dropdown-menu dropdown-menu-scale pull-right dark">
+            <a class="dropdown-item">See favorites</a>
+            <a class="dropdown-item">Friend requests</a>
+            <a class="dropdown-item">Account activity </a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item"><i class="fa fa-refresh"></i> Reload Feed</a>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="box-body" scrollable (scrollPosition)="scrollHandler($event)" style="overflow-y: scroll; max-height: calc(100vh - 210px); padding: 0.1rem;">
+
+    <div *ngIf="!(_feedService.data | async)?.length && requirements.length == 0" class="m-top-30">
+      <div class="icon-friends">
+        <i class="material-icons icon-friends">notifications_off</i>
+      </div>
+      <div class="text-center padding caption-friends">
+        <span>
+          Your feed is empty, start your activities and share the progress with all your friends</span>
+        <br>
+        <a [routerLink]="['/board/u/progress']" class="btn btn-primary hide btn-sm">
+          <i class="fa fa-check-circle"></i> Start my program
+        </a>
+      </div>
+    </div>
+
+
+
+    <div class="streamline b-l m-l-md">
+
+
+      <div class="sl-item" *ngFor="let requirement of requirements">
+        <div class="sl-left">
+          <img src="{{requirement.user.image}}" class="img-circle">
+        </div>
+        <div class="sl-content">
+          <div class="sl-date text-muted">{{requirement.created_at | date: "medium" | timeAgo}}</div>
+          <div class="sl-author">
+            <a href="">{{requirement.user.name}}</a>
+          </div>
+
+          <div>
+            <p>I invite you to be my friend at FitNutsPro</p>
+            <button class="md-btn md-raised m-b-sm w-xs blue" (click)="acceptRequirement(requirement)"><i class="fa fa-check"></i> Accept</button>
+            <button class="md-btn md-raised m-b-sm w-xs pink btn-sm" (click)="declineRequirement(requirement)"><i class="fa fa-times"></i> Decline</button>
+          </div>
+        </div>
+      </div>
+
+
+
+      <div class="sl-item" *ngFor="let item of _feedService.data | async;">
+
+        <div class="sl-left">
+          <img src="{{( item.user | async )?.image}}" class="img-circle">
+        </div>
+        <div class="sl-content">
+          <!--<div class="sl-date text-muted">{{item.date | timeAgo }} - <i class="fa text-muted" [ngClass]="{'fa-globe':item.public, 'fa-lock':!item.public }"></i> </div>-->
+          <!--<div class="sl-author">
+            <a href="">{{( item.user | async )?.name}}</a>
+          </div>-->
+
+
+
+          <div *ngIf="item.type == 'post_text'" class="post-text">
+            <p [innerHtml]="item.content"></p>
+            <div class="sl-date text-muted">{{item.date | timeAgo }} - <i class="fa text-muted" [ngClass]="{'fa-globe':item?.public, 'fa-lock':!item?.public }"></i> </div>
+          </div>
+
+          <div *ngIf="item.type == 'post_image'" class="post-text">
+            <p [innerHtml]="item.content"></p>
+            <p>
+              <span class="inline p-a-xs b-a dark-white">
+                <img src="{{item.source}}" class="img-responsive">
+              </span>
+            </p>
+            <div class="sl-date text-muted">{{item.date | timeAgo }} - <i class="fa text-muted" [ngClass]="{'fa-globe':item.public, 'fa-lock':!item.public }"></i> </div>
+          </div>
+
+
+          <div *ngIf="item.type == 'post_video'" class="post-text">
+            <p [innerHtml]="item.content"></p>
+            <p>
+              <video width="100%" height="auto" controls>
+                <source src="{{item.source}}" type="video/mp4">
+              </video>
+            </p>
+            <div class="sl-date text-muted">{{item.date | timeAgo }} - <i class="fa text-muted" [ngClass]="{'fa-globe':item.public, 'fa-lock':!item.public }"></i> </div>
+          </div>
+
+          <small *ngIf="(item.comments | async)?.length !== 0"><i class="fa fa-comments"></i> Last comments <br><br> </small>
+
+          <div class="sl-item" *ngFor="let comment of item.comments | async">
+            <div class="sl-left">
+              <img src="{{(comment.user | async)?.image}}" class="w-40 r">
+            </div>
+            <div class="sl-content">
+              <div class="sl-date text-muted">{{comment.created_at | timeAgo}}</div>
+              <p><!--<a class="text-info sl-author">{{(comment.user | async)?.name}}</a>-->
+                {{comment.message}}.
+              </p>
+            </div>
+          </div>
+
+          <!-- Herramientas de respuesta -->
+          <div class="sl-footer">
+            <a class="btn is-kaky-button white btn-xs" (click)="setLikePost(item.id)">
+              <i class="fa fa-fw  fa-heart  inline" [ngClass]="{'text-muted':_feedService.itLiked.indexOf(item.id) == -1, 'text-danger':_feedService.itLiked.indexOf(item.id) != -1 }"></i>  <small class="is-green-bold">{{(item.likes | async)?.length}}</small>
+            </a>
+            <a class="btn white btn-xs is-kaky-button" (click)="setCurrentPost(item.id)">
+              <i class="fa fa-fw fa-comment text-muted"></i> <small class="is-green-bold">{{(item.comments | async)?.length}}</small>
+            </a>
+
+
+          </div>
+          <div class="box m-a-0 is-kaky new-post" *ngIf="current_post == item.id">
+            <a class="nav-link" (click)="openPickerComments()">
+              <img src="../../../../../assets/images/icons/add-smile.svg" alt="add smile">
+            </a>
+            <form>
+              <textarea class="form-control the-feed no-border" rows="3" (keyup)="toggleComment = false" placeholder="Type something..." name="message" [(ngModel)]="comment.message"></textarea>
+              <emoji-mart (emojiClick)="addEmojiComment($event)" [showPreview]="false" [totalFrequentLines]="1" *ngIf="toggleComment"></emoji-mart>
+            </form>
+            <button class="pull-right btnsend-feed" (click)="sendComment(item.id)">
+              <img src="../../../../../assets/images/icons/send-message.svg" alt="">
+            </button>
+            <!--<div class="box-footer clearfix">
+              <div class="pull-right">
+                  <button class="pull-right btnsend-feed" (click)="sendComment(item.id)"><i class="fa fa-send"></i> Send</button>
+              </div>
+
+              <ul class="nav nav-pills nav-sm">
+                <li class="nav-item nav-blue" (click)="openPickerComments()" ><a class="nav-link"   >
+                  <i class="material-icons md-18 icon-smile" [class.is-blue-hov]="toggleComment">insert_emoticon</i></a>
+                </li>
+              </ul>
+              <emoji-mart (emojiClick)="addEmojiComment($event)" [showPreview]="false" [totalFrequentLines]="1" *ngIf="toggleComment"></emoji-mart>
+            </div>-->
+          </div>
+          <!-- Fin Herramientas de respuesta -->
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<div id="m" class="modal" #modalRef="bs-modal" [config]="{ show: false }" bsModal>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="box-header">
+          <h3>
+            <i class="fa fa-cloud-upload"></i>
+            Attach files </h3>
+          <small>Select the files to load if you wish you can also drag and drop.</small>
+        </div>
+      </div>
+      <div class="modal-body text-center p-lg">
+
+
+        <ngfFormData [files]="files" postName="file[]" [(FormData)]="toFormData"></ngfFormData>
+
+        <ngfUploadStatus [(percent)]="progress" [httpEvent]="httpEvent"></ngfUploadStatus>
+
+        <div class="inline-block" *ngIf="!files.length">
+          <div ngfDrop multiple="0" selectable="1" [(validDrag)]="validComboDrag" (filesChange)="changeComboDropFile()" [(files)]="files" [accept]="accept" [(dragFiles)]="dragFiles" class="well my-drop-zone" [class.invalid-drag]="validComboDrag===false"
+            [class.valid-drag]="validComboDrag">
+            <i class="fa fa-hand-o-right mr-10"></i> <strong>Drag and drop</strong> your file <strong>here</strong>
+          </div>
+        </div>
+
+        <div class="alert alert-warning fade in alert-dismissible" *ngIf="loadingAws">
+          <a href="#" class="close" data-dismiss="alert" aria-label="close" title="close">×</a>
+          <strong>Warning!</strong> Please wait, do not close this window. It will close automatically when finished loading.
+        </div>
+
+        <div class="separe-table-files" *ngIf="files.length > 0">
+          <table class="table table-drop">
+            <thead>
+              <tr>
+                <th>Preview</th>
+                <th>Name</th>
+                <th>Format</th>
+                <th>Size</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+
+              <tr *ngFor="let item of files;let i=index">
+                <td>
+                  <div *ngIf="['image/gif','image/png','image/jpeg'].indexOf(item.type)>=0">
+                    <div class="previewIcon previewIconUpload" [ngfBackground]="item"></div>
+                  </div>
+
+                  <div *ngIf="['.mp4', '.3gp', '.avi', 'video/*', 'video/mp4'].indexOf(item.type)>=0">
+                    <i class="fa fa-video-camera" style="padding-top: 2px; font-size: 1rem; color: #00b2e494;"></i>
+                  </div>
+                </td>
+                <td align="left" class="valign-middle">
+                  <strong>{{ item.name }}</strong>
+                </td>
+                <td nowrap align="left" class="valign-middle">
+                  {{ item.type }}
+                </td>
+                <td nowrap align="left" class="valign-middle">
+                  {{ item.size/1024/1024 | number:'.2' }} MB
+                </td>
+                <td nowrap align="left" class="valign-middle">
+                  <button [disabled]="(!files.length)" type="button" class="btn btn-danger btn-xs" (click)="files.splice(i,1)">
+                    <i class="fa fa-trash"></i>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div *ngIf="post.source == ''">
+            <div>
+              <div class="progress progress-striped progress-xs" style="">
+                <div class="progress-bar success" role="progressbar" [ngStyle]="{ 'width': progress + '%' }"></div>
+              </div>
+            </div>
+
+            <i *ngIf="progress==100" class="glyphicon glyphicon-ok"></i>
+
+            <button type="button" class="btn btn-info btn-sm" (click)="uploadFiles(files)" [disabled]="(!files.length)">
+              <i class="fa fa-cloud-upload"></i> Upload all
+            </button>
+
+            <button type="button" class="btn btn-danger danger btn-sm" (click)="files.length=0" [disabled]="(!files.length)">
+              <i class="fa fa-trash"></i> Remove all
+            </button>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+  </div>

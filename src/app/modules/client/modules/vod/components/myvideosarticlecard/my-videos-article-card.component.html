@@ -1,0 +1,26 @@
+<div class="article_card" (click)="goToArticle()">
+  <img src="{{ article.thumbnail }}" alt="" />
+  <div class="article_desc_container">
+    <h4>
+      {{ article.title }}
+    </h4>
+    <div class="article_text_box">
+      <!--Removed readMore from the innerHTML-->
+      <span [innerHTML]="article.description"></span>
+    </div>
+  </div>
+</div>
+
+<!--
+<div class="fitness-home-right-side-bar-content-item" (click)="goToArticle()">
+  <img src="{{ article.thumbnail }}" alt="" class="article-poster" />
+  <h4 class="article-title">
+    {{ article.title }}
+  </h4>
+  <div class="article-graph">
+    <span [innerHTML]="article.description + readMore"></span>
+  </div>
+</div>
+
+
+-->

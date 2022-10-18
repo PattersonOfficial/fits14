@@ -1,0 +1,181 @@
+<div class="container">
+    <div class="box-header">
+        <h3><i class="fa fa-cube"></i>Packages</h3>
+        <small>Control package steps, order and configure as required.</small>
+    </div>
+
+    <hr>
+
+    <div class="col-md-12">
+        <div class="white r box-shadow-z0 m-b navbar-md">
+            <div class="navbar"><a class="navbar-brand"></a>
+                <ul class="nav navbar-nav pull-right">
+                    <li class="nav-item mt-10">
+                        <label class="m-b-0"><small class="label-bolder">Membership</small></label>
+
+                        <select class="form-control input-sm inline-height-2rem font-size-1em"
+                                [(ngModel)]="selectedMembership" (change)="onMembershipChange()">
+                            <option disabled selected [ngValue]="null">Not selected</option>
+                            <option *ngFor="let membership of memberships" [ngValue]="membership">
+                                {{membership.title}}
+                            </option>
+                        </select>
+                    </li>
+
+                    <li class="nav-item mt-10" *ngIf="selectedMembership">
+                        <label class="m-b-0"><small class="label-bolder">Type</small></label>
+
+                        <select class="form-control input-sm inline-height-2rem font-size-1em"
+                                [(ngModel)]="selectedType" (change)="onTypeChange()">
+                            <option disabled selected [ngValue]="null">Not selected</option>
+                            <option *ngFor="let type of filteredTypes" [ngValue]="type">
+                                {{type.category.title}} - {{type.name}}
+                            </option>
+                        </select>
+                    </li>
+
+                    <!--<li class="nav-item dropdown">
+                        <a class="nav-link p-l b-l" href="" data-toggle="dropdown" aria-expanded="false">
+                            <i class="material-icons mt-15"></i>
+                        </a>
+                    </li>-->
+                </ul>
+
+                <div class="collapse navbar-toggleable-sm">
+                    <ul class="nav navbar-nav navbar-nav-inline text-center pull-left m-r text-primary-hover">
+                        <li class="nav-item">
+                            <a class="nav-link" (click)="contentsBuilder.openModal(1, '.mp4,.3gp,.avi')">
+                                <span class="nav-text">
+                                    <i class="material-icons">play_circle_outline</i> <span class="text-xs">Video</span>
+                                </span>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" (click)="contentsBuilder.openModal(4, '')">
+                                <span class="nav-text">
+                                    <i class="material-icons">subject</i> <span class="text-xs">Article</span>
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="box">
+            <!--<div class="box-tool mt-3">
+                <ul class="nav">
+                    <li class="nav-item inline dropdown">
+                        <a class="nav-link text-muted" data-toggle="dropdown">
+                            <i class="material-icons md-18"></i>
+                        </a>
+
+                        <div class="dropdown-menu dropdown-menu-scale pull-right white">
+                            <a class="dropdown-item" href="">Activities</a>
+                            <a class="dropdown-item" href="">Feed</a>
+                            <a class="dropdown-item" href="">Photo</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item">Follow</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="search-box">
+                <input type="text" class="form-control search input-sm">
+            </div>
+
+            <hr>-->
+
+            <div class="box-body">
+                <div class="dd" id="content">
+                    <ng-container *ngFor="let category of categories">
+                        <ng-container *ngIf="getPlansByCategoryId(category.id).length">
+                            <h5>{{category.title}}</h5>
+
+                            <ol class="dd-list">
+                                <ng-container *ngFor="let plan of getPlansByCategoryId(category.id)">
+                                    <li class="dd-item" *ngIf="plan.category_id === category.id">
+                                        <div class="dd-handle">
+                                            <div class="text-handle">
+                                                <span class="small">ID: {{plan.id}}</span>
+                                                {{plan.name}}
+                                            </div>
+
+                                            <button [disabled]="!isAddToPackageEnabled(plan)"
+                                                    (click)="addPlanToPackage(plan)"
+                                                    class="btn btn-list btn-primary-dark  btn-sm pull-right"
+                                                    type="button" name="button" title="Add to Package">
+                                                <i class="fa fa-mail-forward"></i>
+                                            </button>
+                                        </div>
+                                    </li>
+                                </ng-container>
+                            </ol>
+
+                            <br>
+                        </ng-container>
+                    </ng-container>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-8">
+        <div class="box">
+            <div class="loading" *ngIf="loadingPackage">
+                <div class="loader"></div>
+            </div>
+
+            <div *ngIf="selectedMembership" class="ribbon-wrapper-green">
+                <div class="ribbon-green">
+                    <i class="fa fa-star"></i> {{selectedMembership.title}}
+                </div>
+            </div>
+
+            <div class="box-body text-center">
+                <hr>
+                <img src="../../../../../../../assets/images/template/drag-and-drop.png" *ngIf="!packagePlans.length"
+                     alt="Drag and Drop">
+
+                <ol class="dd-list">
+                    <ng-container *ngFor="let plan of packagePlans; let i=index">
+                        <li class="dd-item">
+                            <div class="dd-handle">
+                                <div class="text-handle">
+                                    <span class="small">ID: {{plan.id}}</span>
+                                    {{plan.name}}
+                                </div>
+
+                                <button (click)="onRemovePlanClick(i)"
+                                        class="btn btn-icon btn-social white btn-sm pull-right"
+                                        type="button" title="Delete">
+                                    <i class="fa fa-trash"></i>
+                                    <i class="fa fa-trash red-600"></i>
+                                </button>
+                            </div>
+                        </li>
+                    </ng-container>
+                </ol>
+
+                <hr>
+
+                <button class="btn btn-primary btn-block" (click)="savePackage()" [disabled]="!isSavePackageEnabled()">
+                    <i class="fa fa-check-circle"></i> Save package
+                </button>
+
+                <div *ngIf="packageSaveResponseText">
+                    <span class="mismatch-error-message">
+                        {{packageSaveResponseText}}
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-builder-contents></app-builder-contents>
+<webview-contents></webview-contents>

@@ -1,0 +1,110 @@
+<div class="hidden-xs hidden-sm" id="contact_box">
+  <div class="w-lg light lt b-l" style="height: 100%;">
+    <div class="p-a b-b">
+      <div class="pull-right" (click)="toggleSideChat()">
+        <i class="fa fa-times-circle"></i>
+      </div>
+      <a class="clear">
+        <span class="pull-left">
+          <img src="{{(user | async)?.profile_image}}" class="w-40 r">
+        </span>
+        <span class="clear hidden-folded p-x">
+          <span class="block _500">{{(user | async)?.name}}</span>
+          <small class="block text-muted" *ngIf="(user | async)?.status == 1">
+            <i class="fa fa-circle text-success m-r-sm"></i>online
+          </small>
+          <small class="block text-muted" *ngIf="(user | async)?.status == 0">
+            <i class="fa fa-circle text-danger m-r-sm"></i>offline
+          </small>
+          <small class="block text-muted" *ngIf="(user | async)?.status == 2">
+            <i class="fa fa-circle text-warn m-r-sm"></i>busy
+          </small>
+        </span>
+      </a>
+
+
+    </div>
+    <div class="list-group no-radius no-borders light lt">
+      <a (click)="openChat(person.friend_id)" class="list-group-item text-ellipsis {{person.friend_id}} " *ngFor="let person of friends | async">
+        <span class="label rounded danger pos-rlt text-sm m-r-xs label-count" *ngIf="person.chat?.pendings !== 0">
+          <b class="arrow bottom b-danger pull-in"></b>{{ person.chat?.pendings}}
+        </span>
+        <span class="avatar w-32 m-right-o05 ">
+          <img src="{{(person.user | async)?.profile_image}}">
+          <i *ngIf="(person.user | async)?.status == 1" class="on b-white bottom"></i>
+          <i *ngIf="(person.user | async)?.status == 0" class="away b-white bottom"></i>
+        </span>
+        <span>{{(person.user | async)?.name}}</span>
+      </a>
+    </div>
+  </div>
+</div>
+
+<div class="modal animated slideInRight" #modalRef="bs-modal" [config]="{ show: false, backdrop: false }" bsModal (onHidden)="onCloseModal()">
+  <div class="right w-xxl grey lt" style="    margin-top: 70px;    background-color: #ffffff;
+    border-left: 1px solid #d8dee2;
+    color: #2b363e;">
+    <div class="row-col"><a (click)="hideChat()" class="pull-right text-muted text-lg p-a-sm m-r-sm">×</a>
+      <div class="p-a b-b"><span class="h5" style="    color: #00b1e6;"> <i class="material-icons md-18" style="    position: relative;
+    top: 0.3em;">chat</i> <small> {{(friend | async)?.name}}</small></span></div>
+      <div class="row-row dker" style="color: #6f6f6f;  background-color: rgb(237, 253, 255);">
+        <div class="row-body scrollable hover">
+          <div class="row-inner">
+            <div class="p-a-md">
+
+
+              <div class="text-center mt-50" [hidden]="(messages | async)?.length !== 0">
+                <a class="clear list-item-connect">
+                  <img src="{{(friend | async)?.profile_image}}" class="w-80 img-circle r mb-10">
+                  <span class="block">Say something to <strong>{{(friend | async)?.name}}</strong></span>
+                </a>
+              </div>
+
+              <div class="m-b" *ngFor="let message of messages | async">
+
+                <a class="pull-left w-40 m-r-sm message-avatar" *ngIf="message.data.uid != session.firestore_uid">
+                  <img src="{{(message.user | async)?.profile_image}}" alt="..." class="w-full img-circle">
+                </a>
+
+                <a class="pull-right w-40 m-l-sm message-avatar" *ngIf="message.data.uid == session.firestore_uid">
+                  <img src="{{(message.user | async)?.profile_image}}" alt="..." class="w-full img-circle">
+                </a>
+
+                <div class="clear" *ngIf="message.data.uid != session.firestore_uid">
+                  <div class="p-a p-y-sm white inline r" style="background-color: #e6ecf0; font-size:12px;">{{message.data.content}}</div>
+                  <div class="text-muted text-xs m-t-xs"><i class="fa fa-ok text-success"></i> {{message.data.created_at | date: "medium" | timeAgo}}</div>
+                </div>
+
+                <div class="clear text-right" *ngIf="message.data.uid == session.firestore_uid">
+                  <div class="p-a p-y-sm success inline text-left r" style="font-size:12px;">{{message.data.content}}</div>
+                  <div class="text-muted text-xs m-t-xs"><i class="fa fa-ok text-success"></i> {{message.data.created_at | date: "medium" | timeAgo}}</div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="p-a b-t">
+        <div class=" collapse in m-a-0">
+          <form>
+            <textarea class="form-control no-border" rows="3" placeholder="Type something..." name="content" [(ngModel)]="message.content" style="font-size:13px;     background-color: rgba(249, 249, 249, 0.02);
+    color: #000000;"></textarea>
+          </form>
+          <div class="box-footer clearfix is-chat" style="    padding: 0.8rem 0px;">
+            <div class="pull-right">
+              <button class="btn btn-info btn-sm" style="    background-color: #00b2e4;
+    border: none;" (click)="sendMessage()"><i class="fa fa-send"></i> Send</button>
+            </div>
+            <ul class="nav nav-pills nav-sm">
+              <li class="nav-item nav-blue"><a class="nav-link">
+                  <i class="material-icons md-18 icon-smile" (click)="openPickerPost()" [class.is-blue-hov]="togglePost" style="color: #818588;">insert_emoticon</i></a>
+                <emoji-mart (emojiClick)="addEmoji($event)" [showPreview]="false" [totalFrequentLines]="1" *ngIf="togglePost"></emoji-mart>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,163 @@
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="ball-spin" [fullScreen]="true">
+  <p style="color: white">Loading...</p>
+</ngx-spinner>
+
+<div id="m-b-b" class="modal in" #modalViewRef="bs-modal" [config]="{ show: false }" bsModal (onHidden)="modalHidden()">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="my-program-header">
+        <h3 class="my-program-h3">
+          <a *ngIf="section !== undefined" [routerLink]="[
+              '/board/u/myprogram/filter',
+              type.id,
+              section,
+              'daily-workout'
+            ]" style="
+              color: #222222;
+              text-decoration: unset;
+              padding-left: 4px;
+              text-transform: capitalize;
+            ">{{ section }}</a><i *ngIf="section !== undefined" class="material-icons myprogram-header-icon-size">
+            keyboard_arrow_right
+          </i>
+          <a *ngIf="section !== undefined && tab !== undefined"
+            [routerLink]="['/board/u/myprogram/filter', type.id, section, tab]" style="
+              color: #222222;
+              text-decoration: unset;
+              padding-left: 4px;
+              text-transform: capitalize;
+            ">{{ tab }}</a>
+          <i *ngIf="section !== undefined" class="material-icons myprogram-header-icon-size">
+            keyboard_arrow_right
+          </i>
+        </h3>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-dialog modal-lg mt-7">
+    <div class="col-md-12" data-type="media" *ngIf="content.type == 1 || (content.type == 2 && isReady)">
+      <!-- <vg-player (onPlayerReady)="onPlayerReady($event)" class="player">
+
+        <vg-buffering></vg-buffering>
+
+        <vg-scrub-bar>
+          <vg-play-pause class="play-pause_button"></vg-play-pause>
+          <vg-scrub-bar-current-time></vg-scrub-bar-current-time>
+          <vg-scrub-bar-buffering-time></vg-scrub-bar-buffering-time>
+        </vg-scrub-bar>
+
+        <div class="divider"></div>
+
+        <vg-controls>
+
+          <vg-play-pause class="play-pause_button2"></vg-play-pause>
+
+          <vg-playback-button></vg-playback-button>
+
+          <vg-time-display vgProperty="current" vgFormat="mm:ss"></vg-time-display>
+          <vg-time-display vgProperty="total" vgFormat="mm:ss"></vg-time-display>
+
+          <vg-mute style="float: right"></vg-mute>
+
+          <vg-volume></vg-volume>
+
+          <vg-fullscreen></vg-fullscreen>
+        </vg-controls>
+
+        <video #media [vgMedia]="media" [src]="currentItem.src" autoplay="true" id="singleVideo"></video>
+
+        <div class="cancel-btn" (click)="onCancelPlayer(); modalHidden()">
+          <button class="cancel-icon">
+            <img src="assets/images/cancel.svg" />
+          </button>
+        </div>
+      </vg-player> -->
+
+     
+      <div class="video-player-container">
+        <div class="cancel-btn" (click)="modalHidden(); onCancel()">
+          <button class="cancel-icon">
+            <img src="assets/images/cancel.svg" />
+          </button>
+        </div>
+  
+        <video controls playsInline autoplay controlsList="nodownload" class="player" poster="{{ currentItem?.thumbnail }}">
+          <source [src]="currentItem?.src" type="video/mp4" />
+        </video>  
+      </div>
+
+      <div class="list-player" style="margin: -10px 0px;">
+        <div class="program-info"> 
+          <div class="program-name-width"><p class="program_name">{{ videoData?.title }}</p></div>
+          <div *ngIf="videoData?.lessons_count" class="program_icon">
+            <img style="width: 12px; height: 12px" src="assets/images/playlist.svg" />
+            {{ videoData?.lessons_count }}
+          </div>
+        </div>
+
+        <div *ngIf="isOnDemand === true" class="add-program" (click)="openProgram()">
+          <button class="add-icon">
+            <img src="assets/images/add-icon.svg" />
+          </button>
+        </div>
+      </div>
+
+      <!-- <ul class="list-player">
+      <li *ngFor="let item of playlist; let $index = index" (click)="onClickPlaylistItem(item, $index)" [class.selected]="item === currentItem">
+        {{ item.title }}
+      </li>
+    </ul> -->
+    </div>
+
+    <div class="col-md-12" *ngIf="content.type == 4">
+      <div class="box padding max-width">
+        <p *ngFor="let data of content.data" [innerHTML]="data.content | noSanitize"></p>
+      </div>
+    </div>
+
+    <div class="col-md-12" *ngIf="content.type == 9">
+      <div class="box padding max-width" [innerHTML]="content.description | noSanitize"></div>
+    </div>
+  </div>
+
+  <div class="container mobilescreen disable">
+    <div class="row">
+      <div class="col-md-12">
+        <ul>
+          <li class="active">
+            <a [routerLink]="['/board/u/home']">
+              <i class="material-icons">home</i>
+            </a>
+          </li>
+
+          <li>
+            <a [routerLink]="['/board/u/progress']">
+              <i class="material-icons">trending_up</i>
+            </a>
+          </li>
+
+          <li>
+            <a (click)="openChat()">
+              <i class="material-icons">chat_bubble_outline</i>
+            </a>
+          </li>
+
+          <li>
+            <a [routerLink]="['/board/u/profile']">
+              <i class="material-icons">account_circle</i>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="col-md-12" *ngIf="content.type == 3 && isReady">
+  <button type="button" class="btn btn-default-light btn-sm" (click)="modalHidden(); onCancel()">
+    <i class="fa fa-times"></i> Close
+  </button>
+
+  <ks-modal-gallery [id]="1" [modalImages]="images" [plainGalleryConfig]="plainGalleryRow"></ks-modal-gallery>
+</div>

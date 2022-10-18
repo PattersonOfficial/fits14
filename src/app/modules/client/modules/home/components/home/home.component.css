@@ -1,0 +1,974 @@
+.dashboard-container {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/*-------------Wellness Plan section----------------*/
+.welcome-section-container {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  margin-bottom: 30px;
+  padding: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+}
+
+/*-------------Daily Workout----------------*/
+.dashboard-daily-workout {
+  width: 67%;
+  min-height: 265px;
+  padding: 25px;
+  border-radius: 5px;
+  background-color: #ffffff;
+  /*background-image: url('../../../../../../../assets/images/home/welcome/daily-workout.png');*/
+  background-position: bottom right;
+  background-repeat: no-repeat;
+  background-size: auto 77%;
+  text-align: left;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.workout-content {
+  width: 47%;
+}
+
+.left {
+  width: 55%;
+}
+
+/* @media screen and (max-width: 768px) {
+  .left{
+    width: 100%
+  }
+} */
+
+.workout-img {
+  width: 40%;
+  min-height: 175px;
+  border-radius: 5px;
+  object-fit: contain;
+}
+
+.welcome-section-title {
+  font-family: Montserrat;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.75;
+  text-align: left;
+  color: #4a6288;
+  text-transform: capitalize;
+}
+
+.welcome-section-graph {
+  margin-block-end: 0;
+  font-family: Montserrat;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 2.92;
+  text-align: left;
+  color: #4a6288;
+  text-transform: capitalize;
+}
+
+.daily-workout-name {
+  font-family: Montserrat;
+  font-size: 25px;
+  font-weight: 600;
+  line-height: 1.4;
+  text-align: left;
+  color: #4a6288;
+  text-transform: capitalize;
+}
+
+/*-------------Star raiting with input----------------*/
+div.stars {
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: flex-start;
+  align-content: stretch;
+}
+
+input.star {
+  display: none;
+}
+
+label.star {
+  float: right;
+  padding-right: 3px;
+  font-size: 15px;
+  color: #4a6288;
+  transition: all 0.2s;
+  cursor: pointer;
+}
+
+input.star:checked ~ label.star:before {
+  content: '\f005';
+  color: #ff8800;
+  transition: all 0.25s;
+}
+
+input.star-5:checked ~ label.star:before {
+  color: #ff8800;
+  text-shadow: 0 0 1px #774726;
+}
+
+input.star-1:checked ~ label.star:before {
+  color: #f62;
+}
+
+label.star:hover {
+  transform: scale(1.3);
+}
+
+label.star:before {
+  content: '\f006';
+  font-family: FontAwesome;
+}
+
+.daily-workout-raiting {
+  margin-left: 10px;
+  font-family: Montserrat;
+  font-size: 12px;
+  font-weight: 600;
+  text-align: left;
+  color: #ff8800;
+}
+
+.daily-workout-genre {
+  width: 50%;
+  display: list-item;
+  margin-left: 25px;
+  font-family: Montserrat;
+  font-size: 12px;
+  font-weight: 500;
+  text-align: left;
+  color: #4a6288;
+  text-transform: capitalize;
+}
+
+.daily-workout-watch {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.daily-workout-watch-btn {
+  width: 140px;
+  height: 45px;
+  margin-right: 30px;
+  border: none;
+  border-radius: 3px;
+  box-shadow: 0 5px 15px 0 rgba(0, 167, 223, 0.15);
+  background-color: #00a7df;
+  font-family: Montserrat;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 2.92;
+  text-align: center;
+  color: #ffffff;
+}
+
+.daily-workout-watch-people {
+  font-family: Montserrat;
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 3.18;
+  text-align: left;
+  color: #c9c9c9;
+}
+
+/*-------------Nutrition Plan----------------*/
+.dashboard-nutrition-plan {
+  width: 30%;
+  min-height: 265px;
+  padding: 20px;
+  border-radius: 5px;
+  background-color: #ffffff;
+}
+
+.nutrition-plan-header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nutrition-plan-title {
+  font-family: Montserrat;
+  font-size: 12px;
+  font-weight: 600;
+  text-align: left;
+  color: #4a6288;
+  text-transform: capitalize;
+  cursor: pointer;
+}
+
+.nutrition-plan-swap-btn {
+  border: none;
+  border-radius: 5px;
+  background: transparent;
+  font-family: Montserrat;
+  font-size: 12px;
+  font-weight: 500;
+  text-align: left;
+  color: #4a6288;
+  transition: all ease-in-out 30ms;
+  cursor: pointer;
+}
+
+.nutrition-plan-swap-btn:hover {
+  background: #f4f5f9;
+  color: #313f57;
+}
+
+.nutrition-plan-recipe {
+  cursor: pointer;
+  width: 100%;
+  min-height: 140px;
+  margin: 15px 0;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-start;
+  border-radius: 5px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+
+.disabled {
+  pointer-events: none;
+}
+
+.nutrition-plan-recipe:after {
+  content: '';
+  position: absolute;
+  background-image: linear-gradient(
+    180deg,
+    rgba(30, 30, 30, 0) 0%,
+    rgba(30, 30, 30, 0.859) 100%
+  );
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  border-radius: 5px;
+  z-index: 1;
+}
+
+.recipe-info {
+  margin-bottom: 0;
+  font-family: Montserrat;
+  font-size: 10px;
+  font-weight: 500;
+  text-align: left;
+  color: #ffffff;
+  z-index: 2;
+}
+
+.recipe-title {
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.recipe-details-table {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: Montserrat;
+  font-size: 12px;
+  font-weight: bold;
+  color: #4a6288;
+  line-height: 1.5;
+  text-align: center;
+}
+
+.recipe-caloric-content p {
+  margin-bottom: 0;
+}
+
+.recipe-caloric-content p:last-of-type {
+  font-size: 10px;
+  font-weight: 500;
+  color: #a2aab7;
+}
+
+/* -------------Community section-------------- */
+.community-section-container {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+}
+
+.activity-container {
+  width: 67%;
+  padding: 20px;
+  border-radius: 5px;
+  background-color: #ffffff;
+}
+
+.friends-container {
+  width: 30%;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  /*height: 100vh;*/
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.slack-widget {
+  width: 100%;
+  height: 27%;
+  margin: 0;
+  padding: 38px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 315px;
+  border-radius: 5px;
+  background-image: linear-gradient(224deg, #944c95, #4a154b);
+}
+
+.slack-widget-icon svg {
+  width: 35px;
+  height: 40px;
+  color: #ffffff;
+}
+
+.slack-widget-title {
+  font-family: Montserrat;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 2.92;
+  text-align: center;
+  color: #ffffff;
+}
+
+.slack-widget-graph {
+  font-family: Montserrat;
+  font-size: 11px;
+  line-height: 1.82;
+  text-align: center;
+  color: #ffffff;
+}
+
+.slack-widget-btn {
+  width: 140px;
+  height: 45px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  border: none;
+  border-radius: 3px;
+  box-shadow: 0 5px 15px 0 rgba(35, 35, 35, 0.15);
+  background-color: #ff6e6e;
+  font-family: Montserrat;
+  font-size: 12px;
+  font-weight: 500;
+  text-align: center;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.slack-widget-btn:hover {
+  opacity: 0.7;
+}
+
+.slack-widget-btn-hash svg {
+  width: 15px;
+  height: 15px;
+}
+
+/*-------------Wellness Plan section----------------*/
+.wellness-plan-container {
+  width: 100%;
+  height: auto;
+  margin: 0;
+  margin-bottom: 26px;
+  padding: 0;
+}
+
+.wellness-plan-separate-line {
+  width: 100%;
+  /*border: 1px solid #dedede;*/
+  border-radius: 5px;
+}
+
+.wellness-plan-title {
+  margin-bottom: 30px;
+  font-family: Montserrat;
+  font-size: 15px;
+  font-weight: 600;
+  text-align: left;
+  color: #4a6288;
+}
+
+.plans-container {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+}
+
+.plans-item {
+  width: 32%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+
+@media only screen and (max-width: 1024px) {
+  .welcome-section-container,
+  .community-section-container,
+  .plans-container {
+    flex-direction: column;
+  }
+
+  .dashboard-daily-workout,
+  .dashboard-nutrition-plan,
+  .activity-container,
+  .friends-container,
+  .plans-item {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+}
+
+.search-box {
+  padding: 0.5rem 0rem 0px 1rem;
+  margin-top: 5px;
+}
+
+.thumb__video_home {
+  width: 100%;
+  height: 220px;
+  background-size: cover;
+  position: relative;
+}
+
+.thumb__ {
+  width: 100%;
+  height: 220px;
+  background-size: cover;
+  position: relative;
+}
+
+.thumb__video_home:before {
+  content: ' ';
+  background-color: rgba(0, 0, 0, 0.5215686274509804);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.thumb__video_home:after {
+  content: ' ';
+  background-image: url(../../../../../../../assets/images/widgets/video-play-button.svg);
+  background-repeat: no-repeat;
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  left: 50%;
+  top: 50%;
+  background-position: center;
+  -webkit-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+
+.thumb__video_home:hover:after {
+  opacity: 0.5;
+  -webkit-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+
+.join-top {
+  display: flex;
+}
+
+.join-text {
+  padding: 0 5%;
+  margin-bottom: 16px;
+}
+
+.btnjoin-now {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+
+.btnjoin-now a {
+  border-radius: 12px;
+  padding: 15px 45px;
+  background: #fd6c72;
+}
+
+.middle-section-dashboard {
+  background: #4b144b;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+}
+
+.rating {
+  margin-bottom: 24px;
+  /* margin-top: 10px; */
+}
+
+.rating svg {
+  /* margin-right: 10px; */
+  margin-right: 5px;
+}
+
+.fitness-video.nutrition {
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.recipe-main {
+  color: #ffffff;
+  text-shadow: 0 0 2px rgba(0, 0, 0, 0.6);
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.recipe-controls {
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
+}
+
+.recipe-controls img {
+  margin-left: 10px;
+}
+
+.recipe-details {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  margin-bottom: -5px;
+}
+
+.swap-recipe {
+  border: none;
+  outline: none;
+}
+
+.bg-grey {
+  background: rgba(255, 255, 255, 0.7);
+  padding: 5px;
+}
+
+.wellness-section {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.wellness-card {
+  width: 32%;
+  height: 200px;
+  border-radius: 10px;
+  display: flex;
+  align-items: flex-end;
+  margin: 0;
+  cursor: pointer;
+}
+
+.wellness-text{
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 20px;
+  color: #fff;
+  padding: 23px 25px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.yoga-background {
+  background-image: url('../../../../../../../assets/images/home/yoga-418.png');
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+
+.meditation-background {
+  background-image: url('../../../../../../../assets/images/home/meditation-418.png');
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+
+.success-background {
+  background-image: url('../../../../../../../assets/images/home/success-418.png');
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+
+.yoga-background-mobile {
+  background-image: url('../../../../../../../assets/images/home/yoga-163.png');
+  background-repeat: no-repeat;
+}
+
+.meditation-background-mobile {
+  background-image: url('../../../../../../../assets/images/home/meditation-163.png');
+  background-repeat: no-repeat;
+}
+
+.success-background-mobile {
+  background-image: url('../../../../../../../assets/images/home/success-163.png');
+  background-repeat: no-repeat;
+}
+
+::ng-deep .mobile-slider .owl-carousel .owl-nav .owl-prev,
+::ng-deep .mobile-slider .owl-carousel .owl-nav .owl-next {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: white;
+  border: none;
+  outline: none;
+  transition: all 0.25s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  line-height: 30px;
+  position: absolute;
+  transform: translateY(-50%);
+  top: calc(50%);
+}
+
+
+@media screen and (max-width: 720px) {
+  .mobile-slider .owl-carousel .owl-nav .owl-next {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: white;
+    border: none;
+    outline: none;
+    transition: all 0.25s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    line-height: 20px;
+    position: absolute;
+    transform: translateY(-50%);
+    top: calc(50%);
+  }
+
+  .wellness-section {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .wellness-card {
+    width: 145px;
+    height: 150px;
+    margin-top: 10px;
+    margin-right: 10px;
+  }
+}
+
+@media screen and (max-width: 768px){
+  .yoga-background {
+      background-image: url('../../../../../../../assets/images/home/yoga-163.png');
+      background-repeat: no-repeat;
+      background-size: auto;
+    }
+  
+    .meditation-background {
+      background-image: url('../../../../../../../assets/images/home/meditation-163.png');
+      background-repeat: no-repeat;
+      background-size: auto;
+    }
+  
+    .success-background {
+      background-image: url('../../../../../../../assets/images/home/success-163.png');
+      background-repeat: no-repeat;
+      background-size: auto;
+    }
+
+    .wellness-card {
+      height: 80px;
+    }
+
+    .wellness-text{
+      padding: 8px 10px;
+    }
+}
+
+
+::ng-deep .mobile-slider .owl-carousel .owl-nav .owl-prev,
+::ng-deep .mobile-slider .owl-carousel .owl-nav .owl-next {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: white;
+  border: none;
+  outline: none;
+  transition: all 0.25s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  line-height: 30px;
+  position: absolute;
+  transform: translateY(-50%);
+  top: calc(50%);
+}
+
+::ng-deep .mobile-slider .owl-carousel .owl-nav .owl-prev span,
+::ng-deep .mobile-slider .owl-carousel .owl-nav .owl-next span {
+  margin-top: -3px;
+}
+
+::ng-deep .mobile-slider .owl-carousel .owl-nav .owl-prev {
+  left: -25px;
+}
+
+::ng-deep .mobile-slider .owl-carousel .owl-nav .owl-next {
+  right: -25px;
+}
+
+::ng-deep .mobile-slider .owl-carousel .owl-nav .owl-prev:hover,
+::ng-deep .mobile-slider .owl-carousel .owl-nav .owl-next:hover {
+  opacity: 0.8;
+}
+
+::ng-deep .mobile-slider .owl-item {
+  opacity: 1;
+}
+
+@media screen and (max-width: 720px) {
+  .programs-slider .owl-carousel .owl-nav .owl-next {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: white;
+    border: none;
+    outline: none;
+    transition: all 0.25s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    line-height: 20px;
+    position: absolute;
+    transform: translateY(-50%);
+    top: calc(50%);
+  }
+}
+
+.row [class*='col-'] {
+  padding-left: 24px;
+  padding-right: 24px;
+}
+
+@media only screen and (max-width: 320px){
+ .wellness-section{
+  align-items: center;
+  justify-content: center;
+ }
+}
+
+
+@media only screen and (max-width: 767px) and (min-width: 320px) {
+  div.box--small {
+    height: 500px !important;
+  }
+
+  .heading-main {
+    margin-left: -100px;
+  }
+
+  /* #main-container {
+      padding-left: 0px !important;
+  } */
+  .rating svg {
+    height: 20px;
+    margin-right: 0px;
+  }
+
+  .heading-main h4,
+  .heading-main h3 {
+    margin: 0 auto;
+    margin-top: 10px;
+  }
+
+  .daily-workout-star {
+    text-align: center;
+  }
+
+  .rating {
+    /* margin-bottom: 24px; */
+    margin-top: 10px;
+  }
+
+  .my-program-header {
+    width: 100%;
+    height: 60px !important;
+    margin-left: -120px !important;
+    padding-top: 20px !important;
+  }
+}
+
+@media only screen and (max-width: 856px) and (min-width: 768px) {
+  div.box--small {
+    height: 316px !important;
+  }
+}
+
+@media only screen and (max-width: 1024px) and (min-width: 857px) {
+  div.box--small {
+    height: 290px !important;
+  }
+
+  .rating svg {
+    height: 20px;
+    margin-right: 0px;
+  }
+}
+
+/* @media only screen and (width:768px){
+  .mobilescreen{
+    display: none;
+  }
+} */
+@media only screen and (max-width: 1199px) and (min-width: 768px) {
+  .recipe-details {
+    margin-left: -10px;
+  }
+
+  .rating svg {
+    height: 20px;
+    margin-right: -8px;
+  }
+
+  .my-program-header {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 1217px) and (min-width: 1199px) {
+  .rating svg {
+    height: 20px;
+    margin-right: -8px;
+  }
+
+  .my-program-header {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 2560px) and (min-width: 992px) {
+  .nutrition_plan-class {
+    padding-left: 5px !important;
+    padding-right: 5px !important;
+  }
+
+  .nutrition_plan-class-tracker {
+    /* padding-left: 5px !important; */
+    padding-right: 5px !important;
+  }
+
+  .my-program-header {
+    display: none;
+  }
+}
+
+.video-banner {
+  border-radius: 4px;
+  /*height: 27%;*/
+  /*width: 100%;*/
+  /*object-fit: cover;*/
+}
+
+/* .my-program-header{
+  height: 30px;
+  padding-top: 6px;
+  background-color: #fff;
+  z-index: 9999;
+  position: fixed;
+  
+  margin-left: 0px;
+  
+}
+.my-program-h3{
+ 
+    font-size: 18px;
+    font-family: LucidaGrandeBold !important;
+} */
+
+/*Media query for mobile*/
+@media only screen and (max-width:720px){
+  /* add all needed data here to make things dope */
+}
+
+
+@media screen and (min-width: 1024px) {
+  .wellness-card {
+    height: 115px;
+  }
+
+  .wellness-text {
+    padding: 11px 14px;
+  }
+}
+
+@media screen and (min-width: 1366px) {
+  .wellness-card {
+    height: 169px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .wellness-card {
+    height: 182px;
+  }
+}
+
+@media screen and (min-width: 1920px) {
+  .wellness-card {
+    height: 237px;
+  }
+
+}
+
+@media only screen and (min-width: 2560px) {
+  .wellness-card {
+    height: 331px;
+  }
+}
+

@@ -1,0 +1,534 @@
+<div class="container">
+    <div class="box-header" *ngIf="type == null">
+        <h3><i class="fa fa-user-plus"></i> New User</h3>
+        <small>Register new user of system</small>
+    </div>
+
+    <hr *ngIf="type == null">
+
+    <div class="col-md-12 text-center" *ngIf="type == null">
+        <div class="box padding">
+            <a class="nav-link text-center btn btn-primary" [routerLink]="['/board/a/users/create/client']">
+                <span class="nav-text">
+                    <i class="material-icons">record_voice_over</i>
+                    <span class="text-xs">Create User/Client</span>
+                </span>
+            </a>
+
+            <a class="nav-link text-center btn btn-primary" [routerLink]="['/board/a/users/create/manager']">
+                <span class="nav-text">
+                    <i class="material-icons">supervisor_account</i>
+                    <span class="text-xs">Create Manager</span>
+                </span>
+            </a>
+
+            <a class="nav-link text-center btn btn-primary" [routerLink]="['/board/a/users/create/administrator']">
+                <span class="nav-text">
+                    <i class="material-icons">folder_special</i>
+                    <span class="text-xs">Create Administrator</span>
+                </span>
+            </a>
+        </div>
+    </div>
+
+    <form id="register-form" #registerForm="ngForm" (ngSubmit)="submitRegister()" novalidate>
+        <div *ngIf="type === 'client' || type === 'mentor'">
+            <div class="container" *ngIf="step == 1">
+                <div class="col-md-3"></div>
+
+                <div class="col-md-5">
+                    <div class="p-a-md box-color r box-shadow-z1 text-color m-a">
+                        <div class="loading" *ngIf="loadingBox">
+                            <div class="loader"></div>
+                        </div>
+
+                        <div class="">
+                            <div class="label-top-tile" [ngClass]="{'label-top-tile-active': step == 2}"
+                                 (click)="setStep(2)">
+                                <span>2</span>
+                            </div>
+                            <div class="label-top-tile" [ngClass]="{'label-top-tile-active': step == 1}"
+                                 (click)="setStep(1)">
+                                <span>1</span>
+                            </div>
+                        </div>
+
+                        <br>
+
+                        <div class="m-b text-sm">
+                            Create new FitNutsPro <strong>Mentor</strong> account, please fill in personal information.
+                        </div>
+
+                        <div class="md-form-group">
+                            <input id="name" type="text" class="md-input" autofocus name="name"
+                                   [(ngModel)]="registerFields.name" required>
+
+                            <label for="name"><i class="material-icons md-icon-label">person</i> Full Name</label>
+                        </div>
+
+                        <div class="md-form-group">
+                            <input id="email" type="email" class="md-input" name="email" required #email="ngModel"
+                                   autocomplete="off" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+                                   [(ngModel)]="registerFields.email"
+                                   [ngClass]="{'has-success':email.valid && mailExist, 'has-danger':!mailExist}"
+                                   (keyup)="verifyEmail(email.value)">
+
+                            <label for="email"><i class="material-icons md-icon-label">mail</i> Email</label>
+
+                            <span class="pull-right text-danger text-micro" *ngIf="!mailExist">The entered email is registered</span>
+                        </div>
+
+                        <div class="md-form-group">
+                            <input id="password" type="password" class="md-input" name="password"
+                                   [(ngModel)]="registerFields.password" required>
+
+                            <label for="password"><i class="material-icons md-icon-label">vpn_key</i> Password</label>
+                        </div>
+
+                        <div class="md-form-group is-select">
+                            <select id="role" class="md-input" name="role" [(ngModel)]="registerFields.role_id" required>
+                                <option *ngFor="let role of roles" [value]="role.id">{{role.name}}</option>
+                            </select>
+
+                            <label for="role"><i class="material-icons md-icon-label">supervisor_account</i>Role (choose from list)</label>
+                        </div>
+
+                        <div class="md-form-group">
+                            <ng-select id="country" [ngModelOptions]="{standalone: true}" [(ngModel)]="selectCountry"
+                                       (change)="setCountryAndCode($event)">
+                                <ng-option *ngFor="let country of countries" [value]="country">({{country.alpha2Code}}
+                                    ) {{country.name}}</ng-option>
+                            </ng-select>
+
+                            <label for="country"><i class="material-icons md-icon-label">vpn_lock</i>Country (choose from list)</label>
+                        </div>
+
+                        <div class="md-form-group">
+                            <input type="text" class="md-input" autofocus name="city" required #city="ngModel"
+                                   [(ngModel)]="registerFields.city">
+                            <label><i class="material-icons md-icon-label">person_pin_circle</i> City </label>
+                        </div>
+
+                        <div class="md-form-group">
+                            <select class="md-input width-30-inline" name="code_dialling" #code_dialling="ngModel"
+                                    [(ngModel)]="registerFields.code_dialling" required style="padding-left: 1.7rem;">
+                                <option *ngFor="let code of codes_dialling" selected>{{code}}</option>
+                            </select>
+
+                            <input type="number" min="1" class="md-input width-70-inline" required name="phone"
+                                   #phone="ngModel"
+                                   [ngClass]="{'has-success':phone.valid && phoneExist, 'has-danger':!phoneExist}"
+                                   [(ngModel)]="registerFields.phone"
+                                   (keyup)="verifyPhone(phone.value)">
+                            <label><i class="material-icons md-icon-label">call</i> Phone number</label>
+                            <span class="pull-right text-danger text-micro" *ngIf="!phoneExist">The entered phone is registered</span>
+                        </div>
+
+                        <div class="md-form-group">
+                            <input type="date" class="md-input" required name="date_birth" #date_birth="ngModel"
+                                   [(ngModel)]="registerFields.date_birth">
+                            <label><i class="material-icons md-icon-label">cake</i> Date of birth</label>
+                        </div>
+
+                        <div class="md-form-group is-select">
+                            <select class="md-input" name="gender" #gender="ngModel" [(ngModel)]="registerFields.gender"
+                                    required>
+                                <option value="M">Male</option>
+                                <option value="F">Female</option>
+                            </select>
+                            <label><i class="material-icons md-icon-label">wc</i> Gender </label>
+                        </div>
+
+                        <button type="button" form="register-form" (click)="setStep(2)" *ngIf="!id"
+                                [disabled]="!registerForm.form.valid || !mailExist || !phoneExist"
+                                class="btn success btn-block p-x-md">Next <i class="material-icons icon-label-boton">directions_run</i>
+                        </button>
+
+                        <button type="button" form="register-form" (click)="setStep(2)" *ngIf="id"
+                                class="btn success btn-block p-x-md">Next <i class="material-icons icon-label-boton">directions_run</i>
+                        </button>
+                    </div>
+                </div>
+                <div class="col-md-3"></div>
+            </div>
+
+            <div class="container" *ngIf="step == 2">
+                <div class="col-md-3"></div>
+
+                <div class="col-md-5">
+                    <div class="p-a-md box-color r box-shadow-z1 text-color m-a">
+                        <div class="">
+                            <div class="label-top-tile" [ngClass]="{'label-top-tile-active': step == 2}"
+                                 (click)="setStep(2)">
+                                <span>2</span>
+                            </div>
+
+                            <div class="label-top-tile" [ngClass]="{'label-top-tile-active': step == 1}"
+                                 (click)="setStep(1)">
+                                <span>1</span>
+                            </div>
+                        </div>
+
+                        <div class="m-b text-sm">
+                            Select a membership
+                        </div>
+
+                        <br>
+
+                        <div class="" *ngFor="let membership of memberships">
+                            <label class="package-box md-check">
+                                <input type="radio" name="membership" class="has-value"
+                                       [(ngModel)]="registerFields.client.membership.id" [value]="membership.id"
+                                       required>
+                                <i class="blue m-lef-0 mt-8"></i>
+
+                                <div class="box-detail">
+                                        <span class="pull-right">
+                                            <i class="material-icons" *ngIf="membership.title == 'Fitness'">directions_bike</i>
+                                            <i class="material-icons" *ngIf="membership.title == 'Nutrition'">local_dining</i>
+                                            <i class="material-icons" *ngIf="membership.title == 'Gold'">local_play</i>
+                                            <i class="material-icons" *ngIf="membership.title == 'Platinum'">verified_user</i>
+                                        </span>
+                                    <h6>{{membership.title}}</h6>
+                                    <span>USD {{membership.price}}</span>
+                                </div>
+                            </label>
+                        </div>
+
+                        <button type="submit" form="register-form"
+                                [disabled]="registerFields.client.membership.id == null"
+                                class="btn success btn-block p-x-md">Finish <i class="material-icons icon-label-boton">offline_pin</i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="col-md-3"></div>
+            </div>
+        </div>
+
+        <div *ngIf="type == 'manager'">
+            <div class="container" *ngIf="step == 1">
+                <div class="col-md-3"></div>
+
+                <div class="col-md-5">
+                    <div class="p-a-md box-color r box-shadow-z1 text-color m-a">
+                        <div class="loading" *ngIf="loadingBox">
+                            <div class="loader"></div>
+                        </div>
+
+                        <div class="">
+                            <div class="label-top-tile" [ngClass]="{'label-top-tile-active': step == 2}"
+                                 (click)="setStep(2)">
+                                <span>2</span>
+                            </div>
+                            <div class="label-top-tile" [ngClass]="{'label-top-tile-active': step == 1}"
+                                 (click)="setStep(1)">
+                                <span>1</span>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="m-b text-sm">
+                            Create new FitNutsPro <strong>Manager</strong> account, please fill in personal information.
+                        </div>
+
+                        <div class="md-form-group">
+                            <input type="text" class="md-input" autofocus name="name" #name="ngModel"
+                                   [(ngModel)]="registerFields.name" required>
+                            <label><i class="material-icons md-icon-label">person</i> Full Name</label>
+                        </div>
+                        <div class="md-form-group">
+                            <input type="email" class="md-input" name="email" required #email="ngModel"
+                                   [(ngModel)]="registerFields.email" autocomplete="off"
+                                   pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" [ngClass]="{
+                    'has-success':email.valid && mailExist,
+                    'has-danger':!mailExist
+                    }" (keyup)="verifyEmail(email.value)">
+                            <label><i class="material-icons md-icon-label">mail</i> Email</label>
+                            <span class="pull-right text-danger text-micro" *ngIf="!mailExist">The entered email is registered</span>
+                        </div>
+                        <div class="md-form-group">
+                            <input type="password" class="md-input" name="password" #password="ngModel"
+                                   [(ngModel)]="registerFields.password" required>
+                            <label><i class="material-icons md-icon-label">vpn_key</i> Password</label>
+                        </div>
+
+                        <div class="md-form-group">
+                            <label style="color: #999ea2; margin-bottom: 0px;"><i class="material-icons md-icon-label">vpn_lock</i>
+                                Country (choose from list) </label>
+                            <ng-select [ngModelOptions]="{standalone: true}" [(ngModel)]="selectCountry"
+                                       (change)="setCountryAndCode($event)">
+                                <ng-option *ngFor="let country of countries" [value]="country">({{country.alpha2Code}}
+                                    ) {{country.name}}</ng-option>
+                            </ng-select>
+                        </div>
+
+                        <div class="md-form-group">
+                            <input type="text" class="md-input" autofocus name="city" required #city="ngModel"
+                                   [(ngModel)]="registerFields.city">
+                            <label><i class="material-icons md-icon-label">person_pin_circle</i> City </label>
+                        </div>
+
+                        <div class="md-form-group">
+                            <select class="md-input width-30-inline" name="code_dialling" #code_dialling="ngModel"
+                                    [(ngModel)]="registerFields.code_dialling" required style="padding-left: 1.7rem;">
+                                <option *ngFor="let code of codes_dialling" selected>{{code}}</option>
+                            </select>
+                            <input type="number" min="1" class="md-input width-70-inline" required name="phone"
+                                   [ngClass]="{
+                      'has-success':phone.valid && phoneExist,
+                      'has-danger':!phoneExist
+                      }" #phone="ngModel" [(ngModel)]="registerFields.phone" (keyup)="verifyPhone(phone.value)">
+                            <label><i class="material-icons md-icon-label">call</i> Phone number</label>
+                            <span class="pull-right text-danger text-micro" *ngIf="!phoneExist">The entered phone is registered</span>
+                        </div>
+
+                        <div class="md-form-group">
+                            <input type="date" class="md-input" required name="date_birth" #date_birth="ngModel"
+                                   [(ngModel)]="registerFields.date_birth">
+                            <label><i class="material-icons md-icon-label">cake</i> Date of birth</label>
+                        </div>
+
+                        <div class="md-form-group is-select">
+                            <select class="md-input" name="gender" #gender="ngModel" [(ngModel)]="registerFields.gender"
+                                    required>
+                                <option value="M">Male</option>
+                                <option value="F">Female</option>
+                            </select>
+                            <label><i class="material-icons md-icon-label">wc</i> Gender </label>
+                        </div>
+
+                        <button type="button" form="register-form" (click)="setStep(2)" *ngIf="!id"
+                                [disabled]="!registerForm.form.valid || !mailExist || !phoneExist"
+                                class="btn success btn-block p-x-md">Next <i class="material-icons icon-label-boton">directions_run</i>
+                        </button>
+
+                        <button type="button" form="register-form" (click)="setStep(2)" *ngIf="id"
+                                class="btn success btn-block p-x-md">Next <i class="material-icons icon-label-boton">directions_run</i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="col-md-3"></div>
+            </div>
+
+            <div class="container" *ngIf="step == 2">
+                <div class="col-md-3"></div>
+
+                <div class="col-md-5">
+                    <div class="p-a-md box-color r box-shadow-z1 text-color m-a">
+                        <div class="">
+                            <div class="label-top-tile" [ngClass]="{'label-top-tile-active': step == 2}"
+                                 (click)="setStep(2)">
+                                <span>2</span>
+                            </div>
+                            <div class="label-top-tile" [ngClass]="{'label-top-tile-active': step == 1}"
+                                 (click)="setStep(1)">
+                                <span>1</span>
+                            </div>
+                        </div>
+
+                        <div class="m-b text-sm">
+                            Add the users that this manager will control
+                        </div>
+
+                        <br>
+
+                        <ng-select [items]="users" (change)="changeChildsList($event)" #select bindLabel="name"
+                                   bindValue="id" placeholder="Select users" (keyup.esc)="$event.preventDefault()"
+                                   appendTo="body" [virtualScroll]="true">
+                            <ng-template ng-label-tmp let-item="item">
+                                <img class="image-select2" [src]="item.image"/>
+                                <span>{{item.name}}</span>
+                            </ng-template>
+                            <ng-template ng-option-tmp let-item="item" let-index="index">
+                                <img class="image-select2" [src]="item.image"/>
+                                <span>{{item.name}}</span>
+                            </ng-template>
+                        </ng-select>
+
+                        <br>
+
+                        <ul class="list no-border p-b child">
+                            <li class="list-item" *ngFor="let user of childs">
+                                <a herf="" class="list-left">
+                                    <span class="w-40 avatar">
+                                      <img src="{{user.image}}">
+                                      <i class="on b-white bottom"></i>
+                                    </span>
+                                </a>
+                                <div class="list-body">
+                                    <div>
+                                        <a class="btn btn-icon btn-social white btn-sm pull-right" title="Delete"
+                                           [swal]="{ title: 'Delete User', text: 'Confirm that you want to delete the record?' }"
+                                           (confirm)="trashChild(user)">
+                                            <i class="fa fa-trash"></i>
+                                            <i class="fa fa-trash red-600"></i>
+                                        </a>
+                                        <a href="">{{user.name}}</a></div>
+                                    <small class="text-muted text-ellipsis">{{user.package}}</small>
+                                </div>
+                            </li>
+                        </ul>
+
+                        <br>
+
+                        <button type="submit" form="register-form" class="btn success btn-block p-x-md">
+                            Finish <i class="material-icons icon-label-boton">offline_pin</i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="col-md-3"></div>
+            </div>
+        </div>
+
+        <div *ngIf="type == 'administrator'">
+            <div class="container" *ngIf="step == 1">
+                <div class="col-md-3"></div>
+
+                <div class="col-md-5">
+                    <div class="p-a-md box-color r box-shadow-z1 text-color m-a">
+                        <div class="loading" *ngIf="loadingBox">
+                            <div class="loader"></div>
+                        </div>
+
+                        <div class="">
+                            <div class="label-top-tile" [ngClass]="{'label-top-tile-active': step == 1}"
+                                 (click)="setStep(1)">
+                                <span>1</span>
+                            </div>
+                        </div>
+
+                        <br>
+
+                        <div class="m-b text-sm">
+                            Create new FitNutsPro <strong>Administrator</strong> account, please fill in personal
+                            information.
+                        </div>
+
+                        <div class="md-form-group">
+                            <input type="text" class="md-input" autofocus name="name" #name="ngModel"
+                                   [(ngModel)]="registerFields.name" required>
+                            <label><i class="material-icons md-icon-label">person</i> Full Name</label>
+                        </div>
+
+                        <div class="md-form-group">
+                            <input type="email" class="md-input" name="email" required #email="ngModel"
+                                   [(ngModel)]="registerFields.email" autocomplete="off"
+                                   pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" [ngClass]="{
+                    'has-success':email.valid && mailExist,
+                    'has-danger':!mailExist
+                    }" (keyup)="verifyEmail(email.value)">
+                            <label><i class="material-icons md-icon-label">mail</i> Email</label>
+                            <span class="pull-right text-danger text-micro" *ngIf="!mailExist">The entered email is registered</span>
+                        </div>
+
+                        <div class="md-form-group">
+                            <input type="password" class="md-input" name="password" #password="ngModel"
+                                   [(ngModel)]="registerFields.password" required>
+                            <label><i class="material-icons md-icon-label">vpn_key</i> Password</label>
+                        </div>
+
+                        <!--<div class="md-form-group is-select">
+                            <select class="md-input" name="permissions_type" #permissions_type="ngModel" [(ngModel)]="registerFields.permissions_type"
+                                    required>
+                                <option value="1">All</option>
+                                <option value="2">Account manager</option>
+                            </select>
+                            <label><i class="material-icons md-icon-label">shield</i> Access type </label>
+                        </div>-->
+
+                        <div class="md-form-group">
+                            <label style="color: #999ea2; margin-bottom: 0px;"><i class="material-icons md-icon-label">vpn_lock</i>
+                                Country (choose from list) </label>
+                            <ng-select [ngModelOptions]="{standalone: true}" [(ngModel)]="selectCountry"
+                                       (change)="setCountryAndCode($event)">
+                                <ng-option *ngFor="let country of countries" [value]="country">({{country.alpha2Code}}
+                                    ) {{country.name}}</ng-option>
+                            </ng-select>
+                        </div>
+
+                        <div class="md-form-group">
+                            <input type="text" class="md-input" autofocus name="city" required #city="ngModel"
+                                   [(ngModel)]="registerFields.city">
+                            <label><i class="material-icons md-icon-label">person_pin_circle</i> City </label>
+                        </div>
+
+                        <div class="md-form-group">
+                            <select class="md-input width-30-inline" name="code_dialling" #code_dialling="ngModel"
+                                    [(ngModel)]="registerFields.code_dialling" required style="padding-left: 1.7rem;">
+                                <option *ngFor="let code of codes_dialling" selected>{{code}}</option>
+                            </select>
+                            <input type="number" min="1" class="md-input width-70-inline" required name="phone"
+                                   #phone="ngModel"
+                                   [ngClass]="{'has-success':phone.valid && phoneExist, 'has-danger':!phoneExist}"
+                                   [(ngModel)]="registerFields.phone"
+                                   (keyup)="verifyPhone(phone.value)">
+                            <label><i class="material-icons md-icon-label">call</i> Phone number</label>
+                            <span class="pull-right text-danger text-micro" *ngIf="!phoneExist">The entered phone is registered</span>
+                        </div>
+
+                        <div class="md-form-group">
+                            <input type="date" class="md-input" required name="date_birth" #date_birth="ngModel"
+                                   [(ngModel)]="registerFields.date_birth">
+                            <label><i class="material-icons md-icon-label">cake</i> Date of birth</label>
+                        </div>
+
+                        <div class="md-form-group is-select">
+                            <select class="md-input" name="gender" #gender="ngModel" [(ngModel)]="registerFields.gender"
+                                    required>
+                                <option value="M">Male</option>
+                                <option value="F">Female</option>
+                            </select>
+                            <label><i class="material-icons md-icon-label">wc</i> Gender </label>
+                        </div>
+
+                        <button type="submit" form="register-form" *ngIf="!id"
+                                [disabled]="!registerForm.form.valid || !mailExist || !phoneExist"
+                                class="btn success btn-block p-x-md">Finish <i class="material-icons icon-label-boton">offline_pin</i>
+                        </button>
+
+                        <button type="submit" form="register-form" *ngIf="id" class="btn success btn-block p-x-md">
+                            Finish <i class="material-icons icon-label-boton">offline_pin</i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="col-md-3"></div>
+            </div>
+        </div>
+    </form>
+
+    <div class="container" *ngIf="type != null">
+        <div class="col-md-3"></div>
+
+        <div class="col-md-5">
+            <div class="text-center">
+                Change to create
+                <a *ngIf="type != 'client'" [routerLink]="['/board/a/users/create/client']" class="text-primary _600">User</a>
+                <span *ngIf="type != 'client'"> or </span>
+                <a *ngIf="type != 'mentor'" [routerLink]="['/board/a/users/create/mentor']" class="text-primary _600">Mentor</a>
+                <span *ngIf="type != 'mentor'"> or </span>
+                <a *ngIf="type != 'manager'" [routerLink]="['/board/a/users/create/manager']" class="text-primary _600">Manager</a>
+                <span *ngIf="type != 'manager'"> or </span>
+                <a *ngIf="type != 'administrator'" [routerLink]="['/board/a/users/create/administrator']"
+                   class="text-primary _600">Administrator</a>
+            </div>
+        </div>
+
+        <div class="col-md-3"></div>
+    </div>
+
+    <div class="container" *ngIf="type == null">
+        <div class="col-md-12 text-center">
+            <div class="text-center">
+                Please select option to create
+                <a [routerLink]="['/board/a/users/create/client']" class="text-primary _600">Client</a>
+                <span>, </span>
+                <a [routerLink]="['/board/a/users/create/manager']" class="text-primary _600">Manager</a>
+                <span> or </span>
+                <a [routerLink]="['/board/a/users/create/administrator']" class="text-primary _600">Administrator</a>
+            </div>
+        </div>
+    </div>
+</div>

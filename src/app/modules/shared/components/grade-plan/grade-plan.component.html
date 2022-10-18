@@ -1,0 +1,85 @@
+<div
+  class="grade-plan"
+  *ngIf="data.mode == 'UPGRADE'"
+  fxLayout="column"
+  fxLayoutAlign="center center"
+>
+  <div class="header-background">
+    <svg width="186" height="210" viewBox="0 0 187 194" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M186.674 0H53.5713C23.942 0 0 25.0157 0 55.7602H133.103C162.64 55.7602 186.674 30.7445 186.674 0Z"
+        fill="#308AFF" />
+      <path
+        d="M119.435 70.1768H53.5713C23.942 70.1768 0 95.1924 0 125.937H65.8634C95.401 125.937 119.435 100.921 119.435 70.1768Z"
+        fill="#308AFF" />
+      <path d="M35.5919 193.635H0V140.262H51.278V177.308C51.1863 186.378 44.2147 193.635 35.5919 193.635Z"
+        fill="#308AFF" />
+      <image href="assets/images/army-green.png" alt="lady in army green top" width="200px" />
+    </svg>
+  </div>
+
+
+  <main class="main">
+    <h1 class="title"> Congrats on your upgrade! </h1>
+
+    <p class="content">
+      {{ "change-plan.upgrade.description" | translate : {
+      price: data.membership.price | number: "1.0-0"
+      } }}
+      <span class="bold">{{
+        user?.client?.subscription_ends_at?.replace(' ', 'T') | date: "d MMMM, yyyy"
+        }}</span>
+    </p>
+  </main>
+
+  <div class="action-button-container">
+    <button (click)="changeMembership()" class="button button-primary">
+      {{ "change-plan.upgrade.grade" | translate }}
+    </button>
+    <button (click)="closeModal()" class="button button-secondary">
+      {{ "cancel" | translate }}
+    </button>
+  </div>
+</div>
+
+<div
+  *ngIf="data.mode == 'DOWNGRADE'"
+  fxLayout="column"
+  class="grade-plan"
+  fxLayoutAlign="center center"
+>
+
+  <div class="header-background">
+    <svg width="186" height="193" viewBox="0 0 187 194" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M186.674 0H53.5713C23.942 0 0 25.0157 0 55.7602H133.103C162.64 55.7602 186.674 30.7445 186.674 0Z"
+        fill="#308AFF" />
+      <path
+        d="M119.435 70.1768H53.5713C23.942 70.1768 0 95.1924 0 125.937H65.8634C95.401 125.937 119.435 100.921 119.435 70.1768Z"
+        fill="#308AFF" />
+      <path d="M35.5919 193.635H0V140.262H51.278V177.308C51.1863 186.378 44.2147 193.635 35.5919 193.635Z" fill="#308AFF" />
+      <image href="assets/images/blue-top.png" alt="lady in army green top" width="200px" />
+    </svg>
+  </div>
+
+
+
+  <div class="main">
+      <h1 class="title"> Are you sure you want to downgrade? </h1>
+      
+      <p class="content">
+        {{ "change-plan.downgrade.description" | translate }}
+        <span class="bold">{{
+          user.client.subscription_ends_at.replace(' ', 'T') | date: "d MMMM, yyyy"
+          }}</span>
+      </p>
+      
+      <div class="action-button-container">
+        <button (click)="closeModal(true)" class="button button-primary">
+          {{ "change-plan.downgrade.grade" | translate }}
+        </button>
+        <button (click)="closeModal(false)" class="button button-secondary">
+          {{ "cancel" | translate }}
+        </button>
+      </div>
+  </div>
+</div>
+

@@ -1,0 +1,71 @@
+.search-box {
+    padding: 0.5rem 0rem 0px 1rem;
+    margin-top: 5px;
+}
+
+.btn-success {
+  background-color: #8BC34A;
+    color: #ffffff;
+    border-color: #8bc24a;
+}
+
+.btn-default {
+  background-color: #fdfdfd;
+      color: rgb(76, 109, 123);
+      border-color: #eaeaea !important;
+}
+
+::ng-deep .row .multiselect-dropdown .dropdown-btn {
+    border-color: rgba(120, 130, 140, .2);
+    border-radius: 4px;
+}
+
+.disabled {
+    opacity: .5;
+    pointer-events: none;
+}
+
+.tags-wrap {
+    display: flex;
+    flex-direction: column;
+}
+
+.tags-body {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+}
+
+.new-tag {
+    display: flex;
+    align-items: center;
+}
+
+.tag {
+    display: flex;
+    align-items: center;
+    border-radius: 4px;
+    border: 1px solid #dadada;
+    color: black;
+    font-size: 100%;
+    background: rgba(0,0,0,0.05);
+    margin-right: 10px;
+    margin-bottom: 10px;
+    font-weight: 400;
+}
+
+.tags-wrap a {
+    margin-left: 5px;
+}
+
+.file-upload-btn {
+    cursor: pointer;
+    padding: 0 10px;
+}
+
+.cropper-buttons {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    margin: 10px 0;
+}

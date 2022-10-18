@@ -1,0 +1,213 @@
+<section class="questions-stepper-section">
+
+    <div class="questions-stepper-container">
+
+        <div class="questions-stepper-header">
+            <div class="questions-stepper-logo">
+                <a href="https://www.fitnutspro.com/coming-soon/#">
+                    <img src="../../../../../assets/images/logo-fit-new.png" alt="logo">
+                </a>
+            </div>
+            <div class="questions-stepper-options">
+                <div class="questions-header-btn">
+                    <button>
+                        <a href="https://fitnuts.com/contact-us/" target="_blank" style="text-decoration: none; color: white; font-size: 12px;">Need
+                            Help?</a>
+                    </button>
+                </div>
+                <!--<div class="questions-header-bars">
+                    <svg aria-hidden="true" focusable="false" data-prefix="fas"
+                         data-icon="bars" class="svg-inline&#45;&#45;fa fa-bars fa-w-14"
+                         role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                        <path fill="currentColor" d="M16 132h416c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H16C7.163 60 0 67.163 0 76v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z"></path>
+                    </svg>
+                </div>-->
+                <div class="questions-header-close" (click)="closeDialog(false)">
+                    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="chevron-right"
+                        class="svg-inline--fa fa-chevron-right fa-w-10" role="img" xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 320 512">
+                        <path fill="currentColor"
+                            d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z">
+                        </path>
+                    </svg>
+                </div>
+            </div>
+        </div>
+
+        <div class="questions-stepper-content">
+
+            <form>
+                <mat-horizontal-stepper>
+                    <!-- Step 0: Intro -->
+                    <mat-step>
+                        <div class="stepper-intro-container">
+                            <div class="stepper-intro">
+                                <h2 class="stepper-intro-title">
+                                    Welcome to Fitnuts. <br>
+                                    We can`t wait to get started!
+                                </h2>
+                                <p class="stepper-intro-graph">
+                                    Answer these quick questions so we can get to know you a little
+                                    better & help you achieve your goals!
+                                </p>
+                                <p class="stepper-intro-graph">
+                                    Don't worry, your personal details stays confidential
+                                </p>
+                                <div class="intro-btn-wrap">
+                                    <button class="stepper-intro-nextbtn" matStepperNext (click)="startedProcess()">
+                                        Get started now
+                                    </button>
+                                    <button class="stepper-intro-nextbtn" (click)="closeDialog(false)">
+                                        Fill later
+                                    </button>
+                                </div>
+                            </div>
+                            <img class="stepper-intro-poster"
+                                src="../../../../../assets/images/questionsPage/intro-poster.png" alt="intro-poster">
+                        </div>
+                    </mat-step>
+
+                    <!-- Step 1: Personal Details -->
+                    <mat-step>
+                        <div class="question-container personal-details">
+                            <div class="question-header">
+                                <div class="question-message">
+                                    <h2 class="question-message-title">Personal Details</h2>
+                                    <p class="question-message-graph">What is your current</p>
+                                </div>
+                                <div class="question-number">
+                                    <h2 class="question-number-title">1 / {{totalMembershipQuestions}}</h2>
+                                </div>
+                            </div>
+
+                            <div class="question-footer">
+
+                                <button class="form-control-btn">
+                                    <span class="form-control-decoration">
+                                        <svg aria-hidden="true" focusable="false" data-prefix="fas"
+                                            data-icon="arrows-alt-v" class="svg-inline--fa fa-arrows-alt-v fa-w-8"
+                                            role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512">
+                                            <path fill="currentColor"
+                                                d="M214.059 377.941H168V134.059h46.059c21.382 0 32.09-25.851 16.971-40.971L144.971 7.029c-9.373-9.373-24.568-9.373-33.941 0L24.971 93.088c-15.119 15.119-4.411 40.971 16.971 40.971H88v243.882H41.941c-21.382 0-32.09 25.851-16.971 40.971l86.059 86.059c9.373 9.373 24.568 9.373 33.941 0l86.059-86.059c15.12-15.119 4.412-40.971-16.97-40.971z">
+                                            </path>
+                                        </svg>
+                                    </span>
+                                    <input class="form-control-input" type="number" placeholder="Height"
+                                        [(ngModel)]="height" [ngModelOptions]="{standalone: true}">
+                                    <span class="form-control-decoration">CM</span>
+                                </button>
+
+                                <button class="form-control-btn">
+                                    <span class="form-control-decoration">
+                                        <svg aria-hidden="true" focusable="false" data-prefix="fas"
+                                            data-icon="arrows-alt-h" class="svg-inline--fa fa-arrows-alt-h fa-w-16"
+                                            role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                            <path fill="currentColor"
+                                                d="M377.941 169.941V216H134.059v-46.059c0-21.382-25.851-32.09-40.971-16.971L7.029 239.029c-9.373 9.373-9.373 24.568 0 33.941l86.059 86.059c15.119 15.119 40.971 4.411 40.971-16.971V296h243.882v46.059c0 21.382 25.851 32.09 40.971 16.971l86.059-86.059c9.373-9.373 9.373-24.568 0-33.941l-86.059-86.059c-15.119-15.12-40.971-4.412-40.971 16.97z">
+                                            </path>
+                                        </svg>
+                                    </span>
+                                    <input class="form-control-input" type="number" placeholder="Weight"
+                                        [(ngModel)]="weight" [ngModelOptions]="{standalone: true}">
+                                    <span class="form-control-decoration">KG</span>
+                                </button>
+                                <button class="toogle-stepper-btn next-step-btn" matStepperNext
+                                    (click)="enteredWeight()"
+                                    [disabled]="(!height || height < 0) || (!weight || weight < 0)"
+                                    [ngClass]="{'disabled': (!height || height < 0) || (!weight || weight < 0)}">
+                                    Next
+                                </button>
+                            </div>
+                        </div>
+                    </mat-step>
+
+                    <!-- Step 2: Target weight? -->
+                    <mat-step>
+                        <div class="question-container weight">
+                            <div class="question-header">
+                                <div class="question-message">
+                                    <h2 class="question-message-title">Target weight</h2>
+                                    <p class="question-message-graph">What is your target weight?</p>
+                                </div>
+                                <div class="question-number">
+                                    <h2 class="question-number-title">2 / {{totalMembershipQuestions}}</h2>
+                                </div>
+                            </div>
+
+                            <div class="question-footer">
+                                <button class="form-control-btn">
+                                    <span class="form-control-decoration">
+                                        <svg aria-hidden="true" focusable="false" data-prefix="fas"
+                                            data-icon="arrows-alt-h" class="svg-inline--fa fa-arrows-alt-h fa-w-16"
+                                            role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                            <path fill="currentColor"
+                                                d="M377.941 169.941V216H134.059v-46.059c0-21.382-25.851-32.09-40.971-16.971L7.029 239.029c-9.373 9.373-9.373 24.568 0 33.941l86.059 86.059c15.119 15.119 40.971 4.411 40.971-16.971V296h243.882v46.059c0 21.382 25.851 32.09 40.971 16.971l86.059-86.059c9.373-9.373 9.373-24.568 0-33.941l-86.059-86.059c-15.119-15.12-40.971-4.412-40.971 16.97z">
+                                            </path>
+                                        </svg>
+                                    </span>
+                                    <input class="form-control-input" type="number" placeholder="Weight"
+                                        [(ngModel)]="targetUserWeight" [ngModelOptions]="{standalone: true}">
+                                    <span class="form-control-decoration">KG</span>
+                                </button>
+                                <button class="toogle-stepper-btn next-step-btn" matStepperNext (click)="saveMeds()"
+                                    [disabled]="!targetUserWeight || targetUserWeight < 0"
+                                    [ngClass]="{'disabled': !targetUserWeight || targetUserWeight < 0}">
+                                    Next
+                                </button>
+                            </div>
+                        </div>
+                    </mat-step>
+
+                    <mat-step *ngFor="let question of questions; let index = index; let last = last;">
+                        <div class="question-container"
+                            *ngIf="question && question.type == 'radio' || 'checkbox' || 'checkbox_with_image'">
+                            <div class="question-header">
+                                <div class="question-message">
+                                    <h2 class="question-message-title">{{question.question}}</h2>
+                                    <p class="question-message-graph">{{question.description}}</p>
+                                </div>
+                                <div class="question-number">
+                                    <h2 class="question-number-title">{{index + 3}} / {{totalMembershipQuestions}}</h2>
+                                </div>
+                            </div>
+
+                            <div class="question-content"
+                                *ngIf="question && question.type == 'radio' || 'checkbox' || 'checkbox_with_image'">
+                                <div class="question-card" [ngClass]="{
+                                    'active': activeResponse(response.id),
+                                    'bodytype-card': question.question === 'Body type',
+                                    'habits-card': question.question === 'Habits',
+                                    'dietary-card': question.question === 'Dietary restrictions',
+                                    'food-card': question.question === 'Food options',
+                                    'options-card': question.question === 'Food Options Cont’d',
+                                    'meat-card': question.question === 'Food options (meat, seafood etc.)',
+                                    'hydration-card': question.question === 'Hydration',
+                                    'smoking-card': question.question === 'Smoking'
+                                }" *ngFor="let response of question.responses; let index = index"
+                                    (click)="setResponses(question, response)">
+                                    <div class="question-img">
+                                        <img src="{{response.image}}">
+                                    </div>
+                                    <div class="question-variant-title">
+                                        {{response.label}}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="question-footer">
+                                <button class="toogle-stepper-btn back-step-btn" matStepperPrevious>Back</button>
+                                <button *ngIf="!last" class="toogle-stepper-btn next-step-btn"
+                                    matStepperNext>Next</button>
+                                <button *ngIf="last" class="toogle-stepper-btn next-step-btn"
+                                    (click)="submitUserAnswers(); closeDialog()">Done</button>
+                            </div>
+                        </div>
+                    </mat-step>
+                </mat-horizontal-stepper>
+            </form>
+
+        </div>
+
+    </div>
+
+</section>

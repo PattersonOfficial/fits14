@@ -1,0 +1,17 @@
+  .search-box {
+      padding: 0.5rem 0rem 0px 1rem;
+      margin-top: 5px;
+  }
+
+ngx-nestable .dd-handle:hover,   ngx-nestable ul li .nestable-item-container:hover {
+      color: #616161 !important;
+      background: #f1fdff !important;
+      border: 1px dashed #d4d4d4;
+  }
+
+
+  .icon-drag {
+      margin-top: 5px;
+      font-size: 20px;
+      color: #00b2e4;
+  }

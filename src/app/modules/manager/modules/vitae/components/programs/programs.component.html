@@ -1,0 +1,37 @@
+<div class="p-a-md">
+  <div class="clearfix m-b-lg">
+
+    <div class="box-header">
+      <h2>Assigned programs</h2>
+      <small>
+        A summary of the programs assigned to your profile is shown, some of which may not be available, check your status.
+      </small>
+    </div>
+
+
+    <table class="table table-striped b-t">
+      <thead>
+        <tr>
+          <th>Program</th>
+          <th>Category</th>
+          <th>Start Date</th>
+          <th>Finish Date</th>
+          <th>State</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let program of myPrograms">
+          <td style="text-align: left;">{{program.name}}</td>
+          <td style="text-align: left;">{{program.category.title}}</td>
+          <td style="text-align: left;">{{program.pivot.start_date}}</td>
+          <td style="text-align: left;">{{program.pivot.end_date}}</td>
+          <td style="text-align: left;">
+            <span class="label info pos-rlt m-r-xs" *ngIf="program.pivot.status == 1"><b class="arrow left b-info pull-in"></b> <i class="fa fa-clock-o"></i> In progress</span>
+            <span class="label success pos-rlt m-r-xs" *ngIf="program.pivot.status == 2"><b class="arrow left b-success pull-in"></b> <i class="fa fa-check-circle"></i> Completed</span>
+            <span class="label danger pos-rlt m-r-xs" *ngIf="program.pivot.status == 3"><b class="arrow left b-danger pull-in"></b> <i class="fa fa-times-circle"></i> Canceled</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

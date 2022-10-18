@@ -1,0 +1,155 @@
+<div class="container">
+  <div class="box-header">
+    <h3>
+      <i class="fa fa-money"></i> Coupons
+    </h3>
+  </div>
+  <hr>
+
+  <div class="col-md-12">
+    <div class="white r box-shadow-z0 m-b navbar-md">
+      <div class="navbar">
+        <div class="collapse navbar-toggleable-sm">
+          <ul class="nav navbar-nav navbar-nav-inline text-center pull-left m-r text-primary-hover">
+            <li class="nav-item">
+              <a class="nav-link" (click)="createCoupon()">
+                <span class="nav-text">
+                  <i class="material-icons">add_circle_outline</i>
+                  <span class="text-xs">Add</span>
+                </span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-12">
+    <div class="box padding">
+      <table class="table table-striped b-t b-b table-hover">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Code</th>
+            <th>Discount value</th>
+            <th>Discount type</th>
+            <th>Usage(s)</th>
+            <th>Expires at</th>
+            <th>Description</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let coupon of coupons">
+            <td>{{ coupon.id }}</td>
+            <td>{{ coupon.code }}</td>
+            <td>{{ coupon.discount_value }}</td>
+            <td>{{ coupon.discount_type }}</td>
+            <td>{{ coupon.usages }}</td>
+            <td>{{ coupon.expires_at | date: "dd MMMM, yyyy" }}</td>
+            <td>{{ coupon.description }}</td>
+            <td>
+              <a (click)="editCoupon(coupon)" class="btn btn-icon btn-social white btn-sm" title="Edit">
+                <i class="fa fa-edit"></i>
+                <i class="fa fa-edit light-blue"></i>
+              </a>
+
+              <a class="btn btn-icon btn-social white btn-sm" title="Delete"
+                [swal]="{ title: 'Delete coupon', text: 'Confirm that you want to delete the record?' }"
+                (confirm)="deleteCoupon(coupon)">
+                <i class="fa fa-trash"></i>
+                <i class="fa fa-trash red-600"></i>
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" #modalCoupon="bs-modal" id="bottom" bsModal>
+  <div class="bottom white b-t" style="height: 50%">
+    <div class="row-col">
+      <a (click)="closeModal()" class="pull-right text-muted text-lg p-a-sm m-r-sm">×</a>
+
+      <div class="p-a b-b">
+        <h5 *ngIf="!coupon?.id">Create new coupon</h5>
+        <h5 *ngIf="coupon?.id">Edit coupon</h5>
+      </div>
+
+      <div class="row-row">
+        <div class="row-body">
+          <div class="row-inner">
+            <div class="container">
+              <div class="col-md-2 paddding-top-15">
+                <p>
+                  <label>Code</label>
+                  <input type="text" class="form-control input-sm-control" name="code" [(ngModel)]="coupon.code">
+              </div>
+
+              <div class="col-md-2 paddding-top-15">
+                <p>
+                  <label>Discount value</label>
+                  <input type="text" class="form-control input-sm-control" name="discount_value"
+                    [(ngModel)]="coupon.discount_value">
+              </div>
+
+              <div class="col-md-2 paddding-top-15">
+                <label>Discount type</label>
+                <select class="form-control select-sm" name="discount_type" [(ngModel)]="coupon.discount_type">
+                  <option value="percent">Percent</option>
+                  <option value="value">Value</option>
+                </select>
+              </div>
+
+              <div class="col-md-2 paddding-top-15">
+                <p>
+                  <label>Expires at</label>
+                  <input type="text" class="form-control input-sm-control" name="expires_at" [(ngModel)]="coupon.expires_at">
+              </div>
+
+              <div class="col-md-2 paddding-top-15">
+                <p>
+                  <label>Reusable</label>
+                  <input type="checkbox" class="form-control input-sm-control"  [checked]="isChecked" (change)="setIsChecked()">
+              </div>
+
+              <div class="col-md-2 paddding-top-15">
+                <p>
+                  <label>Number of Reuse</label>
+                  <input type="number" min="1" class="form-control input-sm-control" name="usages" [(ngModel)]="coupon.usages" [disabled]="!isChecked" [required]="isChecked">
+              </div>
+
+
+              <div class="col-md-6 paddding-top-15">
+                <p>
+                  <label>Description</label>
+                  <textarea rows="3" class="form-control input-md-control" name="description" [(ngModel)]="coupon.description"></textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <ul>
+          <li *ngFor="let error of requestErrors | keyvalue">
+            <b class="red">{{error.value}}</b>
+          </li>
+        </ul>
+      </div>
+
+      <div class="p-a b-t">
+        <div class="container">
+          <div class="col-md-12">
+            <button class="btn btn-primary pull-right" [disabled]="checkUsageStatus()" (click)="saveCoupon()">
+              <i class="fa fa-check-circle"></i> Save coupon
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

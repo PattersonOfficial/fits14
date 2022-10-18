@@ -1,0 +1,41 @@
+<div class="container">
+  <div class="content_container">
+    <div class="content_thumbnail_container">
+      <img src="{{ content?.thumbnail }}" alt="{{ content.title }}" class="content_thumbnail" />
+      <div class="play_video_icon" *ngIf="contentType == 1 && content.aws_url != ''">
+        <app-playvideobuttontwo (onPlayVideo)="handlePlayVideo()" [fontSize]="'25px'"></app-playvideobuttontwo>
+      </div>
+    </div>
+
+    <div class="content_desc_container">
+      <h1>{{ content.title }}</h1>
+      <div class="content_subtitle_container">
+        <!-- <h2>Instructor Name</h2>
+        <div class="content_subtitle_container_separator"></div>
+        <span class="content_duration">2:10</span> -->
+      </div>
+      <p [innerHTML]="content.description" class="content_desc_text"></p>
+    </div>
+  </div>
+
+  <!--
+  <div class="container">
+  <div class="content-thumb">
+    <img
+      src="{{ content?.thumbnail }}"
+      alt="{{ content.title }}"
+      class="content-thumb-image"
+    />
+    <div class="play-video" *ngIf="contentType == 1">
+      <app-playvideobutton
+        (onPlayVideo)="handlePlayVideo()"
+        [fontSize]="'25px'"
+      ></app-playvideobutton>
+    </div>
+  </div>
+  <h3 class="content-title">{{ content.title }}</h3>
+  <div class="content-description" [innerHTML]="content.description"></div>
+</div>
+
+-->
+</div>

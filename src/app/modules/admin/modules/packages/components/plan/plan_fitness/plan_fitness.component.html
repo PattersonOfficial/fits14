@@ -1,0 +1,142 @@
+<div class="container">
+    <div class="box-header">
+        <h3><i class="fa fa-tasks"></i> Fitness Plan</h3>
+        <small>Manage your Plan</small>
+    </div>
+
+    <hr>
+
+    <div class="col-md-12">
+        <div class="white r box-shadow-z0 m-b navbar-md">
+            <div class="navbar"><a class="navbar-brand"></a>
+                <ul class="nav navbar-nav pull-right">
+                    <li class="nav-item mt-10">
+                        <label class="m-b-0"><small class="label-bolder">Plan</small></label>
+
+                        <select class="form-control input-sm inline-height-2rem font-size-1em"
+                                [(ngModel)]="selectedPlan" (change)="onPlanChange()">
+                            <option disabled selected [ngValue]="null">Choose plan</option>
+                            <option *ngFor="let plan of plans" [ngValue]="plan">
+                                {{plan.name}}
+                            </option>
+                        </select>
+                    </li>
+
+                    <li>
+                        <a class="btn btn-icon btn-social white btn-sm plan_icon2" title="Delete Plan"
+                           (click)="onDeletePlanClick()">
+                            <i class="fa fa-trash"></i>
+                            <i class="fa fa-trash red-600"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="example-container box">
+        <div class="search-box search_content">
+            <label class="m-b-0">
+                <small class="label-bolder">Subcategory</small>
+            </label>
+
+            <select class="form-control input-sm inline-height-2rem font-size-1em"
+                    [(ngModel)]="selectedSubcategory" (change)="onSubcategoryChange()">
+                <option selected [ngValue]="null">Show all</option>
+
+                <option *ngFor="let subcategory of subcategories" [ngValue]="subcategory">
+                    {{subcategory.subcategory_name}}
+                </option>
+            </select>
+        </div>
+
+        <!--<div class="search-box search_content">
+            <input type="text" class="form-control search input-sm" placeholder="Search">
+        </div>-->
+
+        <div cdkDropList class="example-list" #contentDropList="cdkDropList"
+             [cdkDropListData]="filteredContents"
+             [cdkDropListConnectedTo]="[planContentDropList]"
+             [ngClass]="{'scroll-bank': (filteredContents && filteredContents.length > 10)}"
+             (cdkDropListDropped)="dropToContainer($event)">
+            <div class="example-box" *ngFor="let item of filteredContents" cdkDrag>
+                <span class="example-list-item-icon" *ngIf="item.type == VIDEO_TYPE">
+                    <i class="fa fa-video-camera" aria-hidden="true"></i>
+                </span>
+
+                <span class="example-list-item-icon" *ngIf="item.type == ARTICLE_TYPE">
+                    <i class="fa fa-newspaper-o" aria-hidden="true"></i>
+                </span>
+                {{item.title}}
+            </div>
+
+            <div class="example-box" *ngIf="filteredContents && filteredContents.length == 0">
+                No contents to display
+            </div>
+        </div>
+    </div>
+
+    <div class="example-container example-container_single box">
+        <div class="white r m-b navbar-md single_plan_box">
+            <div class="search_plan">
+                <label class="m-b-0"><small class="label-bolder">Plan Name</small></label>
+                <input style="font-size: 15px !important;" placeholder="Plan Name"
+                       [(ngModel)]="plan.name"
+                       class="form-control search input-sm" type="text">
+            </div>
+
+            <div class="search_plan search_plan-single">
+                <label class="m-b-0"><small class="label-bolder">Valid Days</small></label>
+                <input style="font-size: 15px !important;" min="0"
+                       placeholder="Valid Days"
+                       [(ngModel)]="plan.valid_days"
+                       class="form-control search input-sm" type="number">
+            </div>
+
+            <div cdkDropList
+                 #planContentDropList="cdkDropList"
+                 [cdkDropListData]="planContentList"
+                 [cdkDropListConnectedTo]="[contentDropList]"
+                 class="example-list2"
+                 [ngClass]="{'scroll-result': (planContentList && planContentList.length > 7)}"
+                 (cdkDropListDropped)="dropFromContainer($event)">
+
+                <hr>
+
+                <div *ngIf="!planContentList || planContentList.length == 0" class="col-md-12 text-center">
+                    <img src="../../../../../../../../assets/images/template/drag-and-drop.png" alt="Drag and Drop">
+                </div>
+
+                <div class="example-box" *ngFor="let item of planContentList; let i=index" cdkDrag>
+                    <span (click)="onRemoveWorkoutClick(i)" class="day-list">
+                        Day No.{{i + 1}} <i class="fa fa-trash"></i>
+                    </span>
+
+                    <div>
+                        {{item.title}}
+                        <span class="example-list-item-icon" *ngIf="item.type == VIDEO_TYPE">
+                            <i class="fa fa-video-camera" aria-hidden="true"></i>
+                        </span>
+
+                        <span class="example-list-item-icon" *ngIf="item.type == ARTICLE_TYPE">
+                            <i class="fa fa-newspaper-o" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <hr>
+
+            <button class="btn btn-primary btn-block" (click)="postContent()">
+                <i class="fa fa-check-circle"></i> Save plan
+            </button>
+
+            <div>
+               <span class="mismatch-error-message" *ngIf="invalidForm">
+                  The number of items in final Plan need to be equal the number of Valid days.
+                  Now mismatch is {{mismatchValidDays}} days.
+               </span>
+            </div>
+        </div>
+    </div>
+</div>

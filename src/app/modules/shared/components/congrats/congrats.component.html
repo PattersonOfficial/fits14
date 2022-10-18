@@ -1,0 +1,36 @@
+<div fxLayout="column" class="grade-plan" fxLayoutAlign="center center">
+  <div class="header-background">
+    <svg width="210" height="240">
+      <image href="assets/images/congrats.svg" alt="" />
+    </svg>
+  </div>
+
+  <div *ngIf="data?.mode === 'UPGRADE' || data?.mode === 'PLAN'" class="main">
+    <h1 class="title"> Congrats on your upgrade! </h1>
+
+    <h2 class="content">
+      Happy to have you onboard, <br>
+      hope you enjoy the ride as much as we do!
+    </h2>
+
+    <div class="action-button-container">
+      <button (click)="closeModal()" class="button button-primary">
+        LET'S BEGIN
+      </button>
+    </div>
+  </div>
+
+  <div *ngIf="data?.mode === 'DOWNGRADE'" class="main">
+    <h1 class="title"> Congrats on your downgrade! </h1>
+
+    <p class="content">
+      Your new plan starts <b>{{ data?.user.client.subscription_ends_at | date: "dd MMMM, yyyy" }}</b>
+    </p>
+
+    <div class="action-button-container">
+      <button (click)="closeModal()" class="button button-primary">
+        GOT IT
+      </button>
+    </div>
+  </div>
+</div>

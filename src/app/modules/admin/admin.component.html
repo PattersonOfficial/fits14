@@ -1,0 +1,19 @@
+<div class="app" id="app">
+  <div class="admin__dashboard">
+    <admin-sidebar></admin-sidebar>
+    <div id="content" style="left: 201px;position: relative;width: calc(100% - 201px);"
+      class="app-content box-shadow-z1" role="main">
+      <admin-topbar></admin-topbar>
+      <div class="app-body white box-shadow">
+        <div class="view-content">
+          <router-outlet> </router-outlet>
+        </div>
+
+
+        <app-user-contacts></app-user-contacts>
+
+        <div class="app-footer white box-shadow">
+        </div>
+      </div>
+    </div>
+  </div>

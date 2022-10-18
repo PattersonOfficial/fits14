@@ -1,0 +1,1507 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,700;1,800;1,900&display=swap');
+
+/* --------Mat Stepper-------- */
+::ng-deep .mat-horizontal-stepper-header-container {
+    display: none !important;
+}
+
+::ng-deep .mat-horizontal-content-container {
+    padding: 0 !important;
+}
+
+/* -----Mat Datepicker-------- */
+.mat-datepicker-input {
+    position: relative;
+}
+
+::ng-deep .mat-calendar {
+    font-family: 'Montserrat', sans-serif;
+    color: rgb(43, 54, 62);
+}
+
+::ng-deep .mat-datepicker-toggle {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+::ng-deep svg.mat-datepicker-toggle-default-icon.ng-star-inserted {
+    color: #8B95A5;
+}
+
+::ng-deep div.mat-calendar-body-cell-content.mat-calendar-body-today {
+    background-color: #8B95A5;
+    color: rgb(3, 3, 3);
+}
+
+::ng-deep .mat-calendar-body-selected {
+    background-color: #00A6DC;
+}
+
+/* --------Custom Ng Select----------- */
+::ng-deep .ng-select {
+    width: 100%;
+    height: 45px;
+    padding-bottom: 0;
+}
+
+::ng-deep .ng-select .ng-select-container {
+    width: 100% !important;
+    height: 45px;
+    margin: 1% 0;
+    padding: 0;
+    padding-left: 15px;
+    border: 1px solid #F4F6F9;
+    background: #F4F6F9;
+    border-radius: 3px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 35px;
+    color: #8B95A5;
+}
+
+::ng-deep .ng-select .ng-select-container .ng-value-container div.ng-placeholder {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 35px;
+    color: #8B95A5 !important;
+}
+
+::ng-deep .ng-select.ng-select-single .ng-select-container .ng-arrow-wrapper {
+    right: 10px;
+    bottom: 9px;
+}
+
+::ng-deep .ng-select .ng-select-container .ng-value-container .ng-input>input {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    padding-left: 15px;
+}
+
+::ng-deep .ng-select .ng-select-container .ng-value-container {
+    padding: .4375em 0;
+    border-top: none;
+}
+
+::ng-deep .ng-select.ng-select-single .ng-select-container .ng-clear-wrapper {
+    right: 3px;
+    bottom: 6px !important;
+}
+
+::ng-deep .ng-dropdown-panel .ng-dropdown-panel-items .ng-option.ng-option-selected {
+    background: #00A6DC;
+    color: #ffffff;
+}
+
+::ng-deep .ng-select .ng-select-container:after {
+    border-bottom: none;
+}
+::ng-deep .registration-wrapper .ng-select-searchable {
+    caret-color: transparent;
+}
+
+::ng-deep .mat-calendar-previous-button.mat-icon-button[aria-label="Previous year"],
+::ng-deep .mat-calendar-next-button.mat-icon-button[aria-label="Next year"] {
+    display: none !important;
+}
+
+::ng-deep .registration-wrapper .iti {
+    width: 100%
+}
+
+
+/* Custom ng2TelInput Styling */
+::ng-deep .iti__selected-flag {
+    border-bottom-left-radius: 50px;
+    border-top-left-radius: 50px;
+}
+
+::ng-deep .ng-dropdown-panel.ng-select-bottom {
+    margin-top: 25px;
+}
+
+/* --------Registration Step Form-------- */
+.registration-container.payment {
+    width: calc(100vw - 50px);
+    height: calc(100vh - 50px);
+}
+
+.registration-container.payment iframe {
+    width: 100%;
+    height: 95%;
+    margin-top: 1%;
+}
+
+.registration-container.payment .registration-wrapper {
+    width: 100%;
+    padding: 2%;
+}
+
+.registration-container.payment .registration-options {
+    margin: 0 0 2%;
+}
+
+.registration-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: auto;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    background: #F2F2F2;
+}
+
+.registration-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    width: 75%;
+    height: 85vh;
+    margin: 0 auto;
+    padding: 0;
+    background: #FFFFFF;
+    box-shadow: 0 15px 35px rgba(219, 219, 219, 0.160784);
+}
+
+.registration-container.wide {
+    width: 60%;
+}
+
+.registration-form {
+    width: 80%;
+    height: 80%;
+    padding: 2% 5% 0 5%;
+}
+
+.heading-wrap {
+    height: 12%;
+}
+
+.registration-subscription-form {
+    width: 100%;
+    display: flex;
+}
+
+.registration-subscription-form-card {
+    width: 90%;
+    display: flex;
+}
+.move-up {
+    margin-top: -5vh;
+}
+
+.registration-wrapper {
+    width: 45%;
+    height: 100%;
+    padding: 4%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Poppins';
+    z-index: 3;
+}
+
+.registration-heading>h3 {
+    font-size: 20px;
+    font-weight: 1900;
+    font-family: 'Poppins';
+}
+
+.spacing {
+    height: 5vh;
+}
+
+
+.registration-heading-two>h3 {
+    font-size: 20px;
+    font-weight: 1900;
+    font-family: 'Poppins';
+    margin-top: 20px;
+}
+
+.registration-subheading>p {
+    font-size: 10px;
+    font-weight: 400;
+    font-family: 'Poppins';
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.registration-subheading-two {
+    font-size: 12px;
+    font-weight: 300;
+    font-family: 'Poppins';
+    margin-top: 15%;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.registration-footing {
+    margin-top: 20px;
+    text-align: center;
+    font-family: 'Poppins';
+    font-size: 10px;
+    font-weight: 400;
+}
+
+.registration-otp {
+    text-align: center;
+}
+
+.registration-wrapper.payment {
+    width: 100%;
+}
+
+.registration-poster {
+    height: 100%;
+    width: 55%;
+    margin: 0;
+    padding: 0;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: #529DFF;
+    position: relative;
+}
+
+.logos {
+    display: flex;
+    position: relative;
+    height: 575px;
+    width: 100%;
+}
+
+.main-logo {
+    display: flex;
+    position: absolute;
+    left: 1.63vw;
+    width: 5.21vw;
+    height: 11.14vh;
+}
+
+.background-logo {
+    display: flex;
+    width: 24.75vw;
+    height: 52.5vh;
+    background-repeat: no-repeat;
+    background-size: contain;
+    margin-top: 15.3vh;
+    margin-left: 5.9vw;
+}
+
+.fitnuts-background {
+    display: flex;
+    position: absolute;
+    width: 42.32vw;
+    height: 97.4vh;
+    top: -3.5vh;
+    left: 5.5vw;
+}
+
+.fitnut-bg-image {
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+}
+
+
+.registration-poster-img {
+    max-width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.registration-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 25px;
+    font-weight: 600;
+    color: rgb(0, 0, 0);
+    text-transform: capitalize;
+}
+
+.registration-graph {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    color: #8B95A5;
+}
+
+.registration-options {
+    width: 100%;
+    margin: 0 0 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.back-to-login {
+    width: calc(85/316*100%);
+    min-height: 45px;
+    background: #FFFFFF;
+    border: 1px solid #DFDFDF;
+    border-radius: 3px;
+    font-family: Montserrat, sans-serif;
+    font-size: 12px;
+    line-height: 35px;
+    text-transform: uppercase;
+    color: #8B95A5;
+}
+
+.back-to-login:hover {
+    background-color: rgba(158, 161, 168, 0.35);
+    box-shadow: 0 2.5px 5px rgba(158, 173, 179, 0.4);
+    color: rgb(120, 121, 124);
+}
+
+.registration-btn {
+    width: 50%;
+}
+
+.submit-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.divider {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 15px;
+}
+
+.divider>p {
+    margin-top: 14px;
+    font-size: 10px;
+}
+
+.subdivider {
+    /* border: solid 1px #C8C8C8; */
+    height: 1px;
+    background-color: #C8C8C8;
+    width: 80px;
+}
+
+.card-divider {
+    height: 1px;
+    background-color: #050505;
+    width: 90%;
+}
+
+.subscriptions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 40vh;
+    background-color: #FAFAFA;
+    /* box-shadow: 2px 0px 2px 0px #C8C8C8; */
+    border-radius: 10px;
+    border: 1px solid #C8C8C8;
+    cursor: pointer;
+    width: 100%;
+}
+
+.subscriptions-payment {
+    display: flex;
+    flex-direction: column;
+    height: 20vh;
+    background-color: #FAFAFA;
+    /* box-shadow: 2px 0px 2px 0px #C8C8C8; */
+    border-radius: 10px;
+    border: 1px solid #C8C8C8;
+}
+
+.receive-email {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 10vh;
+    font-size: 12px;
+}
+
+
+.subscriptions-card {
+    width: 100%;
+    height: 10vh !important;
+    background: #FAFAFA;
+    cursor: pointer;
+}
+
+.subscriptions-card-payment {
+    width: 100%;
+    height: 20vh !important;
+    background: #FAFAFA;
+}
+
+.sub-top {
+    border-bottom: 1px solid #CCCCCC;
+    height: 10vh !important;
+    display: flex;
+    align-items: space-between;
+    justify-content: center;
+    width: 100%;
+}
+
+.sub-last {
+    height: 10vh !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.sub-payment {
+    height: 20vh !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sub-top:hover {
+    background: #D0E4FF;
+    /* color: white; */
+    width: 105%;
+    height: 15vh !important;
+    border: 2px solid #D0E4FF;
+    border-radius: 5px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sub-last:hover {
+    background: #D0E4FF;
+    /* color: white; */
+    width: 105%;
+    height: 15vh !important;
+    border: 2px solid #D0E4FF;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.sub-package {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    align-items: start;
+    justify-content: center;
+    height: 100%;
+    padding: 5px;
+    margin-left: 10px;
+}
+
+.sub-heading {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.sub-description {
+    font-size: 10px;
+    font-weight: 400;
+}
+
+.sub-description-payment {
+    font-size: 12px;
+    font-weight: 400;
+}
+
+.sub-package-notice {
+    font-size: 9px;
+    font-weight: 400;
+}
+
+.sub-change-plan {
+    color: #529DFF;
+    text-decoration: underline;
+    font-size: 12px;
+    cursor: pointer;
+    margin-top: 4vh;
+}
+
+.sub-price {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    margin-right: 20px;
+    margin-top: 20px;
+    color: #529DFF;
+}
+
+.subprice-placement {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sub-price-last {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 20px;
+    color: #529DFF;
+}
+
+.sub-price > h1 {
+    font-size: 20px;
+    font-weight: 600;
+    padding-left: 5px;
+}
+
+.sub-price-last > h1 {
+    font-size: 10px;
+    font-weight: 600;
+    padding-left: 5px;
+}
+
+.sub-package-paragraph {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sub-package-heading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 20px;
+}
+
+.currency {
+    position: absolute;
+    font-size: 10px;
+    top: 0;
+    left: 0;
+}
+
+.frequency {
+    font-size: 10px;
+}
+
+.subscriptions-card-top {
+    width: 100%;
+    height: 15vh;
+    background: #FAFAFA;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    cursor: pointer;
+}
+
+.subscriptions-card-top:hover {
+    color: white;
+    background: #529DFF;
+}
+
+.subscriptions-card-bottom {
+    width: 100%;
+    height: 15vh;
+    background: #FAFAFA;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    cursor: pointer;
+}
+
+.subscriptions-card-bottom:hover {
+    color: white;
+    background: #529DFF;
+}
+
+.subscriptions-content {
+    margin: 20px;
+}
+
+.registration-btn button,
+.payment-btn button {
+    width: 100%;
+    height: 5vh;
+    margin-top: 5%;
+    border: none;
+    background: #529DFF;
+    box-shadow: 0 10px 15px rgba(0, 166, 220, 0.301961);
+    border-radius: 50px;
+    font-size: 10px;
+    text-transform: uppercase;
+    color: #FFFFFF;
+}
+
+.terms-section {
+    margin-top: 30px;
+    font-size: 9px;
+    text-align: center;
+}
+
+.registration-btn button:hover,
+.payment-btn button:hover {
+    opacity: 0.75;
+    transition: ease-in-out 2s;
+}
+
+.registration-membership {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 38px calc(50/830*100%);
+}
+
+.form-controls {
+    width: 100%;
+    height: 25% !important;
+    margin: 3% 0;
+}
+
+.form-controls-pair {
+    display: flex;
+    justify-content: space-between;
+    align-items: inherit;
+}
+
+.form-control-coupon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: -7px;
+}
+
+.input-field{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 5vh;
+    padding-left: 12px;
+    border: 1px solid #529DFF;
+    border-radius: 50px;
+}
+
+.input-field-error{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 5vh;
+    padding-left: 12px;
+    border: 1px solid #FF5252;
+    border-radius: 50px;
+}
+
+.confirm-password{
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 35px;
+    color: black;
+    width: 87.5%;
+    border: 1px solid #fff;
+    height: 80%;
+}
+
+.confirm-password::placeholder {
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 35px;
+    color: #8B95A5;
+}
+
+.password-icon{
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    opacity: .5;
+    transition: all .25s;
+}
+
+.password-icon:hover{
+    opacity: 1;
+}
+
+.form-control-input {
+    width: 100%;
+    height: 5vh;
+    padding-left: 15px;
+    border: 1px solid #529DFF;
+    border-radius: 50px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 35px;
+    color: black;
+}
+
+.coupon-arrow {
+    width: 28px;
+    height: 28px;
+    position: absolute;
+    right: 0.60vw;
+    top: 0.8vh;
+    padding-left: 15px;
+    border: 1px solid #529DFF;
+    /* border-top-right-radius: 50px;
+    border-bottom-right-radius: 50px; */
+    border-radius: 50%;
+    background-color: #529DFF;
+}
+
+.form-control-input-error {
+    width: 100%;
+    height: 5vh;
+    padding-left: 15px;
+    border: 1px solid #FF5252;
+    border-radius: 50px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 300;
+    font-size: 10px;
+    line-height: 35px;
+    color: black;
+}
+
+.form-control-cortege {
+    width: 47%;
+}
+
+.form-control-input:focus-within {
+    border: 1px solid #00A6DC;
+    box-shadow: 0 2.5px 5px rgba(0, 166, 220, 0.25677);
+}
+
+.form-control-input:focus-within::before {
+    content: "First Name";
+    position: absolute;
+    top: 100%;
+    left: 20%;
+    transform: translateX(-50%);
+    border: 15px solid;
+    border-color: #0000 0000;
+}
+
+.form-control-input::placeholder {
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 35px;
+    color: #8B95A5;
+}
+
+.form-control-error {
+    float: left;
+    color: #FF5252;
+    font-family: 'Poppins', sans-serif;
+    font-size: 11px;
+    font-weight: 350;
+}
+
+.registration-section .login-options {
+    margin: 10px 0;
+}
+
+.registration-section .login-options .label-checkbox {
+    margin: 0;
+}
+
+.login-options .form-control-error {
+    float: none;
+}
+
+/* -----------Customize checkbox-------------- */
+.label-checkbox {
+    display: block;
+    position: relative;
+    padding-left: 20px;
+    cursor: pointer;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    font-size: 12px;
+    color: #8B95A5;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+
+.label-checkbox:hover {
+    color: rgb(120, 121, 124);
+}
+
+.label-checkbox input[type=checkbox] {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 14px;
+    width: 14px;
+    background: #FFFFFF;
+    border: 1px solid #DFDFDF;
+    border-radius: 2px;
+}
+
+.label-checkbox input[type=checkbox]:hover~.checkmark {
+    background-color: #DFDFDF;
+}
+
+.label-checkbox input[type=checkbox]:checked~.checkmark {
+    background-color: #00A6DC;
+}
+
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+.label-checkbox input[type=checkbox]:checked~.checkmark:after {
+    display: block;
+}
+
+.label-checkbox .checkmark:after {
+    left: 3.5px;
+    top: 0;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 1.5px 1.5px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+/* -------------Membership------------- */
+.membership-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: auto;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    background: #F2F2F2;
+}
+
+.membership-container {
+    /* position: absolute;
+        top:50%;
+        left: 50%;
+        transform: translate(-50%, -50%); */
+    width: 60.76%;
+    height: 78.125%;
+    margin: 0 auto;
+    padding: 2%;
+    background: #FFFFFF;
+    box-shadow: 0 15px 35px rgba(219, 219, 219, 0.160784);
+}
+
+.membership-greeting {
+    margin: 0 0 20px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    font-size: 18px;
+    color: #202020;
+    text-transform: capitalize;
+    text-align: center;
+}
+
+.membership-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    width: 100%;
+    height: 100%;
+    padding: 2% 5%;
+}
+
+.membership-img-wrapper {
+    width: 100%;
+    text-align: center;
+}
+
+.membership-img {
+    max-width: 85%;
+    object-fit: cover;
+    object-position: center;
+    margin-bottom: 5%;
+}
+
+.membership-title {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 15px;
+    text-align: center;
+    color: #202020;
+}
+
+.membership-price {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    font-size: 30px;
+    line-height: 15px;
+    text-align: center;
+    text-transform: uppercase;
+    color: #00A6DC;
+}
+
+.membership-graph {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 28px;
+    text-align: center;
+    color: #8B95A5;
+}
+
+.membership-submit {
+    width: 100%;
+}
+
+.membership-btn {
+    width: 100%;
+    min-height: 45px;
+    background: #FFFFFF;
+    border: 1px solid #DFDFDF;
+    box-sizing: border-box;
+    border-radius: 3px;
+    font-size: 12px;
+    text-transform: uppercase;
+    color: #8B95A5;
+}
+
+.card-membership {
+    display: flex;
+    padding: 2% 5%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    min-width: calc(243/830*100%);
+    width: calc((100% - 40px) / 3);
+    border: 1px solid #E9E9E9;
+    min-height: 500px;
+    transition: all 0.3s ease-in;
+    background: #FFFFFF;
+}
+
+.card-membership:hover~.active-default {
+    transform: unset !important;
+}
+
+.active-default .membership-btn,
+.card-membership:hover .membership-btn,
+.free-user .membership-btn:hover {
+    background: #00A6DC;
+    border: 1px solid #00A6DC;
+    box-shadow: 0 5px 15px rgba(0, 166, 220, 0.301961);
+    color: #FFFFFF;
+}
+
+.card-membership:hover,
+.active-default {
+    transform: scale(1.06);
+    background-color: white;
+    box-shadow: 0 18px 35px rgba(106, 106, 106, 0.160784);
+}
+
+/* --------------Payment------------- */
+.form-control-csv {
+    background-image: url('../../../assets/images/registrationPage/info-circle-solid.svg');
+    background-repeat: no-repeat;
+    background-position: right 1.37em top 50%;
+    background-size: 1.25em auto;
+}
+
+.payment-control {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.payment-card-type {
+    width: 47%;
+    min-height: 45px;
+    border: transparent;
+    background: transparent;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    font-size: 12px;
+    text-align: left;
+    text-transform: capitalize;
+    color: #8B95A5;
+}
+
+.payment-card-type:hover,
+.payment-card-active {
+    border-bottom: 2px solid #00A6DC;
+    font-weight: 600;
+    color: #00A6DC;
+}
+
+.payment-accept {
+    width: 100%;
+    margin: 5% 0 0;
+    text-align: center;
+}
+
+.payment-accept-graph {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    font-size: 15px;
+    color: #8B95A5;
+    text-align: center;
+}
+
+.payment-accept-cards {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.payment-accept-cards div {
+    margin: 0 2%;
+}
+
+.payment-accept-cards svg {
+    height: 24px;
+}
+
+.payment-accept-cards svg path {
+    fill: #8B95A5;
+}
+
+.plan-desc {
+    flex: 1;
+}
+
+.plan-desc p {
+    margin: 0;
+}
+
+.feature-heading {
+    color: #10AFE0;
+}
+
+::ng-deep .ng-dropdown-panel.ng-select-bottom {
+    margin-top: 25px;
+}
+
+.show-password {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    opacity: .5;
+    transition: all .25s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.show-password:hover {
+    opacity: 1;
+}
+
+.show-password img {
+    width: 100%;
+}
+
+.form-controls {
+    position: relative;
+}
+
+.login-submit-link {
+    transition: all .25s;
+    text-align: center;
+    margin-top: 10px;
+    display: block;
+}
+
+.login-submit-link:hover {
+    text-decoration: underline;
+}
+
+::ng-deep .registration-wrapper .iti {
+    width: 100%
+}
+
+.facebook-login {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    margin-top: 10px;
+    align-items: center;
+}
+
+.facebook-login p {
+    margin: 0 20px 0 0;
+}
+
+.social-btn {
+    height: 5vh;
+    border: 1px solid #DFDFDF;
+    background-color: white;
+    box-sizing: border-box;
+    border-radius: 50px;
+    font-size: 10px;
+    color: #8B95A5;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.social-btn:hover {
+    background-color: rgba(158, 161, 168, 0.35);
+    box-shadow: 0 2.5px 5px rgba(158, 173, 179, 0.4);
+    color: rgb(120, 121, 124);
+}
+
+.social-btn span {
+    margin: 0 10px;
+    text-transform: capitalize;
+}
+
+
+::ng-deep .registration-wrapper .ng-select-searchable {
+    caret-color: transparent;
+}
+
+::ng-deep .mat-calendar-previous-button.mat-icon-button[aria-label="Previous year"],
+::ng-deep .mat-calendar-next-button.mat-icon-button[aria-label="Next year"] {
+    display: none !important;
+}
+
+.free-user {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    width: 100%;
+    align-items: center;
+}
+
+.free-user .membership-greeting {
+    margin: 0;
+}
+
+.free-user .membership-submit {
+    width: fit-content;
+}
+
+.free-user button {
+    margin-left: 20px;
+    width: fit-content;
+    padding: 0 20px;
+}
+
+
+@media only screen and (max-width: 768px) {
+    .registration-wrapper {
+        width: 100%;
+        height: 100%;
+    }
+
+    .registration-poster {
+        display: none;
+    }
+
+    .membership-container {
+        width: 85%;
+        height: auto;
+        margin: 5% auto;
+    }
+
+    .membership-wrapper {
+        flex-direction: column;
+    }
+
+    .card-membership:hover,
+    .active-default {
+        transform: scale(1);
+        background-color: white;
+        box-shadow: 15px 18px 35px rgba(106, 106, 106, 0.160784);
+    }
+}
+
+
+@media only screen and (min-width: 769px) and (max-width: 1024px) {
+    .registration-container {
+        width: 90%;
+        /*height: auto;*/
+    }
+
+    .registration-poster {
+        width: 51%;
+    }
+
+    .registration-wrapper {
+        width: 49%;
+    }
+
+    .background-logo {
+        display: flex;
+        width: 24.75vw;
+        height: 32.5vh;
+        background-repeat: no-repeat;
+        background-size: contain;
+        margin-top: 25.3vh;
+        margin-left: 5.9vw;
+    }
+
+    .fitnuts-background {
+        display: flex;
+        position: absolute;
+        width: 47.32vw;
+        height: 60.4vh;
+        top: 14vh;
+        left: 5.5vw;
+    }
+
+    .registration-form {
+        width: 90%;
+    }
+
+    .confirm-password{
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 500;
+        font-size: 12px;
+        line-height: 35px;
+        color: black;
+        width: 83.8%;
+        border: 1px solid #fff;
+        height: 80%;
+    }
+}
+
+@media only screen and (min-width: 1025px)  and (max-width: 1366px) {
+    .confirm-password{
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 500;
+        font-size: 12px;
+        line-height: 35px;
+        color: black;
+        width: 86.5%;
+        border: 1px solid #fff;
+        height: 80%;
+    }
+}
+
+@media only screen and (min-width: 1367px) and (max-width: 1440px) {
+    .background-logo {
+        /* display: flex;
+        width: 24.75vw;
+        height: 42.5vh;
+        background-repeat: no-repeat;
+        background-size: contain;
+        margin-top: 20.3vh;
+        margin-left: 5.9vw; */
+        position: absolute;
+        left: 5.85%;
+        right: 64.3%;
+        top: 27.47%;
+        bottom: 29.22%;
+        height: 429.72px;
+        width: 443.44px;
+    }
+
+    .fitnuts-background {
+        /* display: flex;
+        position: absolute;
+        width: 42.32vw;
+        height: 80.4vh;
+        top: 4.5vh;
+        left: 5.5vw; */
+        display: flex;
+        position: absolute;
+        width: 766px;
+        height: 728.01px;
+        left: 76px;
+        top: 148px;
+
+    }
+
+    .confirm-password{
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 500;
+        font-size: 12px;
+        line-height: 35px;
+        color: black;
+        width: 87%;
+        border: 1px solid #fff;
+        height: 80%;
+    }
+    .registration-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: stretch;
+        width: 100%;
+        height: 100vh;
+        margin: 0 auto;
+        padding: 0;
+        background: #FFFFFF;
+        box-shadow: 0 15px 35px rgba(219, 219, 219, 0.160784);
+    }
+
+    .registration-poster {
+        height: 100%;
+        width: 731px;
+        margin: 0;
+        padding: 0;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-color: #529DFF;
+        position: relative;
+    }
+
+    .registration-wrapper {
+        width: 709px;
+        height: 100%;
+        padding: 4%;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        font-family: 'Poppins';
+        z-index: 3;
+        left: 221px;
+        top: 168px;
+    }
+
+    .main-logo {
+        display: flex;
+        position: absolute;
+        left: 37px;
+        width: 150px;
+        height: 150px;
+        top: -18px;
+    }
+
+    .registration-wrapper-content {
+        position: absolute;
+        width: 469.29px;
+        height: 808px;
+        left: 842px;
+        top: 132px;
+    }
+
+    .heading-wrap {
+        height: 12%;
+    }
+
+    .registration-heading>h3 {
+        font-family: 'Poppins';
+        font-style: normal;
+        font-weight: 800;
+        font-size: 36px;
+        line-height: 40px;
+        display: flex;
+        align-items: center;
+        text-align: center;
+        text-transform: uppercase;
+        
+    }
+
+    .registration-subheading>p {
+        /* font-size: 10px;
+        font-weight: 400;
+        font-family: 'Poppins';
+        margin-bottom: 10px;
+        text-align: center; */
+        font-family: 'Poppins';
+        font-style: normal;
+        font-weight: 300;
+        font-size: 14px;
+        line-height: 40px;        
+        color: #142A3D;
+    }
+
+    .registration-btn button {
+        width: 270px;
+        height: 55px;
+        margin-top: 5%;
+        border: none;
+        background: #529DFF;
+        box-shadow: 0 10px 15px rgba(0, 166, 220, 0.301961);
+        border-radius: 50px;
+        font-size: 10px;
+        text-transform: uppercase;
+        color: #FFFFFF;
+    }
+
+    .divider {
+        display: flex;
+        width: 100%;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 15px;
+    }
+    
+    .divider>p {
+        margin-top: 14px;
+        font-size: 10px;
+    }
+    
+    .subdivider {
+        /* border: solid 1px #C8C8C8; */
+        height: 1px;
+        background-color: #C8C8C8;
+        width: 80px;
+    }
+
+   
+
+}
+
+@media only screen and (min-width: 1441px) and (max-width: 1920px) {
+    .confirm-password{
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 500;
+        font-size: 12px;
+        line-height: 35px;
+        color: black;
+        width: 90.5%;
+        border: 1px solid #fff;
+        height: 80%;
+    }
+
+    .registration-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: stretch;
+        width: 100%;
+        height: 100vh;
+        margin: 0 auto;
+        padding: 0;
+        background: #FFFFFF;
+        box-shadow: 0 15px 35px rgba(219, 219, 219, 0.160784);
+    }
+}
+
+@media only screen and (min-width: 1921px) and (max-width: 2560px) {
+    .confirm-password{
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 500;
+        font-size: 12px;
+        line-height: 35px;
+        color: black;
+        width: 93.2%;
+        border: 1px solid #fff;
+        height: 80%;
+    }
+}

@@ -1,0 +1,8 @@
+.search-box {
+    padding: 0.5rem 0rem 0px 1rem;
+    margin-top: 5px;
+}
+
+.capitalize {
+    text-transform: capitalize;
+}

@@ -1,0 +1,372 @@
+/* ------------Tracker container------------- */
+.tracker-container {
+  width: 100%;
+  height: auto;
+  min-height: 360px;
+  margin: 0;
+  padding: 40px 20px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 5px;
+  background: url('../../../../../assets/images/nutrition/nutrition-tracker.png'), linear-gradient(222deg, #d600ff, #ff8471);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+/* ------------Tracker header------------- */
+.tracker-header {
+  width: 100%;
+  text-align: center;
+}
+
+.tracker-icon-container {
+  width: 90px;
+  height: 90px;
+  margin: 0 auto 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 100%;
+  background-color: rgba(250, 250, 250, .35);
+}
+
+.tracker-icon-container span svg {
+  height: 45px;
+  color: #ffffff;
+}
+
+.tracker-title {
+  font-family: Montserrat;
+  font-size: 18px;
+  font-weight: 600;
+  text-align: center;
+  color: #ffffff;
+  text-transform: capitalize;
+}
+
+.tracker-graph {
+  font-family: Montserrat;
+  font-size: 11px;
+  text-align: center;
+  color: #ffffff;
+}
+
+.tracker-separate-line {
+  width: 100%;
+  height: 1px;
+  opacity: 0.4;
+  background-color: #f4f5f9;
+}
+/* ------------Tracker content------------- */
+.tracker-content {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0 0 20px;
+}
+
+.tracker-measurement {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: Montserrat;
+  font-size: 18px;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.tracker-measurement p {
+  margin-bottom: 0;
+}
+/* ------------Tracker footer------------- */
+.tracker-footer {
+  width: 100%;
+}
+
+.tracker-footer-btn {
+  width: 100%;
+  height: 45px;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 3px;
+  background-color: #ffebff;
+  font-family: Montserrat;
+  font-size: 12px;
+  font-weight: 500;
+  text-align: center;
+  color: #e530cc;
+  text-transform: capitalize;
+}
+
+.tracker-footer-btn:hover {
+  opacity: 0.7;
+}
+
+.tracker-btn-icon svg {
+  width: 15px;
+  height: 15px;
+  margin-right: 10px;
+}
+
+
+
+
+
+.nutrition-tracker-container {
+  width: 100%;
+  height: auto;
+  margin: 0;
+  padding: 7.8% 7%;
+  background: linear-gradient(180deg, #FE6A72 0%, #FD8B73 100%);
+  box-shadow: 0px 4px 15px rgba(254, 110, 114, 0.7);
+  border-radius: 8px;
+}
+
+.nutrition-tracker-header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nutrition-tracker-widget {
+  position: relative;
+  width: 58px;
+  height: 58px;
+  flex: none;
+  border: 1px solid #FFFFFF;
+  border-radius: 100%;
+}
+
+.nutrition-tracker-widget img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.nutrition-tracker-title {
+  margin: 0 2%;
+  padding: 0;
+  font-family: Roboto;
+  font-size: 18px;
+  line-height: 21px;
+  text-align: right;
+  color: #FFFFFF;
+  text-transform: capitalize;
+}
+
+.nutrition-tracker-tool {
+  width: 20%;
+  text-align: right;
+  align-self: flex-start;
+  font-size: 19px;
+  color: #FFFFFF;
+}
+/* ---------------------------- */
+.nutrition-tracker-content {
+  position: relative;
+  width: 100%;
+  min-height: 175px;
+  margin: 5% 0;
+}
+
+.nutrition-tracker-graph-wrap {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.nutrition-tracker-graph {
+  margin: 0;
+  padding: 0;
+  font-family: Roboto;
+  font-size: 11px;
+  text-align: center;
+  color: #FFFFFF;
+}
+
+.water-tracker-numb {
+  margin: 0;
+  padding: 0;
+  font-family: Roboto;
+  font-weight: 500;
+  font-size: 29px;
+  text-align: center;
+  color: #FFFFFF;
+}
+
+.water-tracker-subgraph {
+  margin: 0;
+  padding: 0;
+  font-size: 11px;
+  text-align: right;
+  color: #FFFFFF;
+}
+
+.nutrition-tracker-hours {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.nutrition-tracker-hours input{
+  max-width: 50%;
+  background: transparent;
+  border: transparent;
+  font-size: 33px;
+  color: #FFFFFF;
+}
+
+.nutrition-tracker-hours span{
+  margin-bottom: 5px;
+  font-size: 27px;
+  color: #FFFFFF;
+  opacity: 0.59;
+}
+
+::ng-deep div.water-tracker-content span.irs-slider.single {
+  background: #25D8F3 !important;
+  border: 3px solid #FFFFFF;
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.5);
+}
+
+.nutrition-tracker-footer {
+  text-align: center;
+}
+
+.nutrition-tracker-btn {
+  width: calc(155/360*100%);
+  min-height: 35px;
+  background-color: transparent;
+  border: 2px solid #FFFFFF;
+  box-sizing: border-box;
+  border-radius: 18px;
+  font-family: Roboto;
+  font-size: 18px;
+  text-align: center;
+  color: #FFFFFF;
+}
+
+.nutrition-tracker-btn:hover {
+  opacity: 0.75;
+}
+
+/* ---------------------------------- */
+.wellness-plan-box {
+  background: linear-gradient(180deg, #FE6A72 0%, #FD8B73 100%);
+  box-shadow: 0px 4px 15px rgba(254, 110, 114, 0.7) !important;
+  color: #FFFFFF
+}
+
+.wellness-plan-box h4:before {
+  background-image: url("../../../../../assets/images/icons/nutrition.svg");
+}
+
+/* --------Handmade circle progress bar with "thumb"------------ */
+/* .container {
+  position: relative;
+  width: 400px;
+  height: 400px;
+  background-color: rgb(226, 35, 100);
+  border-radius: 8px;
+} */
+.progress-ring__circle {
+transform-origin: center;
+transform: rotate(-90deg);
+transition: stroke-dashoffset 0.5s ease-in-out;
+}
+.circle {
+width: 104px;
+height: 104px;
+border-radius: 50px;
+background-color: bisque;
+/* position: absolute;
+top: 7px;
+right: 10px; */
+}
+.progress-ring {
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+}
+.ring {
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+width: 146px;
+height: 146px;
+background: transparent;
+border: 1px solid white;
+border-radius: 50%;
+}
+
+.thumb {
+display: block;
+position: absolute;
+top: calc(50% - 2px);
+left: 50%;
+width: 50%;
+height: 4px;
+background: transparent;
+transform-origin: left;
+transform: rotate(-90deg);
+animation: animate 2s linear infinite;
+transition: transform 0.5s ease-in-out;
+
+}
+.thumb::before {
+content: '';
+position: absolute;
+width: 16px;
+height: 16px;
+border-radius: 50%;
+top: -6px;
+right: -8px;
+background: #FD7F73;
+border: 3px solid #FFFFFF;
+box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.5);
+}
+.text-container {
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+height: 100%;
+
+}
+.text-container h3 {
+margin: 0;
+color: white;
+font-size: 30px;
+}
+.text-container p {
+font-size: 16px;
+padding: 0;
+margin: 0;
+color: white;
+}
+.btn {
+position: absolute;
+bottom: 50px;
+left: 36%;
+width: 115px;
+height: 32px;
+border: 2px solid;
+border-radius: 28px;
+display: flex;
+justify-content: center;
+align-items: center;
+cursor: pointer;
+color: white;
+}

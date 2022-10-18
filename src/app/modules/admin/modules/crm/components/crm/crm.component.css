@@ -1,0 +1,164 @@
+.wrapper {
+    padding: 0 20px 20px;
+    color: #4A6288;
+}
+.crm-heading {
+    text-transform: capitalize;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 24px;
+    padding: 5px 30px;
+    border-radius: 70px;
+    margin-bottom: 20px;
+    background: white;
+    display: inline-block;
+}
+
+.crm-content {
+    width: 100%;
+    padding: 20px;
+    background: white;
+    border-radius: 10px/30px;
+}
+
+.flex {
+    display: flex;
+    width: fit-content;
+    align-items: center;
+}
+
+.action-bar {
+    width: 100%;
+    justify-content: flex-end;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.action-bar label {
+    margin: 0;
+}
+
+.action-bar .form-control {
+    height: unset !important;
+    padding: 5px !important;
+}
+
+.entries-amount {
+    margin-right: auto;
+}
+
+.search {
+    margin-right: 10px;
+}
+
+.action-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    background: #00A7DF;
+    color: white;
+    font-size: 20px;
+    line-height: 20px;
+    outline: none;
+    width: 25px;
+    height: 25px;
+    margin-right: 10px;
+    border-radius: 3px;
+    transition: all .25s;
+    cursor: pointer;
+}
+
+.action-btn:hover {
+    opacity: .8;
+}
+
+.sort-icon {
+    cursor: pointer;
+    vertical-align: middle;
+    font-size: 15px;
+}
+
+.check {
+    width: 18px;
+    height: 18px;
+    margin-right: 10px;
+}
+
+.payment-check {
+    pointer-events: none;
+}
+
+.pagination {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.page {
+    margin: 0 5px;
+    cursor: pointer;
+    transition: all .25s;
+}
+
+.page:hover {
+    font-weight: bold;
+}
+
+.th {
+    position: relative;
+}
+
+.filter-list {
+    position: absolute;
+    left: 0;
+    top: calc(100% - 10px);
+    max-height: 150px;
+    overflow: auto;
+    background: white;
+    border-radius: 5px;
+    min-width: 200px;
+    border: 1px solid #dadada
+}
+
+.filter-item {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 5px 10px;
+    transition: all .25s;
+    margin: 0;
+    cursor: pointer;
+}
+
+.filter-item:hover {
+    background: #0F98FC;
+}
+
+.disabled {
+    opacity: .5;
+}
+
+.actions {
+    display: flex;
+    justify-content: space-between;
+}
+
+.action {
+    cursor: pointer;
+    transition: all .25s;
+    width: 28%;
+}
+
+.action:hover {
+    opacity: .8;
+}
+
+.view-post {
+    cursor: pointer;
+}

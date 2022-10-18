@@ -1,0 +1,279 @@
+<div class="water-tracker-container">
+  <div class="loading" *ngIf="loadingBox">
+    <div class="loader"></div>
+  </div>
+
+  <div class="water-tracker-header">
+    <div class="water-tracker-widget">
+      <img  src="../../../../../assets/images/icons/water-drop.svg" alt="water-drop">
+    </div>
+    <p class="water-tracker-title">water tracker</p>
+    <div class="water-tracker-tool">
+      <ul class="nav">
+        <li class="nav-item inline dropdown">
+          <a class="nav-link text-muted" disabled data-toggle="dropdown">
+            ...
+          </a>
+          <div class="dropdown-menu dropdown-menu-scale pull-right dark">
+            <a class="dropdown-item" (click)="openSettings()"><i class="fa fa-cogs"></i> Settings</a>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div *ngIf="!initConfigure">
+    <div class="water-tracker-content">
+      <div class="water-tracker-graph-wrap">
+        <div>
+          <p class="water-tracker-graph">
+            How many {{measurement}} of water <br>
+            have you ingested?
+          </p>
+        </div>
+        <div>
+          <p class="water-tracker-numb">
+            {{recommended - ingested}}/{{recommended}}
+          </p>
+          <p class="water-tracker-subgraph">
+            left to drink
+          </p>
+        </div>
+      </div>
+      <div class="water-tracker-hours">
+        <input type="text" readonly [(ngModel)]="ingested">
+        <span>{{measurement}}</span>
+      </div>
+      <div>
+        <ion-range-slider #sliderElement min="0" [max]="recommended" from="ingested" 
+                          grid="false" decorate_both="false" 
+                          (onChange)="changeSliderIngested($event)">
+        </ion-range-slider>
+      </div>
+    </div>
+  
+    <div class="water-tracker-footer">
+      <button type="button" class="water-tracker-btn" (click)="saveIngested()">
+        Save
+      </button>  
+    </div>
+  </div>
+
+  <div *ngIf="initConfigure">
+    <form [formGroup]="infoExtraForm" (ngSubmit)="onSubmitInfoExtra()">
+      <div class="text-center" *ngIf="step == 1">
+        <h6 class="animated mb-15 bounceInUp">How much do you weigh?</h6>
+        <div class="mb-5 animated bounceIn" style="width: 145px !important;margin-left: 105px;height: 130px;" [inlineSVG]="'../../assets/images/widgets/weight-scale.svg'">
+        </div>
+        <input type="number" formControlName="weight" name="weight" min="1" step="any" autofocus class="form-control animated fadeIn input-sm">
+      </div>
+
+      <div class="text-center" *ngIf="step == 2">
+        <h6 class="animated mb-15 bounceInUp">Unit of measure for weight?</h6>
+        <div class="mb-5 animated bounceIn" style="width: 145px !important;margin-left: 105px;height: 130px;" [inlineSVG]="'../../assets/images/widgets/measure-weight.svg'">
+        </div>
+        <select formControlName="measurement_weight" name="measurement_weight" class="form-control animated fadeIn select-sm" id="">
+          <option value="kg">Kilograms</option>
+          <option value="lb">Pounds</option>
+        </select>
+      </div>
+
+
+      <div class="text-center" *ngIf="step == 3">
+        <h6 class="animated mb-15 bounceInUp">Unit of measure for liquids?</h6>
+        <div class="mb-5 animated bounceIn" style="width: 145px !important;margin-left: 105px;height: 130px;" [inlineSVG]="'../../assets/images/widgets/measure-liquid.svg'">
+        </div>
+        <select formControlName="measurement_liquid" name="measurement_liquid" class="form-control animated fadeIn select-sm" id="">
+          <option value="ml">Mililiters</option>
+          <option value="oz">Ounces</option>
+        </select>
+      </div>
+
+      <hr>
+
+      <div class="text-center m-t">
+        <button type="button" class="dashboardModelButton" (click)="lastStep()"><i class="fa fa-arrow-left"></i> Back</button>
+        <button type="button" class="dashboardModelButton" (click)="nextStep()" *ngIf="step < 3">Next <i class="fa fa-arrow-right"></i></button>
+        <button type="submit" class="dashboardModelButton" [disabled]="infoExtraForm.invalid" *ngIf="step == 3">Save <i class="fa fa-check-circle"></i></button>
+      </div>
+    </form>
+  </div>
+
+</div>
+
+<!---------------Old Design---------------->
+<!-- <div class="box box--small new-box wellness-plan-box">
+  <div class="loading" *ngIf="loadingBox">
+    <div class="loader"></div>
+  </div>
+  <div class="box-header">
+    <h4>Water tracker</h4>
+    <div class="box-tool">
+      <ul class="nav">
+        <li class="nav-item inline dropdown">
+          <a class="nav-link text-muted" data-toggle="dropdown">
+            ...
+          </a>
+          <div class="dropdown-menu dropdown-menu-scale pull-right dark">
+            <a class="dropdown-item" (click)="openSettings()"><i class="fa fa-cogs"></i> Settings</a>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="p-a-md" style="padding-top: 0 !important;">
+    <div class="text-center" *ngIf="!initConfigure">
+      <div class="animated bounceInLeft" style="width: 145px !important;margin: 0 auto;height: 130px;" [hidden]="!isVisibleIntro" [inlineSVG]="'../../assets/images/widgets/water.svg'">
+      </div>
+
+      <h6 class="animated bounceInUp" [hidden]="!isVisibleInput">How many <strong>{{measurement}}</strong> of water have you ingested?</h6>
+
+      <div class="form-group animated fadeIn" [hidden]="!isVisibleInput">
+        <br>
+        <label class="image-checkbox" [class.imageChecked]="typeBottle.indexOf('cup') != -1">
+          <div class="" [inlineSVG]="'../../assets/images/widgets/cup.svg'" matTooltip="{{bottle_cup}} {{measurement}}" [matTooltipPosition]="'above'">
+          </div>
+          <input type="checkbox" name="typeBottle" (change)="setQuantyOfType($event, 'cup', bottle_cup)" [checked]="typeBottle.indexOf('cup')  != -1">
+          <i class="fa fa-check" [hidden]="typeBottle.indexOf('cup')  == -1"></i>
+        </label>
+
+        <label class="image-checkbox" [class.imageChecked]="typeBottle.indexOf('small_bottle')  != -1">
+          <div class="" [inlineSVG]="'../../assets/images/widgets/small_bottle.svg'" style="width: 85%;" matTooltip="{{bottle_small}} {{measurement}}" [matTooltipPosition]="'above'">
+          </div>
+          <input type="checkbox" name="typeBottle" value="cup" (change)="setQuantyOfType($event, 'small_bottle', bottle_small)" [checked]="typeBottle.indexOf('small_bottle')  != -1">
+          <i class="fa fa-check" [hidden]="typeBottle.indexOf('small_bottle')  == -1"></i>
+        </label>
+
+        <label class="image-checkbox" [class.imageChecked]="typeBottle.indexOf('large_bottle')  != -1">
+          <div class="" [inlineSVG]="'../../assets/images/widgets/large_bottle.svg'" matTooltip="{{bottle_large}} {{measurement}}" [matTooltipPosition]="'above'">
+          </div>
+          <input type="checkbox" name="typeBottle" (change)="setQuantyOfType($event, 'large_bottle', bottle_large)" [checked]="typeBottle.indexOf('large_bottle')  != -1">
+          <i class="fa fa-check" [hidden]="typeBottle.indexOf('large_bottle') == -1"></i>
+        </label>
+        <br>
+        <input type="number" style="font-size: 24px !important;text-align: center;" class="form-control input-sm water-level-input" [(ngModel)]="last">
+        <hr>
+
+        <div class="text-center m-t">
+          <button type="button" class="dashboardModelButton" (click)="cancelIngested()"><i class="fa fa-arrow-left"></i> Back</button>
+          <button type="button" class="dashboardModelButton" (click)="saveIngested()">Save <i class="fa fa-check-circle"></i></button>
+        </div>
+
+      </div>
+
+      <h6 class="mb-0 animated bounceInUp" [hidden]="!isVisibleIntro" *ngIf="isValid">{{ingested}}/<strong>{{recommended}}</strong> {{measurement}}</h6>
+      <p><small class="animated bounceInUp" *ngIf="isValid" [ngClass]="{ fadeIn: ingested >= recommended, infinite: ingested >= recommended }" [hidden]="!isVisibleIntro">left to drink</small></p>
+
+      <div class="text-center" style="margin-top: 38px !important;" [hidden]="!isVisibleIntro" *ngIf="isValid">
+        <hr>
+        <button class="dashboardModelButton" (click)="openFormInput()" [disabled]="ingested >= recommended">
+          Add
+        </button>
+        <button class="dashboardModelButton" (click)="openLogWeek()" style="display:none;">
+          See log
+        </button>
+      </div>
+
+      <div class="text-center m-t" [hidden]="!isVisibleIntro" *ngIf="!isValid">
+        <hr>
+        <button class="dashboardModelButton" (click)="openSettings()">
+          Start now</button>
+      </div>
+    </div>
+
+
+    <div *ngIf="initConfigure">
+      <form [formGroup]="infoExtraForm" (ngSubmit)="onSubmitInfoExtra()">
+        <div class="text-center" *ngIf="step == 1">
+          <h6 class="animated mb-15 bounceInUp">How much do you weigh?</h6>
+          <div class="mb-5 animated bounceIn" style="width: 145px !important;margin-left: 105px;height: 130px;" [inlineSVG]="'../../assets/images/widgets/weight-scale.svg'">
+          </div>
+          <input type="number" formControlName="weight" name="weight" min="1" step="any" autofocus class="form-control animated fadeIn input-sm">
+        </div>
+
+        <div class="text-center" *ngIf="step == 2">
+          <h6 class="animated mb-15 bounceInUp">Unit of measure for weight?</h6>
+          <div class="mb-5 animated bounceIn" style="width: 145px !important;margin-left: 105px;height: 130px;" [inlineSVG]="'../../assets/images/widgets/measure-weight.svg'">
+          </div>
+          <select formControlName="measurement_weight" name="measurement_weight" class="form-control animated fadeIn select-sm" id="">
+            <option value="kg">Kilograms</option>
+            <option value="lb">Pounds</option>
+          </select>
+        </div>
+
+
+        <div class="text-center" *ngIf="step == 3">
+          <h6 class="animated mb-15 bounceInUp">Unit of measure for liquids?</h6>
+          <div class="mb-5 animated bounceIn" style="width: 145px !important;margin-left: 105px;height: 130px;" [inlineSVG]="'../../assets/images/widgets/measure-liquid.svg'">
+          </div>
+          <select formControlName="measurement_liquid" name="measurement_liquid" class="form-control animated fadeIn select-sm" id="">
+            <option value="ml">Mililiters</option>
+            <option value="oz">Ounces</option>
+          </select>
+        </div>
+
+        <hr>
+
+        <div class="text-center m-t">
+          <button type="button" class="dashboardModelButton" (click)="lastStep()"><i class="fa fa-arrow-left"></i> Back</button>
+          <button type="button" class="dashboardModelButton" (click)="nextStep()" *ngIf="step < 3">Next <i class="fa fa-arrow-right"></i></button>
+          <button type="submit" class="dashboardModelButton" [disabled]="infoExtraForm.invalid" *ngIf="step == 3">Save <i class="fa fa-check-circle"></i></button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div> -->
+
+<div id="m" class="modal" #modalRef="bs-modal" [config]="{ show: false }" bsModal>
+  <div class="modal-dialog animated fade-left modal-lg">
+    <div class="modal-content">
+      <div class="loading" *ngIf="loadingBoxModal">
+        <div class="loader"></div>
+      </div>
+      <div class="modal-header">
+        <div class="box-header">
+          <div class="pull-right">
+            <a class="btn btn-sm danger full-width margin-0-12 m-y-xs" [routerLinkActive]="['active']" [routerLink]="['/board/u/progress']">
+              <i class="fa fa-line-chart"></i>
+              View total progress
+            </a>
+          </div>
+          <h3>
+            <i class="fa fa-glass"></i>
+            Water tracker</h3>
+          <small>Summary of water ingested in the last 5 days</small>
+        </div>
+      </div>
+      <div class="modal-body text-center p-lg">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="">
+              <span>Water consumption recommended
+                <span class="label rounded dark pos-rlt text-sm m-r-xs"><b class="arrow bottom b-dark pull-in"></b>{{recommendedInLog}} {{measurementInLog}}</span>
+              </span>
+
+              <div class="pull-right">
+                <p style="border: 1px solid #e6e6e6; border-radius: 5px; padding: 7px;">
+                  <label class="md-switch pos-relative">
+                    <input type="checkbox" value="" name="type" class="has-value" (change)="reportInOunces($event)" [checked]="measurement == 'oz'">
+                    <i class="green"></i>
+                    <small>In ounces</small>
+                  </label>
+                </p>
+              </div>
+            </div>
+            <br>
+            <br>
+            <ngx-charts-line-chart [results]="dataReport" [xAxis]="true" [yAxis]="true" [scheme]="colorScheme" schemeType="linear" [legend]="true" [gradient]="true" [showXAxisLabel]="true" [showYAxisLabel]="true" [showRefLines]="true"
+              [autoScale]="true" [referenceLines]="ref">
+            </ngx-charts-line-chart>
+
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+
+  </div>
+</div>

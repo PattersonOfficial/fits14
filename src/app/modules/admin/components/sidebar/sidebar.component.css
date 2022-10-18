@@ -1,0 +1,32 @@
+.nav-active-primary .nav-link.active, .nav-active-primary .nav>li.active>a {
+    color: rgba(255, 255, 255, 0.87) !important;
+    background-color: #8BC34A !important;
+}
+
+.text-role {
+  font-size: 10px;
+}
+
+.text-name-user {
+  font-size: 0.9em;
+margin-top: 0.3rem;
+}
+
+.navbar {
+    background-color: #FFF;
+}
+
+.nav-fold {
+    padding: 1.75rem 1rem;
+}
+
+.material-icons {
+    line-height: inherit;
+}
+
+.navside .nav li li a .nav-text {
+    font-weight: 500;
+    font-size: 12px;
+}
+
+

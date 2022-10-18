@@ -1,0 +1,19 @@
+.search-box {
+    padding: 0.5rem 0rem 0px 1rem;
+    margin-top: 5px;
+}
+
+.ng-select~label {
+    -webkit-transition: all .2s;
+    transition: all .2s;
+    position: absolute;
+    z-index: 0;
+    opacity: .5;
+    left: 0;
+    top: 0;
+}
+
+.ng-select.ng-select-focused~label {
+    color: #ffa23f !important;
+    opacity: 1;
+}

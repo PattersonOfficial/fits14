@@ -1,0 +1,301 @@
+<div class="wrapper">
+    <h3 class="crm-heading">{{showClientType}}</h3>
+    <div class="crm-content">
+        <div class="action-bar flex">
+            <div class="entries-amount">
+                <label class="flex" for="show_users_amount">
+                    Show&nbsp;
+                    <select
+                            class="form-control input-sm"
+                            name="show_users_amount"
+                            id="show_users_amount"
+                            [(ngModel)]="showUsersAmount"
+                            (change)="fetchData()"
+                    >
+                        <option value="25">25</option>
+                        <option value="50">50</option>
+                        <option value="75">75</option>
+                        <option value="100">100</option>
+                        <option value="150">150</option>
+                    </select>
+                    &nbsp;entries
+                </label>
+            </div>
+            <div class="search">
+                <label for="search_string" class="flex">
+                    Search&nbsp;
+                    <input
+                            type="search"
+                            class="form-control input-sm"
+                            name="search_string"
+                            id="search_string"
+                            [(ngModel)]="searchString"
+                            (input)="handleSearchStringChange()"
+                    >
+                </label>
+            </div>
+            <button class="action-btn"
+                    [ngClass]="{'disabled': !checkedUsers.length}"
+                    [attr.title]="checkedUsers.length ? 'Change user parameter(s)' : 'Choose user(s) first'"
+                    (click)="checkedUsers.length ? handleActionBtnClick() : null"
+            >
+                <i class="material-icons">open_in_new</i>
+            </button>
+            <button class="action-btn" title="Create new lead">
+                <i class="material-icons" (click)="handleAddEntryBtnClick()">add</i>
+            </button>
+        </div>
+
+        <table mat-table [dataSource]="data" class="mat-elevation-z8">
+
+            <!-- Checkbox Column -->
+            <ng-container matColumnDef="check">
+                <th mat-header-cell *matHeaderCellDef><input type="checkbox" class="check" [checked]="isChecked()" (change)="toggleAll($event)"></th>
+                <td mat-cell *matCellDef="let element">
+                    <input type="checkbox" class="check" [checked]="findID(element.id)" (change)="checkUser(element.id)">
+                </td>
+            </ng-container>
+
+            <!-- ID Column -->
+            <ng-container matColumnDef="id">
+                <th mat-header-cell *matHeaderCellDef> C-ID</th>
+                <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+            </ng-container>
+
+            <!-- Name Column -->
+            <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef> Name</th>
+                <td mat-cell *matCellDef="let element">
+                    <a [routerLink]="['/board/a/crm/user/', element.id, 'info']">{{element.name}} {{element.last_name}}</a>
+                </td>
+            </ng-container>
+
+             <!-- Datetime Column -->
+             <ng-container matColumnDef="datetime">
+                <th mat-header-cell *matHeaderCellDef> Date & Time</th>
+                <td mat-cell *matCellDef="let element">
+                   {{element.created_at | date:'d/M/yy, h:mm a'}}
+                </td>
+            </ng-container>
+
+            <!-- Email Column -->
+            <ng-container matColumnDef="email">
+                <th mat-header-cell *matHeaderCellDef>
+                    Email
+                    <i class="material-icons sort-icon" (click)="handleSort('email')">unfold_more</i>
+                </th>
+                <td mat-cell *matCellDef="let element">
+                    <a [href]="'mailto:' + element.email">{{element.email}}</a>
+                </td>
+            </ng-container>
+
+            <!-- Assigned AM Column -->
+            <ng-container matColumnDef="assigned_am">
+                <th class="th" mat-header-cell *matHeaderCellDef>
+                    Assigned AM
+                    <i class="material-icons sort-icon" (click)="handleSort('manager_id')">unfold_more</i>
+                    <i class="material-icons sort-icon"
+                       *ngIf="showFilterField !== 'manager_id'"
+                       (click)="showFilter('manager_id')"
+                    >arrow_drop_down</i>
+                    <i class="material-icons sort-icon" *ngIf="showFilterField === 'manager_id'">arrow_drop_up</i>
+                    <div class="filter-list" *ngIf="showFilterField === 'manager_id'">
+                        <label class="filter-item" *ngFor="let item of crmFilters.assigned_ams">
+                            <input type="checkbox" class="check"
+                                   [checked]="filters.manager_id.indexOf(item.id) !== -1"
+                                   (change)="handleFilterChange('manager_id', item.id)"
+                            >
+                            <span>{{item.name}}</span>
+                        </label>
+                    </div>
+                </th>
+                <td mat-cell *matCellDef="let element"> {{element.manager?.name}} </td>
+            </ng-container>
+
+            <!-- Status Column -->
+            <ng-container matColumnDef="status">
+                <th class="th" mat-header-cell *matHeaderCellDef>
+                    Status
+                    <i class="material-icons sort-icon" (click)="handleSort('status')">unfold_more</i>
+                    <i class="material-icons sort-icon"
+                       *ngIf="showFilterField !== 'status'"
+                       (click)="showFilter('status')"
+                    >arrow_drop_down</i>
+                    <i class="material-icons sort-icon" *ngIf="showFilterField === 'status'">arrow_drop_up</i>
+                    <div class="filter-list" *ngIf="showFilterField === 'status'">
+                        <label class="filter-item" *ngFor="let item of crmFilters.statuses">
+                            <input type="checkbox" class="check"
+                                   [checked]="filters.status.indexOf(item.id) !== -1"
+                                   (change)="handleFilterChange('status', item.id)"
+                            >
+                            <span>{{item.name}}</span>
+                        </label>
+                    </div>
+                </th>
+                <td mat-cell *matCellDef="let element"> {{element.status?.name}} </td>
+            </ng-container>
+
+            <!-- Country AM Column -->
+            <ng-container matColumnDef="country">
+                <th class="th" mat-header-cell *matHeaderCellDef>
+                    Country
+                    <i class="material-icons sort-icon" (click)="handleSort('country')">unfold_more</i>
+                    <i class="material-icons sort-icon"
+                       *ngIf="showFilterField !== 'country'"
+                       (click)="showFilter('country')"
+                    >arrow_drop_down</i>
+                    <i class="material-icons sort-icon" *ngIf="showFilterField === 'country'">arrow_drop_up</i>
+                    <div class="filter-list" *ngIf="showFilterField === 'country'">
+                        <label class="filter-item"
+                               *ngFor="let item of crmFilters.countries"
+                        >
+                            <input type="checkbox" class="check"
+                                   [checked]="filters.country.indexOf(item) !== -1"
+                                   (change)="handleFilterChange('country', item)"
+                            >
+                            <span>{{item}}</span>
+                        </label>
+                    </div>
+                </th>
+                <td mat-cell *matCellDef="let element"> {{element.country}} </td>
+            </ng-container>
+
+            <!-- Time Column -->
+            <ng-container matColumnDef="time">
+                <th mat-header-cell *matHeaderCellDef>
+                    Local Time
+                    <i class="material-icons sort-icon" (click)="handleSort('timezone')">unfold_more</i>
+                </th>
+                <td mat-cell *matCellDef="let element"> {{element.local_time}} </td>
+            </ng-container>
+
+            <!-- Source Column -->?
+            <ng-container matColumnDef="source">
+                <th class="th" mat-header-cell *matHeaderCellDef>
+                    Source
+                    <i class="material-icons sort-icon" (click)="handleSort('source')">unfold_more</i>
+                    <i class="material-icons sort-icon"
+                       *ngIf="showFilterField !== 'source'"
+                       (click)="showFilter('source')"
+                    >arrow_drop_down</i>
+                    <i class="material-icons sort-icon" *ngIf="showFilterField === 'source'">arrow_drop_up</i>
+                    <div class="filter-list" *ngIf="showFilterField === 'source'">
+                        <label class="filter-item" *ngFor="let item of crmFilters.sources">
+                            <input type="checkbox" class="check"
+                                   [checked]="filters.source.indexOf(item.id) !== -1"
+                                   (change)="handleFilterChange('source', item.id)"
+                            >
+                            <span>{{item.name}}</span>
+                        </label>
+                    </div>
+                </th>
+                <td mat-cell *matCellDef="let element"> {{element.source?.name}} </td>
+            </ng-container>
+
+            <!-- Payment Column -->
+            <ng-container matColumnDef="payment">
+                <th class="th" mat-header-cell *matHeaderCellDef>
+                    Payment
+                    <i class="material-icons sort-icon" (click)="handleSort('payment')">unfold_more</i>
+                    <i class="material-icons sort-icon"
+                       *ngIf="showFilterField !== 'payment'"
+                       (click)="showFilter('payment')"
+                    >arrow_drop_down</i>
+                    <i class="material-icons sort-icon" *ngIf="showFilterField === 'payment'">arrow_drop_up</i>
+                    <div class="filter-list" *ngIf="showFilterField === 'payment'">
+                        <label class="filter-item">
+                            <input type="checkbox" class="check"
+                                   [checked]="filters.payment && filters.payment === '1'"
+                                   (change)="handleFilterChange('payment', '1')"
+                            >
+                            <span><i class="material-icons sort-icon">done</i></span>
+                        </label>
+                        <label class="filter-item">
+                            <input type="checkbox" class="check"
+                                   [checked]="filters.payment && filters.payment === '0'"
+                                   (change)="handleFilterChange('payment', '0')"
+                            >
+                        </label>
+                    </div>
+                </th>
+                <td mat-cell *matCellDef="let element">
+                    <input type="checkbox" class="check payment-check" [checked]="element.is_payment_success">
+                </td>
+            </ng-container>
+
+            <!-- Membership Column -->
+            <ng-container matColumnDef="membership">
+                <th class="th" mat-header-cell *matHeaderCellDef>
+                    Membership
+                    <i class="material-icons sort-icon" (click)="handleSort('membership')">unfold_more</i>
+                    <i class="material-icons sort-icon"
+                       *ngIf="showFilterField !== 'membership'"
+                       (click)="showFilter('membership')"
+                    >arrow_drop_down</i>
+                    <i class="material-icons sort-icon" *ngIf="showFilterField === 'membership'">arrow_drop_up</i>
+                    <div class="filter-list" *ngIf="showFilterField === 'membership'">
+                        <label class="filter-item" *ngFor="let item of clientMemberships">
+                            <input type="checkbox" class="check"
+                                   [checked]="filters.membership.indexOf(item.id) !== -1"
+                                   (change)="handleFilterChange('membership', item.id)"
+                            >
+                            <span>{{item.title}}</span>
+                        </label>
+                    </div>
+                </th>
+                <td mat-cell *matCellDef="let element"> {{element.client.membership.title}} </td>
+            </ng-container>
+
+            <!-- Last TP Column -->
+            <ng-container matColumnDef="last_tp">
+                <th mat-header-cell *matHeaderCellDef>
+                    Last TP
+                    <i class="material-icons sort-icon" (click)="handleSort('last_tp')">unfold_more</i>
+                </th>
+                <td mat-cell *matCellDef="let element"> {{element.last_tp}} </td>
+            </ng-container>
+
+            <!-- Actions Column -->
+            <ng-container matColumnDef="actions">
+                <th class="th" mat-header-cell *matHeaderCellDef>
+                    Actions
+                    <i class="material-icons sort-icon" (click)="showFilter('actions')">arrow_drop_down</i>
+                    <div class="filter-list" *ngIf="showFilterField === 'actions'">
+                        <label class="filter-item" (click)="deleteSelected()">
+                            <span>Delete</span>
+                        </label>
+                    </div>
+                </th>
+                <td mat-cell *matCellDef="let element"></td>
+            </ng-container>
+
+
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+
+        <div class="pagination" *ngIf="!loader">
+            <div class="records">
+                <span>Records</span>
+                <span class="bold">
+                    {{(currentPage - 1) * showUsersAmount + 1}}
+                    -
+                    {{totalItems < (currentPage * showUsersAmount) ? totalItems : (currentPage * showUsersAmount)}}
+                    &nbsp;of&nbsp;
+                    {{totalItems}}
+                </span>
+            </div>
+            <div class="pages">
+                <span>Page</span>
+                <span class="page" [ngClass]="{'bold': index + 1 === currentPage}" *ngFor="let page of pagesList; let index = index" (click)="handlePageChange(index)">
+                    {{index + 1}}
+                </span>
+            </div>
+        </div>
+
+        <div class="loader" *ngIf="loader"></div>
+    </div>
+    <app-edit-user (userEdited)="fetchData()"></app-edit-user>
+    <app-add-lead (userSaved)="clientType === 'leads' ? fetchData() : null"></app-add-lead>
+</div>

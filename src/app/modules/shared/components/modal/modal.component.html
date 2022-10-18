@@ -1,0 +1,13 @@
+<div class="modal_container">
+  <h2 class="title">{{ data.title }}</h2>
+  <h3 class="sub_title">By {{ data.subtitle }}</h3>
+  <p class="description" [innerHTML]="data.description"></p>
+  <div class="buttons_container">
+    <button (click)="playProgram()" class="watch_trailer_button">
+      <i class="fas fa-play"></i> Watch TRAILER
+    </button>
+    <button (click)="addProgram()" class="get_started_button">
+      <i class="fa fa-plus" aria-hidden="true"></i>
+    </button>
+  </div>
+</div>

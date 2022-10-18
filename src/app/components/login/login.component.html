@@ -1,0 +1,134 @@
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="ball-spin" [fullScreen]="true">
+  <p style="color: white"> Loading... </p>
+</ngx-spinner>
+
+
+<mat-horizontal-stepper #stepper>
+
+  <!-- Step 1: Login to account -->
+  <mat-step>
+    <section class="registration-section">
+      <div class="registration-container">
+
+        <div class="registration-poster">
+
+          <!-- logo -->
+          <div class="main-logo">
+            <img src="../../../assets/images/registrationPage/fitnuts--main-logo.png" alt="" />
+          </div>
+
+          <!-- main logo -->
+          <div class="logos">
+            <!-- F-logo -->
+            <!-- <div class="background-logo">
+              <img src="../../../assets/images/registrationPage/fitnuts-logo.png" style="width: 100%; height: 100%;"
+                alt="" />
+            </div> -->
+
+            <!-- main background -->
+            <div class="fitnuts-background">
+              <img class="fitnut-bg-image" src="../../../assets/images/registrationPage/main_bg.png" alt="" />
+            </div>
+          </div>
+
+        </div>
+
+        <div class="registration-wrapper">
+
+          <div class="mobile-logo">
+            <img src="../../../assets/images/registrationPage/fitnuts-mobile-logo.png" style="width: 150px; margin-top: 30px; margin-bottom: 20px;" alt="fitnuts logo" />
+          </div>
+
+          <div class="heading-wrap">
+            <div class="registration-heading">
+              <h3><strong>WELCOME BACK</strong></h3>
+            </div>
+
+          </div>
+
+
+          <div class="registration-form">
+
+            <form id="login-form" #loginForm="ngForm" novalidate>
+
+              <div class="form-controls">
+                <input type="email" placeholder="Email Address" name="indentity" #identity="ngModel"
+                  (change)="isInvalidLogin=false;" [(ngModel)]="loginFields.identity" autocomplete="off" required=""
+                  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,10}$"
+                  [ngClass]="isInvalidLogin ? 'form-control-input-error' : 'form-control-input'" />
+              </div>
+
+              <div class="form-controls">
+                <input type="password" class="form-control-input" placeholder="Password" name="password"
+                  #password="ngModel" (change)="isInvalidLogin=false;" [(ngModel)]="loginFields.password" required=""
+                  [ngClass]="capsLockIsActive ? 'form-control-input-error' : isInvalidLogin ? 'form-control-input-error' : 'form-control-input'">
+
+                <span class="show-password" (click)="togglePassVis($event)">
+                  <img src="../../../assets/images/registrationPage/eye.svg" alt="membership">
+                </span>
+
+                <span class="form-control-error" *ngIf="capsLockIsActive">Caps Lock is active</span>
+                <span class="form-control-error" *ngIf="isInvalidLogin">{{ errorMessage }}</span>
+              </div>
+
+              <div *ngIf="isInvalidLogin">
+                <br><br>
+              </div>
+
+              <div class="receive-email">
+                <form>
+                  <label style="display: flex; align-items: center; justify-content: center;">
+                    <input type="radio" value="{{rememberMeChecked}}" (change)="rememberMe()"
+                      [checked]="rememberMeChecked">
+                    &nbsp; Keep me logged in
+                  </label>
+                </form>
+              </div>
+
+              <br>
+
+              <div class="submit-button">
+                <div class="registration-btn">
+                  <button (click)="submitLogin()" [disabled]="!loginForm.form.valid"
+                    class="create-account-btn"><strong>LOGIN</strong></button>
+                </div>
+              </div>
+
+              <div class="divider">
+                <div class="subdivider"></div>
+                <p>OR SIGN IN WITH</p>
+                <div class="subdivider"></div>
+              </div>
+
+              <div class="facebook-login">
+                <button class="login-submit-btn social-btn" (click)="facebookLogin()">
+                  <img src="../../../assets/images/loginPage/fb_icon_blue.png" alt="fb_icon">
+                  <span>Facebook</span>
+                </button>
+
+                &nbsp;
+
+                <button class="login-submit-btn social-btn" (click)="googleLogin()">
+                  <img src="../../../assets/images/loginPage/google_icon.png" alt="fb_icon">
+                  <span>Google</span>
+                </button>
+
+              </div>
+
+              <div class="registration-footing">
+                <p><a [routerLink]="['/recovery/password']" style="text-decoration: underline; color: #529DFF;">Forgot
+                    Password?</a></p>
+                <p>Don`t have an account? <a [routerLink]="['/account/register']"
+                    style="text-decoration: underline;"><strong>SIGN UP</strong></a></p>
+              </div>
+            </form>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </mat-step>
+
+
+</mat-horizontal-stepper>

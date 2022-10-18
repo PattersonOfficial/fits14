@@ -1,0 +1,12 @@
+<ul class="list-group list-group-gap m-a-0 alert-push">
+  <li class="list-group-item dark-white box-shadow-z0 b" *ngFor="let alert of alerts" (click)="hide(alert)">
+    <span class="pull-left m-r">
+      <img src="{{alert.image}}" alt="..." class="w-40 img-circle">
+    </span>
+    <span class="clear block">
+      <span [innerHtml]="alert.title"></span>
+      <br>
+      <small class="text-muted">{{alert.date | timeAgo}}</small>
+    </span>
+  </li>
+</ul>

@@ -1,0 +1,115 @@
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="ball-spin" [fullScreen]="true">
+  <p style="color: white"> Loading... </p>
+</ngx-spinner>
+
+<div class="container">
+  <div class="box-header">
+    <h3><i class="fa fa-group"></i> Users</h3>
+    <small>Manage the user/clients of system</small>
+  </div>
+  <hr>
+
+  <div class="col-md-12">
+    <div class="white r box-shadow-z0 m-b navbar-md">
+      <div class="navbar"><a class="navbar-brand"></a>
+        <ul class="nav navbar-nav pull-right">
+          <li class="nav-item dropdown">
+            <a class="nav-link p-l b-l" href="" data-toggle="dropdown" aria-expanded="false">
+              <i class="material-icons mt-15"></i>
+            </a>
+          </li>
+        </ul>
+
+        <div class="collapse navbar-toggleable-sm">
+          <ul class="nav navbar-nav navbar-nav-inline text-center pull-left m-r text-primary-hover">
+            <li class="nav-item"><a class="nav-link" [routerLink]="['/board/a/users/create/client']">
+              <span class="nav-text">
+                <i class="material-icons">add_circle_outline</i> <span class="text-xs">Add</span>
+              </span>
+            </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" [routerLink]="['/board/a/users/view/mentors']">
+                <span class="nav-text"><i class="material-icons">directions_run</i>
+                  <span class="text-xs">View Mentors</span>
+                </span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" [routerLink]="['/board/a/users/view/managers']">
+                <span class="nav-text">
+                  <i class="material-icons">supervisor_account</i> <span class="text-xs">View Managers</span>
+                </span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" [routerLink]="['/board/a/users/view/administrators']">
+                <span class="nav-text"><i class="material-icons">folder_special</i>
+                  <span class="text-xs">View Administrators</span>
+                </span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-12">
+    <div class="box padding">
+      <table class="table table-striped b-t b-b table-hover">
+        <thead>
+        <tr>
+          <th>Name</th>
+          <th>E-mail</th>
+          <th>Phone</th>
+          <th>Country</th>
+          <th>City</th>
+          <th>Membership</th>
+          <th>Weight (kg)</th>
+          <th>Height (cm)</th>
+          <th>Daily calories</th>
+          <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let user of users">
+          <td>{{ user?.name }}</td>
+          <td>{{ user?.email }}</td>
+          <td>+({{ user?.code_dialling }}) {{ user?.phone }}</td>
+          <td>{{ user?.country }}</td>
+          <td>{{ user?.city }}</td>
+          <td>
+            <i class="material-icons icon-drag to-left">star</i>
+            <span>{{ user.client?.membership?.title }}</span>
+          </td>
+          <td>{{user.client?.weight}}</td>
+          <td>{{user.client?.height}}</td>
+          <td>{{user.client?.daily_calories}}</td>
+          <td>
+
+            <a class="btn btn-icon btn-social white btn-sm" title="View content">
+              <i class="fa fa-search"></i>
+              <i class="fa fa-search light-green"></i>
+            </a>
+
+            <a class="btn btn-icon btn-social white btn-sm" title="Edit"
+               [routerLink]="['/board/a/users/edit', 'client', user.id]">
+              <i class="fa fa-edit"></i>
+              <i class="fa fa-edit light-blue"></i>
+            </a>
+
+            <a class="btn btn-icon btn-social white btn-sm" title="Delete"
+               [swal]="{ title: 'Delete User Account', text: 'Confirm that you want to delete the record?' }"
+               (confirm)="trashUser(user)">
+              <i class="fa fa-trash"></i>
+              <i class="fa fa-trash red-600"></i>
+            </a>
+
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

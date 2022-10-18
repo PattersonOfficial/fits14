@@ -1,0 +1,33 @@
+{
+  "order-summary": {
+    "order": "Order Summary",
+    "bill-period": "billed monthly",
+    "membership-pack": "Fitness membership pack",
+    "added": "will be added to the invoice",
+    "description": "Your subscription will renew every month automatically unless you cancel this option by cancel your subscription from your settings or by contacting",
+    "coupon_enabled": "Coupon was successfully added!"
+  },
+  "cancel-plan": {
+    "confirm": "Confirm Cancellation",
+    "cancel": "Cancellation confirmed"
+  },
+  "change-plan": {
+    "upgrade": {
+      "confirmation": "Upgrade Confirmation",
+      "congrats": "Congrats for your upgrade!",
+      "description": "By approving, your account will be automatically upgraded to your new fitnuts plan, and you will be charged an amount of ${{ price }}, which will be renewed on",
+      "grade": "Upgrade"
+    },
+    "downgrade": {
+      "confirmation": "Downgrade Confirmation",
+      "description": "By approving, you acknowledge that you will lose some access. Your new plan will start on",
+      "grade": "Downgrade"
+    }
+  },
+  "sub-total": "Sub Total",
+  "total": "Total",
+  "vat": "VAT 17%",
+  "fitnuts": "Fitnuts",
+  "subscribe": "Subscribe",
+  "cancel": "Cancel"
+}

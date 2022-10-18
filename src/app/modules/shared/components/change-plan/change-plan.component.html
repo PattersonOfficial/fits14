@@ -1,0 +1,193 @@
+<div *ngIf="!isPaymentFormShown && !isMobile" class="change-plan">
+  <div class="close-button-container" (click)="closeModal(false)">
+    <button type="button" class="cancel-icon">
+      <img width="6px" height="6px" src="assets/images/cancel.svg" alt="close-icon" />
+    </button>
+  </div>
+
+  <h1 class="plan-header">Choose a Plan</h1>
+
+  <div class="plan-container">
+
+    <div [ngClass]="user?.client.membership.title == membership?.title ? 'plan-card-current' : 'plan-card'"
+      *ngFor="let membership of memberships">
+
+      <div class="plan-content">
+        <div class="plan-name">
+          <p>{{ membership?.title }}</p>
+        </div>
+
+        <div class="plan-image">
+          <div class="plan-pricing">
+            <img *ngIf="membership?.title == 'Basic'" style="width: 155px; height: 47px;"
+              src="assets/images/pricing/basic.svg" />
+            <img *ngIf="membership?.title == 'Pro'" style="width: 160px; height: 44px;"
+              src="assets/images/pricing/pro.svg" />
+            <img *ngIf="membership?.title == 'Premium'" style="width: 162px; height: 47px;"
+              src="assets/images/pricing/premium.svg" />
+          </div>
+        </div>
+
+        <div class="plan-breaker" *ngIf="membership?.title == 'Basic'" style="margin: 28.24px auto;"></div>
+        <div class="plan-breaker" *ngIf="membership?.title == 'Pro'" style="margin: 28.24px auto;"></div>
+        <div class="plan-breaker" *ngIf="membership?.title == 'Premium'" style="margin: 28.24px auto;"></div>
+
+        <div class="plan-details">
+          <img *ngIf="membership?.title == 'Basic'" style="width: 219px; height: 114px;"
+            src="assets/images/pricing/basic_plan.svg" />
+          <img *ngIf="membership?.title == 'Pro'" style="width: 254px; height: 207px;"
+            src="assets/images/pricing/pro_plan.svg" />
+          <img *ngIf="membership?.title == 'Premium'" style="width: 254px; height: 243px;"
+            src="assets/images/pricing/premium_plan.svg" />
+        </div>
+        <div (click)="memberSelection(membership)" *ngIf="user.client.membership.title != membership.title"
+          class="plan-select"
+          [ngStyle]="{'bottom': membership?.title == 'Premium' ? '-12px' : membership?.title == 'Pro' ? '-49px' : '-141px'}">
+          <button class="plan-select-button" type="button">Select</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="!isPaymentFormShown && isMobile" class="change-plan-mobile">
+  <div class="close-button-container-mobile" (click)="closeModal(false)">
+    <button type="button" class="cancel-icon">
+      <img width="6px" height="6px" src="assets/images/cancel.svg" alt="close-icon" />
+    </button>
+  </div>
+
+  <h1 class="plan-header-mobile">Choose a Plan</h1>
+
+  <!-- Basic -->
+  <div *ngIf="isBasic" class="plan-container-mobile">
+
+    <div [ngClass]="user?.client.membership.title == memberships[0]?.title ? 'plan-card-current-mobile' : 'plan-card-mobile'">
+
+      <div class="plan-content-mobile">
+
+        <div class="plan-name-mobile">
+          <p>{{ memberships[0]?.title }}</p>
+        </div>
+
+        <div class="plan-image">
+          <div class="plan-pricing">
+            <img style="width: 80%; height: 47px;" src="assets/images/pricing/basic.svg" />
+          </div>
+        </div>
+
+        <div class="plan-breaker-mobile " style="margin-top: 25.24px;"></div>
+
+        <div class="plan-details">
+          <img style="width: 80%; height: 114px;" src="assets/images/pricing/basic_plan.svg" />
+        </div>
+
+        <div  *ngIf="user.client.membership.title != memberships[0]?.title" (click)="memberSelection(memberships[0])" class="plan-select-mobile" [ngStyle]="{'bottom': '-80px'}">
+          <button class="plan-select-button" type="button">Select</button>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- Pro -->
+  <div *ngIf="isPro"  class="plan-container-mobile">
+
+    <div [ngClass]="user?.client.membership.title == memberships[0]?.title ? 'plan-card-current-mobile' : 'plan-card-mobile'">
+
+      <div class="plan-content-mobile">
+
+        <div class="plan-name-mobile">
+          <p>{{ memberships[1]?.title }}</p>
+        </div>
+
+        <div class="plan-image">
+          <div class="plan-pricing">
+            <img style="width: 80%; height: 47px;" src="assets/images/pricing/pro.svg" />
+          </div>
+        </div>
+
+        <div class="plan-breaker-mobile" style="margin-top: 25.24px;"></div>
+
+        <div class="plan-details">
+          <img style="width: 80%; height: 180px;" src="assets/images/pricing/pro_plan.svg" />
+        </div>
+
+        <div *ngIf="user.client.membership.title != memberships[1]?.title" (click)="memberSelection(memberships[1])" class="plan-select-mobile" [ngStyle]="{'bottom': '-15px'}">
+          <button class="plan-select-button" type="button">Select</button>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- Premium -->
+  <div *ngIf="isPremium"  class="plan-container-mobile">
+
+    <div [ngClass]="user?.client.membership.title == memberships[2]?.title ? 'plan-card-current-mobile' : 'plan-card-mobile'">
+
+      <div class="plan-content-mobile">
+
+        <div class="plan-name-mobile">
+          <p>{{ memberships[2]?.title }}</p>
+        </div>
+
+        <div class="plan-image">
+          <div class="plan-pricing">
+            <img style="width: 80%; height: 47px;" src="assets/images/pricing/premium.svg" />
+          </div>
+        </div>
+
+        <div class="plan-breaker-mobile" style="margin-top: 25.24px;"></div>
+
+        <div class="plan-details">
+          <img style="width: 80%; height: 180px;" src="assets/images/pricing/premium_plan.svg" />
+        </div>
+
+        <div *ngIf="user?.client.membership.title != memberships[2]?.title" (click)="memberSelection(memberships[2])" class="plan-select-mobile" [ngStyle]="{'bottom': '-15px'}">
+          <button class="plan-select-button" type="button">Select</button>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <div class="plan-slider-icons">
+    <a class="plan-navigation-button" [style.background]="isBasic === true ? '#529DFF' : '#D9D9D9'" (click)="goToPlan('Basic')"></a>
+    <a class="plan-navigation-button" [style.background]="isPro === true ? '#529DFF' : '#D9D9D9'" (click)="goToPlan('Pro')"></a>
+    <a class="plan-navigation-button" [style.background]="isPremium === true ? '#529DFF' : '#D9D9D9'" (click)="goToPlan('Premium')"></a>
+  </div>
+
+
+</div>
+
+<div *ngIf="isPaymentFormShown && !isMobile" class="container">
+  <!-- <div class="row">
+    <div class="col-md-12" style="margin-top: 1em"> -->
+      <app-payment (paymentCallback)="paymentCallback($event)" [configData]="paymentFormConfig" [params]="dataModel">
+      </app-payment>
+    <!-- </div>
+  </div> -->
+</div>
+
+<div *ngIf="isPaymentFormShown && isMobile">
+      <app-payment (paymentCallback)="paymentCallback($event)" [configData]="paymentFormConfig" [params]="dataModel">
+      </app-payment>
+</div>
+
+<!-- <div *ngIf="isPaymentFormShown && payment === 'VOD'" class="container">
+  <div class="row">
+  
+    <div class="col-md-12" style="margin-top: 1em">
+      <app-payment-form (paymentCallback)="paymentCallback($event)" [configData]="paymentFormConfig" [params]="dataModel">
+      </app-payment-form>
+    </div>
+  </div>
+</div> -->

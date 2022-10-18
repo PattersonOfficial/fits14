@@ -1,0 +1,206 @@
+<div class="container">
+  <div class="box-header">
+    <h3><i class="fa fa-cubes"></i> Contents</h3>
+    <small>Manage the contents of packages</small>
+  </div>
+  <hr>
+
+  <div class="col-md-12">
+    <div class="white r box-shadow-z0 m-b navbar-md">
+      <div class="navbar"><a class="navbar-brand"></a>
+        <ul class="nav navbar-nav pull-right">
+          <li *ngIf="category__ === 9" class="nav-item mt-10">
+            <label for="mentor" class="m-b-0">
+              <small class="label-bolder">Mentor</small>
+            </label>
+
+            <select id="mentor" name="mentor" class="form-control input-sm inline-height-2rem font-size-1em"
+                    [(ngModel)]="filter.mentorId" (change)="reloadGridByFilter()">
+              <option [ngValue]="null" selected>Show all</option>
+              <option *ngFor="let mentor of mentors" [ngValue]="mentor.client.id">
+                {{mentor.name}}
+              </option>
+            </select>
+          </li>
+
+          <li class="nav-item mt-10">
+            <label for="type" class="m-b-0">
+              <small class="label-bolder">Select a type</small>
+            </label>
+
+            <select id="type" name="type" class="form-control input-sm inline-height-2rem font-size-1em"
+                    [(ngModel)]="filter.typeId" (change)="reloadGridByFilter()">
+              <option [ngValue]="null" selected>Show all</option>
+              <option value="1">Video</option>
+              <!-- <option value="2">Sound</option> -->
+              <!-- <option value="3">Image</option> -->
+              <option value="4">Article</option>
+              <option value="8">Daily Plan</option>
+              <option value="9">Recipe</option>
+              <!-- <option value="5">File</option> -->
+            </select>
+          </li>
+
+          <li class="nav-item mt-10">
+            <label class="m-b-0">
+              <small class="label-bolder">Select a subcategory</small>
+            </label>
+            <select name="subcategory" class="form-control input-sm inline-height-2rem font-size-1em"
+                    [(ngModel)]="filter.subcategoryId" (change)="reloadGridByFilter()">
+              <option [ngValue]="null" selected>Show all</option>
+              <option *ngFor="let subcategory of subcategoryList" [ngValue]="subcategory.id">
+                {{subcategory.subcategory_name}}
+              </option>
+            </select>
+          </li>
+
+          <li *ngIf="category__ === 10" class="nav-item mt-10">
+            <label class="m-b-0">
+              <small class="label-bolder">Select calories</small>
+            </label>
+            <select name="subcategory" class="form-control input-sm inline-height-2rem font-size-1em"
+                    [(ngModel)]="filter.dailyCaloriesId" (change)="reloadGridByFilter()">
+              <option [ngValue]="null" selected>Show all</option>
+              <option *ngFor="let dailyCalories of dailyCaloriesList" [ngValue]="dailyCalories.id">
+                {{dailyCalories.quantity}}
+              </option>
+            </select>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link p-l b-l" href="" data-toggle="dropdown" aria-expanded="false">
+              <i class="material-icons mt-15"></i>
+            </a>
+          </li>
+        </ul>
+        <div class="collapse navbar-toggleable-sm">
+          <ul class="nav navbar-nav navbar-nav-inline text-center pull-left m-r text-primary-hover">
+            <li class="nav-item">
+              <a class="nav-link" (click)="contentsBuilder.openModal(1, 'video/*', category__)"
+                 *ngIf="category__ != 10">
+                <span class="nav-text">
+                  <i class="material-icons">play_circle_outline</i> <span class="text-xs">Video</span>
+                </span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" (click)="contentsBuilder.openModal(4, '', category__)">
+                <span class="nav-text">
+                  <i class="material-icons">subject</i> <span class="text-xs">Article</span>
+                </span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" (click)="contentsBuilder.openModal(8, '')" *ngIf="category__ == 10">
+                <span class="nav-text">
+                  <i class="material-icons">local_dining</i> <span class="text-xs">Daily Plan</span>
+              </span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" (click)="contentsBuilder.openModal(9, '')" *ngIf="category__ == 10"><span
+                  class="nav-text">
+                <i class="material-icons">receipt</i> <span class="text-xs">Recipe</span>
+              </span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-12">
+    <div class="box padding">
+      <table class="table table-striped b-t b-b table-hover">
+        <thead>
+        <tr>
+          <th>ID</th>
+          <th>Image</th>
+          <th>Title</th>
+          <th>Type</th>
+          <th>Category</th>
+          <th *ngIf="category__ != 14">Subcategory</th>
+          <th class="edit-buttons"></th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr *ngFor="let content of filteredContents">
+          <td>{{ content.id }}</td>
+          <td>
+            <img [src]="content.thumbnail || '../../../../../../../assets/images/no-photo.svg'" alt="preview"
+                 class="thumbnail">
+          </td>
+          <td class="capitalize">{{ content.title }}</td>
+          <td>
+            <span *ngIf="content.type == 1">
+              <i class="material-icons icon-drag to-left">play_circle_outline</i> <span>Video</span>
+            </span>
+
+            <span *ngIf="content.type == 2">
+              <i class="material-icons icon-drag to-left">queue_music</i> <span>Sound</span>
+            </span>
+
+            <span *ngIf="content.type == 3">
+              <i class="material-icons icon-drag to-left">crop_original</i> <span>Image</span>
+            </span>
+
+            <span *ngIf="content.type == 4">
+              <i class="material-icons icon-drag to-left">subject</i> <span>Post</span>
+            </span>
+
+            <span *ngIf="content.type == 5">
+              <i class="material-icons icon-drag to-left">attach_file</i> <span>File</span>
+            </span>
+
+            <span *ngIf="content.type == 8">
+              <i class="material-icons icon-drag to-left">local_dining</i> <span>Daily Plan</span>
+            </span>
+
+            <span *ngIf="content.type == 9">
+              <i class="material-icons icon-drag to-left">receipt</i> <span>Recipe</span>
+            </span>
+          </td>
+          <td>{{ content.category?.title }}</td>
+          <td *ngIf="category__ != 14">{{ content.subcategory ? content.subcategory?.subcategory_name : 'Not defined' }}</td>
+          <td class="right">
+            <a class="btn btn-icon btn-social white btn-sm" title="View content" (click)="webview.openContent(content)">
+              <i class="fa fa-search"></i>
+              <i class="fa fa-search light-green"></i>
+            </a>
+
+            <a class="btn btn-icon btn-social white btn-sm" title="Edit" (click)="contentsBuilder.editContent(content)">
+              <i class="fa fa-edit"></i>
+              <i class="fa fa-edit light-blue"></i>
+            </a>
+
+            <a class="btn btn-icon btn-social white btn-sm" title="Delete"
+               [swal]="{ title: 'Delete Content', text: 'Confirm that you want to delete the record?' }"
+               (confirm)="trashContent(content)">
+              <i class="fa fa-trash"></i>
+              <i class="fa fa-trash red-600"></i>
+            </a>
+
+            <a class="btn btn-icon btn-social white btn-sm" title="Copy"
+               (click)="contentsBuilder.editContent(content, true)">
+              <i class="fa fa-copy"></i>
+              <i class="fa fa-copy yellow-600"></i>
+            </a>
+          </td>
+        </tr>
+        </tbody>
+
+        <tfoot *ngIf="filteredContents && filteredContents.length == 0">
+        <tr>
+          <td colspan="7" class="tfoot-no-contents">
+            No contents to display
+          </td>
+        </tr>
+        </tfoot>
+      </table>
+    </div>
+  </div>
+</div>
+
+<app-builder-contents (newContent)="pushNewContent()"></app-builder-contents>
+<webview-contents></webview-contents>

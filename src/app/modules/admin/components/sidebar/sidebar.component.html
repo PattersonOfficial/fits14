@@ -1,0 +1,325 @@
+<div id="aside" class="app-aside modal fade nav-expand">
+    <div class="left navside black dk" layout="column">
+        <div class="navbar no-radius">
+            <a class="navbar-brand">
+                <img src="../../../assets/images/logo-fit-new.png" alt="." class="">
+            </a>
+        </div>
+
+        <div flex-no-shrink="">
+            <div class="nav-fold">
+                <a href="#/app/page/profile" ui-sref="app.page.profile">
+                    <span class="pull-left">
+                        <img src="../../../assets/images/people/a0.png" alt="..." class="w-40 r">
+                    </span>
+                    <span class="clear hidden-folded p-x"><span class="block text-name-user _500">{{user.name}}</span>
+                        <small class="block text-role text-muted">{{user.rol.name}}</small>
+                    </span>
+                </a>
+            </div>
+        </div>
+
+        <div flex="" class="hide-scroll">
+            <nav class="scroll nav-stacked nav-active-primary">
+                <ul class="nav" ui-nav="">
+                    <li class="nav-header hidden-folded">
+                        <small class="text-muted">Main</small>
+                    </li>
+
+                    <li [routerLinkActive]="['active']">
+                        <a [routerLink]="['/board/a/main']">
+                          <span class="nav-icon">
+                            <i class="material-icons">storage</i>
+                          </span>
+                            <span class="nav-text">Dashboard</span>
+                        </a>
+                    </li>
+
+                    <li [routerLinkActive]="['active']">
+                        <a [routerLink]="['/board/a/crm/support']">
+                            <span class="nav-icon">
+                                <i class="material-icons">receipt</i>
+                            </span>
+                            <span class="nav-text">Support</span>
+                        </a>
+                    </li>
+
+                    <li [routerLinkActive]="['active']">
+                        <a [routerLink]="['/board/a/crm/leads']">
+                            <span class="nav-caret">
+                                <i class="fa fa-caret-down"></i>
+                            </span>
+                            <span class="nav-icon">
+                                <i class="material-icons">group</i>
+                            </span>
+                            <span class="nav-text">CRM</span>
+                        </a>
+
+                        <ul class="nav-sub">
+                            <li>
+                                <a [routerLink]="['/board/a/crm/leads']">
+                                    <span class="nav-text"><i class="fa fa-caret-right"></i>Leads</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a [routerLink]="['/board/a/crm/clients']">
+                                    <span class="nav-text"><i class="fa fa-caret-right"></i>Clients</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a [routerLink]="['/board/a/crm/free_users']">
+                                    <span class="nav-text"><i class="fa fa-caret-right"></i>Free users</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li [routerLinkActive]="['active']">
+                        <a [routerLink]="['/board/a/users/view/clients']">
+                            <span class="nav-caret">
+                              <i class="fa fa-caret-down"></i>
+                            </span>
+
+                            <span class="nav-icon">
+                              <i class="material-icons user_icons">folder_shared
+                              </i>
+                            </span>
+                            <span class="nav-text">Users</span>
+                        </a>
+
+                        <ul class="nav-sub">
+                            <li>
+                                <a [routerLink]="['/board/a/users/create']">
+                                    <span class="nav-text"><i class="fa fa-caret-right"></i> New user</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a [routerLink]="['/board/a/users/view/mentors']">
+                                    <span class="nav-text"><i class="fa fa-caret-right"></i> All mentors</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a [routerLink]="['/board/a/users/view/managers']">
+                                    <span class="nav-text"><i class="fa fa-caret-right"></i> All Managers</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a [routerLink]="['/board/a/users/view/administrators']">
+                                    <span class="nav-text"><i class="fa fa-caret-right"></i> All Administrators</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+
+                    <li [routerLinkActive]="['active']">
+                        <a [routerLink]="['/board/a/packages/plan/list/fitness']">
+                            <span class="nav-caret">
+                                <i class="fa fa-caret-down"></i>
+                            </span>
+                            <span class="nav-icon">
+                                <i class="material-icons">assignment</i>
+                            </span>
+                            <span class="nav-text">Plan</span>
+                        </a>
+
+                        <ul class="nav-sub">
+                            <li>
+                                <a [routerLink]="['/board/a/packages/plan/list/fitness']">
+                                    <span class="nav-text"><i class="fa fa-caret-right"></i> Fitness</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a [routerLink]="['/board/a/packages/plan/list/nutrition']">
+                                    <span class="nav-text"><i class="fa fa-caret-right"></i> Nutrition</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a [routerLink]="['/board/a/packages/plan/list/wellness']">
+                                    <span class="nav-text"><i class="fa fa-caret-right"></i> Wellness</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li [routerLinkActive]="['active']">
+                        <a [routerLink]="['/board/a/packages/plan/list/vod']">
+                            <span class="nav-caret">
+                                <i class="fa fa-caret-down"></i>
+                            </span>
+                            <span class="nav-icon">
+                                <i class="material-icons">videocam</i>
+                            </span>
+                            <span class="nav-text">VOD</span>
+                        </a>
+
+                        <ul class="nav-sub">
+                            <li>
+                                <a [routerLinkActive]="['active']" [routerLink]="['/board/a/packages/plan/list/vod']">
+                                    <span class="nav-text"><i class="fa fa-caret-right"></i> VOD Programs</span>
+                                </a>
+                            </li>
+
+                            <li>
+                                <a [routerLinkActive]="['active']"
+                                   [routerLink]="['/board/a/manage/wellness/contents/list/14']">
+                                    <span class="nav-text"><i class="fa fa-caret-right"></i> VOD Contents</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+
+                    <li [routerLinkActive]="['active']">
+                        <a [routerLink]="['/board/a/packages/manage']">
+                            <span class="nav-caret">
+                                <i class="fa fa-caret-down"></i>
+                            </span>
+                            <span class="nav-icon">
+                                <i class="material-icons">folder_special</i>
+                            </span>
+                            <span class="nav-text">Packages</span>
+                        </a>
+
+                        <ul class="nav-sub">
+                            <li>
+                                <a [routerLink]="['/board/a/packages/memberships/list']">
+                                    <span class="nav-text"><i class="fa fa-caret-right"></i> Memberships</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a [routerLink]="['/board/a/packages/categories/list']">
+                                    <span class="nav-text"><i class="fa fa-caret-right"></i> Categories</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+
+                    <li [routerLinkActive]="['active']">
+                        <a [routerLink]="['/board/a/manage/fitness/contents/list/9']">
+                            <span class="nav-caret">
+                                <i class="fa fa-caret-down"></i>
+                            </span>
+                            <span class="nav-icon">
+                                <i class="material-icons">accessibility</i>
+                            </span>
+                            <span class="nav-text">Fitness</span>
+                        </a>
+
+                        <ul class="nav-sub">
+                            <li>
+                                <a href="footable.html" [routerLink]="['/board/a/manage/fitness/contents/list/9']">
+                                    <span class="nav-text"><i class="fa fa-caret-right"></i> Contents</span>
+                                </a>
+                            </li>
+
+                            <li>
+                                <a [routerLink]="['/board/a/packages/client-types/list/9']">
+                                    <span class="nav-text"><i class="fa fa-caret-right"></i> Client Types</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li [routerLinkActive]="['active']">
+                        <a [routerLink]="['/board/a/manage/nutrition/contents/list/10']">
+                            <span class="nav-caret">
+                                <i class="fa fa-caret-down"></i>
+                            </span>
+                            <span class="nav-icon">
+                                <i class="material-icons">local_dining</i>
+                            </span>
+                            <span class="nav-text">Nutrition</span>
+                        </a>
+
+                        <ul class="nav-sub">
+                            <li>
+                                <a [routerLink]="['/board/a/manage/nutrition/contents/list/10']">
+                                    <span class="nav-text"><i class="fa fa-caret-right"></i> Contents</span>
+                                </a>
+                            </li>
+
+                            <li>
+                                <a [routerLink]="['/board/a/packages/client-types/list/10']">
+                                    <span class="nav-text"><i class="fa fa-caret-right"></i> Client Types</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li [routerLinkActive]="['active']">
+                        <a [routerLink]="['/board/a/manage/wellness/contents/list/13']">
+                            <span class="nav-caret">
+                                <i class="fa fa-caret-down"></i>
+                            </span>
+                            <span class="nav-icon">
+                                <i class="material-icons">spa</i>
+                            </span>
+                            <span class="nav-text">Wellness</span>
+                        </a>
+
+                        <ul class="nav-sub">
+                            <li>
+                                <a href="footable.html" [routerLink]="['/board/a/manage/wellness/contents/list/13']">
+                                    <span class="nav-text"><i class="fa fa-caret-right"></i> Contents</span>
+                                </a>
+                            </li>
+
+                            <li>
+                                <a [routerLink]="['/board/a/packages/client-types/list/13']">
+                                    <span class="nav-text"><i class="fa fa-caret-right"></i> Client Types</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li [routerLinkActive]="['active']">
+                        <a [routerLink]="['/board/a/quotes/builder']">
+                            <span class="nav-icon">
+                                <i class="material-icons">format_quote</i>
+                            </span>
+                            <span class="nav-text">Quotes</span>
+                        </a>
+                    </li>
+
+                    <li [routerLinkActive]="['active']">
+                        <a [routerLink]="['/board/a/questions']">
+                            <span class="nav-icon">
+                                <i class="material-icons">speaker_notes</i>
+                            </span>
+                            <span class="nav-text">Questions</span>
+                        </a>
+                    </li>
+
+                    <li [routerLinkActive]="['active']">
+                        <a [routerLink]="['/board/a/coupons']">
+                            <span class="nav-icon">
+                                <i class="material-icons">money_off</i>
+                            </span>
+                            <span class="nav-text">Coupons</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+
+        <div flex-no-shrink="">
+            <nav ui-nav="">
+                <ul class="nav">
+                    <li>
+                        <div class="b-b b m-t-sm"></div>
+                    </li>
+                    <li class="no-bg">
+                        <a (click)="logout()">
+                            <span class="nav-icon">
+                                <i class="material-icons"></i>
+                            </span>
+                            <span class="nav-text">Logout</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>

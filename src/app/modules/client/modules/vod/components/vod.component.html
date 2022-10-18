@@ -1,0 +1,40 @@
+<div class="vod-container">
+  <div class="vod-header">
+    <div class="vod-header-nav">
+      <button
+        class="vod-header-tab"
+        [ngClass]="{ 'tab-active': tab == 'on-demand' }"
+        [routerLink]="['/board/u/vod/on-demand']"
+      >
+        <i class="fa fa-th" aria-hidden="true"></i> Series
+      </button>
+      <button
+        class="vod-header-tab"
+        [ngClass]="{ 'tab-active': tab == 'my-videos' }"
+        [routerLink]="['/board/u/vod/my-videos']"
+      >
+        <i class="fa fa-list" aria-hidden="true"></i> My List
+      </button>
+    </div>
+  </div>
+  <div class="vod-content">
+    <app-client-ondemand
+      *ngIf="tab == 'on-demand'"
+      (onPlayVideo)="playVideoOnDemand($event)"
+      (onShowPaymentModal)="showPaymentFormModal($event)"
+      (onSubscribeVod)="subscribeToProgram($event)"
+      [user]="user"
+    ></app-client-ondemand>
+    <app-client-myvideos
+      *ngIf="tab == 'my-videos'"
+      (onPlayVideo)="playVideo($event)"
+      [user]="user"
+      (onShowPaymentModal)="showPaymentFormModal($event)"
+      (onSubscribeVod)="subscribeToProgramFromMyVideos($event)"
+    >
+    </app-client-myvideos>
+  </div>
+</div>
+
+<webview-contents></webview-contents>
+

@@ -1,0 +1,990 @@
+/* --------- Owl Carousal ---------- */
+::ng-deep .mobile-slider .owl-carousel .owl-nav .owl-prev span,
+::ng-deep .mobile-slider .owl-carousel .owl-nav .owl-next span {
+  margin-top: -3px;
+}
+
+::ng-deep .mobile-slider .owl-carousel .owl-nav .owl-prev {
+  left: -25px;
+}
+
+::ng-deep .mobile-slider .owl-carousel .owl-nav .owl-next {
+  right: -25px;
+}
+
+::ng-deep .mobile-slider .owl-carousel .owl-nav .owl-prev:hover,
+::ng-deep .mobile-slider .owl-carousel .owl-nav .owl-next:hover {
+  opacity: 0.8;
+}
+
+::ng-deep .mobile-slider .owl-item {
+  opacity: 1;
+}
+
+::ng-deep .mobile-slider .owl-carousel .owl-nav .owl-prev,
+::ng-deep .mobile-slider .owl-carousel .owl-nav .owl-next {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgb(237, 237, 237);
+  border: none;
+  outline: none;
+  transition: all 0.25s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  line-height: 30px;
+  position: absolute;
+  transform: translateY(-50%);
+  top: calc(50%);
+}
+
+
+/* --------------Scrollbar----------------- */
+::-webkit-scrollbar {
+  width: 2px;
+  background-color: #e5e9ec;
+}
+
+::-webkit-scrollbar-track {
+  border-radius: 17px;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 17px;
+  background-color: #4a6288;
+}
+
+/* ----------Nutrition: Home Page | Personal Summary-------- */
+.personal-summary-container {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.personal-summary-title {
+  width: 100%;
+  margin-bottom: 20px;
+  padding: 0;
+  font-family: Montserrat;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 2.92;
+  text-align: left;
+  color: #4a6288;
+  text-transform: capitalize;
+}
+
+.personal-summary-content {
+  width: 100%;
+  margin-bottom: 30px;
+  padding: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+}
+
+.personal-summary-content-mobile {
+  margin-bottom: 30px;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.personal-summary-item {
+  width: 23%;
+  margin: 0;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 5px;
+  background-color: #ffffff;
+  font-family: Montserrat;
+}
+
+.personal-summary-item-mobile {
+  width: 240px;
+  height: 350px;
+  margin: 0;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 5px;
+  background-color: #ffffff;
+  font-family: Montserrat;
+}
+
+.personal-summary-item-title {
+  width: 100%;
+  font-family: Montserrat;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 2.92;
+  text-align: center;
+  color: #4a6288;
+  text-transform: capitalize;
+}
+
+.personal-summary-item-content {
+  width: 100%;
+  text-align: center;
+}
+
+.personal-summary-item-content div span {
+  display: inline-block;
+  width: 100%;
+  font-family: Montserrat;
+  font-size: 10px;
+  line-height: 2.5;
+  text-align: left;
+  color: #4a6288;
+}
+
+.personal-summary-item-graph {
+  width: 100%;
+  font-family: Montserrat;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.47;
+  text-align: center;
+  text-transform: capitalize;
+}
+
+.graph-body-mass {
+  color: #00a7df;
+}
+
+.graph-calorie-intake {
+  color: #fe6c99;
+}
+
+.graph-milestone {
+  color: #47e5be;
+}
+
+.graph-macronutrient {
+  color: #f9286f;
+}
+
+/* ----------Nutrition: Home Page | Circle-progress -------- */
+::ng-deep .carbohydrates .mat-progress-bar-fill::after {
+  background: #ff4f28 !important;
+}
+
+::ng-deep .carbohydrates .mat-progress-bar-buffer {
+  background-color: #fbc9be !important;
+}
+
+::ng-deep .proteins .mat-progress-bar-fill::after {
+  background: #9b7dff !important;
+}
+
+::ng-deep .proteins .mat-progress-bar-buffer {
+  background-color: #e4dcff !important;
+}
+
+::ng-deep .fats .mat-progress-bar-fill::after {
+  background: #2f83fe !important;
+}
+
+::ng-deep .fats .mat-progress-bar-buffer {
+  background-color: #d6e5fa !important;
+}
+
+/* ----------Nutrition: Home Page | Daily Nutrition -------- */
+.nutrition-container {
+  width: 100%;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+}
+
+.daily-nutrition-container {
+  width: 67%;
+  margin: 0;
+  padding: 30px;
+  border-radius: 5px;
+  background-color: #ffffff;
+}
+
+.daily-nutrition-title {
+  width: 100%;
+  margin-bottom: 40px;
+  font-family: Montserrat;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.75;
+  text-align: left;
+  color: #4a6288;
+  text-transform: capitalize;
+}
+
+.daily-nutrition-item {
+  width: 100%;
+  height: 227px;
+  margin: 15px 0;
+  padding: 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 5px;
+  background-color: rgba(0, 167, 223, 0.03);
+  font-family: Montserrat;
+  font-size: 12px;
+  line-height: 1.83;
+  text-align: left;
+  color: #4a6288;
+}
+
+.daily-nutrition-item-info {
+  width: 65%;
+}
+
+.daily-nutrition-item-info-title {
+  width: 100%;
+  margin-bottom: 25px;
+  font-family: Montserrat;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 2;
+  text-align: left;
+  color: #4a6288;
+  text-transform: capitalize;
+}
+
+.daily-nutrition-item-description {
+  width: 100%;
+  height: 65px;
+  overflow: hidden;
+}
+
+.daily-nutrition-item-poster {
+  /*width: 36%;*/
+  width: 247px;
+  height: 148px;
+  /*height: auto;*/
+  margin: 0 15px;
+  background-image: linear-gradient(to bottom, rgba(86, 202, 238, 0), #093c50);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 5px;
+  cursor: pointer;
+  position: relative;
+}
+
+.daily-nutrition-item-swap {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+
+.daily-nutrition-item-swap-btn {
+  width: 28px;
+  height: 28px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  border-radius: 100%;
+  box-shadow: 0 5px 15px 0 rgba(0, 167, 223, 0.15);
+  background-color: #00a7df;
+  cursor: pointer;
+}
+
+.daily-nutrition-item-swap-btn span {
+  width: 15px;
+  height: 15px;
+  color: #ffffff;
+}
+
+/* ----------Nutrition: Home Page | Articles -------- */
+.nutrition-articles-container {
+  width: 28%;
+}
+
+.nutrition-articles-title,
+.nutrition-recipes-title {
+  width: 100%;
+  margin-bottom: 20px;
+  font-family: Montserrat;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 2.92;
+  text-align: left;
+  color: #4a6288;
+  text-transform: capitalize;
+}
+
+/* ----------Nutrition: Home Page | Recipes -------- */
+.myprogram-recipes-container {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.foot-notice-container {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.notice {
+  margin-top: 30px;
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 22px;
+  color: #4A6288;
+  height: 92px;
+}
+
+.myprogram-recipe-item {
+  position: relative;
+  width: 31%;
+  height: 215px;
+  margin-bottom: 30px;
+  padding: 20px;
+  display: flex;
+  align-items: flex-end;
+  border-radius: 5px;
+  background: linear-gradient(to bottom, rgba(86, 202, 238, 0), #093c50);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  cursor: pointer;
+}
+
+.myprogram-recipe-item > * {
+  position: relative;
+  z-index: 2;
+}
+
+.myprogram-recipe-item::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  border-radius: 5px;
+  background-image: linear-gradient(to bottom, rgba(30, 30, 30, 0), #1e1e1e);
+  z-index: 1;
+}
+
+.myprogram-recipe-item-title {
+  font-family: Montserrat;
+  font-size: 15px;
+  font-weight: bolder;
+  line-height: 1.13;
+  text-align: left;
+  color: #ffffff;
+}
+
+/* ----------Nutrition: Single Recipe -------- */
+.myprogram-single-recipe-container {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.myprogram-single-recipe-poster {
+  position: relative;
+  width: 100%;
+  height: 438px;
+  margin-bottom: 30px;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  border-radius: 5px;
+  background: linear-gradient(to bottom, rgba(86, 202, 238, 0), #093c50);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.myprogram-single-recipe-poster::before {
+  content: ' '; 
+  position: absolute; 
+  top: 0; 
+  left: 0; 
+  right: 0; 
+  bottom: 0;
+  border-radius: 5px;
+  background: linear-gradient(to bottom, rgba(30, 30, 30, 0), #1e1e1e);
+  z-index: 1;
+}
+
+.myprogram-single-recipe-label {
+  position: absolute;
+  bottom: 40px;
+  right: 0;
+  min-width: 115px;
+  height: 45px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 5px 15px 0 rgba(0, 167, 223, 0.15);
+  background-color: rgba(255, 102, 0, 0.72);
+  border-top-left-radius: 50px;
+  border-bottom-left-radius: 50px;
+  font-family: Montserrat;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 2.33;
+  text-align: center;
+  color: #ffffff;
+  z-index: 4;
+}
+
+.myprogram-single-recipe-play {
+  position: relative;
+  width: 100%;
+  margin: 0;
+  padding: 30px 0 0;
+  flex: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 3;
+}
+
+.myprogram-single-recipe-play-btn {
+  width: 96px;
+  height: 96px;
+  opacity: 0.8;
+  background-color: #00a7df;
+  border: none;
+  border-radius: 100%;
+  font-size: 26px;
+  line-height: 2.92;
+  text-align: center;
+  color: #ffffff;
+}
+
+.myprogram-single-recipe-play-btn:hover {
+  opacity: 0.75;
+}
+
+.myprogram-single-recipe-title {
+  position: relative;
+  width: 87%;
+  margin-bottom: 15px;
+  font-family: Montserrat;
+  font-size: 30px;
+  font-weight: 600;
+  line-height: 0.93;
+  text-align: left;
+  color: #ffffff;
+  z-index: 3;
+}
+
+.myprogram-single-recipe-info {
+  position: relative;
+  width: 100%;
+  padding: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  z-index: 3;
+}
+
+.recipe-stars {
+  width: 155px;
+  display: flex;
+  justify-content: flex-start;
+  align-content: stretch;
+}
+
+.recipe-stars label.star {
+  margin-bottom: 0;
+}
+
+.myprogram-single-recipe-duration {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  font-family: Montserrat;
+  font-size: 12px;
+  font-weight: 500;
+  text-align: left;
+  color: #ffffff;
+}
+
+.myprogram-single-recipe-duration span {
+  width: 4px;
+  height: 4px;
+  margin-right: 15px;
+  background-color: #ffffff;
+  border-radius: 100%;
+}
+
+/* ----------Nutrition: Single Recipe | Ingredients-------- */
+.myprogram-single-recipe-ingredients-container {
+  width: 28%;
+  margin: 0;
+  padding: 30px;
+  border-radius: 5px;
+  background-color: #ffffff;
+  overflow: hidden;
+}
+
+.myprogram-single-recipe-ingredients-subtitle {
+  width: 100%;
+  margin: 0 0 10px;
+  font-family: Montserrat;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 2.92;
+  text-align: left;
+  color: #4a6288;
+  text-transform: capitalize;
+}
+
+.myprogram-single-recipe-ingredients-title {
+  width: 100%;
+  margin: 0 0 10px;
+  font-family: Montserrat;
+  font-size: 20px;
+  font-weight: bold;
+  line-height: 1.75;
+  text-align: left;
+  color: #4a6288;
+  text-transform: capitalize;
+}
+
+.myprogram-single-recipe-ingredients-list {
+  position: relative;
+  width: 100%;
+  max-height: 750px;
+  overflow-y: scroll;
+  z-index: 1;
+}
+
+.ingredients-list-shadow,
+.method-description-shasow {
+  position: absolute;
+  top: 0;
+  bottom: -1px;
+  left: 0;
+  right: 0;
+  /*background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(255,255,255,0.9284664549413515) 25%, rgba(255,255,255,0) 100%);*/
+  z-index: 2;
+  cursor: all-scroll;
+}
+
+.myprogram-single-recipe-ingredients {
+  width: 100%;
+  margin: 10px 0;
+  font-family: Montserrat;
+  font-size: 12px;
+  line-height: 2.5;
+  text-align: left;
+  color: #4a6288;
+}
+
+.myprogram-single-recipe-ingredients span {
+  font-family: Montserrat;
+  font-weight: 600;
+  line-height: 2.5;
+  text-align: left;
+  color: #4a6288;
+}
+
+.myprogram-single-recipe-nutrients {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  display: inline-block;
+}
+
+.myprogram-single-recipe-nutrients-item {
+  width: calc(100% / 7 - 10px);
+  margin: 0 calc(70px / 6) calc(70px / 6) 0;
+  padding: 24px 15px;
+  border-radius: 5px;
+  border: solid 1px #efefef;
+  background-color: rgba(255, 255, 255, 0.05);
+  text-align: center;
+  font-family: Montserrat;
+  font-size: 12px;
+  line-height: 1.67;
+  color: #4a6288;
+  float: left;
+  white-space: nowrap
+}
+
+.myprogram-single-recipe-nutrients-item:nth-child(7n) {
+  margin: 0 0 10px 0;
+}
+
+.myprogram-single-recipe-nutrients-item span:first-of-type {
+  font-size: 16px;
+  font-weight: bold;
+  color: #00a7df;
+}
+
+/* ----------Nutrition: Single Recipe | Method-------- */
+.myprogram-single-recipe-method-container {
+  width: 68%;
+  margin: 0;
+  padding: 30px;
+  border-radius: 5px;
+  background-color: #ffffff;
+}
+.myprogram-single-recipe-method-title {
+  width: 100%;
+  margin-bottom: 35px;
+  font-family: Montserrat;
+  font-size: 20px;
+  font-weight: bold;
+  line-height: 1.75;
+  text-align: left;
+  color: #4a6288;
+  text-transform: capitalize;
+}
+
+.myprogram-single-recipe-method-description {
+  position: relative;
+  width: 100%;
+  max-height: 450px;
+  font-family: Montserrat;
+  font-size: 12px;
+  line-height: 2.5;
+  text-align: left;
+  color: #4a6288;
+  overflow-y: scroll;
+}
+
+/* ----------Fitness / Nutrition: Articles | Main-------- */
+.myprogram-articles-container {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+}
+
+.myprogram-main-article-container {
+  width: 68%;
+  margin: 0;
+  padding: 0;
+}
+
+.myprogram-main-article-container img {
+  width: 100%;
+}
+
+.unavailable {
+  opacity: .5;
+  pointer-events: none;
+}
+
+.myprogram-main-article-poster {
+  width: 100%;
+  /*padding-bottom: 65.25%;*/
+  margin-bottom: 30px;
+  border-radius: 5px;
+  background-image: linear-gradient(to bottom, rgba(86, 202, 238, 0), #093c50);
+}
+
+.myprogram-main-article-poster img {
+  aspect-ratio: 16 / 9;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.myprogram-main-article-name {
+  width: 100%;
+  margin-bottom: 20px;
+  font-family: Montserrat;
+  font-size: 30px;
+  font-weight: 600;
+  text-align: left;
+  color: #4a6288;
+}
+
+.myprogram-main-article-info {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  font-family: Montserrat;
+  font-size: 11px;
+  line-height: 3.18;
+  text-align: left;
+  color: #889dbe;
+}
+
+.myprogram-main-article-info span {
+  margin-right: 15px;
+  display: flex;
+  align-items: center;
+}
+
+.myprogram-main-article-info span:nth-of-type(3) {
+  display: inline-block;
+  width: 4px;
+  height: 4px;
+  border-radius: 100%;
+  background-color: #889dbe;
+}
+
+.myprogram-main-article-info span svg {
+  height: 15px;
+  color: #889dbe;
+}
+
+.myprogram-main-article-description {
+  width: 100%;
+  font-family: Montserrat;
+  text-align: left;
+  color: #4a6288;
+}
+
+.myprogram-main-article-description p {
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 2;
+}
+
+.myprogram-main-article-description p span {
+  font-size: 12px;
+  line-height: 2.5;
+}
+
+.myprogram-main-article-social {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.myprogram-main-article-social-btn {
+  width: 36px;
+  height: 36px;
+  margin: 0 5px 0 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: solid 0.5px #efefef;
+  border-radius: 100%;
+  background-color: #ffffff;
+  cursor: pointer;
+}
+
+.myprogram-main-article-social-btn:hover {
+  opacity: .75;
+}
+
+.myprogram-main-article-social-btn span svg {
+  height: 13px;
+  color: #4a6288;
+}
+
+.myprogram-extra-list {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.myprogram-extra-list-item {
+  width: 47%;
+}
+
+.myprogram-main-article-footer {
+  width: 100%;
+  text-align: center;
+}
+
+.myprogram-main-article-footer-btn {
+  width: 128px;
+  height: 45px;
+  border: none;
+  border-radius: 30px;
+  box-shadow: 0 5px 15px 0 rgba(0, 167, 223, 0.15);
+  background-color: rgba(0, 167, 223, 0.05);
+  font-family: Montserrat;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 2.92;
+  text-align: center;
+  color: #00a7df;
+  text-transform: capitalize;
+}
+
+/* ----------Fitness / Nutrition: Articles | Rightside Bar-------- */
+.myprogram-articles-rightside-bar-container {
+  width: 28%;
+  margin: 0;
+  padding: 0;
+}
+
+.myprogram-articles-rightside-bar-item {
+  width: 100%;
+  margin: 0 0 15px;
+  padding: 0;
+}
+
+.myprogram-articles-rightside-bar-item-poster {
+  width: 100%;
+  /*height: 160px;*/
+  margin-bottom: 20px;
+  object-fit: cover;
+  border-radius: 5px;
+  cursor: pointer;
+  aspect-ratio: 16 / 9;
+}
+
+.myprogram-articles-rightside-bar-item-title {
+  width: 100%;
+  height: 39px;
+  margin-bottom: 0;
+  font-family: Montserrat;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.33;
+  text-align: left;
+  color: #4a6288;
+  cursor: pointer;
+}
+
+.myprogram-articles-rightside-bar-item-graph {
+  width: 100%;
+  font-family: Montserrat;
+  font-size: 11px;
+  line-height: 1.82;
+  text-align: left;
+  color: #4a6288;
+  cursor: pointer;
+}
+
+.myprogram-articles-rightside-bar-btn {
+  width: 128px;
+  height: 45px;
+  border: none;
+  border-radius: 30px;
+  box-shadow: 0 5px 15px 0 rgba(0, 167, 223, 0.15);
+  background-color: rgba(0, 167, 223, 0.05);
+  font-family: Montserrat;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 2.92;
+  text-align: center;
+  color: #00a7df;
+  text-transform: capitalize;
+}
+
+.mobile-slider{
+  margin-bottom: 30px;
+}
+
+
+
+@media screen and (max-width: 768px) {
+  .personal-summary-item{
+    width: 100%;
+    margin-right: 10px;
+  }
+
+  /* .personal-summary-content{
+    overflow: scroll;
+  } */
+
+  .fitness-workouts-header{
+    margin-top: 55px;
+  }
+
+  .nutrition-container{
+    flex-direction: column;
+  }
+
+  .daily-nutrition-container{
+    width:100%;
+    padding: 15px;
+  }
+
+  .daily-nutrition-item{
+    display: block;
+    height: fit-content;
+    padding: 10px;
+    background: rgba(0, 167, 223, 0.05);
+  }
+
+  .daily-nutrition-item-info{
+    width: 100%;
+  }
+
+  .daily-nutrition-item-poster{
+    margin: 10px auto;
+    width: auto;
+    height: 239px;
+  }
+
+  .nutrition-articles-container{
+    width: 100%;
+    margin-top: 20px;
+  }
+
+  .nutrition-articles-title{
+    font-size: 14px;
+    line-height: 35px;
+    font-weight: 700;
+  }
+
+  .notice{
+    text-align: justify;
+  }
+
+  .myprogram-single-recipe-method-container{
+    width: 100%
+  }
+
+  .myprogram-single-recipe-nutrients-item{
+    width: fit-content;
+    padding: 9px;
+  }
+
+  .myprogram-single-recipe-method-description{
+    max-height: fit-content;
+    overflow-y: initial;
+  }
+
+  .myprogram-single-recipe-ingredients-container{
+    width: 100%;
+    width: 100%;
+    margin-top: 20px;
+  }
+
+  .myprogram-single-recipe-ingredients-list{
+    max-height: fit-content;
+    overflow-y: initial;
+  }
+}
+
+@media screen and (width: 1024px) {
+  .personal-summary-item{
+    padding: 0;
+  }
+}
+

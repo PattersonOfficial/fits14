@@ -1,0 +1,37 @@
+<div class="lesson_card" [ngClass]="{ side: isSide }">
+  <img src="{{ lesson.thumbnail }}" alt="{{ lesson.title }}" />
+
+  <div class="description_container">
+    <p>
+      <!-- <strong> -->
+      {{ lesson.title }}
+      <!-- </strong> -->
+    </p>
+    <!--use rounded button on small screens-->
+    <button
+      [ngClass]="{ play: isSide }"
+      (click)="goToLesson()"
+      class="play_button"
+    >
+      <i class="fa fa-play" aria-hidden="true"></i>
+      <span class="play_button_text">PLAY WORKOUT</span>
+    </button>
+  </div>
+</div>
+
+<!--
+<div class="lesson_card" [ngClass]="{ side: isSide }">
+  <img src="{{ lesson.thumbnail }}" alt="{{ lesson.title }}" class="thumb" />
+  <p class="lesson-title">Tornado</p>
+  <button
+    class="explore"
+    [ngClass]="{ play: isSide }"
+    (click)="goToLesson()"
+    [innerHTML]="isSide ? playIcon : 'Explore'"
+  ></button>
+</div>+
+-->
+<!--
+1. 
+
+-->

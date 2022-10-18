@@ -1,0 +1,19 @@
+.mismatch-error-message {
+    display: block;
+    padding: 5px;
+    text-align: justify;
+    font-weight: bolder;
+    color: #949494;
+}
+
+.package-list .editor-buttons {
+    float: right;
+}
+
+.package-list .editor-buttons .btn {
+    margin-top: -0.4em;
+}
+
+.text-handle .small {
+    margin-right: 10px;
+}

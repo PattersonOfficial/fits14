@@ -1,0 +1,22 @@
+<div id="m" class="modal" #modalRef="bs-modal" [config]="{ show: false }" bsModal>
+  <div class="" style="width:100%;">
+    <div class="loading" *ngIf="loadingClientTypes">
+      <div class="loader"></div>
+    </div>
+    <!-- <div class="" style="position: absolute; right: 15px; top: 10px;  z-index: 9;">
+      <button class="btn btn-outline rounded b-white text-white" (click)="goBack()"><i class="fa fa-times-circle"></i> Go to back</button>
+    </div>
+
+    <div>
+      <div class="col-package locked animated bounceIn" [class.locked]="existTypeInUser(type.id) == -1" [style.background-image]="safeImageUrl(type.image)" [style.width.%]="width" *ngFor="let type of types">
+        <div>
+          <h2 class="section-title">{{type.name}}</h2>
+          <small><b>{{category}}</b></small>
+          <button class="btn rounded white animate-fade__" (click)="goToContentOfType(type.id,mainTitle)">Go to program</button>
+        </div>
+      </div>
+    </div> -->
+
+
+  </div>
+</div>

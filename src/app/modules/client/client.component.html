@@ -1,0 +1,52 @@
+<div class="app" id="app">
+  <div id="content" class="app-content box-shadow-z0" role="main">
+    <!--        class="container"-->
+    <div>
+      <app-client-header></app-client-header>
+      <div class="router-container">
+        <router-outlet (activate)="openSideBar()"></router-outlet>
+      </div>
+      <app-alerts></app-alerts>
+    </div>
+    <!--        <client-footer></client-footer>-->
+  </div>
+
+</div>
+
+<div class="modal fade inactive" id="user" data-backdrop="false">
+  <div class="right w-xl-g white b-l">
+    <div ui-include="'../views/blocks/modal.user.html'">
+      <a data-dismiss="modal" class="pull-right text-muted text-lg p-a-sm m-r-sm">×</a>
+      <div class="p-a b-b"><span class="h5">Window settings widget</span></div>
+      <div class="col-md-12">
+        <div style="
+            text-align: center;
+            font-size: 10rem;
+            color: #e8e8e8;
+            padding: 0.5em;
+          ">
+          <i class="fa fa-cogs"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="m-a-a" class="modal fade animate" data-backdrop="true">
+  <div class="modal-dialog" id="animate">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Detail progress</h5>
+      </div>
+      <div class="modal-body text-center p-lg">
+        <div style="
+            text-align: center;
+            font-size: 10rem;
+            color: #e8e8e8;
+            padding: 0.5em;
+          ">
+          <i class="fa fa-cogs"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

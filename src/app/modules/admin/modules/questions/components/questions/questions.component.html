@@ -1,0 +1,247 @@
+<div class="container">
+  <div class="box-header">
+    <h3><i class="fa fa-comments"></i> Questions and Answer</h3>
+    <small>Manage the visible questions and answers in each membership</small>
+  </div>
+  <hr>
+
+  <div class="col-md-12">
+    <div class="white r box-shadow-z0 m-b navbar-md">
+      <div class="navbar"><a class="navbar-brand"></a>
+        <ul class="nav navbar-nav pull-right">
+          <li class="nav-item mt-10">
+
+          </li>
+          <li class="nav-item dropdown"><a class="nav-link p-l b-l" href="" data-toggle="dropdown" aria-expanded="false"><i class="material-icons mt-15"></i></a>
+
+          </li>
+        </ul>
+        <div class="collapse navbar-toggleable-sm">
+          <ul class="nav navbar-nav navbar-nav-inline text-center pull-left m-r text-primary-hover">
+            <li class="nav-item"><a class="nav-link" (click)="openModalQuestions([])"><span class="nav-text"><i class="material-icons">add_circle_outline</i> <span class="text-xs">Add</span></span></a></li>
+            <li class="nav-item"><a class="nav-link" [routerLink]="['/board/a/packages/client-types/list']"><span class="nav-text"><i class="material-icons">credit_card</i> <span class="text-xs">View Client Types</span></span></a></li>
+            <li class="nav-item"><a class="nav-link" [routerLink]="['/board/a/packages/memberships/list']"><span class="nav-text"><i class="material-icons">star</i> <span class="text-xs">View Memberships</span></span></a></li>
+
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-12">
+
+    <div class="box padding">
+      <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-striped b-t b-b table-hover">
+        <thead>
+          <tr>
+            <th>Question</th>
+            <th>Icon</th>
+            <th>Type component</th>
+            <th>Membership</th>
+            <th>Category</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of questions">
+            <td>{{ item.question }}</td>
+            <td><i class="material-icons icon-drag to-left">{{ item.icon }}</i></td>
+            <td>{{ item.type }}</td>
+            <td>
+              <i class="material-icons icon-drag to-left">star</i>
+              <span>{{ item.membership ? item.membership.title : "All memberships" }}</span>
+            </td>
+            <td>
+              <i class="material-icons icon-drag to-left">spellcheck</i>
+              <span>{{ item.category?.title }}</span>
+            </td>
+            <td>
+
+              <button class="btn btn-icon btn-social white btn-sm" title="View answers" [disabled]="!isMultiValue.includes(item.type)" (click)="openModalResponses(item)">
+                <i class="fa fa-align-left"></i>
+                <i class="fa fa-align-left light-green"></i>
+              </button>
+
+              <a class="btn btn-icon btn-social white btn-sm" title="Edit" (click)="openModalQuestions(item)">
+                <i class="fa fa-edit"></i>
+                <i class="fa fa-edit light-blue"></i>
+              </a>
+
+              <a class="btn btn-icon btn-social white btn-sm" title="Delete" [swal]="{ title: 'Delete Question', text: 'Confirm that you want to delete the record?' }" (confirm)="trashQuestion(item)">
+                <i class="fa fa-trash"></i>
+                <i class="fa fa-trash red-600"></i>
+              </a>
+
+            </td>
+
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<div id="m" class="modal" #modalResponsesRef="bs-modal" *ngIf="isModalResponses" [config]="{ show: true }" (onHidden)="hideModalResponses()" bsModal>
+  <div style="max-width: 800px;" class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="box-header">
+          <h3><i class="fa fa-list-alt"></i> Answers</h3>
+          <small>Please manage the answers associated with the question</small>
+        </div>
+      </div>
+      <div class="modal-body text-center p-lg">
+        <table class="table">
+          <thead>
+            <tr>
+              <th colspan="3">
+                <i class="material-icons icon-drag to-left" [innerHtml]="item.icon" style="margin-top: -1px !important;"></i> {{item.question}}
+              </th>
+            </tr>
+            <tr>
+              <th>Label</th>
+              <th>Sub Label</th>
+              <th>Value</th>
+              <th>Options</th>
+            </tr>
+          </thead>
+          <input type="file" class="upload" accept="*" #file (change)="upload(file.files)" style="display:none;">
+          <tbody *ngIf="isMultiValue.includes(item.type)">
+            <tr *ngFor="let response of item.responses">
+              <td><input type="text" class="form-control input-sm-control" name="question" [(ngModel)]="response.label"></td>
+              <td><input type="text" class="form-control input-sm-control" name="question" [(ngModel)]="response.sub_label"></td>
+              <td><input type="text" class="form-control input-sm-control" name="question" [(ngModel)]="response.value"></td>
+              <td>
+
+
+                <img src="{{response.image}}" *ngIf="item.type == 'checkbox_with_image' || 'radio_with_image' || 'button_with_image'" style="margin-right: 10px;  max-height: 30px;">
+
+                <a class="btn btn-icon btn-social white btn-sm" *ngIf="item.type == 'checkbox_with_image' || 'radio_with_image' || 'button_with_image'" title="Upload image" (click)="loadImage(response, file)">
+                  <i class="fa fa-cloud-upload"></i>
+                  <i class="fa fa-image light-green"></i>
+                </a>
+
+                <a class="btn btn-icon btn-social white btn-sm" title="Delete" [swal]="{ title: 'Delete Answer', text: 'Confirm that you want to delete the record? The element will be removed permanently' }" (confirm)="delAnswer(response)">
+                  <i class="fa fa-trash"></i>
+                  <i class="fa fa-trash red-600"></i>
+                </a>
+              </td>
+            </tr>
+
+            <tr>
+              <th colspan="3">
+
+                <br><br>
+                New answer
+              </th>
+            </tr>
+
+            <tr>
+              <td><input type="text" class="form-control input-sm-control" placeholder="Label" [(ngModel)]="custom.label" name="question"></td>
+              <td><input type="text" class="form-control input-sm-control" placeholder="Sub Label" [(ngModel)]="custom.sub_label" name="question"></td>
+              <td><input type="text" class="form-control input-sm-control" placeholder="Value" [(ngModel)]="custom.value" name="value"></td>
+              <td>
+
+
+                <a class="btn btn-icon btn-social white btn-sm" title="Insert answer" (click)="insertNewAnswer()">
+                  <i class="fa fa-plus"></i>
+                  <i class="fa fa-plus light-green"></i>
+                </a>
+
+              </td>
+            </tr>
+          </tbody>
+
+
+
+
+
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn danger btn-sm p-x-md" data-dismiss="modal" (click)="saveAnswers()"><i class="fa fa-check-circle"></i> Save changes of answers</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+<div class="modal fade" #modalQuestionsRef="bs-modal" id="bottom" *ngIf="isModalQuestions" [config]="{ show: true }" (onHidden)="hideModalQuestions()" bsModal>
+  <div class="bottom white b-t" style="height:240px">
+    <div class="row-col"><a (click)="hideModalQuestions()" class="pull-right text-muted text-lg p-a-sm m-r-sm">×</a>
+      <div class="p-a b-b">
+        <span class="h5">{{item.question}}</span> - <small>Detail configuration</small>
+      </div>
+      <div class="row-row">
+        <div class="row-body">
+          <div class="row-inner">
+            <div class="container">
+              <div class="col-md-2 paddding-top-15">
+                <p>
+                  <label>Title</label>
+                  <input type="text" class="form-control input-sm-control" name="question" [(ngModel)]="item.question">
+              </div>
+
+              <div class="col-md-2 paddding-top-15">
+                <p>
+                  <label>Description</label>
+                  <input type="text" class="form-control input-sm-control" name="description" [(ngModel)]="item.description">
+              </div>
+
+              <div class="col-md-2 paddding-top-15">
+                <p style="position:relative;">
+                  <label>Icon -- <small><a class="text-blue" href="https://material.io/tools/icons/?icon=assignment_return&style=baseline" target="_blank">See all icons here</a></small></label>
+                  <i class="material-icons icon-of-input icon-drag to-left" [innerHtml]="item.icon">reorder</i>
+                  <input type="text" class="form-control padding-left-1-8 input-sm-control" name="icon" [(ngModel)]="item.icon">
+              </div>
+
+              <div class="col-md-2 paddding-top-15">
+                <p>
+                  <label>Type</label>
+                  <select class="form-control select-sm" name="type" [(ngModel)]="item.type">
+                    <option value="checkbox">Checkbox</option>
+                    <option value="radio">Radio Button</option>
+                    <option value="button_with_image">Button with image</option>
+                    <option value="radio_with_image">Radio Button with image</option>
+                    <option value="checkbox_with_image">Checkbox with image</option>
+                    <option value="number_with_select">Number input with select</option>
+                    <option value="text_input">Text input</option>
+                    <option value="number_input">Number input</option>
+                  </select>
+              </div>
+
+              <div class="col-md-2 paddding-top-15">
+                <p>
+                  <label>Membership</label>
+                  <select class="form-control select-sm" name="membership" [(ngModel)]="item.membership.id">
+                    <option *ngFor="let membership of memberships" [ngValue]="membership.id">{{membership.title}}</option>
+                  </select>
+              </div>
+
+              <div class="col-md-2 paddding-top-15">
+                <p>
+                  <label>Category</label>
+                  <select class="form-control select-sm" name="category" [(ngModel)]="item.category.id">
+                    <option *ngFor="let category of categories" [ngValue]="category.id">{{category.title}}</option>
+                  </select>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="p-a b-t">
+        <div class="container">
+          <div class="col-md-12"><button class="btn btn-primary pull-right" [disabled]="item.question == null" (click)="saveQuestion()"><i class="fa fa-check-circle"></i> Save question</button></div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,48 @@
+<div class="wrap">
+    <div class="block">
+        <div class="block-heading" (click)="showInternal = !showInternal" [ngClass]="{closed: !showInternal}">
+            <span class="material-icons" *ngIf="!showInternal">
+                chevron_right
+            </span>
+            <span class="material-icons" *ngIf="showInternal">
+                expand_more
+            </span>
+            <p>Internal Tasks </p>
+        </div>
+        <div class="block-data" [hidden]="!showInternal">
+            Internal data
+        </div>
+    </div>
+
+    <div class="block">
+        <div class="block-heading" (click)="showRetention = !showRetention" [ngClass]="{closed: !showRetention}">
+            <span class="material-icons" *ngIf="!showRetention">
+                chevron_right
+            </span>
+            <span class="material-icons" *ngIf="showRetention">
+                expand_more
+            </span>
+            <p>Customer Retention </p>
+        </div>
+        <div class="block-data" [hidden]="!showRetention">
+            Retention data
+        </div>
+    </div>
+
+    <div class="block">
+        <div class="block-heading" (click)="showService = !showService" [ngClass]="{closed: !showService}">
+            <span class="material-icons" *ngIf="!showService">
+                chevron_right
+            </span>
+            <span class="material-icons" *ngIf="showService">
+                expand_more
+            </span>
+            <p>Customer Service </p>
+        </div>
+        <div class="block-data" [hidden]="!showService">
+            Customer Service data
+        </div>
+    </div>
+
+
+</div>

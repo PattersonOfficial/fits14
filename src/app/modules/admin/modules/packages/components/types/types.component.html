@@ -1,0 +1,266 @@
+<div class="container">
+  <div class="box-header">
+    <h3><i class="fa fa-credit-card"></i> Client Types</h3>
+    <small>Manage the client types of meberships</small>
+  </div>
+  <hr>
+
+  <div class="col-md-12">
+    <div class="white r box-shadow-z0 m-b navbar-md">
+      <div class="navbar"><a class="navbar-brand"></a>
+        <ul class="nav navbar-nav pull-right">
+          <li class="nav-item mt-10">
+
+          </li>
+          <li class="nav-item dropdown"><a class="nav-link p-l b-l" href="" data-toggle="dropdown" aria-expanded="false"><i class="material-icons mt-15"></i></a>
+
+          </li>
+        </ul>
+        <div class="collapse navbar-toggleable-sm">
+          <ul class="nav navbar-nav navbar-nav-inline text-center pull-left m-r text-primary-hover">
+            <li class="nav-item"><a class="nav-link" (click)="openModalTypes([])"><span class="nav-text"><i class="material-icons">add_circle_outline</i> <span class="text-xs">Add</span></span></a></li>
+            <li class="nav-item"><a class="nav-link" [routerLink]="['/board/a/packages/contents/list']"><span class="nav-text"><i class="material-icons">subscriptions</i> <span class="text-xs">View contents</span></span></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-12">
+
+    <div class="box padding">
+      <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-striped b-t b-b table-hover">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Membership</th>
+            <th>Category</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let type of types">
+            <td>{{ type.id }}</td>
+            <td>{{ type.name }}</td>
+            <td>
+              <i class="material-icons icon-drag to-left">star</i>
+              {{ type.membership.title }}
+            </td>
+
+            <td>
+              <i class="material-icons icon-drag to-left">spellcheck</i>
+              {{ type.category?.title }}
+            </td>
+
+            <td>
+
+              <a class="btn btn-icon btn-social white btn-sm" title="Configure program" (click)="openModalProgram(type)">
+                <i class="fa fa-cog"></i>
+                <i class="fa fa-cog light-green"></i>
+              </a>
+
+
+              <a class="btn btn-icon btn-social white btn-sm" title="Edit" (click)="openModalTypes(type)">
+                <i class="fa fa-edit"></i>
+                <i class="fa fa-edit light-blue"></i>
+              </a>
+
+              <a class="btn btn-icon btn-social white btn-sm" title="Delete" [swal]="{ title: 'Delete Client Type', text: 'Confirm that you want to delete the record?' }" (confirm)="trashType(type)">
+                <i class="fa fa-trash"></i>
+                <i class="fa fa-trash red-600"></i>
+              </a>
+            </td>
+
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+
+
+
+<div id="m" class="modal" #modalProgramRef="bs-modal" *ngIf="isModalProgram" [config]="{ show: true }" (onHidden)="hideModalProgram()" bsModal>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="box-header">
+          <h3><i class="fa fa-tasks"></i> Configure program</h3>
+          <small>Please manage the answers associated with the program</small>
+        </div>
+      </div>
+      <div class="modal-body text-center p-lg">
+        <table class="table">
+          <thead>
+            <tr>
+              <th colspan="3">
+                {{item.name}}
+              </th>
+            </tr>
+            <tr>
+              <th>Question</th>
+              <th>Response</th>
+              <th>Options</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let pgm of item.program">
+              <td align="left">
+                <i class="material-icons icon-drag to-left" [innerHtml]="pgm.question.icon" style="margin-top: -1px !important;"></i> {{pgm.question.question}}
+              </td>
+              <td align="left">
+                {{pgm.response.label}}
+              </td>
+              <td>
+                <a class="btn btn-icon btn-social white btn-sm" title="Delete" [swal]="{ title: 'Delete Qeustion', text: 'Confirm that you want to delete the record? The element will be removed permanently' }" (confirm)="delQuestion(pgm)">
+                  <i class="fa fa-trash"></i>
+                  <i class="fa fa-trash red-600"></i>
+                </a>
+              </td>
+            </tr>
+
+            <tr>
+              <th colspan="3">
+
+                <br><br>
+                New question
+              </th>
+            </tr>
+
+            <tr>
+              <td>
+                <select name="" class="form-control select-sm" [(ngModel)]="questionSelected" (change)="getResponsesOfQuestion()">
+                  <option [ngValue]="item" *ngFor="let item of questions">{{item.question}}</option>
+                </select>
+              </td>
+              <td>
+                <select name="" class="form-control select-sm" [(ngModel)]="responseSelected">
+                  <option [ngValue]="response" *ngFor="let response of responses">{{response.label}}</option>
+                </select>
+              </td>
+              <td>
+
+                <a class="btn btn-icon btn-social white btn-sm" title="Insert answer" (click)="insertNewQuestion()">
+                  <i class="fa fa-plus"></i>
+                  <i class="fa fa-plus light-green"></i>
+                </a>
+
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn danger btn-sm p-x-md" data-dismiss="modal" (click)="saveProgram()"><i class="fa fa-check-circle"></i> Save changes of program</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="modal fade" id="bottom" #modalTypesRef="bs-modal" *ngIf="isModalTypes" [config]="{ show: true }" (onHidden)="hideModalTypes()" bsModal>
+
+  <div class="bottom white b-t" style="height:320px">
+    <div class="loading" *ngIf="loadingBuilder">
+      <div class="loader"></div>
+    </div>
+    <div class="row-col"><a (click)="hideModalTypes()" class="pull-right text-muted text-lg p-a-sm m-r-sm">×</a>
+      <div class="p-a b-b">
+        <span class="h5">{{type.name}}</span> - <small>Detail configuration</small>
+      </div>
+      <div class="row-row">
+        <div class="row-body">
+          <div class="row-inner">
+            <div class="container">
+              <div class="col-md-3 paddding-top-15">
+                <p>
+                  <label>Id <small><strong>do not modify please</strong></small></label>
+                  <input type="text" readonly class="form-control input-sm-control" name="id" [(ngModel)]="type.id">
+              </div>
+
+              <div class="col-md-3 paddding-top-15">
+                <p>
+                  <label>Name</label>
+                  <input type="text" class="form-control input-sm-control" name="name" [(ngModel)]="type.name">
+              </div>
+
+
+              <div class="col-md-3 paddding-top-15">
+                <p>
+                  <label>Membership</label>
+                  <select class="form-control input-sm-control" name="" [(ngModel)]="type.membership.id">
+                    <option *ngFor="let membership of memberships" [value]="membership.id">{{membership.title}}</option>
+                  </select>
+              </div>
+
+              <div class="col-md-3 paddding-top-15">
+                <p>
+                  <label>Category</label>
+                  <select class="form-control input-sm-control" name="" [(ngModel)]="type.category.id">
+                    <option *ngFor="let category of categories" [value]="category.id">{{category.title}}</option>
+                  </select>
+              </div>
+
+            </div>
+
+            <div class="container">
+              <div class="col-md-4">
+                <label for="">Show Video</label>
+                <div class="form-group">
+                  <div class="input-group">
+                    <select class="form-control input-sm-control" name="" [(ngModel)]="type.mode_head">
+                      <option [ngValue]="1">Yes</option>
+                      <option [ngValue]="0">Not</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-4">
+                <label for="">Image</label>
+                <div class="form-group">
+                  <div class="input-group">
+
+                    <ngfFormData [files]= "image" postName="file[]"  [(FormData)]="imageToFormData"></ngfFormData>
+
+                    <div class="input-group-addon"
+                    ngfDrop multiple="0" selectable="1" (filesChange)="changeComboImageDropFile()" [(files)]="image" [accept]="'.png,.jpg,.gif,.svg,.jpeg,image/*'"
+                    style="height: 2rem !important;  padding: 0.2rem .75rem;"><i class="fa fa-cloud-upload"></i></div>
+                    <input class="form-control input-sm" type="text" [(ngModel)]="type.image" placeholder="Select image for program">
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-4">
+                <label for="">Video</label>
+                <div class="form-group">
+                  <div class="input-group">
+
+                    <ngfFormData [files]= "video" postName="file[]"  [(FormData)]="videoToFormData"></ngfFormData>
+
+                    <div class="input-group-addon"
+                    ngfDrop multiple="0" selectable="1" (filesChange)="changeComboVideoDropFile()" [(files)]="video" [accept]="'.mp4,.3gp,.avi,video/*'"
+                    style="height: 2rem !important;  padding: 0.2rem .75rem;"><i class="fa fa-cloud-upload"></i></div>
+                    <input class="form-control input-sm" type="text" [(ngModel)]="type.video" placeholder="Select video for program">
+                  </div>
+                </div>
+              </div>
+
+
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+      <div class="p-a b-t">
+        <div class="container">
+          <div class="col-md-12"><button class="btn btn-primary pull-right" [disabled]="type.name == null" (click)="saveType()"><i class="fa fa-check-circle"></i> Save client type</button></div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

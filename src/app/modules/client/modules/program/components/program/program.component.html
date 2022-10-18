@@ -1,0 +1,574 @@
+<!--<div class="container" style="min-height:60rem;">-->
+<div class="container" id="main-container">
+
+
+  <div class="head-program" style="position:relative;" [style.background-image]="safeImageUrl(type.image)" *ngIf="type.mode_head == 0">
+    <div class="loading b-radios-0-before" *ngIf="loadingClientType">
+      <div class="loader"></div>
+    </div>
+    <div class="text-center">
+      <h2 class="section-title">{{type.name}}</h2>
+      <small style=" color: white;"><b>{{type.category?.title}}</b></small>
+    </div>
+  </div>
+
+  <div class="layer__video-player" *ngIf="type.mode_head == 1">
+    <video autoplay="autoplay" loop style="width: 100%;  margin-bottom: -6px;">
+      <source src="{{type.video}}" type="video/mp4">
+    </video>
+
+    <div class="loading b-radios-0-before" *ngIf="loadingClientType">
+      <div class="loader"></div>
+    </div>
+    <div class="text-center" style="position: absolute;  top: 50%; left: 40%;  right: 40%;">
+      <h2 class="section-title" style="color: white; font-weight: 600;">{{type.name}}</h2>
+      <small style=" color: white;"><b>{{type.category?.title}}</b></small>
+    </div>
+  </div>
+
+
+
+  <div ui-view="" class="app-body" id="view" style="margin-top: 0px;" *ngIf="section != 'nutrition-program'">
+    <div class="">
+      <div class="row" id="sort--view">
+        <div class="col-md-12">
+          <div>
+            <ul class="list-nav-program text-right" style="    background-color: #ffffff;">
+              <li class="btnTab" [routerLinkActive]="['active']"><a [routerLink]="['/board/u/program/filter', this.type.id, 'daily-workout']">Daily Exercise</a></li>
+              <li class="btnTab" [routerLinkActive]="['active']"><a [routerLink]="['/board/u/program/filter', this.type.id, 'all-workout']">All workouts</a></li>
+              <li class="btnTab" [routerLinkActive]="['active']"><a [routerLink]="['/board/u/program/filter', this.type.id, 'articles']">Articles</a></li>
+            </ul>
+          </div>
+
+          <div class="box" *ngIf="section == 'daily-workout'">
+            <div class="loading" *ngIf="loadingContent">
+              <div class="loader"></div>
+            </div>
+            <div>
+
+              <div class="row" *ngIf="workout != null">
+                <div class="col-md-6 pside-2rem">
+                  <div class="text-right mb-2rem">
+                    <ul class="list-info-workout">
+                      <li class="info-workout"> <i class="fa fa-sun-o"></i> Day {{days}}</li>
+                      <li class="info-workout before-separate"><i class="fa fa-clock-o"></i> {{workout.step?.content.duration}}</li>
+                    </ul>
+                  </div>
+                  <div class="text-center">
+                    <h2 class="section-title">{{workout.step?.content.title}}</h2><br>
+                    <p>{{workout.step?.content.description}}</p>
+                  </div>
+
+                  <br><br>
+
+                  <button *ngIf="workout.step?.content.valid_days == 1" class="btn btn-sm info margin-0-5 m-y-xs pull-right" [swal]="{ title: 'Finish workout?', text: 'Please confirm if you really want to finish the program...' }" (confirm)="finishStep(workout.id)"><i
+                      class="fa fa-check-circle"></i>
+                    Finish Workout
+                  </button>
+                </div>
+                <div class="col-md-6">
+                  <a (click)="webview.openContent(workout.step?.content)">
+                    <div class="thumb__video" [style.background-image]="safeImageUrl(workout.step?.content.thumbnail)"></div>
+                  </a>
+                </div>
+              </div>
+
+
+              <div class="padding" *ngIf="workout == null">
+                <div class="alert alert-warning fade text-left in alert-dismissible">
+                  <a href="#" class="close" data-dismiss="alert" aria-label="close" title="close">×</a>
+                  <small>
+                    Do not have plans available for today, contact your manager as soon as possible.</small>
+                </div>
+              </div>
+
+
+
+            </div>
+          </div>
+
+
+
+
+          <div class="box" *ngIf="section == 'all-workout'">
+            <div class="loading" *ngIf="loadingContent">
+              <div class="loader"></div>
+            </div>
+            <div>
+
+              <div class="row">
+                <div class="col-md-12 padding">
+                  <div class="text-center">
+                    <h2 class="section-title">All Workout</h2><br>
+                  </div>
+
+                  <ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="slideConfig" (init)="slickInit($event)" (breakpoint)="breakpoint($event)" (afterChange)="afterChange($event)" (beforeChange)="beforeChange($event)">
+                    <div ngxSlickItem *ngFor="let slide of slides" class="slide" style="width:450px;">
+                      <div style="">
+                        <a (click)="webview.openContent(slide.step?.content)">
+                          <div class="thumb__video is_be_tem" style="    width: 100%;
+    height: 220px;" [style.background-image]="safeImageUrl(slide.step?.content.thumbnail)"></div>
+                        </a>
+                      </div>
+
+                      <div class="text-center" style="    background-color: #defbff;
+    padding: 1rem;
+    color: #3ccbe0;
+    font-size:1rem;
+    font-weight: 700;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;">
+                        <span class="">{{ slide.step?.content.title }}</span>
+                      </div>
+
+                    </div>
+                  </ngx-slick-carousel>
+
+                </div>
+              </div>
+
+
+
+            </div>
+          </div>
+
+
+
+
+
+
+          <div class="box" *ngIf="section == 'articles'">
+            <div class="loading" *ngIf="loadingContent">
+              <div class="loader"></div>
+            </div>
+            <div>
+
+              <div class="row">
+                <div class="col-md-12 padding">
+                  <div class="text-center">
+                    <h2 class="section-title">Articles</h2><br>
+                  </div>
+                </div>
+
+                <div class="row padding">
+                  <div class="col-md-3 text-center" *ngFor="let article of articles">
+                    <a [routerLink]="['/board/u/program/filter', this.type.id, 'article', article.content.id]">
+                      <div class="item__article" [style.background-image]="safeImageUrl(article.content.thumbnail)" style="width: 100%; height: 10rem;  background-size: cover;"></div>
+                      <div style="
+    padding: 1rem;
+    font-size:1rem;
+    font-weight: 700;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;">
+                        <h6><strong>{{article.content.title}}</strong></h6>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+
+
+            </div>
+          </div>
+
+
+        </div>
+
+
+
+        <div *ngIf="section == 'article'">
+          <div class="col-md-8">
+            <div class="box padding">
+              <div class="padding text-left">
+                <h2>{{article.title}}</h2>
+                <hr>
+                <div [style.background-image]="safeImageUrl(article.thumbnail)" style="width: 100%; height: 20rem;  background-size: cover;"></div>
+              </div>
+
+              <div class="padding">
+                <p [innerHTML]="cont.content | noSanitize" *ngFor="let cont of article.data"></p>
+              </div>
+
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="box"><br>
+              <br>
+              <br>
+              <br>
+              <br>
+              <br>
+              <br>
+              <br>
+              <br>
+              <br>
+              <div class="text-center">
+                <h4 class="text-muted">Demo Box</h4>
+              </div>
+
+
+              <br>
+              <br>
+              <br>
+              <br>
+              <br>
+              <br>
+              <br>
+              <br>
+              <br>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+
+  <div ui-view="" class="app-body" id="view" style="margin-top: 0px;" *ngIf="section == 'nutrition-program'">
+    <div class="">
+      <div class="row" id="sort--view">
+        <div class="col-md-12">
+          <div>
+            <ul class="list-nav-program text-right" style="    background-color: #ffffff;">
+              <li class="btnTab" [routerLinkActive]="['active']"><a [routerLink]="['/board/u/program/filter/', this.type.id, 'nutrition-program', 'daily']">Daily plan</a></li>
+              <li class="btnTab" [routerLinkActive]="['active']"><a [routerLink]="['/board/u/program/filter', this.type.id, 'nutrition-program', 'recipes']">Recipes</a></li>
+              <li class="btnTab" [routerLinkActive]="['active']"><a [routerLink]="['/board/u/program/filter', this.type.id, 'nutrition-program', 'articles']">Articles</a></li>
+            </ul>
+          </div>
+
+          <div class="box" *ngIf="tab == 'daily'">
+            <div class="loading" *ngIf="loadingContent">
+              <div class="loader"></div>
+            </div>
+            <div>
+
+
+
+              <ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="{'slidesToShow': 1, 'slidesToScroll': 1, arrows:true}" (init)="slickInit($event)" (breakpoint)="breakpoint($event)" (afterChange)="afterChange($event)"
+                (beforeChange)="beforeChange($event)">
+                <div class=" daily__" ngxSlickItem *ngFor="let food of food.brakefast">
+                  <div style="min-width:104%">
+                    <div class="col-md-6 pside-2rem padding">
+                      <br>
+                      <div class="text-center">
+                        <h2 class="section-title">{{food.title}}</h2><br>
+                        <div class="text-left" [innerHTML]="food.description"></div>
+                      </div>
+
+                      <br><br>
+                      <button class="btn btn-sm info margin-0-5 m-y-xs pull-right" *ngIf="food.recipe != null" (click)="webview.openContent(food.recipe)">
+                        <i class="fa fa-bars"></i>
+                        View recipe</button>
+
+                    </div>
+                    <div class="col-md-6">
+
+                        <div class="thumb__" [style.background-image]="safeImageUrl(food.thumbnail)"></div>
+
+                    </div>
+                  </div>
+                </div>
+
+              </ngx-slick-carousel>
+
+              <ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="{'slidesToShow': 1, 'slidesToScroll': 1, arrows:true}" (init)="slickInit($event)" (breakpoint)="breakpoint($event)" (afterChange)="afterChange($event)"
+                (beforeChange)="beforeChange($event)">
+                <div class=" daily__" ngxSlickItem *ngFor="let food of food.snack_one">
+                  <div style="min-width:104%">
+                    <div class="col-md-6">
+
+                        <div class="thumb__" [style.background-image]="safeImageUrl(food.thumbnail)"></div>
+
+                    </div>
+
+                    <div class="col-md-6 pside-2rem padding">
+                      <br>
+                      <div class="text-center">
+                        <h2 class="section-title">{{food.title}}</h2><br>
+                        <div class="text-left" [innerHTML]="food.description"></div>
+                      </div>
+
+                      <br><br>
+                      <button class="btn btn-sm info margin-0-5 m-y-xs pull-right" *ngIf="food.recipe != null" (click)="webview.openContent(food.recipe)">
+                        <i class="fa fa-bars"></i>
+                        View recipe</button>
+
+
+                    </div>
+                  </div>
+                </div>
+              </ngx-slick-carousel>
+
+              <ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="{'slidesToShow': 1, 'slidesToScroll': 1, arrows:true}" (init)="slickInit($event)" (breakpoint)="breakpoint($event)" (afterChange)="afterChange($event)"
+                (beforeChange)="beforeChange($event)">
+                <div class=" daily__" ngxSlickItem *ngFor="let food of food.lunch">
+                  <div style="min-width:104%">
+
+
+                    <div class="col-md-6 pside-2rem padding">
+                      <br>
+                      <div class="text-center">
+                        <h2 class="section-title">{{food.title}}</h2><br>
+                        <div class="text-left" [innerHTML]="food.description"></div>
+                      </div>
+
+                      <br><br>
+                      <button class="btn btn-sm info margin-0-5 m-y-xs pull-right" *ngIf="food.recipe != null" (click)="webview.openContent(food.recipe)">
+                        <i class="fa fa-bars"></i>
+                        View recipe</button>
+                    </div>
+
+
+                    <div class="col-md-6">
+
+                        <div class="thumb__" [style.background-image]="safeImageUrl(food.thumbnail)"></div>
+
+                    </div>
+                  </div>
+                </div>
+              </ngx-slick-carousel>
+
+
+              <ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="{'slidesToShow': 1, 'slidesToScroll': 1, arrows:true}" (init)="slickInit($event)" (breakpoint)="breakpoint($event)" (afterChange)="afterChange($event)"
+                (beforeChange)="beforeChange($event)">
+                <div class=" daily__" ngxSlickItem *ngFor="let food of food.snack_two">
+                  <div style="min-width:104%">
+
+                    <div class="col-md-6">
+
+                        <div class="thumb__" [style.background-image]="safeImageUrl(food.thumbnail)"></div>
+
+                    </div>
+
+
+
+                    <div class="col-md-6 pside-2rem padding">
+                      <br>
+                      <div class="text-center">
+                        <h2 class="section-title">{{food.title}}</h2><br>
+                        <div class="text-left" [innerHTML]="food.description"></div>
+                      </div>
+
+                      <br><br>
+                      <button class="btn btn-sm info margin-0-5 m-y-xs pull-right" *ngIf="food.recipe != null" (click)="webview.openContent(food.recipe)">
+                        <i class="fa fa-bars"></i>
+                        View recipe</button>
+                    </div>
+                  </div>
+                </div>
+              </ngx-slick-carousel>
+
+
+              <ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="{'slidesToShow': 1, 'slidesToScroll': 1, arrows:true}" (init)="slickInit($event)" (breakpoint)="breakpoint($event)" (afterChange)="afterChange($event)"
+                (beforeChange)="beforeChange($event)">
+                <div class=" daily__" ngxSlickItem *ngFor="let food of food.dinner">
+                  <div style="min-width:104%">
+                    <div class="col-md-6 pside-2rem padding">
+                      <br>
+                      <div class="text-center">
+                        <h2 class="section-title">{{food.title}}</h2><br>
+                        <div class="text-left" [innerHTML]="food.description"></div>
+                      </div>
+
+                      <br><br>
+                      <button class="btn btn-sm info margin-0-5 m-y-xs pull-right" *ngIf="food.recipe != null" (click)="webview.openContent(food.recipe)">
+                        <i class="fa fa-bars"></i>
+                        View recipe</button>
+                    </div>
+
+                    <div class="col-md-6">
+
+                        <div class="thumb__" [style.background-image]="safeImageUrl(food.thumbnail)"></div>
+
+                    </div>
+                  </div>
+                </div>
+              </ngx-slick-carousel>
+
+
+              <ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="{'slidesToShow': 1, 'slidesToScroll': 1, arrows:true}" (init)="slickInit($event)" (breakpoint)="breakpoint($event)" (afterChange)="afterChange($event)"
+                (beforeChange)="beforeChange($event)">
+                <div class=" daily__" ngxSlickItem *ngFor="let food of food.desert">
+                  <div style="min-width:104%">
+                    <div class="col-md-6">
+
+                        <div class="thumb__" [style.background-image]="safeImageUrl(food.thumbnail)"></div>
+
+                    </div>
+
+                    <div class="col-md-6 pside-2rem padding">
+                      <br>
+                      <div class="text-center">
+                        <h2 class="section-title">{{food.title}}</h2><br>
+                        <div class="text-left" [innerHTML]="food.description"></div>
+                      </div>
+
+                      <br><br>
+                      <button class="btn btn-sm info margin-0-5 m-y-xs pull-right" *ngIf="food.recipe != null" (click)="webview.openContent(food.recipe)">
+                        <i class="fa fa-bars"></i>
+                        View recipe</button>
+                    </div>
+                  </div>
+                </div>
+              </ngx-slick-carousel>
+
+
+
+
+              <br>
+
+
+
+            </div>
+          </div>
+
+
+
+
+          <div class="box" *ngIf="tab == 'recipes'">
+            <div class="loading" *ngIf="loadingContent">
+              <div class="loader"></div>
+            </div>
+            <div>
+
+              <div class="row">
+                <div class="col-md-12 padding">
+                  <div class="text-center">
+                    <h2 class="section-title">Recipes</h2><br>
+                  </div>
+
+
+                    <div class="col-md-3" *ngFor="let slide of slidesRecp">
+                      <div style="">
+                        <a (click)="webview.openContent(slide)">
+                          <div class="thumb__ is_be_tem" style="    width: 100%;
+    height: 220px;" [style.background-image]="safeImageUrl(slide.thumbnail)"></div>
+                        </a>
+                      </div>
+
+                      <div class="text-center" style="    background-color: #defbff;
+    padding: 1rem;
+    color: #3ccbe0;
+    font-size:1rem;
+    font-weight: 700;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;">
+                        <span class="">{{ slide.title }}</span>
+                      </div>
+
+                    </div>
+
+
+                </div>
+              </div>
+
+
+
+            </div>
+          </div>
+
+
+
+
+
+
+          <div class="box" *ngIf="tab == 'articles'">
+            <div class="loading" *ngIf="loadingContent">
+              <div class="loader"></div>
+            </div>
+            <div>
+
+              <div class="row">
+                <div class="col-md-12 padding">
+                  <div class="text-center">
+                    <h2 class="section-title">Articles</h2><br>
+                  </div>
+                </div>
+
+                <div class="row padding">
+                  <div class="col-md-3 text-center" *ngFor="let article of articles">
+                    <a [routerLink]="['/board/u/program/filter/', this.type.id, 'nutrition-program', 'article', article.content.id]">
+                      <div class="item__article" [style.background-image]="safeImageUrl(article.content.thumbnail)" style="width: 100%; height: 10rem;  background-size: cover;"></div>
+                      <div style="
+    padding: 1rem;
+    font-size:1rem;
+    font-weight: 700;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;">
+                        <h6><strong>{{article.content.title}}</strong></h6>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+
+
+            </div>
+          </div>
+
+
+        </div>
+
+
+
+        <div *ngIf="tab == 'article'">
+          <div class="col-md-8">
+            <div class="box padding">
+              <div class="padding text-left">
+                <h2>{{article.title}}</h2>
+                <hr>
+                <div [style.background-image]="safeImageUrl(article.thumbnail)" style="width: 100%; height: 20rem;  background-size: cover;"></div>
+              </div>
+
+              <div class="padding">
+                <p [innerHTML]="cont.content | noSanitize" *ngFor="let cont of article.data"></p>
+              </div>
+
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="box"><br>
+              <br>
+              <br>
+              <br>
+              <br>
+              <br>
+              <br>
+              <br>
+              <br>
+              <br>
+              <div class="text-center">
+                <h4 class="text-muted">Demo Box</h4>
+              </div>
+
+
+              <br>
+              <br>
+              <br>
+              <br>
+              <br>
+              <br>
+              <br>
+              <br>
+              <br>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<!--<app-client-questions></app-client-questions>-->
+<webview-contents></webview-contents>

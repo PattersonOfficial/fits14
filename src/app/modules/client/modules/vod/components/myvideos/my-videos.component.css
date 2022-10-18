@@ -1,0 +1,169 @@
+.my-videos {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  color: #4a6288;
+  /* padding-right: 30px; */
+}
+
+.left-col {
+  width: 70%;
+}
+
+.right-col {
+  width: 25%;
+}
+
+.page-heading {
+  font-family: Montserrat;
+  font-weight: bold;
+  font-size: 20px;
+  margin: 20px 0 35px;
+}
+
+.program-content {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.lessons-list-title {
+  font-family: Montserrat;
+  font-weight: 600;
+  font-size: 12px;
+}
+
+::ng-deep .programs-list .programs_sub_list .card-wrapper {
+  margin: 0 0 20px !important;
+  width: 100% !important;
+}
+
+::ng-deep .programs_sub_list .card-details {
+  width: 100% !important;
+}
+
+.right-col-heading {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 35px;
+  color: #1e3f5c;
+  position: absolute;
+  z-index: 10;
+  background-color: #f4f5f9;
+  /* width: 100%; */
+  margin-top: -20px;
+}
+
+/*
+@tornado
+*/
+
+app-my-videos-lesson-card {
+  width: 45%;
+  margin-right: 30px;
+}
+
+.header_container {
+  display: flex;
+  margin: 0;
+  border: none;
+  align-items: center;
+  background: #f4f5f9;
+  position: fixed;
+  top: 130px;
+  padding: 10px 0 0 0;
+  align-self: baseline;
+  z-index: 10;
+  width: 100%;
+  padding-left: 15px;
+}
+
+.header_container > :first-child {
+  margin-right: 15px;
+}
+
+.header_container > h3 {
+  color: #1e3f5c;
+  font-family: "Montserrat";
+  font-weight: 700;
+  font-size: 20px;
+  margin: 0px;
+  padding: 0px;
+}
+
+.mylist_top_separator {
+  padding-top: 35px;
+}
+
+.programs_list_separator {
+  padding-top: 15px;
+}
+
+@media screen and (max-width: 720px) {
+  .my-videos {
+    display: flex;
+    flex-direction: column;
+    color: #4a6288;
+    margin-top: 25px;
+  }
+
+  .left-col {
+    width: 100%;
+  }
+  .right-col {
+    width: 100%;
+  }
+
+  .right-col-heading {
+    font-size: 14px;
+    line-height: 35px;
+  }
+
+  .programs-list {
+    padding-top: 0;
+  }
+
+  .programs_sub_list {
+    width: 100%;
+    overflow-x: scroll;
+    display: flex;
+  }
+
+  .program-content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .header_container {
+    top: 115px;
+  }
+
+  .header_container > h3 {
+    font-size: 14px;
+    margin: 0px;
+    padding: 0px;
+  }
+
+  .mylist_top_separator {
+    padding-top: 0px;
+  }
+
+  .programs_list_separator {
+    padding-top: 0px;
+  }
+}
+
+@media screen and (min-width: 721px) and (max-width: 1024px) {
+  .program-content{
+    display: flex;
+    flex-direction: column;
+    width: 66vw;
+  }
+  
+  app-my-videos-lesson-card{
+    width: auto
+  }
+}

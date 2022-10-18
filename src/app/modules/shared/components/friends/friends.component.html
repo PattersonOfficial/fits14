@@ -1,0 +1,279 @@
+<div class="box new-box box--small">
+  <div class="loading" *ngIf="loadingBox">
+    <div class="loader"></div>
+  </div>
+  <div class="box-header">
+    <!--<h4>Your friends</h4>-->
+    <div class="box-tool">
+      <ul class="nav">
+        <li class="nav-item inline dropdown">
+          <a class="nav-link text-muted" data-toggle="dropdown" *ngIf="(friends | async)?.length">
+             <i class="fa fa-align-center dashboardModelIcon" aria-hidden="true"></i>
+          </a>
+          <div class="dropdown-menu dropdown-menu-scale pull-right dark" *ngIf="(friends | async)?.length !== 0">
+            <a class="dropdown-item" #googleLogin (click)="signInGoogle();">Find friends on google</a>
+            <a class="dropdown-item" (click)="signInFacebook()">Find friends on Facebook</a>
+            <a class="dropdown-item" (click)="inviteWithEmail()">Invite with e-mail </a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" (click)="getMyFriendsList()"><i class="fa fa-refresh"></i> Reload friends</a>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+
+  <div class="list-group no-radius no-borders" *ngIf="(friends | async)?.length === 0">
+    <div class="icon-friends">
+      <i class="material-icons icon-friends">group_add</i>
+    </div>
+    <div class="text-center padding caption-friends">
+      <span>Invite your friends with your favorite social network</span>
+      <br>
+      <a class="btn btn-icon btn-social white" #googleLogin (click)="signInGoogle();" title="Google+">
+        <i class="fa fa-google-plus"></i>
+        <i class="fa fa-google-plus red-600"></i>
+      </a>
+
+      <a class="btn btn-icon btn-social white" title="Facebook" (click)="signInFacebook()">
+        <i class="fa fa-facebook"></i>
+        <i class="fa fa-facebook indigo"></i>
+      </a>
+
+
+      <a class="btn btn-icon btn-social white" title="Invite with email" (click)="inviteWithEmail()">
+        <i class="fa fa-envelope"></i>
+        <i class="fa fa-envelope green"></i>
+      </a>
+
+
+
+
+    </div>
+  </div>
+
+  <div class="list-group no-radius no-borders" *ngIf="(friends | async)?.length !== 0">
+    <a data-toggle="modal" (click)="getUser(friend.friend_id)" class="list-group-item text-ellipsis" *ngFor="let friend of friends | async; let i = index">
+      <!--<span class="w-8 rounded m-r-sm green" *ngIf="(friend.user | async)?.status == 1"></span>
+      <span class="w-8 rounded m-r-sm danger" *ngIf="(friend.user | async)?.status == 0"></span>
+      <span class="w-8 rounded m-r-sm warn" *ngIf="(friend.user | async)?.status == 2"></span>-->
+      <span>{{i + 1}}. </span>
+      <img src="{{(friend.user | async)?.image}}" class="friend-img img-circle">
+      <span>{{(friend.user | async)?.name}}</span>
+    </a>
+  </div>
+
+</div>
+
+
+
+
+<div id="m-b-b" class="modal in" #modalProfile="bs-modal" [config]="{ show: false }" bsModal>
+  <div class="modal-dialog">
+    <div class="box min-height-250">
+      <div class="loading" *ngIf="loadingBoxProfile">
+        <div class="loader"></div>
+      </div>
+
+
+      <!-- ############ PAGE START-->
+
+      <div class="item" style="background-color: #ebfdff;">
+
+        <div class="p-a-md">
+          <div class="row m-t">
+            <div class="col-md-12">
+              <a href="" class="pull-left m-r-md">
+                <span class="avatar w-96">
+                  <img src="{{friend_data.image}}">
+                </span>
+              </a>
+              <div class="clear m-b">
+                <h3 class="m-a-0 m-b-xs">{{friend_data.name}}</h3>
+                <p class="text-muted"><span class="m-r">{{friend_data.gender == 'M' ? 'Male' : 'Female'}}</span> <small><i class="fa fa-map-marker m-r-xs"></i>{{friend_data.city}}, {{friend_data.country}}</small></p>
+                <div class="block clearfix m-b">
+                  <a href="" class="btn btn-icon btn-social rounded white btn-sm">
+                    <i class="fa fa-facebook"></i>
+                    <i class="fa fa-facebook indigo"></i>
+                  </a>
+                  <a href="" class="btn btn-icon btn-social rounded white btn-sm">
+                    <i class="fa fa-twitter"></i>
+                    <i class="fa fa-twitter light-blue"></i>
+                  </a>
+                  <a href="" class="btn btn-icon btn-social rounded white btn-sm">
+                    <i class="fa fa-google-plus"></i>
+                    <i class="fa fa-google-plus red"></i>
+                  </a>
+                  <a href="" class="btn btn-icon btn-social rounded white btn-sm">
+                    <i class="fa fa-linkedin"></i>
+                    <i class="fa fa-linkedin cyan-600"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+      <div class="dker p-x">
+        <div class="row">
+          <div class="col-sm-6 push-sm-6">
+            <div class="p-y text-center text-sm-right">
+              <!-- <a href="" class="inline p-x text-center">
+                <span class="h4 block m-a-0">2k</span>
+                <small class="text-xs text-muted">Friends</small>
+              </a> -->
+            </div>
+          </div>
+          <div class="col-sm-6 pull-sm-6">
+            <div class="p-y-md clearfix nav-active-primary">
+              <ul class="nav nav-pills nav-sm">
+                <li class="nav-item">
+                  <a class="nav-link active" href="" data-toggle="tab" data-target="#tab_4" aria-expanded="true">Profile</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="" data-toggle="tab" data-target="#tab_5" aria-expanded="true">Programs</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="padding">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="tab-content">
+
+
+
+              <div class="tab-pane p-v-sm active" id="tab_4" aria-expanded="true">
+                <div class="row m-b">
+                  <div class="col-xs-6">
+                    <small class="text-muted">E-mail</small>
+                    <div class="_500">{{friend_data.email}}</div>
+                  </div>
+                  <div class="col-xs-6">
+                    <small class="text-muted">Phone</small>
+                    <div class="_500">+({{friend_data.code_dialling}}) {{friend_data.phone}}</div>
+                  </div>
+                </div>
+                <div class="row m-b">
+                  <div class="col-xs-6">
+                    <small class="text-muted">Date birth</small>
+                    <div class="_500">{{friend_data.date_birth}}</div>
+                  </div>
+                  <div class="col-xs-6">
+                    <small class="text-muted">Manager</small>
+                    <div class="_500">James Richo</div>
+                  </div>
+                </div>
+              </div>
+
+
+
+              <div class="tab-pane p-v-sm" id="tab_5" aria-expanded="true">
+                <div class="p-a-md">
+                  <div class="clearfix m-b-lg">
+
+                    <div class="box-header">
+                      <h2>Assigned programs</h2>
+                      <small>
+                        A summary of the programs assigned to your profile is shown, some of which may not be available, check your status.
+                      </small>
+                    </div>
+
+
+                    <table class="table table-striped b-t">
+                      <thead>
+                        <tr>
+                          <th>Program</th>
+                          <th>Category</th>
+                          <th>Start Date</th>
+                          <th>Finish Date</th>
+                          <th>State</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let program of myPrograms">
+                          <td>{{program.name}}</td>
+                          <td>{{program.category.title}}</td>
+                          <td>{{program.pivot.start_date}}</td>
+                          <td>{{program.pivot.end_date}}</td>
+                          <td>
+                            <span class="label info pos-rlt m-r-xs" *ngIf="program.pivot.status == 1"><b class="arrow left b-info pull-in"></b> <i class="fa fa-clock-o"></i> In progress</span>
+                            <span class="label success pos-rlt m-r-xs" *ngIf="program.pivot.status == 2"><b class="arrow left b-success pull-in"></b> <i class="fa fa-check-circle"></i> Completed</span>
+                            <span class="label danger pos-rlt m-r-xs" *ngIf="program.pivot.status == 3"><b class="arrow left b-danger pull-in"></b> <i class="fa fa-times-circle"></i> Canceled</span>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+</div>
+
+
+
+
+
+
+
+<div id="m-b-b" class="modal in" style="padding-right: 15px; z-index: 99999999 !important; margin-top:10%;" #modalRef="bs-modal" [config]="{ show: false }" bsModal>
+  <div class="modal-dialog">
+    <div class="box min-height-250">
+      <div class="loading" *ngIf="loadingModal">
+        <div class="loader"></div>
+      </div>
+      <div class="box-header">
+        <i class="material-icons icon-friends-title pull-left">group_add</i>
+        <h3>Who do you want to invite?</h3>
+      </div>
+      <div class="box-divider m-a-0"></div>
+      <ul class="list no-border p-b padding" *ngIf="!isWithMail">
+        <li class="list-item text-center" *ngIf="isEmpty && contacts.friends.length == 0">
+          <i class="fa fa-frown-o icon-friends"></i>
+          <h6 class="gray">We do not find your friends</h6>
+        </li>
+        <li class="list-item" *ngFor="let person of contacts.friends">
+          <label class="md-check mt-10 pull-left">
+            <input type="checkbox" class="has-value" name="mails" (change)="setFriend($event, person)">
+            <i class="blue"></i>
+          </label>
+          <span class="list-left">
+            <span class="w-40 avatar">
+              <img src="../../../../../assets/images/people/a10.jpg" alt="...">
+            </span>
+          </span>
+          <div class="list-body">
+            <div><span>{{person.name}}</span></div>
+            <small class="text-muted text-ellipsis">{{person.email}}</small>
+          </div>
+        </li>
+
+        <hr>
+        <button class="btn btn-primary btn-block" [disabled]="selectedContacts.length == 0" (click)="sendInvitation()"><i class="fa fa-send"></i> Send request</button>
+      </ul>
+
+      <div class="padding" *ngIf="isWithMail">
+        <label for="">Name of friend</label>
+        <input type="email" class="form-control input-sm" value="" [(ngModel)]="nameCustom" placeholder="Example: Name of Friend">
+        <br>
+        <label for="">Please insert E-mail</label>
+        <input type="email" class="form-control input-sm" value="" [(ngModel)]="emailCustom" placeholder="Example: my_friend@domain.com">
+        <hr>
+        <button class="btn btn-primary btn-block" [disabled]="emailCustom == '' && nameCustom == ''" (click)="sendInvitationCustom()"><i class="fa fa-send"></i> Send request</button>
+      </div>
+    </div>
+  </div>
+</div>

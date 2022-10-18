@@ -1,0 +1,32 @@
+
+.router-container {
+  margin-left: 227px;
+  /* padding: 0 0 30px 30px; */
+  padding: 0 30px 30px;
+  margin-top: 70px;
+}
+.app {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  /* overflow: hidden; */
+}
+@media screen and (min-width: 1560px) {
+  #app {
+    zoom: 107%;
+  }
+}
+@media screen and (max-width: 720px) {
+  .router-container {
+    margin-left: 0px;
+    padding: 0 20px 20px;
+    top: 0;
+    margin-top: 0;
+  }
+  .app_container {
+    display: flex;
+    flex-direction: column;
+  }
+}

@@ -1,0 +1,61 @@
+  .search-box {
+    padding: 0.5rem 0rem 0px 1rem;
+    margin-top: 5px;
+  }
+
+  ngx-nestable .dd-handle:hover, ngx-nestable ul li .nestable-item-container:hover {
+    color: #616161 !important;
+    background: #f1fdff !important;
+    border: 1px dashed #d4d4d4;
+  }
+
+  .icon-drag {
+    margin-top: 5px;
+    font-size: 20px;
+    color: #00b2e4;
+  }
+
+  .item__timeline {
+    height: 10rem;
+    width: 8rem;
+    border-radius: 5px;
+    display: inline-block;
+    margin: 3px 3px;
+    text-align: center;
+  }
+
+  .item__active.item__timeline--upload:before {
+    opacity: 0 !important;
+  }
+
+  .item__active {
+    background-size: cover;
+    background-position: 50% 50%;
+    border: 2px solid #d3dbe0 !important;
+  }
+
+  .item__timeline--upload {
+    border: 2px dashed #d3dbe0;
+    padding: 2rem;
+    padding-top: 3rem;
+    cursor: pointer;
+    transition: all 0.5s ease;
+  }
+
+  .item__timeline--upload:before {
+    content: '\f030';
+    color: #dde4e8;
+    font-family: fontAwesome;
+    /* border: 2px dashed #d3dbe0; */
+    font-size: 2rem;
+    /* margin-top: 5px; */
+    transition: all 0.5s ease;
+  }
+
+  .item__timeline--upload:hover, .item__timeline--upload:hover:before {
+    color: red;
+    border-color: black;
+    color: #00BCD4;
+    border-color: #00BCD4;
+    transition: all 0.5s ease;
+  }

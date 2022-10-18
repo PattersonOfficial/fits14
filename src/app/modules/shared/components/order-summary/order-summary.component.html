@@ -1,0 +1,156 @@
+<div class="order-summary" mat-dialog-content>
+
+  <!-- Navigation Section -->
+  <div class="navigation">
+    <!-- <i class="fa fa-chevron-left arrow-icon" aria-hidden="true"></i> -->
+    <!-- <div class="navigation-buttons"> -->
+    <!-- <button class="back-button" (click)="closeModal()">
+        Back
+       </button> -->
+
+    <div>
+      <h4 class="order-summary__title heading" mat-dialog-title>
+        {{ "order-summary.order" | translate }}
+      </h4>
+    </div>
+
+    <div class="cancel-btn">
+      <button class="cancel-icon" (click)="closeModal()">
+        <img src="assets/images/cancel.svg" />
+      </button>
+    </div>
+    <!-- </div> -->
+  </div>
+
+  <!-- Title and Image Section -->
+
+  <div class="order-summary__img">
+    <img alt="Order Picture" src="../../../../../assets/images/journey.png" />
+  </div>
+
+  <!-- <div class="order-summary__description">
+    <h5>{{ data.title }}</h5>
+
+    <div class="order-summary__description-text">
+      {{ "order-summary.membership-pack" | translate}}
+    </div>
+
+    <div class="order-summary__description-price" fxLayout="row" fxLayoutAlign="space-between">
+      <div class="order-summary__description-price-count" *ngIf="!priceNew">
+        ${{ data.paymentConfig.amount }}
+      </div>
+
+      <div class="order-summary__description-price-count" *ngIf="priceNew">
+        ${{ priceNew }} <span>${{ data.paymentConfig.amount }}</span>
+      </div>
+
+      <div class="order-summary__description-price-period">
+        {{ "order-summary.bill-period" | translate }}
+      </div>
+    </div>
+
+    <div *ngIf="taxAmount" class="order-summary__description-price" fxLayout="row" fxLayoutAlign="space-between">
+      <div class="order-summary__description-price-count">
+        {{ "vat" | translate }}
+      </div>
+      <div class="order-summary__description-price-period">
+        {{ "order-summary.added" | translate }}
+      </div>
+    </div>
+
+    <div *ngIf="data.mode == 'PLAN'" class="order-summary__description-support">
+      {{ "order-summary.description" | translate }} support@fitnuts.com.
+    </div>
+  </div> -->
+
+  <!-- Pricing Sections -->
+  <div class="sub-payment-container">
+
+    <!-- Main Package & Pricing Section -->
+    <div class="package-container">
+      <div class="package-name">
+        <h2 class="sub-payment-heading">{{ data.membership.title }}</h2>
+      </div>
+      <div class="package-price">
+          <p class="blue-color"> <span class="subscription-currency">US$</span> <span class="actual-price">{{ data.membership.price }}</span>/<span class="package-duration">monthly</span></p>
+      </div>
+    </div>
+
+    <!-- Package Description Section -->
+    <div class="package-desc-container">
+      <div class="package-desc-text">
+        <p class="margin-remover">Fitness & wellness VOD access</p>
+        <p *ngIf="data?.membership.id == 2" class="margin-remover">Personalized Nutrition plan & support</p>
+        <p *ngIf="data?.membership.id == 3" class="margin-remover">Personalized Success Manager</p>
+      </div>
+    </div>
+
+    <!-- Discount Section -->
+    <div *ngIf="discountAmount != ''" class="other-container">
+      <div class="package-name">
+        <h2 class="sub-payment-heading-two">Discount</h2>
+      </div>
+      <div class="package-price">
+        <p class="blue-color"><span class="other-price">US $ {{ discountAmount ? discountAmount : 0.0 }}</span></p>
+      </div>
+    </div>
+
+    <!-- Vat Section -->
+    <div *ngIf="taxPrice != ''" class="other-container">
+      <div class="package-name">
+        <h2 class="sub-payment-heading-two">VAT 17%</h2>
+      </div>
+      <div class="package-price">
+        <p class="blue-color"><span class="other-price">US $ {{ taxPrice ? taxPrice : 0.0 }}</span></p>
+      </div>
+    </div>
+
+    <!-- Total Today Section -->
+    <div class="other-container">
+      <div class="package-name">
+        <h2 class="sub-payment-heading-three">Total Today</h2>
+      </div>
+      <div class="package-price">
+        <p class="blue-color"><span class="other-price-two">US $ {{ invoicePrice ? invoicePrice : 0.0 }}</span></p>
+      </div>
+    </div>
+
+    <!-- <br> -->
+
+    <!-- Notice and Change Plan Section -->
+    <div class="other-container">
+      <div class="package-desc-text-two">
+        <p>Your membership will automatically renew every month.</p>
+        <p class="margin-remover">You may cancel anytime on the web or by contacting <a
+            href="mailto:https://support@fitnuts.com" target="_blank"
+            style="text-decoration: underline;">support@fitnuts.com</a></p>
+      </div>
+    </div>
+
+  </div>
+
+
+  <div class="order-summary__field" fxLayout="row" fxLayoutAlign="center center" [class.disabled]="discount">
+    <div [formGroup]="form" class="order-summary__field-form" fxLayout="row">
+      <input formControlName="code" matInput placeholder="Coupon Code" (keypress)="checkCode($event)" />
+
+      <button (click)="checkCode()" class="order-summary__field-form-btn">
+        <span class="material-icons md-white">arrow_forward</span>
+      </button>
+    </div>
+  </div>
+
+  <div class="order-summary__coupon text-center" *ngIf="discount">
+    {{"order-summary.coupon_enabled" | translate}}
+  </div>
+
+  <div class="order-summary__coupon-error text-center" *ngIf="responseError">
+    {{responseError}}
+  </div>
+
+  <div class="order-summary__submit" fxLayout="row" fxLayoutAlign="center center">
+    <button (click)="submit()" class="order-summary__submit-btn">
+      {{ "subscribe" | translate }}
+    </button>
+  </div>
+</div>

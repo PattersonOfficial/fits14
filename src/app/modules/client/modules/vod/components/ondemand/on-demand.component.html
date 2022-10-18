@@ -1,0 +1,50 @@
+<div class="loader" *ngIf="loading"></div>
+
+<div class="category" *ngIf="popularPrograms?.length">
+  <h3 class="category-heading">Most Popular</h3>
+  <!--    <app-client-programsslider [type]="'popular'" [programs]="popularPrograms" (onPlayVideo)="handlePlay($event)" ></app-client-programsslider>-->
+  <app-client-programsslider
+    [type]="'popular'"
+    [programs]="popularPrograms"
+    (onPlayVideo)="handlePlay($event)"
+    [user]="user"
+    (onShowPaymentModal)="handlePaymentFormModal($event)"
+    (onSubscribeDemand)="passToProgramVod($event)"
+  ></app-client-programsslider>
+</div>
+
+<div class="category" *ngIf="fitnessPrograms?.length">
+  <h3 class="category-heading">Fitness</h3>
+  <app-client-programsslider
+    [type]="'category'"
+    [programs]="fitnessPrograms"
+    (onPlayVideo)="handlePlay($event)"
+    [user]="user"
+    (onShowPaymentModal)="handlePaymentFormModal($event)"
+    (onSubscribeDemand)="passToProgramVod($event)"
+  ></app-client-programsslider>
+</div>
+
+<div class="category" *ngIf="nutritionPrograms?.length">
+  <h3 class="category-heading">Nutrition</h3>
+  <app-client-programsslider
+    [type]="'category'"
+    [programs]="nutritionPrograms"
+    (onPlayVideo)="handlePlay($event)"
+    [user]="user"
+    (onShowPaymentModal)="handlePaymentFormModal($event)"
+    (onSubscribeDemand)="passToProgramVod($event)"
+  ></app-client-programsslider>
+</div>
+
+<div class="category" *ngIf="wellnessPrograms?.length">
+  <h3 class="category-heading">Wellness</h3>
+  <app-client-programsslider
+    [type]="'category'"
+    [programs]="wellnessPrograms"
+    (onPlayVideo)="handlePlay($event)"
+    [user]="user"
+    (onShowPaymentModal)="handlePaymentFormModal($event)"
+    (onSubscribeDemand)="passToProgramVod($event)"
+  ></app-client-programsslider>
+</div>

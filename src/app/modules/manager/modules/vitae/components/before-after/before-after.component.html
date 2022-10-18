@@ -1,0 +1,40 @@
+<br>
+<div class="alert alert-info fade text-left in alert-dismissible">
+  <a href="#" class="close" data-dismiss="alert" aria-label="close" title="close">×</a>
+  <small>
+    In this section you can add photos of your progress, which you expect to add a photograph of your current status right now. We recommend that the photograph be full body and as far as possible in the same place.</small>
+</div>
+<div class="row text-center">
+
+  <div class="col-md-12 text-left">
+    <a (click)="openImage(item)" *ngFor="let item of images">
+      <div class="item__timeline item__timeline--upload item__active" [style.background-image]="getBackground(item.image)" style="position:relative;">
+
+        <span style="font-size: 9px;
+    position: absolute;
+    bottom: 3px;
+    left: 15px;
+    background-color: #ffffff9c;
+    padding: 5px;
+    border-radius: 3px;">{{item.created_at}}</span>
+      </div>
+    </a>
+
+  </div>
+
+</div>
+
+
+<div id="m" class="modal black-overlay" #modalGallery="bs-modal" [config]="{ show: false }" bsModal>
+    <div class="modal-dialog text-center">
+      <div class="box padding" style="position: absolute;
+    display: inline-block;
+    left: 32%;">
+              <img src="{{background}}" style="max-width:600px;">
+              <hr>
+              <div class="text-center">
+                {{date}}
+              </div>
+      </div>
+  </div>
+</div>

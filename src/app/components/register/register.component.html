@@ -1,0 +1,835 @@
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="ball-spin" [fullScreen]="true">
+    <p style="color: white"> Loading... </p>
+</ngx-spinner>
+
+
+<mat-horizontal-stepper #stepper>
+
+    <!-- Step 1: Create an account [index = 0] -->
+    <mat-step>
+        <section class="registration-section">
+            <div class="registration-container">
+
+                <div class="registration-poster">
+
+                    <!-- logo -->
+                    <div class="main-logo">
+                        <img src="../../../assets/images/registrationPage/fitnuts--main-logo.png" alt="" />
+                    </div>
+
+                    <!-- main logo -->
+                    <div class="logos">
+                        <!-- F-logo -->
+                        <div class="background-logo">
+                            <img src="../../../assets/images/registrationPage/fitnuts-logo.png"
+                                style="width: 100%; height: 100%;" alt="" />
+                        </div>
+
+                        <!-- Ava background -->
+                        <div class="fitnuts-background">
+                            <img class="fitnut-bg-image" src="../../../assets/images/registrationPage/fitnuts-bg.png"
+                                alt="" />
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="registration-wrapper">
+                    <!-- <div class="registration-wrapper-content"> -->
+                        <div class="heading-wrap">
+                            <div class="registration-heading">
+                                <h3>CREATE AN ACCOUNT</h3>
+                            </div>
+    
+                            <div class="registration-subheading">
+                                <p>Already a member? <strong><a [routerLink]="['/login']"
+                                            style="text-decoration: underline; color: #529DFF;">LOG IN</a></strong></p>
+                            </div>
+                        </div>
+    
+    
+                        <div class="registration-form">
+    
+                            <form>
+                                <div class="form-controls form-controls-pair">
+                                    <div class="form-control-cortege">
+    
+                                        <input type="text"
+                                            [ngClass]="registerFields.name=='' ? 'form-control-input-error' : 'form-control-input'"
+                                            placeholder="First Name" name="name" [(ngModel)]="registerFields.name" required>
+    
+                                        <span class="form-control-error" *ngIf="registerFields.name==''">
+                                            Please enter your first name.
+                                        </span>
+                                    </div>
+    
+                                    <div class="form-control-cortege">
+                                        <input type="text"
+                                            [ngClass]="registerFields.last_name=='' ? 'form-control-input-error' : 'form-control-input'"
+                                            placeholder="Last Name" name="last_name" [(ngModel)]="registerFields.last_name"
+                                            required>
+    
+                                        <span class="form-control-error" *ngIf="registerFields.last_name==''">
+                                            Please enter your last name.
+                                        </span>
+                                    </div>
+                                </div>
+    
+                                <div class="form-controls">
+                                    <input type="email"
+                                        [ngClass]="!mailExist ? 'form-control-input-error' : registerFields.email=='' ? 'form-control-input-error' : 'form-control-input'"
+                                        placeholder="Email Address" name="email" required="" autocomplete="off"
+                                        #email="ngModel" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,10}$"
+                                        [(ngModel)]="registerFields.email" (change)="verifyEmail(email.value)">
+                                    <!-- <span class="form-control-error" [hidden]="!email.errors?.pattern">
+                                        This email is invalid. Enter in the format: example@email.com
+                                    </span> -->
+                                    <span class="form-control-error" *ngIf="!mailExist">
+                                        The entered email is registered
+                                    </span>
+                                    <span class="form-control-error" *ngIf="registerFields.email==''">
+                                        This email is required or invalid. Enter in the format: example@email.com
+                                    </span>
+                                </div>
+    
+                                <div class="form-controls">
+                                    <input type="text"
+                                        [ngClass]="!phoneExist ? 'form-control-input-error' : registerFields.phone=='' ? 'form-control-input-error' : 'form-control-input'"
+                                        ng2TelInput placeholder="Phone Number" required="" name="phone" #phone="ngModel"
+                                        [(ngModel)]="registerFields.phone" (keyup)="verifyPhone(phone.value)"
+                                        [ngModelOptions]="{standalone: true}" [ng2TelInputOptions]="currentCountry">
+                                    <span class="form-control-error" *ngIf="!phoneExist">
+                                        The entered phone is registered
+                                    </span>
+                                    <span class="form-control-error"
+                                        *ngIf="(phone.dirty || phone.touched) && (phone.errors?.minlength)">
+                                        Password must be at least 7 characters long.
+                                    </span>
+                                    <span class="form-control-error" *ngIf="registerFields.phone==''">
+                                        Please enter your phone number
+                                    </span>
+                                </div>
+    
+                                <div class="form-controls">
+    
+                                    <input type="password"
+                                        [ngClass]="!passMatch ? 'form-control-input-error' : registerFields.password=='' ? 'form-control-input-error' : 'form-control-input'"
+                                        placeholder="Password" name="password" minlength="7" #password="ngModel" required=""
+                                        [(ngModel)]="registerFields.password" (input)="validateInput($event)">
+    
+                                    <span class="show-password" (click)="togglePassVis($event)">
+                                        <img src="../../../assets/images/registrationPage/eye.svg" alt="membership">
+                                    </span>
+    
+    
+    
+                                    <span class="form-control-error" *ngIf="registerFields.password==''">
+                                        Please fill these details
+                                    </span>
+    
+                                    <span class="form-control-error"
+                                        *ngIf="(password.dirty || password.touched) && (password.errors?.minlength)">
+                                        Password must be at least 8 characters long.
+                                    </span>
+                                    <span class="form-control-error"
+                                        *ngIf="(password.dirty || password.touched) && !hasUpperCase">
+                                        Password must contain at least one upper case.
+                                    </span>
+                                    <span class="form-control-error"
+                                        *ngIf="(password.dirty || password.touched) && !hasLowerCase">
+                                        One lower case letter.
+                                    </span>
+                                    <span class="form-control-error"
+                                        *ngIf="(password.dirty || password.touched)  && !hasSpecialCharacter">
+                                        Password must contain at least one number or special character
+                                    </span>
+    
+                                    <span class="form-control-error" *ngIf="registerFields.password==''">
+                                        Please fill these details
+                                    </span>
+    
+    
+    
+                                </div>
+    
+                                <div class="form-controls">
+                                    <div
+                                        [ngClass]="!passMatch ? 'input-field-error' : registerFields.password=='' ? 'input-field-error' : 'input-field' ">
+                                        <input type="password" placeholder="Confirm Password" class="confirm-password"
+                                            name="cpassword" required="" [(ngModel)]="cPassword"
+                                            (keyup)="verifyPassword(cPassword)">
+    
+                                        <span class="password-icon" (click)="togglePassVis($event)">
+                                            <img src="../../../assets/images/registrationPage/eye.svg" alt="membership">
+                                        </span>
+    
+                                    </div>
+    
+                                    <span class="form-control-error" *ngIf="!passMatch">
+                                        Password does not match
+                                    </span>
+    
+                                    <span class="form-control-error" *ngIf="registerFields.password==''">
+                                        Please fill this details
+                                    </span>
+    
+    
+                                    <!-- <span class="show-password" (click)="togglePassVis($event)">
+                                        <img src="../../../assets/images/registrationPage/eye.svg" alt="membership">
+                                    </span> -->
+    
+                                </div>
+    
+                                <br>
+    
+                                <div class="submit-button">
+                                    <div class="registration-btn">
+                                        <button [disabled]="(!isMatching && !allChecks)" (click)="upToSecondStep(stepper)"
+                                            class="create-account-btn"><strong>CREATE
+                                                AN ACCOUNT</strong></button>
+                                    </div>
+                                </div>
+    
+                                <div class="divider">
+                                    <div class="subdivider"></div>
+                                    <p>OR SIGN UP WITH</p>
+                                    <div class="subdivider"></div>
+                                </div>
+    
+                                <div class="facebook-login">
+                                    <button class="login-submit-btn social-btn" (click)="facebookLogin()">
+                                        <img src="../../../assets/images/loginPage/fb_icon_blue.png" alt="fb_icon">
+                                        <span>Facebook</span>
+                                    </button>
+    
+                                    &nbsp;
+    
+                                    <button class="login-submit-btn social-btn" (click)="googleLogin()">
+                                        <img src="../../../assets/images/loginPage/google_icon.png" alt="fb_icon">
+                                        <span>Google</span>
+                                    </button>
+    
+                                </div>
+    
+                                <!-- <br> -->
+    
+                                <div class="terms-section">
+                                    <p>By registrating, you agree to <strong><a href="https://fitnuts.com/terms-conditions/"
+                                                target="_blank">Terms of Use</a></strong> and <strong><a
+                                                href="https://fitnuts.com/privacy-policy-2/" target="_blank">Privacy
+                                                Policy</a></strong></p>
+                                </div>
+                            </form>
+    
+                        </div>
+                    <!-- </div> -->
+
+                   
+                </div>
+
+            </div>
+        </section>
+    </mat-step>
+
+    <!-- Step 1.5: Create an account using social logins [index = 1]-->
+    <mat-step>
+        <section class="registration-section">
+            <div class="registration-container">
+
+                <div class="registration-poster">
+
+                    <!-- logo -->
+                    <div class="main-logo">
+                        <img src="../../../assets/images/registrationPage/fitnuts--main-logo.png" alt="" />
+                    </div>
+
+                    <!-- main logo -->
+                    <div class="logos">
+                        <!-- F-logo -->
+                        <div class="background-logo">
+                            <img src="../../../assets/images/registrationPage/fitnuts-logo.png"
+                                style="width: 100%; height: 100%;" alt="" />
+                        </div>
+
+                        <!-- Ava background -->
+                        <div class="fitnuts-background">
+                            <img class="fitnut-bg-image" src="../../../assets/images/registrationPage/fitnuts-bg.png"
+                                alt="" />
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="registration-wrapper">
+
+                    <div class="heading-wrap">
+                        <div class="registration-heading">
+                            <h3>CREATE AN ACCOUNT</h3>
+                        </div>
+
+                        <div class="registration-subheading">
+                            <p>Already a member? <strong><a [routerLink]="['/login']"
+                                        style="text-decoration: underline; color: #529DFF;">LOG IN</a></strong></p>
+                        </div>
+                    </div>
+
+
+                    <div class="registration-form">
+
+                        <form>
+                            <div class="form-controls form-controls-pair">
+                                <div class="form-control-cortege">
+
+                                    <input type="text"
+                                        [ngClass]="registerFields.name=='' ? 'form-control-input-error' : 'form-control-input'"
+                                        placeholder="First Name" name="name" [(ngModel)]="registerFields.name" required>
+
+                                    <span class="form-control-error" *ngIf="registerFields.name==''">
+                                        Please enter your first name.
+                                    </span>
+                                </div>
+
+                                <div class="form-control-cortege">
+                                    <input type="text"
+                                        [ngClass]="registerFields.last_name=='' ? 'form-control-input-error' : 'form-control-input'"
+                                        placeholder="Last Name" name="last_name" [(ngModel)]="registerFields.last_name"
+                                        required>
+
+                                    <span class="form-control-error" *ngIf="registerFields.last_name==''">
+                                        Please enter your last name.
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="form-controls">
+                                <input type="email"
+                                    [ngClass]="!mailExist ? 'form-control-input-error' : registerFields.email=='' ? 'form-control-input-error' : 'form-control-input'"
+                                    placeholder="Email Address" name="email" required="" autocomplete="off"
+                                    #email="ngModel" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,10}$"
+                                    [(ngModel)]="registerFields.email" (change)="verifyEmail(email.value)">
+                                <!-- <span class="form-control-error" [hidden]="!email.errors?.pattern">
+                                    This email is invalid. Enter in the format: example@email.com
+                                </span> -->
+                                <span class="form-control-error" *ngIf="!mailExist">
+                                    The entered email is registered
+                                </span>
+                                <span class="form-control-error" *ngIf="registerFields.email==''">
+                                    This email is required or invalid. Enter in the format: example@email.com
+                                </span>
+                            </div>
+
+                            <div class="form-controls">
+                                <input type="text"
+                                    [ngClass]="!phoneExist ? 'form-control-input-error' : registerFields.phone=='' ? 'form-control-input-error' : 'form-control-input'"
+                                    ng2TelInput placeholder="Phone Number" required="" name="phone" #phone="ngModel"
+                                    [(ngModel)]="registerFields.phone" (keyup)="verifyPhone(phone.value)"
+                                    [ngModelOptions]="{standalone: true}" [ng2TelInputOptions]="currentCountry">
+                                <span class="form-control-error" *ngIf="!phoneExist">
+                                    The entered phone is registered
+                                </span>
+                                <span class="form-control-error"
+                                    *ngIf="(phone.dirty || phone.touched) && (phone.errors?.minlength)">
+                                    Phone must be at least 7 digits long.
+                                </span>
+                                <span class="form-control-error" *ngIf="registerFields.phone==''">
+                                    Please enter your phone number
+                                </span>
+                            </div>
+
+                            <br>
+
+                            <div class="submit-button">
+                                <div class="registration-btn">
+                                    <button [disabled]="phone.invalid" (click)="upToSecondStepSocial(stepper)"
+                                        class="create-account-btn"><strong>CREATE
+                                            AN ACCOUNT</strong></button>
+                                </div>
+                            </div>
+
+                            <div class="terms-section">
+                                <p>By registrating, you agree to <strong><a href="https://fitnuts.com/terms-conditions/"
+                                            target="_blank">Terms of Use</a></strong> and <strong><a
+                                            href="https://fitnuts.com/privacy-policy-2/" target="_blank">Privacy
+                                            Policy</a></strong></p>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </mat-step>
+
+    <!--------Step 2: Email Verification [index = 2] ------------->
+    <mat-step>
+        <section class="registration-section">
+            <div class="registration-container">
+
+                <div class="registration-poster">
+
+                    <!-- logo -->
+                    <div class="main-logo">
+                        <img src="../../../assets/images/registrationPage/fitnuts--main-logo.png" alt="" />
+                    </div>
+
+                    <!-- main logo -->
+                    <div class="logos">
+                        <!-- F-logo -->
+                        <div class="background-logo">
+                            <img src="../../../assets/images/registrationPage/fitnuts-logo.png"
+                                style="width: 100%; height: 100%;" alt="" />
+                        </div>
+
+                        <!-- Ava background -->
+                        <div class="fitnuts-background">
+                            <img class="fitnut-bg-image" src="../../../assets/images/registrationPage/fitnuts-bg.png"
+                                alt="" />
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="registration-wrapper">
+                    <div class="registration-heading-two">
+                        <h2><strong>EMAIL VERIFICATION</strong></h2>
+                    </div>
+
+                    <div class="spacing"></div>
+
+                    <div class="registration-subheading-two">
+                        <p style="margin: 0;"><strong>We sent a code to your email,</strong></p>
+                        <p style="margin: 0;"><strong>please verify the code here:</strong></p>
+                    </div>
+
+                    <div class="registration-form">
+
+                        <form>
+
+                            <div class="form-controls">
+                                <div class="registration-otp">
+                                    <ng-otp-input (onInputChange)="onOtpChange($event)" [config]="otpConfig">
+                                    </ng-otp-input>
+                                    <div *ngIf="isOtpError">
+                                        <br>
+                                        <span class="form-control-error">
+                                            &emsp;&emsp;&emsp;&emsp; {{ otpError }}
+                                        </span>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <br>
+
+                            <div class="submit-button">
+                                <div class="registration-btn">
+                                    <button (click)="verifyOtpCode(stepper)"
+                                        class="create-account-btn"><strong>VERIFY</strong></button>
+                                </div>
+                            </div>
+
+                            <div class="registration-footing">
+                                <p>Didn’t get a code? <a (click)="resendEmailToken()"
+                                        style="text-decoration: underline; color: #529DFF;">RESEND VERIFICATION CODE</a>
+                                </p>
+                                <p>Need to change your email? <a (click)="previousStep(stepper)"
+                                        style="text-decoration: underline; color: #529DFF;">GO BACK</a></p>
+                            </div>
+
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+    </mat-step>
+
+    <!--------Step 3: Subscription Selection [index = 3]------------->
+    <mat-step>
+        <section class="registration-section">
+            <div class="registration-container">
+
+                <div class="registration-poster">
+
+                    <!-- logo -->
+                    <div class="main-logo">
+                        <img src="../../../assets/images/registrationPage/fitnuts--main-logo.png" alt="" />
+                    </div>
+
+                    <!-- main logo -->
+                    <div class="logos">
+                        <!-- F-logo -->
+                        <div class="background-logo">
+                            <img src="../../../assets/images/registrationPage/fitnuts-logo.png"
+                                style="width: 100%; height: 100%;" alt="" />
+                        </div>
+
+                        <!-- Ava background -->
+                        <div class="fitnuts-background">
+                            <img class="fitnut-bg-image" src="../../../assets/images/registrationPage/fitnuts-bg.png"
+                                alt="" />
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="registration-wrapper">
+                    <div class="registration-heading">
+                        <h3><strong>SUBSCRIPTION</strong></h3>
+                    </div>
+
+                    <div class="spacing"></div>
+
+                    <div class="registration-subscription-form-card">
+
+
+                        <div class="form-controls">
+
+                            <div class="subscriptions">
+
+                                <div class="sub-top"
+                                    (click)="memberSelection(memberships[0].price.toString(), memberships[0].id, memberships[0], stepper)">
+
+                                    <div class="sub-package">
+                                        <div class="sub-package-heading">
+                                            <h1 class="sub-heading">BASIC</h1>
+                                        </div>
+                                        <div class="sub-package-paragraph">
+                                            <p class="sub-description">Fitness membership pack/ monthly</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="subprice-placement">
+                                        <div class="sub-price">
+                                            <h1> <span class="currency">$</span> 29 <span class="frequency">/
+                                                    monthly</span>
+                                            </h1>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="sub-top"
+                                    (click)="memberSelection(memberships[1].price.toString(), memberships[1].id, memberships[1], stepper)">
+
+                                    <div class="sub-package">
+                                        <h1 class="sub-heading">PRO</h1>
+                                        <p class="sub-description">Fitness & Nutrition membership pack / monthly</p>
+                                    </div>
+
+                                    <div class="subprice-placement">
+                                        <div class="sub-price">
+                                            <h1> <span class="currency">$</span> 69 <span class="frequency">/
+                                                    monthly</span>
+                                            </h1>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="sub-top"
+                                    (click)="memberSelection(memberships[2].price.toString(), memberships[2].id, memberships[2], stepper)">
+
+                                    <div class="sub-package">
+                                        <h1 class="sub-heading">PREMIUM</h1>
+                                        <p class="sub-description">Fitness & Nutrition & Wellness membership pack /
+                                            monthly</p>
+                                    </div>
+
+                                    <div class="subprice-placement">
+                                        <div class="sub-price">
+                                            <h1> <span class="currency">$</span> 99 <span class="frequency">/
+                                                    monthly</span>
+                                            </h1>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="sub-last"
+                                    (click)="memberSelection(memberships[3].price.toString(), memberships[3].id, memberships[3], stepper)">
+
+                                    <div class="sub-package">
+                                        <h1 class="sub-heading">FREE ACCESS</h1>
+                                        <p class="sub-description">Social media full access & VOD</p>
+                                    </div>
+
+                                    <div class="sub-price-last">
+                                        <h1> No Payment</h1>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <div class="receive-email">
+                                <form>
+                                    <label style="display: flex; align-items: center; justify-content: center;">
+                                        <input type="radio" [checked]="true"
+                                            [(ngModel)]="registerFields.is_agree_to_emails"
+                                            [ngModelOptions]="{standalone: true}">
+                                        &nbsp; I agree to receive emails and updates from Fitnuts
+
+                                    </label>
+                                </form>
+                            </div>
+
+                            <div class="spacing"></div>
+                            <div class="spacing"></div>
+
+                        </div>
+
+
+                    </div>
+                </div>
+
+
+            </div>
+        </section>
+    </mat-step>
+
+    <!--------Step 4: Subscription payment [index = 4] ------------->
+    <mat-step>
+        <section class="registration-section">
+            <div class="registration-container">
+
+                <div class="registration-poster">
+
+                    <!-- logo -->
+                    <div class="main-logo">
+                        <img src="../../../assets/images/registrationPage/fitnuts--main-logo.png" alt="" />
+                    </div>
+
+                    <!-- main logo -->
+                    <div class="logos">
+                        <!-- F-logo -->
+                        <div class="background-logo">
+                            <img src="../../../assets/images/registrationPage/fitnuts-logo.png"
+                                style="width: 100%; height: 100%;" alt="" />
+                        </div>
+
+                        <!-- Ava background -->
+                        <div class="fitnuts-background">
+                            <img class="fitnut-bg-image" src="../../../assets/images/registrationPage/fitnuts-bg.png"
+                                alt="" />
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="registration-wrapper">
+
+                    <div class="registration-heading-two">
+                        <h3><strong>SUBSCRIPTION</strong></h3>
+                    </div>
+
+                    <div class="registration-subscription-form">
+                        <div class="form-controls">
+
+                            <div *ngIf="membership?.id == 1" class="subscriptions-payment">
+                                <div class="subscription-card-payment sub-payment">
+
+                                    <div class="sub-package">
+                                        <div class="sub-package-heading">
+                                            <h1 class="sub-heading">Basic</h1>
+                                        </div>
+                                        <div class="sub-package-paragraph">
+                                            <p class="sub-description-payment">Fitness membership pack / billed monthly
+                                            </p>
+                                        </div>
+
+                                        <div class="sub-package-paragraph">
+                                            <p class="sub-package-notice">
+                                                By placing the order, you acknowledge that your Fitnuts membership
+                                                automatically renews and is charged every month, in the credit card you
+                                                provide today, until you cancel. You may cancel anytime on the web or by
+                                                contacting Support@fitnuts.com
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    <br>
+
+                                    <div class="sub-price" style="color: #529DFF;">
+                                        <h1> <span class="currency">$</span> {{ membership?.price }} <span
+                                                class="frequency">/ monthly</span>
+                                        </h1>
+
+                                        <p class="sub-change-plan" (click)="previousStep(stepper)">Change Plan</p>
+
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div *ngIf="membership?.id == 2" class="subscriptions-payment">
+
+                                <div class="subscription-card-payment sub-payment">
+
+                                    <div class="sub-package">
+                                        <div class="sub-package-heading">
+                                            <h1 class="sub-heading">Pro</h1>
+                                        </div>
+                                        <div class="sub-package-paragraph">
+                                            <p class="sub-description-payment">Fitness & Nutrition Membership Pack /
+                                                Billed Monthly
+                                            </p>
+                                        </div>
+
+                                        <div class="sub-package-paragraph">
+                                            <p class="sub-package-notice">
+                                                By placing the order, you acknowledge that your Fitnuts membership
+                                                automatically renews and is charged every month, in the credit card you
+                                                provide today, until you cancel. You may cancel anytime on the web or by
+                                                contacting Support@fitnuts.com
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    <br>
+
+                                    <div class="sub-price" style="color: #529DFF;">
+                                        <h1> <span class="currency">$</span> {{ membership?.price }} <span
+                                                class="frequency">/ monthly</span>
+                                        </h1>
+
+                                        <p class="sub-change-plan" (click)="previousStep(stepper)">Change Plan</p>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+
+                            <div *ngIf="membership?.id == 3" class="subscriptions-payment">
+
+                                <div class="subscription-card-payment sub-payment">
+
+                                    <div class="sub-package">
+                                        <div class="sub-package-heading">
+                                            <h1 class="sub-heading">Premium</h1>
+                                        </div>
+                                        <div class="sub-package-paragraph">
+                                            <p class="sub-description-payment">Fitness & Nutrition & Wellness membership
+                                                pack / billed monthly
+                                            </p>
+                                        </div>
+
+                                        <div class="sub-package-paragraph">
+                                            <p class="sub-package-notice">
+                                                By placing the order, you acknowledge that your Fitnuts membership
+                                                automatically renews and is charged every month, in the credit card you
+                                                provide today, until you cancel. You may cancel anytime on the web or by
+                                                contacting Support@fitnuts.com
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    <br>
+
+                                    <div class="sub-price" style="color: #529DFF;">
+                                        <h1> <span class="currency">$</span> {{ membership?.price }} <span
+                                                class="frequency">/ monthly</span>
+                                        </h1>
+
+                                        <p class="sub-change-plan" (click)="previousStep(stepper)">Change Plan</p>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+
+
+
+
+
+                    <div class="registration-form">
+
+                        <form #paymentFormElement [formGroup]="paymentForm" id="payment-form">
+
+                            <div class="form-controls">
+                                <input formControlName="couponCode" class="form-control-input" placeholder="Promo Code"
+                                    (input)="checkCouponErrorMessage()" />
+
+                                <button (click)="checkCode()" class="coupon-arrow">
+                                    <span class="material-icons md-white form-control-coupon">arrow_forward</span>
+                                </button>
+
+                                <span class="form-control-error" *ngIf="responseError" (change)="checkErrorMessage()">
+                                    {{ responseError }}
+                                </span>
+                            </div>
+
+                            <div class="form-controls">
+                                <input type="text"
+                                    [ngClass]="cardHolder.invalid && cardHolder.touched ? 'form-control-input-error' : 'form-control-input'"
+                                    placeholder="Card Holder Name" formControlName="cardHolder"
+                                    (change)="checkErrorMessage()">
+                                <span class="form-control-error" *ngIf="cardHolder.invalid && cardHolder.touched">
+                                    Please enter the name on card.
+                                </span>
+                            </div>
+
+                            <div class="form-controls">
+                                <input type="text"
+                                    [ngClass]="cardNumber.invalid && cardNumber.touched ? 'form-control-input-error' : 'form-control-input'"
+                                    placeholder="Card Number" formControlName="cardNumber"
+                                    data-bluesnap="encryptedCreditCard">
+                                <span class="form-control-error" *ngIf="cardNumber.invalid && cardNumber.touched">
+                                    Please enter a valid card number.
+                                </span>
+                            </div>
+
+                            <div class="form-controls form-controls-pair">
+                                <div class="form-control-cortege">
+                                    <input type="text"
+                                        [ngClass]="cardExpire.invalid && cardExpire.touched ? 'form-control-input-error' : 'form-control-input'"
+                                        placeholder="Expiration(MM/YY)" maxlength="5" formControlName="cardExpire"
+                                        name="exp" (keyup)="formatString($event);">
+                                    <span class="form-control-error" *ngIf="cardExpire.invalid && cardExpire.touched">
+                                        Please enter your card's expiration date.
+                                    </span>
+                                </div>
+
+                                <div class="form-control-cortege">
+                                    <input type="text" maxlength="3"
+                                        [ngClass]="cardSecurityCode.invalid && cardSecurityCode.touched ? 'form-control-input-error' : 'form-control-input form-control-csv'"
+                                        placeholder="CVC/CVV" formControlName="cardSecurityCode" name="cvv"
+                                        data-bluesnap="encryptedCvv">
+                                    <span class="form-control-error"
+                                        *ngIf="cardSecurityCode.invalid && cardSecurityCode.touched">
+                                        Please enter the CVV/CVC of your card.
+                                    </span>
+                                </div>
+                            </div>
+
+                            <span class="form-control-error" *ngIf="transactionError">{{transactionError}}</span>
+
+                            <br>
+                            <div *ngIf="transactionError">
+                                <br>
+                            </div>
+
+                            <div class="submit-button">
+                                <div class="registration-btn">
+                                    <button (click)="submitPayment()"
+                                        class="create-account-btn"><strong>SUBSCRIBE</strong></button>
+                                </div>
+                            </div>
+
+                        </form>
+
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </mat-step>
+
+</mat-horizontal-stepper>

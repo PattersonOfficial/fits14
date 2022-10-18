@@ -1,0 +1,245 @@
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="ball-spin" [fullScreen]="true">
+  <p style="color: white"> Loading... </p>
+</ngx-spinner>
+
+
+<mat-horizontal-stepper #stepper>
+
+  <!-- Step 1: Request Password Reset -->
+  <mat-step *ngIf="!isResettingPassword">
+    <section class="registration-section">
+      <div class="registration-container">
+
+        <div class="registration-poster">
+
+          <!-- logo -->
+          <div class="main-logo">
+            <img src="../../../assets/images/registrationPage/fitnuts--main-logo.png" alt="" />
+          </div>
+
+          <!-- main logo -->
+          <div class="logos">
+            <!-- F-logo -->
+            <!-- <div class="background-logo">
+              <img src="../../../assets/images/registrationPage/fitnuts-logo.png" style="width: 100%; height: 100%;"
+                alt="" />
+            </div> -->
+
+            <!-- main background -->
+            <div class="fitnuts-background">
+              <img class="fitnut-bg-image" src="../../../assets/images/registrationPage/main_bg.png" alt="" />
+            </div>
+          </div>
+
+        </div>
+
+
+        <div class="registration-wrapper">
+
+          <div class="heading-wrap">
+            <div class="registration-heading">
+              <h3><strong>FORGOT PASSWORD</strong></h3>
+            </div>
+
+            <div class="registration-subheading">
+              <p>Don`t have an account? <strong><a [routerLink]="['/account/register']"
+                    style="text-decoration: underline;">SIGN UP</a></strong></p>
+            </div>
+
+          </div>
+
+          <div class="registration-subheading-two" *ngIf="!isEmailSent">
+            <p><strong>Provide your account's email for which you want to reset your password</strong></p>
+          </div>
+
+          <div class="registration-subheading-two" *ngIf="isEmailSent">
+            <p><strong>You will receive an email with a link to reset your password. Please check your inbox</strong>
+            </p>
+          </div>
+
+          <div class="registration-form">
+
+            <form>
+
+              <div class="form-controls" *ngIf="!isEmailSent">
+                <input type="email"
+                  [ngClass]="error ? 'form-control-input-error' : email.errors?.pattern ? 'form-control-input-error' : 'form-control-input'"
+                  placeholder="Email" name="email" required="" id="email" autocomplete="off" #email="ngModel"
+                  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,10}$" [(ngModel)]="requestRecoveryForm.email">
+                <span class="form-control-error" [hidden]="!email.errors?.pattern">
+                  This email is invalid. Enter in the format: example@email.com
+                </span>
+
+                <span class="form-control-error" *ngIf="error">
+                  {{ error }}
+                </span>
+                <br *ngIf="email.errors?.pattern">
+              </div>
+
+              <br *ngIf="!isEmailSent">
+              <br>
+
+              <div class="submit-button" *ngIf="!isEmailSent">
+                <div class="registration-btn">
+                  <button (click)="requestRestore($event)" class="create-account-btn"><strong>RESET
+                      PASSWORD</strong></button>
+                </div>
+              </div>
+
+              <div class="registration-footing" *ngIf="!isEmailSent">
+                <p><a [routerLink]="['/login']">Cancel</a></p>
+              </div>
+
+              <div class="registration-footing" *ngIf="isEmailSent">
+                <p><a (click)="resendResetLink()">Resend Email Link</a></p>
+                <p><a (click)="resetCard()">Change Email ID</a></p>
+              </div>
+            </form>
+
+          </div>
+        </div>
+
+
+      </div>
+    </section>
+  </mat-step>
+
+
+  <!-- Step 2: Change Password  -->
+  <mat-step *ngIf="isResettingPassword">
+    <section class="registration-section">
+      <div class="registration-container">
+
+        <div class="registration-poster">
+
+          <!-- logo -->
+          <div class="main-logo">
+            <img src="../../../assets/images/registrationPage/fitnuts--main-logo.png" alt="" />
+          </div>
+
+          <!-- main logo -->
+          <div class="logos">
+            <!-- F-logo -->
+            <div class="background-logo">
+              <img src="../../../assets/images/registrationPage/fitnuts-logo.png" style="width: 100%; height: 100%;"
+                alt="" />
+            </div>
+
+            <!-- Ava background -->
+            <div class="fitnuts-background">
+              <img class="fitnut-bg-image" src="../../../assets/images/registrationPage/fitnuts-bg.png" alt="" />
+            </div>
+          </div>
+
+        </div>
+
+
+        <div class="registration-wrapper">
+
+          <div class="heading-wrap">
+            <div class="registration-heading">
+              <h3><strong>FORGOT PASSWORD</strong></h3>
+            </div>
+
+            <div class="registration-subheading">
+              <p>Don`t have an account? <strong><a [routerLink]="['/account/register']"
+                    style="text-decoration: underline;">SIGN UP</a></strong></p>
+            </div>
+
+          </div>
+
+          <div class="registration-subheading-two">
+            <p><strong>Provide your new credentials for authentication</strong></p>
+          </div>
+
+
+          <div class="registration-form">
+
+            <form>
+
+              <div class="form-controls">
+                <input type="password" [ngClass]="isMatching ? 'form-control-input' : 'form-control-input-error'"
+                  placeholder="New Password" minlength="8" name="password" #password="ngModel"
+                  [(ngModel)]="newPasswordForm.password" (input)="validateInput($event)">
+
+                <span class="show-password" (click)="togglePassVis($event)">
+                  <img src="../../../assets/images/registrationPage/eye.svg" alt="membership">
+                </span>
+              </div>
+
+              <div class="form-controls">
+                <input type="password" [ngClass]="isMatching ? 'form-control-input' : 'form-control-input-error'"
+                  placeholder="Re-Type Password" name="password" #password="ngModel" (keyup)="verifyPassword()"
+                  [(ngModel)]="newPasswordForm.password2">
+
+                <span class="form-control-error" *ngIf="!isMatching">
+                  Password does not match
+                </span>
+                <span class="form-control-error" *ngIf="error">
+                  {{ error }}
+                </span>
+                <span class="form-control-error" *ngIf="!allChecks">
+                  Password does not meet the requirements below
+                </span>
+
+                <span class="show-password" (click)="togglePassVis($event)">
+                  <img src="../../../assets/images/registrationPage/eye.svg" alt="">
+                </span>
+              </div>
+
+              <br><br>
+
+              <div class="form-checks">
+                <p>
+                  <img *ngIf="(password.dirty || password.touched) && (!password.errors?.minlength)"
+                    src="../../../assets/images/circle-tick.png" alt="">
+                  <img *ngIf="(password.dirty || password.touched)  && (password.errors?.minlength)"
+                    src="../../../assets/images/cross-circle.png" alt="">
+                  &nbsp; Password must be at least 8 characters long.
+                </p>
+                <p>
+                  <img *ngIf="(password.dirty || password.touched) && hasUpperCase"
+                    src="../../../assets/images/circle-tick.png" alt="">
+                  <img *ngIf="(password.dirty || password.touched) && (!hasUpperCase)"
+                    src="../../../assets/images/cross-circle.png" alt="">
+                  &nbsp; Password must contain at least one upper case.
+                </p>
+                <p>
+                  <img *ngIf="(password.dirty || password.touched) && hasLowerCase"
+                    src="../../../assets/images/circle-tick.png" alt="">
+                  <img *ngIf="(password.dirty || password.touched) && (!hasLowerCase)"
+                    src="../../../assets/images/cross-circle.png" alt="">
+                  &nbsp; One lower case letter.
+                </p>
+                <p>
+                  <img *ngIf="(password.dirty || password.touched) && hasSpecialCharacter"
+                    src="../../../assets/images/circle-tick.png" alt="">
+                  <img *ngIf="(password.dirty || password.touched)  && !hasSpecialCharacter"
+                    src="../../../assets/images/cross-circle.png" alt="">
+                  &nbsp; Password must contain at least one number or special character
+                </p>
+              </div>
+
+              <div class="submit-button">
+                <div class="registration-btn">
+                  <button (click)="changePassword($event)" class="create-account-btn"
+                    [disabled]="(!isMatching && !allChecks)"><strong>SUBMIT</strong></button>
+                </div>
+              </div>
+
+              <div class="registration-footing">
+                <p><a [routerLink]="['/login']">Cancel</a></p>
+              </div>
+
+            </form>
+
+          </div>
+        </div>
+
+
+      </div>
+    </section>
+  </mat-step>
+
+
+</mat-horizontal-stepper>

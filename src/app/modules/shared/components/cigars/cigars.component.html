@@ -1,0 +1,81 @@
+<div class="box box--small">
+  <div class="loading" *ngIf="loadingBox">
+    <div class="loader"></div>
+  </div>
+  <div class="box-header">
+    <h4>Smoking tracker</h4>
+    <div class="box-tool">
+      <ul class="nav">
+        <li class="nav-item inline dropdown">
+          <a class="nav-link text-muted" disabled data-toggle="dropdown">
+            <i class="material-icons text-muted md-18"></i>
+          </a>
+          <!-- <div class="dropdown-menu dropdown-menu-scale pull-right dark">
+            <a class="dropdown-item" (click)="openSettings()"><i class="fa fa-cogs"></i> Settings</a>
+          </div> -->
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="p-a-md">
+    <div class="text-center" *ngIf="!initConfigure">
+      <h6 class="animated title-tile bounceInUp">¿How many cigars have you smoked?</h6>
+
+      <div class="animated rubberBand" id="icon_smoke" [hidden]="verifyDamage" [inlineSVG]="'../../assets/images/widgets/lungs.svg'">
+      </div>
+        <small *ngIf="smokeToday > 0"><i class="fa fa-caret-right"></i> Smoked today: <strong>{{smokeToday}}</strong></small>
+        <div>
+          <button type="button" class="btn btn-sm white margin-0-12 m-y-xs" [disabled]="smoke.cigars <= 0" (click)="delCigars()"><i class="fa fa-minus"></i></button>
+          <input type="number" class="form-control input-inline input-sm" min="1" name="cigars" [(ngModel)]="smoke.cigars">
+          <button type="button" class="btn btn-sm white margin-0-12 m-y-xs" (click)="setCigars()"><i class="fa fa-plus"></i></button>
+        </div>
+
+        <hr class="hr-custom">
+        <div class="text-center m-t" [hidden]="!isVisibleIntro">
+          <button type="button" class="btn btn-sm success margin-0-12 m-y-xs" [disabled]="smoke.cigars < 0" (click)="saveCigars()"><i class="fa fa-check-circle"></i> Save</button>
+          <button type="button" class="btn btn-sm danger margin-0-12 m-y-xs" (click)="openLogWeek()" style="display:none;"><i class="fa fa-line-chart"></i> See log</button>
+        </div>
+    </div>
+
+  </div>
+</div>
+
+
+
+
+
+
+
+<div id="m" class="modal" #modalRef="bs-modal" [config]="{ show: false }" bsModal>
+  <div class="modal-dialog animated fade-left modal-lg">
+    <div class="modal-content">
+      <div class="loading" *ngIf="loadingBoxModal">
+        <div class="loader"></div>
+      </div>
+      <div class="modal-header">
+        <div class="box-header">
+          <div class="pull-right">
+            <a class="btn btn-sm danger full-width margin-0-12 m-y-xs" [routerLinkActive]="['active']" [routerLink]="['/board/u/progress']"><i class="fa fa-line-chart"></i> View total progress</a>
+          </div>
+          <h3>
+            <i class="fa fa-fire"></i>
+            Smoking tracker</h3>
+          <small>Summary of cigars smoked the last 5 days</small>
+        </div>
+      </div>
+      <div class="modal-body text-center p-lg">
+        <div class="row">
+          <div class="col-md-12">
+                <ngx-charts-line-chart [results]="dataReport" [xAxis]="true" [yAxis]="true" [scheme]="colorScheme" schemeType="linear" [legend]="true" [gradient]="true" [showXAxisLabel]="true" [showYAxisLabel]="true" [showRefLines]="true"
+              [autoScale]="true" [referenceLines]="ref">
+            </ngx-charts-line-chart>
+
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+
+  </div>
+</div>

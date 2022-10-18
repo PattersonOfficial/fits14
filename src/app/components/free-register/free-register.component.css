@@ -1,0 +1,3708 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,700;1,800;1,900&display=swap");
+
+/* --------Mat Stepper-------- */
+::ng-deep .mat-horizontal-stepper-header-container {
+  display: none !important;
+}
+
+::ng-deep .mat-horizontal-content-container {
+  padding: 0 !important;
+}
+
+/* -----Mat Datepicker-------- */
+.mat-datepicker-input {
+  position: relative;
+}
+
+::ng-deep .mat-calendar {
+  font-family: "Montserrat", sans-serif;
+  color: rgb(43, 54, 62);
+}
+
+::ng-deep .mat-datepicker-toggle {
+  position: absolute;
+  top: 3px;
+  right: 15px;
+}
+
+::ng-deep svg.mat-datepicker-toggle-default-icon.ng-star-inserted {
+  color: #8b95a5;
+}
+
+::ng-deep div.mat-calendar-body-cell-content.mat-calendar-body-today {
+  background-color: #8b95a5;
+  color: rgb(3, 3, 3);
+}
+
+::ng-deep .mat-calendar-body-selected {
+  background-color: #00a6dc;
+}
+
+/* --------Custom Ng Select----------- */
+::ng-deep .ng-select {
+  width: 100%;
+  height: 45px;
+  padding-bottom: 0;
+}
+
+::ng-deep .ng-select .ng-select-container {
+  width: 100% !important;
+  height: 45px;
+  margin: 1% 0;
+  padding: 0;
+  padding-left: 15px;
+  border: 1px solid #f4f6f9;
+  background: #f4f6f9;
+  border-radius: 3px;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 35px;
+  color: #8b95a5;
+}
+
+::ng-deep .ng-select .ng-select-container .ng-value-container div.ng-placeholder {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 35px;
+  color: #8b95a5 !important;
+}
+
+::ng-deep .ng-select.ng-select-single .ng-select-container .ng-arrow-wrapper {
+  right: 10px;
+  bottom: 9px;
+}
+
+::ng-deep .ng-select .ng-select-container .ng-value-container .ng-input>input {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  padding-left: 15px;
+}
+
+::ng-deep .ng-select .ng-select-container .ng-value-container {
+  padding: 0.4375em 0;
+  border-top: none;
+}
+
+::ng-deep .ng-select.ng-select-single .ng-select-container .ng-clear-wrapper {
+  right: 3px;
+  bottom: 6px !important;
+}
+
+::ng-deep .ng-dropdown-panel .ng-dropdown-panel-items .ng-option.ng-option-selected {
+  background: #00a6dc;
+  color: #ffffff;
+}
+
+::ng-deep .ng-select .ng-select-container:after {
+  border-bottom: none;
+}
+
+::ng-deep .registration-wrapper .ng-select-searchable {
+  caret-color: transparent;
+}
+
+::ng-deep .mat-calendar-previous-button.mat-icon-button[aria-label="Previous year"],
+::ng-deep .mat-calendar-next-button.mat-icon-button[aria-label="Next year"] {
+  display: none !important;
+}
+
+::ng-deep .registration-wrapper .iti {
+  width: 100%;
+}
+
+/* Custom ng2TelInput Styling */
+::ng-deep .iti__selected-flag {
+  border-bottom-left-radius: 50px;
+  border-top-left-radius: 50px;
+}
+
+::ng-deep .ng-dropdown-panel.ng-select-bottom {
+  margin-top: 25px;
+}
+
+/* --------Registration Step Form-------- */
+.registration-container.payment {
+  width: calc(100vw - 50px);
+  height: calc(100vh - 50px);
+}
+
+.registration-container.payment iframe {
+  width: 100%;
+  height: 95%;
+  margin-top: 1%;
+}
+
+.registration-container.payment .registration-wrapper {
+  width: 100%;
+  padding: 2%;
+}
+
+.registration-container.payment .registration-options {
+  margin: 0 0 2%;
+}
+
+
+.registration-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: auto;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+.registration-container {
+  display: flex;
+  width: 75%;
+  height: 85vh;
+  margin: 0 auto;
+  padding: 0;
+  background: #ffffff;
+  box-shadow: 0 15px 35px rgba(219, 219, 219, 0.160784);
+}
+
+.registration-container.wide {
+  width: 60%;
+}
+
+.registration-form {
+  width: 81%;
+  padding: 2% 5% 0 5%;
+}
+
+.heading-wrap {
+  height: 12%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.registration-subscription-form {
+  width: 100%;
+  display: flex;
+}
+
+.registration-subscription-form-card {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.move-up {
+  margin-top: -5vh;
+}
+
+.registration-wrapper {
+  width: 45%;
+  height: 100%;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: "Poppins";
+  z-index: 3;
+}
+
+.registration_wrapper {
+  width: 48%;
+  height: 100%;
+  padding: 32px 28px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: "Poppins";
+  padding-top: 36px;
+  z-index: 3;
+  background-color: #202020;
+}
+
+.registration-heading>h3 {
+  font-size: 20px;
+  font-weight: 1900;
+  font-family: "Poppins";
+}
+
+.spacing {
+  height: 5vh;
+}
+
+.registration-heading-two>h3 {
+  font-size: 20px;
+  font-weight: 1900;
+  font-family: "Poppins";
+  margin-top: 20px;
+}
+
+.registration-subheading>p {
+  font-size: 10px;
+  font-weight: 400;
+  font-family: "Poppins";
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.registration-subheading-two {
+  font-size: 12px;
+  font-weight: 300;
+  font-family: "Poppins";
+  margin-top: 15%;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.registration-footing {
+  margin-top: 20px;
+  text-align: center;
+  font-family: "Poppins";
+  font-size: 10px;
+  font-weight: 400;
+}
+
+.registration-otp {
+  text-align: center;
+}
+
+.registration-wrapper.payment {
+  width: 100%;
+}
+
+.registration-poster {
+  height: 100%;
+  width: 55%;
+  margin: 0;
+  padding: 0;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: #529dff;
+  position: relative;
+}
+
+.logos {
+  display: flex;
+  position: relative;
+  height: 575px;
+  width: 100%;
+}
+
+.main-logo {
+  display: flex;
+  position: absolute;
+  left: 1.63vw;
+  width: 5.21vw;
+  height: 11.14vh;
+}
+
+.background-logo {
+  display: flex;
+  width: 24.75vw;
+  height: 52.5vh;
+  background-repeat: no-repeat;
+  background-size: contain;
+  margin-top: 15.3vh;
+  margin-left: 5.9vw;
+}
+
+.fitnuts-background {
+  display: flex;
+  position: absolute;
+  top: -3.5vh;
+  left: 5.5vw;
+}
+
+.fitnut-bg-image {
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+}
+
+.registration-poster-img {
+  max-width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.registration-title {
+  font-family: "Montserrat", sans-serif;
+  font-size: 25px;
+  font-weight: 600;
+  color: rgb(0, 0, 0);
+  text-transform: capitalize;
+}
+
+.registration-graph {
+  font-family: "Montserrat", sans-serif;
+  font-size: 16px;
+  color: #8b95a5;
+}
+
+.registration-options {
+  width: 100%;
+  margin: 0 0 5%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.back-to-login {
+  width: calc(85 / 316 * 100%);
+  min-height: 45px;
+  background: #ffffff;
+  border: 1px solid #dfdfdf;
+  border-radius: 3px;
+  font-family: Montserrat, sans-serif;
+  font-size: 12px;
+  line-height: 35px;
+  text-transform: uppercase;
+  color: #8b95a5;
+}
+
+.back-to-login:hover {
+  background-color: rgba(158, 161, 168, 0.35);
+  box-shadow: 0 2.5px 5px rgba(158, 173, 179, 0.4);
+  color: rgb(120, 121, 124);
+}
+
+.submit-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.divider {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 15px;
+}
+
+.divider>p {
+  margin-top: 14px;
+  font-size: 10px;
+}
+
+.subdivider {
+  height: 1px;
+  background-color: #c8c8c8;
+  width: 75px;
+}
+
+.card-divider {
+  height: 1px;
+  background-color: #050505;
+  width: 90%;
+}
+
+.subscriptions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 40vh;
+  background-color: #fafafa;
+  border-radius: 10px;
+  border: 1px solid #c8c8c8;
+  cursor: pointer;
+  width: 100%;
+}
+
+._subscriptions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  border-radius: 10px;
+  border: 1px solid rgba(163, 162, 162, 0.4);
+  cursor: pointer;
+  width: 100%;
+}
+
+.subscriptions-payment {
+  display: flex;
+  flex-direction: column;
+  background-color: #fafafa;
+  border-radius: 10px;
+  border: 1px solid #c8c8c8;
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
+  width: 90%;
+}
+
+.sub-payment-container {
+  background: #FAFAFA;
+  border: 0.5px solid rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 8px;
+  width: 90%;
+  padding: 20px;
+  margin: 20px auto;
+}
+
+.sub-payment-content {
+  width: 72%;
+  font-size: 8px;
+  color: #8B8585;
+  line-height: 13px;
+  text-align: justify;
+  margin-right: 8px;
+}
+
+.sub-payment-heading {
+  font-weight: 700;
+  font-size: 22px;
+  line-height: 24px;
+  color: #142A3D;
+}
+
+.sub-payment-heading-two {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 35px;
+  color: #1E3F5C;
+}
+
+.sub-payment-heading-three {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 35px;
+  color: #1E3F5C;
+}
+
+
+.blue-color {
+  color: #529DFF;
+}
+
+.package-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.other-container {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: -20px;
+}
+
+.package-name {
+  width: 60%;
+}
+
+.package-price {}
+
+.package-duration {}
+
+.package-desc-container {
+  display: flex;
+  align-items: center;
+}
+
+.package-desc-text {
+  width: 80%;
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 18px;
+  display: flex;
+  flex-direction: column;
+  text-transform: capitalize;
+  color: #142A3D;
+}
+
+.package-desc-text-two {
+  width: 80%;
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 300;
+  font-size: 10px;
+  line-height: 16px;
+  display: flex;
+  flex-direction: column;
+  color: #535353;
+  /* margin-top: -13px; */
+}
+
+.change-plan {
+  /* margin-top: 20px; */
+  font-size: 12px;
+  line-height: 18px;
+  text-decoration-line: underline;
+  cursor: pointer;
+}
+
+.margin-remover {
+  margin-top: -15px;
+}
+
+.margin-remover-two {
+  margin-top: -13px;
+}
+
+.receive-email {
+  height: 5vh;
+  font-size: 12px;
+  padding: 20px;
+}
+
+.subscriptions-card {
+  width: 100%;
+  height: 10vh !important;
+  background: #fafafa;
+  cursor: pointer;
+}
+
+.subscriptions-card-payment {
+  width: 100%;
+  background: #fafafa;
+}
+
+.sub-top {
+  border-bottom: 1px solid #cccccc;
+  height: 10vh !important;
+  display: flex;
+  align-items: space-between;
+  justify-content: center;
+  width: 100%;
+}
+
+.sub-top:hover {
+  background: #d0e4ff;
+  width: 110%;
+  height: 15vh !important;
+  left: 773px;
+  top: 177px;
+  margin-top: -10px;
+  border: 2px solid #d0e4ff;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.subs_plan_container,
+.subs_plan_container_last {
+  height: 90px !important;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 8px;
+  border-bottom: 2px solid #d0e4ff;
+  margin-left: 0.25rem;
+}
+
+.subscription_item_container_last {
+  border-bottom: none;
+}
+
+.subscription_header_wrapper {
+  display: flex;
+}
+
+.subscription_header_wrapper>*:first-child {
+  margin-right: 0.5rem;
+}
+
+.subscription_best_value_container {
+  padding: 4px 5px;
+  background: linear-gradient(99.3deg, #ffed8c 22.84%, #f4b335 102.81%);
+  box-shadow: inset 0px -2px 21px rgba(140, 78, 20, 0.25),
+    inset 0px 14px 14px rgba(255, 250, 207, 0.73);
+  border-radius: 4px;
+  color: #272727;
+  font-family: "Poppins" sans-serif;
+  font-size: 10px;
+  height: fit-content;
+}
+
+.subscription_desc_container {
+  display: flex;
+  flex-direction: column;
+  margin-top: 0.25rem;
+  height: 100%;
+}
+
+.subscription_header_wrapper>h1 {
+  font-family: "Poppins", sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.subscription_desc_container>p {
+  font-family: "Poppins", sans-serif;
+  font-size: 11px;
+  font-weight: 300;
+}
+
+.subscription_pricing_container {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  color: #529dff;
+  font-family: "Poppins" sans-serif;
+  width: 200px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.subscription_pricing_amt {
+  font-size: 24px;
+}
+
+.subscription_pricing_currency {
+  font-size: 12px;
+}
+
+.subscription_pricing_freq {
+  font-size: 10px;
+  bottom: 0px;
+  align-self: flex-end;
+}
+
+.subscription_pricing_text_wrapper {
+  height: fit-content;
+  width: 100%;
+  display: flex;
+}
+
+.subscription_item_container:hover,
+.subscription_item_container_last:hover {
+  background-color: #d0e4ff;
+  width: 105%;
+  height: 98px !important;
+  margin-top: -10px;
+  border-radius: 5px;
+  padding: 10px 20px;
+  display: flex;
+  border: none;
+}
+
+.sub-last {
+  height: 10vh !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.sub-last:hover {
+  background: #d0e4ff;
+  width: 110%;
+  height: 15vh !important;
+  border: 2px solid #d0e4ff;
+  margin-top: -10px;
+  margin-bottom: -5px;
+  border-radius: 5px;
+}
+
+.sub-package {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  align-items: start;
+  justify-content: center;
+  height: 100%;
+  padding: 5px;
+  margin-left: 10px;
+}
+
+.sub-heading {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.sub-description {
+  font-size: 10px;
+  font-weight: 400;
+}
+
+.sub-description-payment {
+  font-size: 12px;
+  font-weight: 400;
+}
+
+.sub-package-notice {
+  font-size: 9px;
+  font-weight: 400;
+}
+
+.sub-change-plan {
+  color: #529dff;
+  text-decoration: underline;
+  font-size: 12px;
+  cursor: pointer;
+  margin-top: 4vh;
+}
+
+.sub-price {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  margin-right: 20px;
+  margin-top: 10px;
+  color: #529dff;
+}
+
+.subprice-placement {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sub-price-last {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 20px;
+  color: #529dff;
+}
+
+.sub-price>h1 {
+  font-size: 20px;
+  font-weight: 600;
+  padding-left: 5px;
+}
+
+.sub-price-last>h1 {
+  font-size: 10px;
+  font-weight: 600;
+  padding-left: 5px;
+}
+
+.sub-package-paragraph {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sub-package-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.best-value {
+  font-size: 10px;
+  background-image: linear-gradient(to left, #f4b335, #ffed8c);
+  color: #142a3d;
+  border-radius: 10px;
+  border: none;
+}
+
+.currency {
+  position: absolute;
+  font-size: 15px;
+  top: 0;
+  left: 0;
+  margin-left: -28px;
+}
+
+.sub-currency {
+  position: absolute;
+  font-size: 15px;
+  top: 0;
+  left: 0;
+  margin-left: -4px;
+}
+
+.frequency {
+  font-size: 10px;
+}
+
+.subscriptions-card-top {
+  width: 100%;
+  height: 15vh;
+  background: #fafafa;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  cursor: pointer;
+}
+
+.subscriptions-card-top:hover {
+  color: white;
+  background: #529dff;
+}
+
+.subscriptions-card-bottom {
+  width: 100%;
+  height: 15vh;
+  background: #fafafa;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  cursor: pointer;
+}
+
+.subscriptions-card-bottom:hover {
+  color: white;
+  background: #529dff;
+}
+
+.subscriptions-content {
+  margin: 20px;
+}
+
+.registration-btn button,
+.payment-btn button {
+  padding: 15px 61px;
+  margin-top: 5%;
+  border: none;
+  background: #529dff;
+  box-shadow: 0 10px 15px rgba(0, 166, 220, 0.301961);
+  border-radius: 50px;
+  font-size: 14px;
+  text-transform: uppercase;
+  color: #ffffff;
+}
+
+.terms-section {
+  margin-top: 30px;
+  font-size: 9px;
+  text-align: center;
+}
+
+.registration-btn button:hover,
+.payment-btn button:hover {
+  opacity: 0.75;
+  transition: ease-in-out 2s;
+}
+
+.registration-membership {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 38px calc(50 / 830 * 100%);
+}
+
+.form-controls {
+  width: 100%;
+  height: 25% !important;
+  margin: 3% 0;
+}
+
+.form_controls {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-controls-pair {
+  display: flex;
+  justify-content: space-between;
+  align-items: inherit;
+}
+
+.form-control-coupon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: -7px;
+}
+
+.input-field {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 5vh;
+  padding-left: 12px;
+  border: 1px solid #529dff;
+  border-radius: 50px;
+}
+
+.input-field-error {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 5vh;
+  padding-left: 12px;
+  border: 1px solid #ff5252;
+  border-radius: 50px;
+}
+
+.confirm-password {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 35px;
+  color: black;
+  width: 87.5%;
+  border: 1px solid #fff;
+  height: 80%;
+}
+
+.confirm-password::placeholder {
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 35px;
+  color: #8b95a5;
+}
+
+.password-icon {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  opacity: 0.5;
+  transition: all 0.25s;
+}
+
+.password-icon:hover {
+  opacity: 1;
+}
+
+.form-control-input {
+  width: 100%;
+  height: 5vh;
+  padding-left: 15px;
+  border: 1px solid #529dff;
+  border-radius: 50px;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 35px;
+  color: black;
+}
+
+.coupon-arrow {
+  width: 28px;
+  height: 28px;
+  position: absolute;
+  right: 0.6vw;
+  top: 0.8vh;
+  padding-left: 15px;
+  border: 1px solid #529dff;
+  border-radius: 50%;
+  background-color: #529dff;
+}
+
+.form-control-input-error {
+  width: 100%;
+  height: 5vh;
+  padding-left: 15px;
+  border: 1px solid #ff5252;
+  border-radius: 50px;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500 !important;
+  font-size: 12px !important;
+  line-height: 35px;
+  color: black;
+}
+
+.form-control-cortege {
+  width: 47%;
+}
+
+.formfield {
+  position: relative;
+  box-sizing: border-box;
+  float: left;
+  margin: auto;
+  padding: 0px;
+  border: 0px;
+  font-size: 1em;
+}
+
+.formfield * {
+  box-sizing: border-box;
+}
+
+#firstnamefield,
+#lastnamefield {
+  width: 50%;
+  min-width: 250px;
+}
+
+#addressfield {
+  width: 100%;
+}
+
+#zipcodefield {
+  width: 25%;
+}
+
+#cityfield {
+  width: 75%;
+}
+
+.formfield>input,
+.formfield>label {
+  padding: 0.8em;
+  margin: 0.5em;
+  width: 100%;
+}
+
+.formfield>input {
+  border: 1px solid #00bafa;
+  border-radius: 1.5em;
+  outline: none;
+}
+
+.formfield>label {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  color: #ccc;
+}
+
+input:focus+label,
+input:valid+label {
+  color: #00bafa;
+  font-size: 0.8em;
+  width: auto;
+  height: 1.3em;
+  padding: 0px 0.5em 0px 0.5em;
+  margin: 0px;
+  background: white;
+  transition: 0.2s ease-in-out;
+  top: 0em;
+  left: 2em;
+}
+
+.form-control-input:focus-within {
+  border: 1px solid #00a6dc;
+  box-shadow: 0 2.5px 5px rgba(0, 166, 220, 0.25677);
+}
+
+.form-control-input:focus-within::before {
+  content: "First Name";
+  position: absolute;
+  top: 100%;
+  left: 20%;
+  transform: translateX(-50%);
+  border: 15px solid;
+  border-color: #0000 0000;
+}
+
+.form-control-input::placeholder {
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 35px;
+  color: #8b95a5;
+}
+
+.form-control-error {
+  text-align: center;
+  margin-top: 20px;
+  text-align: center;
+  color: #ff5252;
+  font-family: "Poppins", sans-serif;
+  font-size: 11px;
+  font-weight: 350;
+}
+
+.registration-section .login-options {
+  margin: 10px 0;
+}
+
+.registration_container {
+  width: 100%;
+  height: 100%;
+}
+
+.registration-section .login-options .label-checkbox {
+  margin: 0;
+}
+
+.login-options .form-control-error {
+  float: none;
+}
+
+/* -----------Customize checkbox-------------- */
+.label-checkbox {
+  display: block;
+  position: relative;
+  padding-left: 20px;
+  cursor: pointer;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  font-size: 12px;
+  color: #8b95a5;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+.label-checkbox:hover {
+  color: rgb(120, 121, 124);
+}
+
+.label-checkbox input[type="checkbox"] {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 14px;
+  width: 14px;
+  background: #ffffff;
+  border: 1px solid #dfdfdf;
+  border-radius: 2px;
+}
+
+.label-checkbox input[type="checkbox"]:hover~.checkmark {
+  background-color: #dfdfdf;
+}
+
+.label-checkbox input[type="checkbox"]:checked~.checkmark {
+  background-color: #00a6dc;
+}
+
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+.label-checkbox input[type="checkbox"]:checked~.checkmark:after {
+  display: block;
+}
+
+.label-checkbox .checkmark:after {
+  left: 3.5px;
+  top: 0;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 1.5px 1.5px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+/* Subscription */
+.subscription-header>strong {
+  font-family: "Poppins";
+  font-weight: 800px;
+  font-size: 24px;
+}
+
+/* -------------Membership------------- */
+.membership-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: auto;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  background: #f2f2f2;
+}
+
+.membership-container {
+  width: 60.76%;
+  height: 78.125%;
+  margin: 0 auto;
+  padding: 2%;
+  background: #ffffff;
+  box-shadow: 0 15px 35px rgba(219, 219, 219, 0.160784);
+}
+
+.membership-greeting {
+  margin: 0 0 20px;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  font-size: 18px;
+  color: #202020;
+  text-transform: capitalize;
+  text-align: center;
+}
+
+.membership-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  width: 100%;
+  height: 100%;
+  padding: 2% 5%;
+}
+
+.membership-img-wrapper {
+  width: 100%;
+  text-align: center;
+}
+
+.membership-img {
+  max-width: 85%;
+  object-fit: cover;
+  object-position: center;
+  margin-bottom: 5%;
+}
+
+.membership-title {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 15px;
+  text-align: center;
+  color: #202020;
+}
+
+.membership-price {
+  font-family: "Montserrat", sans-serif;
+  font-weight: bold;
+  font-size: 30px;
+  line-height: 15px;
+  text-align: center;
+  text-transform: uppercase;
+  color: #00a6dc;
+}
+
+.membership-graph {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 28px;
+  text-align: center;
+  color: #8b95a5;
+}
+
+.membership-submit {
+  width: 100%;
+}
+
+.membership-btn {
+  width: 100%;
+  min-height: 45px;
+  background: #ffffff;
+  border: 1px solid #dfdfdf;
+  box-sizing: border-box;
+  border-radius: 3px;
+  font-size: 12px;
+  text-transform: uppercase;
+  color: #8b95a5;
+}
+
+.card-membership {
+  display: flex;
+  padding: 2% 5%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  min-width: calc(243 / 830 * 100%);
+  width: calc((100% - 40px) / 3);
+  border: 1px solid #e9e9e9;
+  min-height: 500px;
+  transition: all 0.3s ease-in;
+  background: #ffffff;
+}
+
+.card-membership:hover~.active-default {
+  transform: unset !important;
+}
+
+.active-default .membership-btn,
+.card-membership:hover .membership-btn,
+.free-user .membership-btn:hover {
+  background: #00a6dc;
+  border: 1px solid #00a6dc;
+  box-shadow: 0 5px 15px rgba(0, 166, 220, 0.301961);
+  color: #ffffff;
+}
+
+.card-membership:hover,
+.active-default {
+  transform: scale(1.06);
+  background-color: white;
+  box-shadow: 0 18px 35px rgba(106, 106, 106, 0.160784);
+}
+
+/* --------------Payment------------- */
+.form-control-csv {
+  background-image: url("../../../assets/images/registrationPage/info-circle-solid.svg");
+  background-repeat: no-repeat;
+  background-position: right 1.37em top 50%;
+  background-size: 1.25em auto;
+}
+
+.payment-control {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.payment-card-type {
+  width: 47%;
+  min-height: 45px;
+  border: transparent;
+  background: transparent;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  font-size: 12px;
+  text-align: left;
+  text-transform: capitalize;
+  color: #8b95a5;
+}
+
+.payment-card-type:hover,
+.payment-card-active {
+  border-bottom: 2px solid #00a6dc;
+  font-weight: 600;
+  color: #00a6dc;
+}
+
+.payment-accept {
+  width: 100%;
+  margin: 5% 0 0;
+  text-align: center;
+}
+
+.payment-accept-graph {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  font-size: 15px;
+  color: #8b95a5;
+  text-align: center;
+}
+
+.payment-accept-cards {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.payment-accept-cards div {
+  margin: 0 2%;
+}
+
+.payment-accept-cards svg {
+  height: 24px;
+}
+
+.payment-accept-cards svg path {
+  fill: #8b95a5;
+}
+
+.plan-desc {
+  flex: 1;
+}
+
+.plan-desc p {
+  margin: 0;
+}
+
+.feature-heading {
+  color: #10afe0;
+}
+
+::ng-deep .ng-dropdown-panel.ng-select-bottom {
+  margin-top: 25px;
+}
+
+.show-password {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+  opacity: 0.5;
+  transition: all 0.25s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.show-password:hover {
+  opacity: 1;
+}
+
+.show-password img {
+  width: 100%;
+}
+
+.form-controls {
+  position: relative;
+}
+
+.login-submit-link {
+  transition: all 0.25s;
+  text-align: center;
+  margin-top: 10px;
+  display: block;
+}
+
+.login-submit-link:hover {
+  text-decoration: underline;
+}
+
+::ng-deep .registration-wrapper .iti {
+  width: 100%;
+}
+
+.facebook-login {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  margin-top: 10px;
+  align-items: center;
+}
+
+.facebook-login p {
+  margin: 0 20px 0 0;
+}
+
+.social-btn {
+  height: 5vh;
+  border: 1px solid #dfdfdf;
+  background-color: white;
+  box-sizing: border-box;
+  border-radius: 50px;
+  font-size: 10px;
+  color: #8b95a5;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 20px;
+}
+
+.social-btn:hover {
+  background-color: rgba(158, 161, 168, 0.35);
+  box-shadow: 0 2.5px 5px rgba(158, 173, 179, 0.4);
+  color: rgb(120, 121, 124);
+}
+
+.social-btn span {
+  margin: 0 10px;
+  text-transform: capitalize;
+}
+
+::ng-deep .registration-wrapper .ng-select-searchable {
+  caret-color: transparent;
+}
+
+::ng-deep .mat-calendar-previous-button.mat-icon-button[aria-label="Previous year"],
+::ng-deep .mat-calendar-next-button.mat-icon-button[aria-label="Next year"] {
+  display: none !important;
+}
+
+.free-user {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  width: 100%;
+  align-items: center;
+}
+
+.free-user .membership-greeting {
+  margin: 0;
+}
+
+.free-user .membership-submit {
+  width: fit-content;
+}
+
+.free-user button {
+  margin-left: 20px;
+  width: fit-content;
+  padding: 0 20px;
+}
+
+@media only screen and (max-width: 768px) {
+  .registration-wrapper {
+    width: 100%;
+    height: 100%;
+    margin: auto;
+  }
+
+  .registration-poster {
+    display: none;
+  }
+
+  .membership-container {
+    width: 85%;
+    height: auto;
+    margin: 5% auto;
+  }
+
+  .membership-wrapper {
+    flex-direction: column;
+  }
+
+  .card-membership:hover,
+  .active-default {
+    transform: scale(1);
+    background-color: white;
+    box-shadow: 15px 18px 35px rgba(106, 106, 106, 0.160784);
+  }
+
+  .confirm-password {
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 35px;
+    color: black;
+    width: 90.5%;
+    border: 1px solid #fff;
+    height: 80%;
+  }
+
+  .plan-description {
+    width: 50%;
+  }
+
+  .registration-form {
+    width: 90%;
+    margin: auto;
+  }
+}
+
+@media only screen and (min-width: 769px) and (max-width: 1024px) {
+  .registration-container {
+    width: 90%;
+  }
+
+  .registration-poster {
+    width: 51%;
+  }
+
+  .registration-wrapper {
+    width: 49%;
+  }
+
+  .background-logo {
+    display: flex;
+    width: 24.75vw;
+    height: 32.5vh;
+    background-repeat: no-repeat;
+    background-size: contain;
+    margin-top: 25.3vh;
+    margin-left: 5.9vw;
+  }
+
+  .fitnuts-background {
+    display: flex;
+    position: absolute;
+    width: 47.32vw;
+    height: 60.4vh;
+    top: 14vh;
+    left: 5.5vw;
+  }
+
+  .registration-form {
+    width: 60%;
+    /* margin: auto; */
+  }
+
+  .confirm-password {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 35px;
+    color: black;
+    width: 88%;
+    border: 1px solid #fff;
+    height: 80%;
+  }
+
+  .sub-heading {
+    margin-top: 10px;
+  }
+
+  .registration-heading-two {
+    margin-top: 20px;
+  }
+}
+
+@media only screen and (min-width: 1025px) and (max-width: 1366px) {
+  .confirm-password {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 35px;
+    color: black;
+    width: 86.5%;
+    border: 1px solid #fff;
+    height: 70%;
+  }
+
+  .sub-heading {
+    margin-top: 10px;
+  }
+
+  .registration_wrapper {
+    width: 48%;
+    height: 100%;
+    padding: 32px 28px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: "Poppins";
+    padding-top: 36px;
+    z-index: 3;
+    background-color: #202020;
+  }
+
+  .subscription_pricing_container {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    color: #529dff;
+    font-family: "Poppins" sans-serif;
+    width: 200px;
+    font-weight: 700;
+  }
+}
+
+@media only screen and (min-width: 1367px) and (max-width: 1440px) {
+  .background-logo {
+    display: flex;
+    width: 24.75vw;
+    height: 42.5vh;
+    background-repeat: no-repeat;
+    background-size: contain;
+    margin-top: 20.3vh;
+    margin-left: 5.9vw;
+  }
+
+  .fitnuts-background {
+    display: flex;
+    position: absolute;
+    width: 42.32vw;
+    height: 80.4vh;
+    top: 4.5vh;
+    left: 5.5vw;
+  }
+
+  .confirm-password {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 35px;
+    color: black;
+    width: 87%;
+    border: 1px solid #fff;
+    height: 70%;
+  }
+
+  .sub-heading {
+    margin-top: 10px;
+  }
+}
+
+@media only screen and (min-width: 1441px) and (max-width: 1920px) {}
+
+@media only screen and (min-width: 1921px) and (max-width: 2560px) {
+  .confirm-password {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 35px;
+    color: black;
+    width: 93.2%;
+    border: 1px solid #fff;
+    height: 70%;
+  }
+}
+
+/*
+
+*/
+
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,700;1,800;1,900&display=swap");
+
+/* --------Mat Stepper-------- */
+::ng-deep .mat-horizontal-stepper-header-container {
+  display: none !important;
+}
+
+::ng-deep .mat-horizontal-content-container {
+  padding: 0 !important;
+}
+
+/* -----Mat Datepicker-------- */
+.mat-datepicker-input {
+  position: relative;
+}
+
+::ng-deep .mat-calendar {
+  font-family: "Montserrat", sans-serif;
+  color: rgb(43, 54, 62);
+}
+
+::ng-deep .mat-datepicker-content .mat-calendar {
+  border-radius: 10px;
+  height: auto;
+}
+
+::ng-deep .mat-datepicker-toggle {
+  position: absolute;
+  top: 3px;
+  right: 15px;
+}
+
+::ng-deep svg.mat-datepicker-toggle-default-icon.ng-star-inserted {
+  color: #8b95a5;
+}
+
+::ng-deep div.mat-calendar-body-cell-content.mat-calendar-body-today {
+  background-color: #8b95a5;
+  color: rgb(3, 3, 3);
+}
+
+::ng-deep .mat-calendar-body-selected {
+  background-color: #00a6dc;
+}
+
+/* --------Custom Ng Select----------- */
+::ng-deep .ng-select {
+  width: 100%;
+  height: 45px;
+  padding-bottom: 0;
+}
+
+::ng-deep .ng-select .ng-select-container {
+  width: 100% !important;
+  height: 45px;
+  margin: 1% 0;
+  padding: 0;
+  padding-left: 15px;
+  border: 1px solid #f4f6f9;
+  background: #f4f6f9;
+  border-radius: 3px;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 35px;
+  color: #8b95a5;
+}
+
+::ng-deep .ng-select .ng-select-container .ng-value-container div.ng-placeholder {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 35px;
+  color: #8b95a5 !important;
+}
+
+::ng-deep .ng-select.ng-select-single .ng-select-container .ng-arrow-wrapper {
+  right: 10px;
+  bottom: 9px;
+}
+
+::ng-deep .ng-select .ng-select-container .ng-value-container .ng-input>input {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  padding-left: 15px;
+}
+
+::ng-deep .ng-select .ng-select-container .ng-value-container {
+  padding: 0.4375em 0;
+  border-top: none;
+}
+
+::ng-deep .ng-select.ng-select-single .ng-select-container .ng-clear-wrapper {
+  right: 3px;
+  bottom: 6px !important;
+}
+
+::ng-deep .ng-dropdown-panel .ng-dropdown-panel-items .ng-option.ng-option-selected {
+  background: #00a6dc;
+  color: #ffffff;
+}
+
+::ng-deep .ng-select .ng-select-container:after {
+  border-bottom: none;
+}
+
+::ng-deep .registration-wrapper .ng-select-searchable {
+  caret-color: transparent;
+}
+
+::ng-deep .mat-calendar-previous-button.mat-icon-button[aria-label="Previous year"],
+::ng-deep .mat-calendar-next-button.mat-icon-button[aria-label="Next year"] {
+  display: none !important;
+}
+
+::ng-deep .registration-wrapper .iti {
+  width: 100%;
+}
+
+/* Custom ng2TelInput Styling */
+::ng-deep .iti__selected-flag {
+  border-bottom-left-radius: 50px;
+  border-top-left-radius: 50px;
+}
+
+::ng-deep .ng-dropdown-panel.ng-select-bottom {
+  margin-top: 25px;
+}
+
+/* --------Registration Step Form-------- */
+.registration-container.payment {
+  width: calc(100vw - 50px);
+  height: calc(100vh - 50px);
+}
+
+.registration-container.payment iframe {
+  width: 100%;
+  height: 95%;
+  margin-top: 1%;
+}
+
+.registration-container.payment .registration-wrapper {
+  width: 100%;
+  padding: 2%;
+}
+
+.registration-container.payment .registration-options {
+  margin: 0 0 2%;
+}
+
+.registration-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: auto;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  background: #f2f2f2;
+}
+
+.registration-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  width: 75%;
+  height: 85vh;
+  margin: 0 auto;
+  padding: 0;
+  background: #ffffff;
+  box-shadow: 0 15px 35px rgba(219, 219, 219, 0.160784);
+}
+
+.registration-container.wide {
+  width: 60%;
+}
+
+.registration-form {
+  width: 81%;
+  /* height: 80%; */
+  padding: 2% 5% 0 5%;
+}
+
+.heading-wrap {
+  height: 12%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.registration-subscription-form {
+  width: 100%;
+  display: flex;
+}
+
+.registration-subscription-form-card {
+  width: 100%;
+  display: flex;
+}
+
+.move-up {
+  margin-top: -5vh;
+}
+
+.registration-wrapper {
+  width: 45%;
+  height: 100%;
+  padding: 16px auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: "Poppins";
+  z-index: 3;
+}
+
+.display-block {
+  display: block;
+}
+
+.registration-heading>h3 {
+  font-size: 20px;
+  font-weight: 1900;
+  font-family: "Poppins";
+}
+
+.spacing {
+  height: 5vh;
+}
+
+.registration-heading-two>h3 {
+  font-size: 20px;
+  font-weight: 1900;
+  font-family: "Poppins";
+  margin-top: 20px;
+}
+
+.registration-subheading>p {
+  font-size: 10px;
+  font-weight: 400;
+  font-family: "Poppins";
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.registration-subheading-two {
+  font-size: 12px;
+  font-weight: 300;
+  font-family: "Poppins";
+  margin-top: 15%;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.registration-footing {
+  margin-top: 20px;
+  text-align: center;
+  font-family: "Poppins";
+  font-size: 12px;
+  font-weight: 400;
+}
+
+.registration-otp {
+  text-align: center;
+}
+
+.registration-wrapper.payment {
+  width: 100%;
+}
+
+.registration-poster {
+  height: 100%;
+  width: 55%;
+  margin: 0;
+  padding: 0;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: #529dff;
+  position: relative;
+}
+
+.logos {
+  display: flex;
+  position: relative;
+  height: 575px;
+  width: 100%;
+}
+
+.main-logo {
+  display: flex;
+  position: absolute;
+  left: 1.63vw;
+  width: 5.21vw;
+  height: 11.14vh;
+}
+
+.background-logo {
+  display: flex;
+  width: 24.75vw;
+  height: 52.5vh;
+  background-repeat: no-repeat;
+  background-size: contain;
+  margin-top: 15.3vh;
+  margin-left: 5.9vw;
+}
+
+.fitnuts-background {
+  /* display: flex;
+  position: absolute;
+  width: 42.32vw;
+  height: 97.4vh;
+  top: -3.5vh;
+  left: 5.5vw; */
+  display: flex;
+  position: absolute;
+  width: 36.5vw;
+  height: 74vh;
+  top: 2.8vh;
+  left: 6.1vw;
+}
+
+.fitnut-bg-image {
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+}
+
+.registration-poster-img {
+  max-width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.registration-title {
+  font-family: "Montserrat", sans-serif;
+  font-size: 25px;
+  font-weight: 600;
+  color: rgb(0, 0, 0);
+  text-transform: capitalize;
+}
+
+.registration-graph {
+  font-family: "Montserrat", sans-serif;
+  font-size: 16px;
+  color: #8b95a5;
+}
+
+.registration-options {
+  width: 100%;
+  margin: 0 0 5%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.back-to-login {
+  width: calc(85 / 316 * 100%);
+  min-height: 45px;
+  background: #ffffff;
+  border: 1px solid #dfdfdf;
+  border-radius: 3px;
+  font-family: Montserrat, sans-serif;
+  font-size: 12px;
+  line-height: 35px;
+  text-transform: uppercase;
+  color: #8b95a5;
+}
+
+.back-to-login:hover {
+  background-color: rgba(158, 161, 168, 0.35);
+  box-shadow: 0 2.5px 5px rgba(158, 173, 179, 0.4);
+  color: rgb(120, 121, 124);
+}
+
+.submit-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.divider {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 15px;
+}
+
+.divider>p {
+  margin-top: 14px;
+  font-size: 10px;
+}
+
+.subdivider {
+  height: 1px;
+  background-color: #c8c8c8;
+  width: 75px;
+}
+
+.card-divider {
+  height: 1px;
+  background-color: #050505;
+  width: 90%;
+}
+
+.subscriptions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 40vh;
+  background-color: #fafafa;
+  border-radius: 10px;
+  border: 1px solid #c8c8c8;
+  cursor: pointer;
+  width: 100%;
+}
+
+.subscriptions-payment {
+  background-color: #fafafa;
+  border-radius: 10px;
+  border: 1px solid #c8c8c8;
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
+  width: 90%;
+}
+
+.receive-email {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 5vh;
+  font-size: 12px;
+  padding: 20px;
+}
+
+.subscriptions-card {
+  width: 100%;
+  height: 10vh !important;
+  background: #fafafa;
+  cursor: pointer;
+}
+
+.subscriptions-card-payment {
+  width: 100%;
+  background: #fafafa;
+}
+
+.sub-top {
+  border-bottom: 1px solid #cccccc;
+  height: 10vh !important;
+  display: flex;
+  align-items: space-between;
+  justify-content: center;
+  width: 100%;
+}
+
+.sub-top:hover {
+  background: #d0e4ff;
+  width: 104%;
+  height: 12vh !important;
+  left: 773px;
+  top: 177px;
+  margin-top: -10px;
+  border: 2px solid #d0e4ff;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sub-last {
+  height: 10vh !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.sub-last:hover {
+  background: #d0e4ff;
+  width: 104%;
+  height: 12vh !important;
+  border: 2px solid #d0e4ff;
+  margin-top: -10px;
+  margin-bottom: -5px;
+  border-radius: 5px;
+}
+
+.sub-package {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  align-items: start;
+  justify-content: center;
+  height: 100%;
+  padding: 5px;
+  margin-left: 10px;
+}
+
+.sub-heading {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.sub-description {
+  font-size: 10px;
+  font-weight: 400;
+}
+
+.sub-description-payment {
+  font-size: 12px;
+  font-weight: 400;
+}
+
+.sub-package-notice {
+  font-size: 9px;
+  font-weight: 400;
+}
+
+.sub-change-plan {
+  color: #529dff;
+  text-decoration: underline;
+  font-size: 12px;
+  cursor: pointer;
+  margin-top: 4vh;
+}
+
+.sub-price {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  margin-right: 20px;
+  margin-top: 10px;
+  color: #529dff;
+}
+
+.subprice-placement {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sub-price-last {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 20px;
+  color: #529dff;
+}
+
+.sub-price>h1 {
+  font-size: 20px;
+  font-weight: 600;
+  padding-left: 5px;
+}
+
+.sub-price-last>h1 {
+  font-size: 10px;
+  font-weight: 600;
+  padding-left: 5px;
+}
+
+.sub-package-paragraph {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sub-package-heading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 20px;
+}
+
+.best-value {
+  font-size: 10px;
+  background: linear-gradient(99.3deg, #ffed8c 22.84%, #f4b335 102.81%);
+  box-shadow: inset 0px -2px 21px rgba(140, 78, 20, 0.25),
+    inset 0px 14px 14px rgba(255, 250, 207, 0.73);
+  border-radius: 4px;
+  color: #272727;
+  border: none;
+}
+
+.currency {
+  position: absolute;
+  font-size: 15px;
+  top: 0;
+  left: 0;
+  margin-left: -28px;
+}
+
+.sub-currency {
+  position: absolute;
+  font-size: 15px;
+  top: 0;
+  left: 0;
+  margin-left: -4px;
+}
+
+.frequency {
+  font-size: 10px;
+}
+
+.subscriptions-card-top {
+  width: 100%;
+  height: 15vh;
+  background: #fafafa;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  cursor: pointer;
+}
+
+.subscriptions-card-top:hover {
+  color: white;
+  background: #529dff;
+}
+
+.subscriptions-card-bottom {
+  width: 100%;
+  height: 15vh;
+  background: #fafafa;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  cursor: pointer;
+}
+
+.subscriptions-card-bottom:hover {
+  color: white;
+  background: #529dff;
+}
+
+.subscriptions-content {
+  margin: 20px;
+}
+
+.registration-btn button,
+.payment-btn button {
+  padding: 15px 61px;
+  margin-top: 5%;
+  border: none;
+  background: #529dff;
+  box-shadow: 0 10px 15px rgba(0, 166, 220, 0.301961);
+  border-radius: 50px;
+  font-size: 14px;
+  text-transform: uppercase;
+  color: #ffffff;
+}
+
+.terms-section {
+  margin-top: 30px;
+  font-size: 9px;
+  text-align: center;
+}
+
+.vat-notice {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 10px;
+  margin: 5px;
+  margin-bottom: -10px;
+  font-weight: 600;
+}
+
+.registration-btn button:hover,
+.payment-btn button:hover {
+  opacity: 0.75;
+  transition: ease-in-out 2s;
+}
+
+.registration-membership {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 38px calc(50 / 830 * 100%);
+}
+
+.form-controls {
+  width: 100%;
+  height: 25% !important;
+  margin: 3% 0;
+}
+
+.form-controls-pair {
+  display: flex;
+  justify-content: space-between;
+  align-items: inherit;
+}
+
+.form-control-coupon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: -7px;
+}
+
+.input-field {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 5vh;
+  padding-left: 12px;
+  border: 1px solid #529dff;
+  border-radius: 50px;
+}
+
+.input-field-error {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 5vh;
+  padding-left: 12px;
+  border: 1px solid #ff5252;
+  border-radius: 50px;
+}
+
+.confirm-password {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 35px;
+  color: black;
+  width: 87.5%;
+  border: 1px solid #fff;
+  height: 80%;
+}
+
+.confirm-password::placeholder {
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 35px;
+  color: #8b95a5;
+}
+
+.password-icon {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  opacity: 0.5;
+  transition: all 0.25s;
+}
+
+.password-icon:hover {
+  opacity: 1;
+}
+
+.form-control-input {
+  width: 100%;
+  height: 5vh;
+  padding-left: 15px;
+  border: 1px solid #529dff;
+  border-radius: 50px;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 35px;
+  color: black;
+}
+
+.coupon-arrow {
+  width: 28px;
+  height: 28px;
+  position: absolute;
+  right: 0.6vw;
+  top: 0.8vh;
+  padding-left: 15px;
+  border: 1px solid #529dff;
+  border-radius: 50%;
+  background-color: #529dff;
+}
+
+.form-control-input-error {
+  width: 100%;
+  height: 5vh;
+  padding-left: 15px;
+  border: 1px solid #ff5252;
+  border-radius: 50px;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500 !important;
+  font-size: 12px !important;
+  line-height: 35px;
+  color: black;
+}
+
+.form-control-cortege {
+  width: 47%;
+}
+
+.formfield {
+  position: relative;
+  box-sizing: border-box;
+  float: left;
+  margin: auto;
+  padding: 0px;
+  border: 0px;
+  font-size: 1em;
+}
+
+.formfield * {
+  box-sizing: border-box;
+}
+
+#firstnamefield,
+#lastnamefield {
+  width: 50%;
+  min-width: 250px;
+}
+
+#addressfield {
+  width: 100%;
+}
+
+#zipcodefield {
+  width: 25%;
+}
+
+#cityfield {
+  width: 75%;
+}
+
+.formfield>input,
+.formfield>label {
+  padding: 0.8em;
+  margin: 0.5em;
+  width: 100%;
+}
+
+.formfield>input {
+  border: 1px solid #00bafa;
+  border-radius: 1.5em;
+  outline: none;
+}
+
+.formfield>label {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  color: #ccc;
+}
+
+input:focus+label,
+input:valid+label {
+  color: #00bafa;
+  font-size: 0.8em;
+  width: auto;
+  height: 1.3em;
+  padding: 0px 0.5em 0px 0.5em;
+  margin: 0px;
+  background: white;
+  transition: 0.2s ease-in-out;
+  top: 0em;
+  left: 2em;
+}
+
+.form-control-input:focus-within {
+  border: 1px solid #00a6dc;
+  box-shadow: 0 2.5px 5px rgba(0, 166, 220, 0.25677);
+}
+
+.form-control-input:focus-within::before {
+  content: "First Name";
+  position: absolute;
+  top: 100%;
+  left: 20%;
+  transform: translateX(-50%);
+  border: 15px solid;
+  border-color: #0000 0000;
+}
+
+.form-control-input::placeholder {
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 35px;
+  color: #8b95a5;
+}
+
+.form-control-error {
+  text-align: center;
+  margin-top: 20px;
+  color: #ff5252;
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  font-size: 12px;
+}
+
+.registration-section .login-options {
+  margin: 10px 0;
+}
+
+.registration-section .login-options .label-checkbox {
+  margin: 0;
+}
+
+.login-options .form-control-error {
+  float: none;
+}
+
+/* -----------Customize checkbox-------------- */
+.label-checkbox {
+  display: block;
+  position: relative;
+  padding-left: 20px;
+  cursor: pointer;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  font-size: 12px;
+  color: #8b95a5;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+.label-checkbox:hover {
+  color: rgb(120, 121, 124);
+}
+
+.label-checkbox input[type="checkbox"] {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 14px;
+  width: 14px;
+  background: #ffffff;
+  border: 1px solid #dfdfdf;
+  border-radius: 2px;
+}
+
+.label-checkbox input[type="checkbox"]:hover~.checkmark {
+  background-color: #dfdfdf;
+}
+
+.label-checkbox input[type="checkbox"]:checked~.checkmark {
+  background-color: #00a6dc;
+}
+
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+.label-checkbox input[type="checkbox"]:checked~.checkmark:after {
+  display: block;
+}
+
+.label-checkbox .checkmark:after {
+  left: 3.5px;
+  top: 0;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 1.5px 1.5px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+/* -------------Membership------------- */
+.membership-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: auto;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  background: #f2f2f2;
+}
+
+.membership-container {
+  width: 60.76%;
+  height: 78.125%;
+  margin: 0 auto;
+  padding: 2%;
+  background: #ffffff;
+  box-shadow: 0 15px 35px rgba(219, 219, 219, 0.160784);
+}
+
+.membership-greeting {
+  margin: 0 0 20px;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  font-size: 18px;
+  color: #202020;
+  text-transform: capitalize;
+  text-align: center;
+}
+
+.membership-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  width: 100%;
+  height: 100%;
+  padding: 2% 5%;
+}
+
+.membership-img-wrapper {
+  width: 100%;
+  text-align: center;
+}
+
+.membership-img {
+  max-width: 85%;
+  object-fit: cover;
+  object-position: center;
+  margin-bottom: 5%;
+}
+
+.membership-title {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 15px;
+  text-align: center;
+  color: #202020;
+}
+
+.membership-price {
+  font-family: "Montserrat", sans-serif;
+  font-weight: bold;
+  font-size: 30px;
+  line-height: 15px;
+  text-align: center;
+  text-transform: uppercase;
+  color: #00a6dc;
+}
+
+.membership-graph {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 28px;
+  text-align: center;
+  color: #8b95a5;
+}
+
+.membership-submit {
+  width: 100%;
+}
+
+.membership-btn {
+  width: 100%;
+  min-height: 45px;
+  background: #ffffff;
+  border: 1px solid #dfdfdf;
+  box-sizing: border-box;
+  border-radius: 3px;
+  font-size: 12px;
+  text-transform: uppercase;
+  color: #8b95a5;
+}
+
+.card-membership {
+  display: flex;
+  padding: 2% 5%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  min-width: calc(243 / 830 * 100%);
+  width: calc((100% - 40px) / 3);
+  border: 1px solid #e9e9e9;
+  min-height: 500px;
+  transition: all 0.3s ease-in;
+  background: #ffffff;
+}
+
+.card-membership:hover~.active-default {
+  transform: unset !important;
+}
+
+.active-default .membership-btn,
+.card-membership:hover .membership-btn,
+.free-user .membership-btn:hover {
+  background: #00a6dc;
+  border: 1px solid #00a6dc;
+  box-shadow: 0 5px 15px rgba(0, 166, 220, 0.301961);
+  color: #ffffff;
+}
+
+.card-membership:hover,
+.active-default {
+  transform: scale(1.06);
+  background-color: white;
+  box-shadow: 0 18px 35px rgba(106, 106, 106, 0.160784);
+}
+
+/* --------------Payment------------- */
+.form-control-csv {
+  background-image: url("../../../assets/images/registrationPage/info-circle-solid.svg");
+  background-repeat: no-repeat;
+  background-position: right 1.37em top 50%;
+  background-size: 1.25em auto;
+}
+
+.payment-control {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.payment-card-type {
+  width: 47%;
+  min-height: 45px;
+  border: transparent;
+  background: transparent;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  font-size: 12px;
+  text-align: left;
+  text-transform: capitalize;
+  color: #8b95a5;
+}
+
+.payment-card-type:hover,
+.payment-card-active {
+  border-bottom: 2px solid #00a6dc;
+  font-weight: 600;
+  color: #00a6dc;
+}
+
+.payment-accept {
+  width: 100%;
+  margin: 5% 0 0;
+  text-align: center;
+}
+
+.payment-accept-graph {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  font-size: 15px;
+  color: #8b95a5;
+  text-align: center;
+}
+
+.payment-accept-cards {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.payment-accept-cards div {
+  margin: 0 2%;
+}
+
+.payment-accept-cards svg {
+  height: 24px;
+}
+
+.payment-accept-cards svg path {
+  fill: #8b95a5;
+}
+
+.plan-desc {
+  flex: 1;
+}
+
+.plan-desc p {
+  margin: 0;
+}
+
+.feature-heading {
+  color: #10afe0;
+}
+
+::ng-deep .ng-dropdown-panel.ng-select-bottom {
+  margin-top: 25px;
+}
+
+.show-password {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+  opacity: 0.5;
+  transition: all 0.25s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.show-password:hover {
+  opacity: 1;
+}
+
+.show-password img {
+  width: 100%;
+}
+
+.form-controls {
+  position: relative;
+}
+
+.login-submit-link {
+  transition: all 0.25s;
+  text-align: center;
+  margin-top: 10px;
+  display: block;
+}
+
+.login-submit-link:hover {
+  text-decoration: underline;
+}
+
+::ng-deep .registration-wrapper .iti {
+  width: 100%;
+}
+
+.facebook-login {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  margin-top: 10px;
+  align-items: center;
+}
+
+.facebook-login p {
+  margin: 0 20px 0 0;
+}
+
+.social-btn {
+  height: 5vh;
+  border: 1px solid #dfdfdf;
+  background-color: white;
+  box-sizing: border-box;
+  border-radius: 50px;
+  font-size: 10px;
+  color: #8b95a5;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 20px;
+}
+
+.social-btn:hover {
+  background-color: rgba(158, 161, 168, 0.35);
+  box-shadow: 0 2.5px 5px rgba(158, 173, 179, 0.4);
+  color: rgb(120, 121, 124);
+}
+
+.social-btn span {
+  margin: 0 10px;
+  text-transform: capitalize;
+}
+
+::ng-deep .registration-wrapper .ng-select-searchable {
+  caret-color: transparent;
+}
+
+::ng-deep .mat-calendar-previous-button.mat-icon-button[aria-label="Previous year"],
+::ng-deep .mat-calendar-next-button.mat-icon-button[aria-label="Next year"] {
+  display: none !important;
+}
+
+.free-user {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  width: 100%;
+  align-items: center;
+}
+
+.free-user .membership-greeting {
+  margin: 0;
+}
+
+.free-user .membership-submit {
+  width: fit-content;
+}
+
+.free-user button {
+  margin-left: 20px;
+  width: fit-content;
+  padding: 0 20px;
+}
+
+.heading {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 800;
+  font-size: 36px;
+  line-height: 40px;
+  color: #142A3D;
+  text-align: center;
+}
+
+
+.subscription-container {
+  width: 80%;
+  margin: 28px auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.sub-width {
+  width: 28vw;
+}
+
+.sub-width:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+  background: #D0E4FF;
+  border-radius: 10px;
+  border: none;
+}
+
+.subscription-content {
+  padding: 15px 25px;
+  border-bottom: 1px solid rgba(163, 162, 162, 0.4);
+}
+
+.subscription-content:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+  background: #D0E4FF;
+  border-radius: 8px;
+  border-bottom: 0;
+}
+
+.subscription-main-content {
+  display: flex;
+  justify-content: space-between;
+}
+
+.sub-two-heading {
+  text-align: center;
+}
+
+.price {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  color: #529dff;
+  margin: 0;
+}
+
+.no-border-bottom {
+  border-bottom: 0;
+}
+
+.plan-description {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 22px;
+  width: 54%;
+  margin-right: 10px;
+  margin-bottom: 0;
+}
+
+.actual-price {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 22px;
+  line-height: 104.5%;
+  letter-spacing: -0.03em;
+  color: #529DFF;
+}
+
+.other-price {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 35px;
+  text-align: right;
+  color: #529DFF;
+}
+
+.other-price-two {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 35px;
+  color: #529DFF;
+}
+
+.subscription-currency {
+  vertical-align: top;
+  margin-right: 3px;
+  font-size: 10px;
+}
+
+.best-value {
+  background: linear-gradient(99.3deg, #FFED8C 22.84%, #F4B335 102.81%);
+  box-shadow: inset 0px -2px 21px rgba(140, 78, 20, 0.25), inset 0px 14px 14px rgba(255, 250, 207, 0.73);
+  border-radius: 4px;
+  color: #272727;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 15px;
+  padding: 4px;
+}
+
+.premium-wrapper {
+  display: flex;
+}
+
+.plan-heading {
+  font-size: 20px;
+  font-weight: 600;
+  margin-right: 10px;
+}
+
+.mobile-logo {
+  display: none;
+}
+
+.general-info-controls-pair {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.radio-inline__input {
+  clip: rect(1px, 1px, 1px, 1px);
+  position: absolute !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.radio-inline__input+.radio-inline__label {
+  background: #F4F5F6;
+  border-radius: 39px;
+  color: #546E7A;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+  width: 49%;
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 13px;
+  line-height: 100%;
+}
+
+.radio-inline__input:checked+.radio-inline__label {
+  background: #529DFF;
+  border-radius: 39px;
+  color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+  width: 49%;
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 100%;
+}
+
+
+.radio-inline__label {
+  width: 50%;
+  height: 50px;
+  display: inline-block;
+  padding: 0.8rem 1rem;
+  border-radius: 39px;
+  transition: all ease-in-out .2s;
+  background-color: #F4F5F6;
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 100%;
+  text-align: center;
+  color: #546E7A;
+  cursor: pointer;
+}
+
+.basic-info-heading-wrap {
+  height: 12%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.basic-info-registration-subheading > p {
+  font-size: 14px;
+  font-weight: 400;
+  font-family: "Poppins";
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.basic-info-main>h3 {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 800;
+  font-size: 36px;
+  line-height: 40px;
+  text-transform: uppercase;
+  text-align: center;
+  color: #142A3D;
+}
+
+.basic-info-subheading > p {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 40px;
+  color: #142A3D;
+  text-align: center;
+}
+
+.basic-info-subtitles > h3 {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 40px;
+  color: #142A3D;
+}
+
+.basic-info-content-container {
+  width: 100%;
+  margin-top: 20px;
+  margin-bottom: 40px;
+}
+
+
+.general-info-controls-pair {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.basic-info-divider {
+  margin-top: 40px;
+}
+
+.general-info-input {
+  width: 100%;
+  height: 45px;
+  padding: 10px 29px;
+  border: 1px solid #529DFF;
+  border-radius: 28px;
+  background-color: #f9fafb;
+  font-family: Montserrat, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  text-align: left;
+}
+
+.general-info-input::placeholder {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 34px;
+  color: #8E9BA6;
+}
+
+.continue-btn button {
+  margin-top: 10px;
+  background: #529DFF;
+  border: 1.6129px solid #529DFF;
+  border-radius: 35.0469px;
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 21px;
+  text-transform: uppercase;
+  color: #FFFFFF;
+  height: 40px;
+  width: 200px;  
+}
+
+.skip-btn button {
+  margin-top: 15px;
+  background: #ffffff;
+  border: 1.6129px solid #529DFF;
+  border-radius: 35.0469px;
+  border-radius: 50px;
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 21px;
+  text-transform: uppercase;
+  color: #529DFF;
+  height: 40px;
+  width: 200px;
+}
+
+.gender-icon {
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.basic-info-registration-form {
+  width: 81%;
+  padding: 2% 5% 0 5%;
+}
+
+@media only screen and (min-width: 320px) and (max-width: 425px) {
+
+  .plan-description {
+    width: 57%;
+    font-size: 10px;
+  }
+
+  .heading {
+    font-size: 30px;
+    margin-top: 0;
+  }
+
+  .heading-wrap {
+    margin-top: 20px;
+  }
+
+  .subscription-container {
+    width: 90%;
+    margin: 28px auto;
+  }
+
+  .actual-price {
+    font-size: 22px;
+  }
+
+  .price {
+    font-size: 12px;
+  }
+
+  .sub-width {
+    width: 90vw;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+
+  .registration-container {
+    width: 100%;
+    height: 100vh;
+  }
+
+  .basic-info-registration-form {
+    margin: auto;
+    width: 98%;
+  }
+
+  .heading {
+    margin-top: 0;
+  }
+
+  .basic-info-heading-wrap {
+    margin-top: 10px;
+  }
+
+  .mobile-logo {
+    display: block;
+    align-self: flex-start;
+    padding-left: 15px;
+  }
+
+  .registration-wrapper {
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    display: block;
+  }
+
+  .registration-poster {
+    display: none;
+  }
+
+  .membership-container {
+    width: 85%;
+    height: auto;
+    margin: 5% auto;
+  }
+
+  .membership-wrapper {
+    flex-direction: column;
+  }
+
+  .card-membership:hover,
+  .active-default {
+    transform: scale(1);
+    background-color: white;
+    box-shadow: 15px 18px 35px rgba(106, 106, 106, 0.160784);
+  }
+
+  .confirm-password {
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 35px;
+    color: black;
+    width: 90.5%;
+    border: 1px solid #fff;
+    height: 80%;
+  }
+
+  .sub-heading {
+    margin-top: 10px;
+  }
+
+  .sub-width {
+    width: 90vw;
+  }
+
+  .basic-info-content-container {
+    margin-bottom: 30px;
+  }
+
+  .basic-info-divider {
+    margin-top: 30px;
+  }
+
+  .basic-info-subtitles > h3 {
+    font-size: 18px;
+  }
+
+  .radio-inline__input+.radio-inline__label {
+    height: 60px;
+    font-size: 16px;
+  }
+
+  .radio-inline__input:checked+.radio-inline__label {
+    height: 60px;
+    font-size: 16px;
+  }
+
+  .gender-icon {
+    font-size: 16px;
+  }
+
+  .general-info-input {
+    height: 60px;
+  }
+
+  ::ng-deep .mat-datepicker-toggle {
+    top: 8px;
+  }
+
+  .skip-btn button {
+    font-size: 16px;
+    height: 60px;
+    width: 300px;
+  }
+
+  .continue-btn button {
+    font-size: 16px;
+    height: 60px;
+    width: 300px;
+  }
+}
+
+@media only screen and (min-width: 769px) and (max-width: 1024px) {
+  .registration-container {
+    width: 90%;
+  }
+
+  .plan-description {
+    width: 54%;
+  }
+
+  .registration-form {
+    width: 97%;
+  }
+
+  .registration-poster {
+    width: 51%;
+  }
+
+  .registration-wrapper {
+    width: 49%;
+    padding-bottom: 15px;
+  }
+
+  .background-logo {
+    display: flex;
+    width: 24.75vw;
+    height: 32.5vh;
+    background-repeat: no-repeat;
+    background-size: contain;
+    margin-top: 25.3vh;
+    margin-left: 5.9vw;
+  }
+
+  .fitnuts-background {
+    display: flex;
+    position: absolute;
+    width: 44vw;
+    height: 57vh;
+    top: 12vh;
+    left: 5.7vw;
+  }
+
+  .confirm-password {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 35px;
+    color: black;
+    width: 88%;
+    border: 1px solid #fff;
+    height: 80%;
+  }
+
+  .sub-heading {
+    margin-top: 10px;
+  }
+
+  .actual-price {
+    font-size: 22px;
+  }
+
+  .sub-width {
+    width: 36vw;
+  }
+}
+
+@media only screen and (min-width: 1025px) and (max-width: 1366px) {
+  .registration-wrapper {
+    width: 49%;
+  }
+
+  .confirm-password {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 35px;
+    color: black;
+    width: 86.5%;
+    border: 1px solid #fff;
+    height: 80%;
+  }
+
+  .sub-heading {
+    margin-top: 10px;
+  }
+
+  .actual-price {
+    font-size: 22px;
+  }
+
+  .fitnuts-background {
+    display: flex;
+    position: absolute;
+    width: 36vw;
+    height: 56vh;
+    top: 14vh;
+    left: 6.5vw;
+  }
+}
+
+@media only screen and (min-width: 1367px) and (max-width: 1440px) {
+  .registration-wrapper {
+    width: 49%;
+  }
+
+  .background-logo {
+    display: flex;
+    width: 24.75vw;
+    height: 42.5vh;
+    background-repeat: no-repeat;
+    background-size: contain;
+    margin-top: 20.3vh;
+    margin-left: 5.9vw;
+  }
+
+  .fitnuts-background {
+    display: flex;
+    position: absolute;
+    width: 37vw;
+    height: 56vh;
+    top: 14vh;
+    left: 5.7vw;
+  }
+
+  .confirm-password {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 35px;
+    color: black;
+    width: 90%;
+    border: 1px solid #fff;
+    height: 70%;
+  }
+
+  .sub-heading {
+    margin-top: 10px;
+  }
+
+  .actual-price {
+    font-size: 22px;
+  }
+}
+
+@media only screen and (min-width: 1441px) and (max-width: 1920px) {
+  .registration-wrapper {
+    width: 49%;
+  }
+
+  .confirm-password {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 35px;
+    color: black;
+    width: 93.2%;
+    border: 1px solid #fff;
+    height: 80%;
+  }
+
+  .sub-heading {
+    margin-top: 10px;
+  }
+}
+
+@media only screen and (min-width: 1921px) and (max-width: 2560px) {
+  .registration-wrapper {
+    width: 49%;
+  }
+
+  .confirm-password {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 35px;
+    color: black;
+    width: 93.2%;
+    border: 1px solid #fff;
+    height: 80%;
+  }
+
+  .sub-heading {
+    margin-top: 10px;
+  }
+
+  .subscription_pricing_container {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    color: #529dff;
+    font-family: "Poppins" sans-serif;
+    width: 35%;
+    font-weight: 700;
+  }
+}

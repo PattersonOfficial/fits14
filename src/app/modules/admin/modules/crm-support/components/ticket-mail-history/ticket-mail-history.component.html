@@ -1,0 +1,28 @@
+<div id="m-b-b" class="modal in" data-backdrop="false" style="display: block;"
+     #modalRef="bs-modal" *ngIf="isModal" [config]="{ show: true }" (onHidden)="hideModal()" bsModal>
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="loader" *ngIf="loader"></div>
+            <div class="wrapper" *ngIf="!loader">
+                <div class="header">
+                    <h3 class="heading">Notes history</h3>
+                    <span class="close" (click)="hideModal()"><i class="material-icons sort-icon">close</i></span>
+                </div>
+                <div class="story">
+                    <div class="story-element" *ngFor="let item of data">
+                        <p class="story-info">
+                            [{{item.sender_email ? 'customer' : 'team'}}] sent by {{item.sender_email ? item.sender_email : 'support team'}} on {{item.sent_at | date: 'd/M/yy, h:mm a'}}
+                        </p>
+                        <p class="recipients" *ngIf="!item.sender_email">to: {{item.recipients}}</p>
+                        <div class="message">
+                            <p class="subject" *ngIf="!item.sender_email">
+                                <span>Subject: </span>Fitnutspro support- ticket no {{'0'.repeat(5 - ticketId.toString().length)}}{{ticketId}}
+                            </p>
+                            <div class="message-body">{{item.comment}}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

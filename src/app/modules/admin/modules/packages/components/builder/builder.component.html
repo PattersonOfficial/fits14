@@ -1,0 +1,543 @@
+<div id="m-b-b" class="modal in" data-backdrop="false" style="display: block;"
+     #modalRef="bs-modal" *ngIf="isModal" [config]="{ show: true }" (onHidden)="hideModal()" bsModal>
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="loading" *ngIf="loadingBuilder">
+                <div class="loader"></div>
+            </div>
+
+            <div class="ribbon-wrapper-green">
+                <div class="ribbon-green"><i class="fa fa-star"></i></div>
+            </div>
+
+            <div class="modal-header">
+                <div class="box-header">
+                    <h3><i class="fa fa-crosshairs"></i> Contents Builder</h3>
+                    <small>Create new contents of packages</small>
+                </div>
+            </div>
+
+            <div class="modal-body p-lg">
+                <div class="row">
+                    <div class="col-md-12">
+                        <label for="">Thumbnail</label>
+                        <div [hidden]="!showCropper || !thumbnailUrl" class="col-md-12 col-xs-12 cropper">
+                            <angular-cropper #thumbnailImageCropper [imageUrl]="thumbnailUrl" [cropperOptions]="cropperConfig"></angular-cropper>
+                            <div class="cropper-buttons">
+                                <button id="inputImage" class="btn btn-upload manage-btn" type="button" (click)="thumbnailFileInput.click()">
+                                    <span class="docs-tooltip">
+                                        <span class="fa fa-upload"></span>
+                                        <br>
+                                        <small>Choose image</small>
+                                    </span>
+                                </button>
+                                <button (click)="saveCroppedImage(thumbnailImageCropper, 1)" type="button" class="btn"
+                                        title="getCroppedCanvas">
+                                    <span class="docs-tooltip">
+                                      <span class="fa fa-check"></span>
+                                      <br>
+                                      <small>Save</small>
+                                    </span>
+                                </button>
+                                <button (click)="cropperDestroy(thumbnailImageCropper, 'thumbnail')" type="button" class="btn"
+                                        title="Destroy">
+                                    <span class="fa fa-close"></span>
+                                    <br>
+                                    <small>Delete</small>
+                                </button>
+
+                                <input class="sr-only" type="file" #thumbnailFileInput (change)="setCropper($event.srcElement,'thumbnail')" name="file" accept="image/*">
+                                <ngfFormData [files]="thumbnail" postName="file[]"
+                                             [(FormData)]="thumbToFormData"></ngfFormData>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group">
+                                <div class="input-group-addon file-upload-btn" (click)="showCropper = true">
+                                    <span class="docs-tooltip" (click)="thumbnailFileInput.click()">
+                                        <span class="fa fa-upload"></span>
+                                    </span>
+                                </div>
+                                <input class="form-control input-sm" type="text" [(ngModel)]="content.thumbnail"
+                                       placeholder="Select image for thumbnail">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row" *ngIf="content.type != 1">
+                    <div [ngClass]="{'col-md-4':!(content.type == 4 && content.category == 13),'col-md-3':content.type == 4 && content.category == 13}">
+                        <label for="">Title</label>
+                        <input class="form-control input-sm" (keyup)="validate()" type="text"
+                               placeholder="Enter short title" [(ngModel)]="content.title">
+                    </div>
+
+                    <div [ngClass]="{'col-md-4':!(content.type == 4 && content.category == 13),'col-md-3':content.type == 4 && content.category == 13}">
+                        <label class="full-width">Type
+                            <div class="pull-right">
+                                <i class="material-icons icon-drag icon-label-float-right" *ngIf="content.type == 1">play_circle_outline</i>
+                                <i class="material-icons icon-drag icon-label-float-right" *ngIf="content.type == 2">queue_music</i>
+                                <i class="material-icons icon-drag icon-label-float-right" *ngIf="content.type == 3">crop_original</i>
+                                <i class="material-icons icon-drag icon-label-float-right" *ngIf="content.type == 4">subject</i>
+                                <i class="material-icons icon-drag icon-label-float-right" *ngIf="content.type == 5">attach_file</i>
+                                <i class="material-icons icon-drag icon-label-float-right" *ngIf="content.type == 8">local_dining</i>
+                                <i class="material-icons icon-drag icon-label-float-right" *ngIf="content.type == 9">receipt</i>
+                            </div>
+                        </label>
+                        <select name="type" class="form-control select-sm" (change)="changeAccept()"
+                                [(ngModel)]="content.type">
+                            <option value="1">Video</option>
+                            <option value="4">Article</option>
+                            <option value="8">Daily Plan</option>
+                            <option value="9">Recipe</option>
+                        </select>
+                    </div>
+
+
+                    <div [ngClass]="{'col-md-4':!(content.type == 4 && content.category == 13),'col-md-3':content.type == 4 && content.category == 13}"
+                         *ngIf="(content.type != 8 && content.type != 9)">
+                        <label for="">Category</label>
+                        <select name="category" class="form-control select-sm" [(ngModel)]="content.category"
+                                (change)="validate(); loadSubcategoriesByCategory(content.category)" [disabled]="isInitCategory">
+                            <option [ngValue]="category.id"
+                                    *ngFor="let category of categories">{{category.title}}</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-3" *ngIf="content.type == 4 && content.category == 13">
+                        <label for="">Subcategory</label>
+                        <select name="subcategory" class="form-control select-sm" [(ngModel)]="content.subcategory_id"
+                                (change)="validate()">
+                            <option *ngFor="let subcategory of subcategoriesForCategory"
+                                    [ngValue]="subcategory.id">{{subcategory.subcategory_name}}</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-4" *ngIf="(content.type == 8 || content.type == 9)">
+                        <label for="">Category</label>
+                        <select name="category" class="form-control select-sm" [(ngModel)]="content.category"
+                                (change)="validate()" >
+                            <option value="10">Nutrition</option>
+                        </select>
+                    </div>
+
+                </div>
+
+                <div class="row mt-10" *ngIf="(content.type == 9)">
+                    <div class="col-md-6">
+                        <label for="">Meal</label>
+                        <ng-multiselect-dropdown
+                                class="place_drop"
+                                (onSelect)="validate()"
+                                (onDeSelect)="validate()"
+                                [placeholder]="'Select meal'"
+                                [data]="mealsList"
+                                [(ngModel)]="mealId"
+                                [settings]="dropdownSettingsMeal"
+                        ></ng-multiselect-dropdown>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="">Daily calories</label>
+                        <ng-multiselect-dropdown
+                                class="place_drop"
+                                (onSelect)="validate()"
+                                (onDeSelect)="validate()"
+                                [placeholder]="'Select daily calories'"
+                                [data]="caloriesList"
+                                [(ngModel)]="dailyCalories"
+                                [settings]="dropdownSettingsCalories"
+                        ></ng-multiselect-dropdown>
+                    </div>
+                </div>
+
+                <div class="row mt-10" *ngIf="(content.type == 9)">
+                    <div class="col-md-12 tags-wrap">
+                        <label for="">Tags</label>
+                        <div class="tags-body">
+                            <div class="tag" *ngFor="let tag of tags; let i = index">
+                                <span class="tag-body">#{{tag}}</span>
+                                <span class="tag-delete" (click)="deleteTag(i)"></span>
+                                <a class="btn btn-icon btn-social white btn-sm" title="Delete tag"
+                                   (click)="deleteTag(i)">
+                                    <i class="fa fa-trash"></i>
+                                    <i class="fa fa-trash red-600"></i>
+                                </a>
+                            </div>
+                            <div class="new-tag col-sm-2 pd0">
+                                <input class="form-control input-sm" type="text" placeholder="Enter tag"
+                                       [(ngModel)]="newTag">
+                                <a class="btn btn-icon btn-social white btn-sm add-tag" title="Add new tag"
+                                   (click)="addTag()" *ngIf="newTag.length > 2">
+                                    <i class="fa fa-plus"></i>
+                                    <i class="fa fa-plus light-green"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row" *ngIf="content.type == 1">
+                    <div class="col-md-4">
+                        <label for="">Title</label>
+                        <input class="form-control input-sm" (keyup)="validate()" type="text"
+                               placeholder="Enter short title" [(ngModel)]="content.title">
+                    </div>
+                    <div class="col-md-2">
+                        <label class="full-width">Type
+                            <div class="pull-right">
+                                <i class="material-icons icon-drag icon-label-float-right" *ngIf="content.type == 1">play_circle_outline</i>
+                                <i class="material-icons icon-drag icon-label-float-right" *ngIf="content.type == 2">queue_music</i>
+                                <i class="material-icons icon-drag icon-label-float-right" *ngIf="content.type == 3">crop_original</i>
+                                <i class="material-icons icon-drag icon-label-float-right" *ngIf="content.type == 4">subject</i>
+                                <i class="material-icons icon-drag icon-label-float-right" *ngIf="content.type == 5">attach_file</i>
+                            </div>
+                        </label>
+                        <select name="type" class="form-control select-sm" (change)="changeAccept()"
+                                [(ngModel)]="content.type">
+                            <option value="1">Video</option>
+                            <option value="4">Article</option>
+                            <option value="8">Daily Plan</option>
+                            <option value="9">Recipe</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-2">
+                        <label for="">Category</label>
+                        <select name="category" class="form-control select-sm" [(ngModel)]="content.category"
+                                (change)="validate(); loadSubcategoriesByCategory(content.category)" [disabled]="isInitCategory">
+                            <option value="9">Fitness</option>
+                            <option value="13">Wellness</option>
+                            <option value="14">Vod</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-2" *ngIf="content.category != 14">
+                        <label for="">Subcategory</label>
+                        <select name="subcategory" class="form-control select-sm" [(ngModel)]="content.subcategory_id"
+                                (change)="validate()">
+                            <option *ngFor="let subcategory of subcategoriesForCategory"
+                                    [ngValue]="subcategory.id">{{subcategory.subcategory_name}}</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-2">
+                        <label for="">Duration</label>
+                        <input class="form-control input-sm" type="text" placeholder="Duration of video"
+                               [(ngModel)]="content.duration">
+                    </div>
+
+                    <div class="col-md-12">
+                        <br>
+                        <label for="">Active link</label>
+                        <input class="form-control input-sm" type="url"
+                               placeholder="Active link" [(ngModel)]="content.aws_url">
+                    </div>
+                </div>
+
+                <div class="row" *ngIf="content.type == 1 || content.type == 4">
+                    <br>
+
+                    <div class="col-md-2">
+                        <label for="mentor">For mentor</label>
+                        <select id="mentor" name="client_id" class="form-control select-sm"
+                                [(ngModel)]="content.client_id">
+                            <option [ngValue]="null">Not selected</option>
+                            <option *ngFor="let mentor of mentors" [ngValue]="mentor.client.id">{{mentor.name}}</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row" *ngIf="content.category == 9 || 13">
+                    <br>
+
+                    <div class="col-md-12" *ngIf="content.type == 1">
+                        <label for="">Valid days <small><b>Minimum one day required</b></small></label>
+                        <input class="form-control input-sm" type="number" min="1"
+                               placeholder="Valid days" [(ngModel)]="content.valid_days">
+                    </div>
+                </div>
+
+                <div class="row" *ngIf="content.type == 8">
+                    <br>
+                    <div class="col-md-12">
+                        <label for="">Category Food Bank</label>
+                        <select name="category" class="form-control select-sm" [(ngModel)]="content.category_food">
+                            <option value="1">Breakfast</option>
+                            <option value="2">Snack One</option>
+
+                            <option value="3">Lunch</option>
+                            <option value="4">Snack Two</option>
+
+                            <option value="5">Dinner</option>
+                            <option value="6">Dessert</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row" *ngIf="(content.type == 8 || content.type == 9) && content.category == 10">
+                    <br>
+                    <div class="col-md-12">
+                        <label for="">Nutrition Client Type</label>
+                        <select name="category" class="form-control select-sm" [(ngModel)]="content.type_id">
+                            <option value="1968">Underweight</option>
+                            <option value="1969">Healthy weight</option>
+                            <option value="1970">Overweight</option>
+                            <option value="1971">Obese</option>
+                            <option value="1972">Severely obese</option>
+                            <option value="1973">Morbidly obese</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row" *ngIf="content.type == 8">
+                    <br>
+                    <div class="col-md-12">
+                        <label for="">Gender</label>
+                        <select name="gender" class="form-control select-sm" [(ngModel)]="content.gender">
+                            <option value="M">Male</option>
+                            <option value="F">Female</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-12">
+                        <br>
+                        <label for="">Recipe</label>
+                        <select name="recipe" class="form-control select-sm" [(ngModel)]="content.recipe">
+                            <option value="{{item.id}}" *ngFor="let item of recipes">{{item.title}}</option>
+                        </select>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-md-12">
+                        <label for="editor1">Description</label>
+                        <ckeditor id="editor1" [(ngModel)]="content.description" [config]="editorConfig"></ckeditor>
+                    </div>
+                    <div class="col-md-12" *ngIf=" content.type == 9">
+                        <br>
+                        <label>Ingredient</label>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Recipe Content</th>
+                                    <th>Recipe Value</th>
+                                    <th>Options</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let response of content.recipe_description">
+                                    <td>
+                                        <input type="text" class="form-control input-sm-control" name="question"
+                                               [(ngModel)]="response.ingredient_name">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control input-sm-control" name="question"
+                                               [(ngModel)]="response.ingredient_value">
+                                    </td>
+                                    <td>
+                                        <a class="btn btn-icon btn-social white btn-sm" title="Delete"
+                                           [swal]="{ title: 'Delete Recipe Ingredients', text: 'Confirm that you want to delete the record? The element will be removed permanently' }"
+                                           (confirm)="delAnswer(response)"
+                                        >
+                                            <i class="fa fa-trash"></i>
+                                            <i class="fa fa-trash red-600"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th colspan="3">
+
+                                        <br><br>
+                                        New ingredient
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <input type="text" class="form-control input-sm-control" placeholder="Label"
+                                               [(ngModel)]="custom.ingredient_name" name="ingredient_name">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control input-sm-control" placeholder="Value"
+                                               [(ngModel)]="custom.ingredient_value" name="ingredient_value">
+                                    </td>
+                                    <td>
+                                        <a class="btn btn-icon btn-social white btn-sm" title="Insert answer"
+                                           (click)="insertNewAnswer()"
+                                        >
+                                            <i class="fa fa-plus"></i>
+                                            <i class="fa fa-plus light-green"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <br>
+                    <div class="col-md-12" *ngIf=" content.type == 9">
+                        <label>Nutrients</label>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Nutrient Content</th>
+                                    <th>Nutrient Value</th>
+                                    <th>Options</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let response of content.recipe_nutrients">
+                                    <td>
+                                        <input type="text" class="form-control input-sm-control" name="question"
+                                               [(ngModel)]="response.nutrients_name">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control input-sm-control" name="question"
+                                               [(ngModel)]="response.nutrients_value">
+                                    </td>
+                                    <td>
+                                        <a class="btn btn-icon btn-social white btn-sm"
+                                           title="Delete"
+                                           [ngClass]="{'disabled': checkIsNutrientDefault(response.nutrients_name)}"
+                                           [swal]="{ title: 'Delete Recipe Nutrient', text: 'Confirm that you want to delete the record? The element will be removed permanently' }"
+                                           (confirm)="delNutrients(response)
+                                        ">
+                                            <i class="fa fa-trash"></i>
+                                            <i class="fa fa-trash red-600"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th colspan="3">
+
+                                        <br><br>
+                                        New Nutrient
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <input type="text" class="form-control input-sm-control" placeholder="Label"
+                                               [(ngModel)]="customNutrients.nutrients_name" name="nutrients_name">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control input-sm-control" placeholder="Value"
+                                               [(ngModel)]="customNutrients.nutrients_value" name="nutrients_value">
+                                    </td>
+                                    <td>
+                                        <a class="btn btn-icon btn-social white btn-sm" title="Insert Nutrient"
+                                           (click)="insertNewNutrient()">
+                                            <i class="fa fa-plus"></i>
+                                            <i class="fa fa-plus light-green"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <br>
+                <div *ngIf="content.type == 9">
+                    <label for="">Content Files</label>
+                    <ngfFormData [files]="files" postName="file[]" [(FormData)]="toFormData"></ngfFormData>
+                    <ngfUploadStatus [(percent)]="progress" [httpEvent]="httpEvent"></ngfUploadStatus>
+
+                    <div class="inline-block">
+                        <div ngfDrop multiple="1" selectable="1" [(validDrag)]="validComboDrag"
+                             (filesChange)="changeComboDropFile()" [(files)]="files" [accept]="accept"
+                             [(dragFiles)]="dragFiles" class="well my-drop-zone"
+                             [class.invalid-drag]="validComboDrag===false"
+                             [class.valid-drag]="validComboDrag">
+                            <i class="fa fa-hand-o-right mr-10"></i> <strong>Drag and drop</strong> your files <strong>here</strong>
+                        </div>
+                    </div>
+
+                    <div class="separe-table-files">
+                        <table class="table table-drop">
+                            <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Format</th>
+                                <th>Size</th>
+                                <th>Actions</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr *ngFor="let item of content.data;let i=index">
+                                <td>
+                                    <strong>{{ item.title }}</strong>
+                                </td>
+                                <td nowrap>
+                                    {{ item.type }}
+                                </td>
+                                <td nowrap>
+                                    {{ item.size / 1024 / 1024 | number:'.2' }} MB
+                                </td>
+                                <td nowrap>
+                                    <button [disabled]="(!content.data.length)" type="button"
+                                            class="btn btn-danger btn-xs" (click)="content.data.splice(i,1)">
+                                        <i class="fa fa-trash"></i>
+                                    </button>
+                                </td>
+                            </tr>
+
+                            <tr *ngFor="let item of files; let i=index">
+                                <td>
+                                    <div *ngIf="['image/gif','image/png','image/jpeg'].indexOf(item.type)>=0">
+                                        <div class="previewIcon" [ngfBackground]="item"></div>
+                                    </div>
+                                    <strong>{{ item.name }}</strong>
+                                </td>
+                                <td nowrap>
+                                    {{ item.type }}
+                                </td>
+                                <td nowrap>
+                                    {{ item.size / 1024 / 1024 | number:'.2' }} MB
+                                </td>
+                                <td nowrap>
+                                    <button [disabled]="(!files.length)" type="button" class="btn btn-danger btn-xs"
+                                            (click)="files.splice(i,1)">
+                                        <i class="fa fa-trash"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+
+                        <div>
+                            <div>
+                                <div class="progress progress-striped progress-xs" style="">
+                                    <div class="progress-bar primary" role="progressbar"
+                                         [ngStyle]="{ 'width': progress + '%' }"></div>
+                                </div>
+                            </div>
+
+                            <i *ngIf="progress==100" class="glyphicon glyphicon-ok"></i>
+
+                            <button type="button" class="btn btn-success btn-sm" (click)="uploadFiles(files)"
+                                    [disabled]="(!files.length)">
+                                <i class="fa fa-cloud-upload"></i> Upload all
+                            </button>
+
+                            <button type="button" class="btn btn-default btn-sm" (click)="cancel()"
+                                    [disabled]="!httpEmitter">
+                                <i class="fa fa-exclamation-triangle"></i> Cancel all
+                            </button>
+                            <button type="button" class="btn btn-default btn-sm" (click)="files.length=0"
+                                    [disabled]="(!files.length)">
+                                <i class="fa fa-trash"></i> Remove all
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn dark-white p-x-md" (click)="hideModal()"><i class="fa fa-times"></i>
+                    Cancel
+                </button>
+                <button type="button" class="btn btn-primary p-x-md" [disabled]="(!isValid)" (click)="postContent()"><i
+                        class="fa fa-check-circle"></i> Save content
+                </button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+</div>
