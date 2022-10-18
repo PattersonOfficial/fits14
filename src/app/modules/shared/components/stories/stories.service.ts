@@ -20,7 +20,7 @@ export class StoriesService {
     return this.http.post<any[]>(this.url + path, data, { headers: headers });
   }
 
-  getFriendsStoriesById(id): Observable<any[]> {
+  getFriendsStoriesById(id: any): Observable<any[]> {
     const path = '/posts/get-friend/';
     const headers = new HttpHeaders({'Content-Type': 'application/json'});
     return this.http.get<any[]>(this.url + path + id, { headers: headers });
@@ -34,7 +34,7 @@ export class StoriesService {
         );
   }
 
-  deleteUserStory(id): Observable<any> {
+  deleteUserStory(id: any): Observable<any> {
     const path = '/posts/delete';
     return this.http.post<any[]>(this.url + path, {post_id: id});
   }

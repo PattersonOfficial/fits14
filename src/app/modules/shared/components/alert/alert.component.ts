@@ -9,7 +9,7 @@ import { Component, ViewChild, Input, OnInit } from '@angular/core';
 
 export class AlertComponent implements OnInit {
 
-  public alerts: Alerts[];
+  public alerts: Alerts[] = [];
 
   constructor(
 
@@ -21,7 +21,7 @@ export class AlertComponent implements OnInit {
     this.alerts = [];
   }
 
-  public hide(event) {
+  public hide(event: any) {
     this.alerts.splice(event, 1);
   }
 
@@ -36,8 +36,8 @@ export class AlertComponent implements OnInit {
 
 
 export class Alerts {
-  public date: string;
-  public title: string;
-  public image: string;
-  public url: string;
+  public date: string = '';
+  public title: string = '';
+  public image: string = '';
+  public url: string = '';
 }

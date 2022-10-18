@@ -26,7 +26,7 @@ interface IOrderSummary {
   styleUrls: ['./order-summary.component.scss'],
 })
 export class OrderSummaryComponent implements OnInit {
-  user: User;
+  user: User | undefined;
 
   constructor(
     public dialogRef: MatDialogRef<OrderSummaryComponent>,
@@ -36,18 +36,18 @@ export class OrderSummaryComponent implements OnInit {
     private paymentService: PaymentService
   ) {}
 
-  discount: string;
-  focusedInputField: boolean;
-  priceNew = null;
-  invoicePrice: number;
-  taxAmount: number;
-  responseError: string;
+  discount: string = '';
+  focusedInputField: boolean = false;
+  priceNew:number | undefined;
+  invoicePrice: number | undefined;
+  taxAmount: number | undefined;
+  responseError: string = '';
   form: FormGroup = new FormGroup({
     code: new FormControl('', [Validators.required]),
   });
   taxPrice = '';
   discountAmount = '';
-  mainAmount = null;
+  mainAmount: string | undefined;
 
   get codeControl() {
     return this.form.get('code') as FormControl;
@@ -65,14 +65,14 @@ export class OrderSummaryComponent implements OnInit {
     this.checkSubscriptionStatus();
   }
 
-  // this is for checking coupon code validation 
+  // this is for checking coupon code validation
   checkCode(event?: KeyboardEvent) {
     if (!event || event.key === 'Enter') {
       let has_entered_coupon = false;
       let coupon_code = '';
       let params = new HttpParams()
         .set('product_id', String(this.data.paymentConfig.product_id))
-        .set('product_type', this.data.paymentConfig.product_type);
+        .set('product_type', String(this.data.paymentConfig.product_type));
       if (this.isCodeValue) {
         params = params.set('coupon_code', this.codeControl.value);
         has_entered_coupon = true;
@@ -122,7 +122,7 @@ export class OrderSummaryComponent implements OnInit {
     let coupon_code = '';
     let params = new HttpParams()
       .set('product_id', String(this.data.paymentConfig.product_id))
-      .set('product_type', this.data.paymentConfig.product_type);
+      .set('product_type', String(this.data.paymentConfig.product_type));
 
     params = params.set('coupon_code', 'void_coupon');
     has_entered_coupon = true;
@@ -174,10 +174,10 @@ export class OrderSummaryComponent implements OnInit {
   }
 
   reset() {
-    this.invoicePrice = null;
-    this.taxAmount = null;
+    this.invoicePrice = undefined;
+    this.taxAmount = undefined;
     this.taxPrice = '';
     this.discountAmount = '';
-    this.priceNew = null;
+    this.priceNew = undefined;
   }
 }

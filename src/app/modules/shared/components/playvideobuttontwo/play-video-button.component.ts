@@ -6,7 +6,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
   styleUrls: ['./play-video-button-two.component.css']
 })
 export class PlayVideoButtonTwoComponent implements OnInit {
-  @Input() fontSize: string;
+  @Input() fontSize: string = '10px';
   @Output() onPlayVideo: EventEmitter<any> = new EventEmitter();
 
   public playVideo() {

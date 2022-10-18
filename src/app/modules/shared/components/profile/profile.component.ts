@@ -26,7 +26,7 @@ import {MyprogramService} from '../../../client/modules/myprogram/components/myp
 })
 
 export class ProfileComponent implements OnInit {
-    private _userId: string;
+    private _userId: string = '';
 
     get userId(): string {
         return this._userId;
@@ -37,25 +37,25 @@ export class ProfileComponent implements OnInit {
         this._userId = val;
         this.getUserDetails();
     }
-    @ViewChild(WebViewComponent, {static: false}) webview: WebViewComponent;
-    @Input() feedUserId: number;
+    @ViewChild(WebViewComponent, {static: false}) webview: WebViewComponent | any;
+    @Input() feedUserId: number = 0;
 
-    public memberships: Memberships;
-    public user: User;
-    public loggedUser: User;
-    public country: string;
-    public friendsCount: number;
+    public memberships: Memberships | undefined;
+    public user: User | any;
+    public loggedUser: User | any;
+    public country: string = '';
+    public friendsCount: number = 0;
     public hasActiveStories = false;
     public isMe = true;
     public canAdd = false;
-    public friends: Observable<Friends[]>;
-    public currentFriendsList = [];
+    public friends: Observable<Friends[]> | any;
+    public currentFriendsList: any = [];
     public isRequestSent = false;
-    public friendsRequests = [];
+    public friendsRequests: any[] = [];
     public isFriend = false;
     public clientTypes: any = {};
-    mentorVideoList: Contents[];
-    mentorArticleList: Contents[];
+    mentorVideoList: Contents[] = [];
+    mentorArticleList: Contents[] = [];
 
     constructor(
         public _route: ActivatedRoute,
@@ -90,15 +90,15 @@ export class ProfileComponent implements OnInit {
             this.user = loggedUser;
         } else {
             this.getMyFriendsList();
-            this.friends.subscribe(list => {
+            this.friends.subscribe((list: []) => {
                 this.currentFriendsList = [];
-                list.forEach((user, i) => {
+                list.forEach((user: any, i) => {
                     const userToShow = {firestore_uid: user['friend_id']};
-                    user['user'].subscribe(userData => {
+                    user['user'].subscribe((userData: any) => {
                         // console.log('friends item: ', userData);
                         const userToPush = Object.assign(userToShow, userData);
                         let userExist = false;
-                        this.currentFriendsList.forEach((item, index) => {
+                        this.currentFriendsList.forEach((item: any, index: any) => {
                             if (item.firestore_uid === userToPush.firestore_uid) {
                                 this.currentFriendsList[index] = userToPush;
                                 userExist = true;
@@ -108,8 +108,8 @@ export class ProfileComponent implements OnInit {
                             this.currentFriendsList.push(userToPush);
                         }
                         if (i === list.length - 1) {
-                            this.canAdd = !this.currentFriendsList.filter(friend => friend.id === +this.userId).length;
-                            this.isFriend = !!this.currentFriendsList.filter(friend => friend.id === +this.userId).length;
+                            this.canAdd = !this.currentFriendsList.filter((friend: any) => friend.id === +this.userId).length;
+                            this.isFriend = !!this.currentFriendsList.filter((friend: any) => friend.id === +this.userId).length;
                         }
                     });
                 });
@@ -234,10 +234,10 @@ export class ProfileComponent implements OnInit {
         );
     }
 
-    public getStories(id) {
+    public getStories(id: any) {
         // console.log('getting stories for user', id);
         this._storiesService.getFriendsStoriesById(id).subscribe(
-            data => {
+            (data: any) => {
                 // console.log('profile stories', data)
                 this.hasActiveStories = !!data['friend_data'].length;
                 // console.log('user stories', this.userStoriesBy24Hours);
@@ -251,7 +251,7 @@ export class ProfileComponent implements OnInit {
             .collection('friends')
             .snapshotChanges()
             .pipe(map(friends => {
-                return friends.map(friend => {
+                return friends.map((friend: any) => {
                     const uid = friend.payload.doc.data().uid;
                     const userFriend = this._firestore.collection('users').doc(uid).valueChanges();
                     return Object.assign({
@@ -290,13 +290,13 @@ export class ProfileComponent implements OnInit {
         );
     }
 
-    safeImageUrl(image) {
+    safeImageUrl(image: any) {
         return this._sanitizer.bypassSecurityTrustStyle(`url(${image})`);
     }
 
     getClientTypes() {
         this._myprogramService.getMyClientTypes().subscribe(data => {
-            data.types.forEach(type => this.clientTypes[type.category_id] = type);
+            data.types.forEach((type: any) => this.clientTypes[type.category_id] = type);
         });
     }
 }

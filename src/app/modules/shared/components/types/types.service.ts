@@ -16,7 +16,7 @@ export class TypesService {
     this.url = environment.api;
   }
 
-  getTypesOfCategory(params): Observable<any> {
+  getTypesOfCategory(params: any): Observable<any> {
     const path = '/categories/find';
     const headers = new HttpHeaders({
       'Content-Type': 'application/json'
@@ -34,7 +34,7 @@ export class TypesService {
   }
 
 
-  startProgram(id): Observable<any> {
+  startProgram(id: any): Observable<any> {
     const path = '/account/my-program/start';
     const headers = new HttpHeaders({
       'Content-Type': 'application/json'
@@ -42,7 +42,7 @@ export class TypesService {
     return this._http.put(this.url + path, { id: id }, { headers: headers });
   }
 
-  startMyProgram(id): Observable<any> {
+  startMyProgram(id: any): Observable<any> {
     const path = '/account/my-program/start/fitnes';
     const headers = new HttpHeaders({
       'Content-Type': 'application/json'

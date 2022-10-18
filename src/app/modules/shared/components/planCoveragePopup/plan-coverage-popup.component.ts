@@ -7,12 +7,12 @@ import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 })
 
 export class PlanCoveragePopupComponent implements OnInit {
-    @Input() neededMembership: number;
+    @Input() neededMembership: number = 0;
     @Output() emitChoosePlan = new EventEmitter();
     @Output() emitClosePlanCoveragePopup = new EventEmitter();
 
-    public planName: string;
-    public programType: string;
+    public planName: string = '';
+    public programType: string = '';
 
     constructor(
     ) {
@@ -35,7 +35,7 @@ export class PlanCoveragePopupComponent implements OnInit {
         }
     }
 
-    closePlanCoveragePopup(e) {
+    closePlanCoveragePopup(e: any) {
         // e.stopPropagation();
         // if (!e.target.closest('.plan-coverage-popup')) {
         //     this.emitClosePlanCoveragePopup.emit();

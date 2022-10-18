@@ -27,7 +27,7 @@ export class CancelPlanComponent implements OnInit {
         this.user = this._storageService.getCurrentUser();
     }
 
-    closeModal(action?): void {
+    closeModal(action?: any): void {
         console.log({ action });
         this.loader = false;
         this.dialogRef.close(action);
@@ -35,7 +35,7 @@ export class CancelPlanComponent implements OnInit {
 
     cancelPlan() {
         this.loader = true;
-        this._userService.cancelPlan().subscribe(resp => {
+        this._userService.cancelPlan().subscribe(() => {
             this.planCanceled = true;
             this.loader = false;
         });

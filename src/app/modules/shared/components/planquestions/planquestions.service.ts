@@ -38,7 +38,7 @@ export class PlanQuestionsService {
   }
 
 
-  saveMedidas(data): Observable<any> {
+  saveMedidas(data: any): Observable<any> {
     const path = '/account/save-medidas';
     const headers = new HttpHeaders({
       'Content-Type': 'application/json'

@@ -17,25 +17,25 @@ export class PlanQuestionsComponent {
 
   public loadingQuestions: boolean;
   public user: User;
-  public questions: any[];
+  public questions: any[] = [];
   public question: number;
-  public totalQuestions: number;
+  public totalQuestions: number | any;
   public porcent: number;
   public next: boolean;
   public previous: boolean;
-  public formFields: any[];
-  public questionFields: any[];
-  public questionForm: FormGroup;
+  public formFields: any[] = [];
+  public questionFields: any[] =[];
+  public questionForm: FormGroup | any;
   public message: string;
   public formNuts: boolean;
-  public weight: number;
-  public height: number;
-  public meWeight: string;
-  public meHeight: string;
-  public measurements: string;
-  public conditions: boolean;
+  public weight: number | any;
+  public height: number | any;
+  public meWeight: string = '';
+  public meHeight: string = '';
+  public measurements: string = '';
+  public conditions: boolean = false;
 
-  @ViewChild('modalRef', {static: false}) modalRef: ModalDirective;
+  @ViewChild('modalRef', {static: false}) modalRef: ModalDirective | any;
 
   constructor(
     private _formBuilder: FormBuilder,
@@ -72,7 +72,7 @@ export class PlanQuestionsComponent {
 
     this.meWeight = 'kg';
     this.meHeight = 'cm';
-    this.height = this.user.client.height;
+    this.height = this.user.client['height'];
     this.weight = this.user.client.weight;
 
 
@@ -106,7 +106,7 @@ export class PlanQuestionsComponent {
     )
   }
 
-  getQuestionsOfCategory(category) {
+  getQuestionsOfCategory(category: any) {
     this.loadingQuestions = true;
     this.question = 0;
     this.next = false;
@@ -123,7 +123,7 @@ export class PlanQuestionsComponent {
     )
   }
 
-  getRandomInt(min, max) {
+  getRandomInt(min: any, max: any) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   }
 
@@ -150,12 +150,12 @@ export class PlanQuestionsComponent {
     )
   }
 
-  toFormGroup(questions) {
+  toFormGroup(questions: any) {
     let group: any = {};
-    questions.forEach(question => {
+    questions.forEach((question: any) => {
       if (question.type == 'checkbox' || question.type == 'checkbox_with_image') {
         group[question.name] = new FormGroup({});
-        question.responses.forEach(response => {
+        question.responses.forEach((response: any) => {
           group[question.name].addControl(response.id, new FormControl(false));
         });
       } else if (question.type == 'number_with_select') {
@@ -222,7 +222,7 @@ export class PlanQuestionsComponent {
 
   }
 
-  include(e) {
+  include(e: any) {
     jQuery(e.target)
   }
 
@@ -238,6 +238,6 @@ export class PlanQuestionsComponent {
       }
     );
   }
- 
+
 
 }

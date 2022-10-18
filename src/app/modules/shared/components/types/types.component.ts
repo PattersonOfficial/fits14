@@ -17,16 +17,16 @@ import { TypesService } from "./types.service";
 export class TypesComponent implements OnInit {
   public types: any[];
   public width: number;
-  public category: string;
+  public category: string = '';
   public loadingClientTypes: boolean;
-  public userTypes: any[];
+  public userTypes: any[] = [];
   public mainTitle: string;
   public user: any = [];
   public loadQuestions = false;
 
-  @ViewChild("modalRef", { static: false }) modalRef: ModalDirective;
+  @ViewChild("modalRef", { static: false }) modalRef: ModalDirective | any;
   @ViewChild(QuestionsComponent, { static: false })
-  questionsRef: QuestionsComponent;
+  questionsRef: QuestionsComponent | any;
 
   constructor(
     public _typesService: TypesService,
@@ -47,13 +47,13 @@ export class TypesComponent implements OnInit {
     this.userTypes = this.user.client.types;
   }
 
-  openModal(id, title) {
+  openModal(id: any, title: any) {
     this.getTypesOfCategory(id, title);
     this.getMyClientTypes();
     this.modalRef.show();
   }
 
-  getClientTypeIdForHome(id, title) {
+  getClientTypeIdForHome(id: any, title: any) {
     this._typesService
       .getTypesOfCategory({
         id: id,
@@ -64,7 +64,7 @@ export class TypesComponent implements OnInit {
         this._typesService.getMyClientTypes().subscribe((data1) => {
           for (let typeIndex = 0; typeIndex < mainTypes.length; typeIndex++) {
             if (
-              data1.types.map((e) => e.id).indexOf(mainTypes[typeIndex].id) !=
+              data1.types.map((e: any) => e.id).indexOf(mainTypes[typeIndex].id) !=
               -1
             ) {
               return mainTypes[typeIndex].id;
@@ -74,7 +74,7 @@ export class TypesComponent implements OnInit {
       });
   }
 
-  getClientTypeIdForMyProgram(id, title, tab?) {
+  getClientTypeIdForMyProgram(id: any, title: any, tab?: any) {
     this.modalRef.show();
     this.loadingClientTypes = true;
     this._typesService
@@ -103,7 +103,7 @@ export class TypesComponent implements OnInit {
               ) {
                 if (
                   data1.types
-                    .map((e) => e.id)
+                    .map((e: any) => e.id)
                     .indexOf(mainTypes[typeIndex].id) !== -1
                 ) {
 
@@ -168,7 +168,7 @@ export class TypesComponent implements OnInit {
     this.modalRef.hide();
   }
 
-  getTypesOfCategory(id, title) {
+  getTypesOfCategory(id: any, title: any) {
     this.mainTitle = title;
     this._typesService
       .getTypesOfCategory({
@@ -190,23 +190,23 @@ export class TypesComponent implements OnInit {
     });
   }
 
-  existTypeInUser(type_id) {
+  existTypeInUser(type_id: any) {
     return this.userTypes.map((e) => e.id).indexOf(type_id);
   }
 
-  startProgram(id) {
+  startProgram(id: any) {
     this._typesService.startProgram(id).subscribe((data) => {
       // console.log(data);
     });
   }
 
-  startMyProgram(id) {
+  startMyProgram(id: any) {
     this._typesService.startMyProgram(id).subscribe((data) => {
       // console.log(data);
     });
   }
 
-  goToContentOfType(id, title) {
+  goToContentOfType(id: any, title: any) {
     if (this.existTypeInUser(id) !== -1) {
       // console.log({id});
       // console.log(this.existTypeInUser(id));
@@ -225,7 +225,7 @@ export class TypesComponent implements OnInit {
     }
   }
 
-  safeImageUrl(image) {
+  safeImageUrl(image: any) {
     return this._sanitizer.bypassSecurityTrustStyle(`url(${image})`);
   }
 

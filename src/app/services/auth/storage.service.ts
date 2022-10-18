@@ -16,7 +16,7 @@ export class StorageService {
     public isUserChanged = new Subject<any>();
     private localStorageService;
     private localSessionService;
-    private currentSession: Session;
+    private currentSession: Session | any;
     public url: string;
 
     constructor(
@@ -42,7 +42,7 @@ export class StorageService {
 
     setUserSession(user: User): void {
         // const session: Session = this.getCurrentSession();
-        const session: Session = JSON.parse(localStorage.getItem('loggedUser'));
+        const session: Session = JSON.parse(localStorage.getItem('loggedUser')  || '{}');
         session.user = user;
         // console.log(session.user.client);
         this._firestore.collection('users').doc(session.user.firestore_uid).set({
@@ -109,7 +109,7 @@ export class StorageService {
         return (extraStr) ? extraStr : null;
     }
 
-    loadSessionData(): Session {
+    loadSessionData(): Session | any {
         const sessionStr = this.localStorageService.getItem('loggedUser');
         return (sessionStr) ? <Session>JSON.parse(sessionStr) : null;
     }
@@ -126,7 +126,7 @@ export class StorageService {
         this.isLogged.next(false);
     }
 
-    getCurrentUser(): User {
+    getCurrentUser(): User | any {
         const session: Session = this.getCurrentSession();
         return (session && session.user) ? session.user : null;
     }
@@ -137,7 +137,7 @@ export class StorageService {
 
     getCurrentToken(): string {
         const session = this.getCurrentSession();
-        return (session && session.token) ? session.token : null;
+        return (session && session.token) ? session.token : '';
     }
 
     reValidateSession() {
@@ -147,7 +147,7 @@ export class StorageService {
     }
 
     logout(): void {
-        const user = this.getCurrentUser();
+        const user: any = this.getCurrentUser();
         this._firestore.collection('users').doc(user.firestore_uid).set({
             status: 0
         }, {merge: true});

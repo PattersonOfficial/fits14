@@ -7,7 +7,7 @@ import { WaterService } from './water.service';
 // -------------Models-----------------
 import { WaterWidget } from '../../../../models/widgets/water/water.model';
 import { User } from '../../../../models/user/user.model';
-import { colorSets } from '@swimlane/ngx-charts/release/utils/color-sets';
+import { colorSets } from '@swimlane/ngx-charts';
 
 
 declare var jQuery: any;
@@ -26,28 +26,28 @@ export class WaterComponent implements OnInit {
   public dataReport: any[];
   public colorSets: any;
   public colorScheme: any;
-  public ref: any[];
+  public ref: any[] = [];
   public isVisibleIntro: boolean;
   public isVisibleInput: boolean;
   public water: WaterWidget;
-  public user: User;
-  public recommended: number;
-  public recommendedInLog: number;
+  public user: User | any;
+  public recommended: number = 0;
+  public recommendedInLog: number | undefined;
   public ingested: number;
   public last: number;
-  public measurement: string;
-  public measurementInLog: string;
+  public measurement: string | undefined;
+  public measurementInLog: string | undefined;
   public typeBottle: any[];
   public initConfigure: boolean;
   public isValid: boolean;
   public step: number;
-  public infoExtraForm: FormGroup;
+  public infoExtraForm: FormGroup | any;
 
-  public bottle_cup: number;
-  public bottle_small: number;
-  public bottle_large: number;
+  public bottle_cup: number | undefined;
+  public bottle_small: number | undefined;
+  public bottle_large: number | undefined;
 
-  @ViewChild('modalRef', {static: false}) modalRef: ModalDirective;
+  @ViewChild('modalRef', {static: false}) modalRef: ModalDirective | any;
 
   constructor(
     public _waterService: WaterService,
@@ -103,7 +103,7 @@ export class WaterComponent implements OnInit {
 
   checkConfiguration() {
     if ((this.user.client.weight == null)
-        || (this.user.client.weight < 5) 
+        || (this.user.client.weight < 5)
         || (this.user.client.measurement_weight == null)
         || (this.user.client.measurement_liquid == null)) {
       this.isValid = false;
@@ -157,7 +157,7 @@ export class WaterComponent implements OnInit {
     );
   }
 
-  setQuantyOfType(event, type, mililiters) {
+  setQuantyOfType(event: any, type: any, mililiters: any) {
     if (event.currentTarget.checked) {
       if (this.typeBottle.indexOf(type) == -1) {
         this.typeBottle.push(type);
@@ -174,7 +174,7 @@ export class WaterComponent implements OnInit {
   }
 
 
-  calculateRange(quanty) {
+  calculateRange(quanty: any) {
     const real = (quanty * 100) / this.recommended;
     const ml = (220 * real) / 100;
     let apply = 220 - ml;
@@ -185,7 +185,7 @@ export class WaterComponent implements OnInit {
     // jQuery('#waterBrush').velocity({ translateY: [`${apply.toFixed(0)}px`, 220] }, { duration: 2000, 'easing': 'easeOutBack' });
   }
 
-  reportInOunces(event) {
+  reportInOunces(event: any) {
     if (event.currentTarget.checked) {
       this.measurementInLog = 'oz';
       this.recommendedInLog = this.calculateFeee(this.user.client.weight, 'oz');
@@ -243,7 +243,7 @@ export class WaterComponent implements OnInit {
   }
 
 
-  getReportLastWeek(measurement) {
+  getReportLastWeek(measurement: any) {
     this.loadingBoxModal = true;
     this._waterService.getLogWater(measurement).subscribe(
       data => {
@@ -253,7 +253,7 @@ export class WaterComponent implements OnInit {
     );
   }
 
-  getIngestedToday(measure) {
+  getIngestedToday(measure: any) {
     this._waterService.getIngested().subscribe(
       data => {
         this.recommended = this.calculateFeee(this.user.client.weight, this.user.client.measurement_liquid);
@@ -276,7 +276,7 @@ export class WaterComponent implements OnInit {
     }
   }
 
-  calculateFeee(weight, measure) {
+  calculateFeee(weight: any, measure: any) {
     let kg = weight;
     let extra = 0;
     if (this.user.client.measurement_weight == 'lb') {
@@ -300,8 +300,8 @@ export class WaterComponent implements OnInit {
     }
   }
 
-  setColorScheme(name) {
-    this.colorScheme = this.colorSets.find(s => s.name === name);
+  setColorScheme(name: any) {
+    this.colorScheme = this.colorSets.find((s: any) => s.name === name);
   }
 
   openLogWeek() {
@@ -309,7 +309,7 @@ export class WaterComponent implements OnInit {
     this.getReportLastWeek(this.measurement);
   }
 
-  changeSliderIngested(event) {
+  changeSliderIngested(event: any) {
     this.ingested = event.from;
   }
 

@@ -16,7 +16,7 @@ export class CalendarService {
     this.url = environment.api;
   }
 
-  getEventsDay(params): Observable<any> {
+  getEventsDay(params: any): Observable<any> {
     const path = '/calendar/events/by-date';
     const headers = new HttpHeaders({
       'Content-Type': 'application/json'
@@ -24,7 +24,7 @@ export class CalendarService {
     return this._http.get(this.url + path + `/${params.date}?uid=${params.user_id}`, { headers: headers });
   }
 
-  setEventDay(params): Observable<any> {
+  setEventDay(params: any): Observable<any> {
     const path = '/calendar/events/save';
     const headers = new HttpHeaders({
       'Content-Type': 'application/json'
@@ -32,7 +32,7 @@ export class CalendarService {
     return this._http.post(this.url + path, params, { headers: headers });
   }
 
-  setStateOfEvent(event, state): Observable<any> {
+  setStateOfEvent(event: any, state: any): Observable<any> {
     const path = '/calendar/events/update/' + event;
     const headers = new HttpHeaders({
       'Content-Type': 'application/json'
@@ -40,7 +40,7 @@ export class CalendarService {
     return this._http.put(this.url + path + `?state=${state}`, { headers: headers });
   }
 
-  getEventsMonth(date): Observable<any> {
+  getEventsMonth(date: any): Observable<any> {
     const path = '/calendar/events/month/' + date;
     const headers = new HttpHeaders({
       'Content-Type': 'application/json'
