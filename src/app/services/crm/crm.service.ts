@@ -147,7 +147,7 @@ export class CrmService {
   }
 
   getEnrollmentsSummary(
-    client_id
+    client_id: any
   ): Observable<{
     vod_purchases: boolean;
     vod_free_coupon: boolean;
@@ -205,7 +205,7 @@ export class CrmService {
       );
   }
 
-  generateInvoice(id): Observable<string> {
+  generateInvoice(id: any): Observable<string> {
     const path = `/payment/invoices/${id}/generate-pdf`;
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
@@ -214,7 +214,7 @@ export class CrmService {
     return this._http.get<string>(this.url + path, { headers: headers });
   }
 
-  deleteUsers(payload) {
+  deleteUsers(payload: any) {
     const path = '/crm/delete/users';
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
@@ -224,7 +224,7 @@ export class CrmService {
     });
   }
 
-  deleteTickets(payload) {
+  deleteTickets(payload: any) {
     const path = '/tickets/delete';
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',

@@ -16,7 +16,7 @@ export class StorageService {
     public isUserChanged = new Subject<any>();
     private localStorageService;
     private localSessionService;
-    private currentSession: Session = null;
+    private currentSession: Session;
     public url: string;
 
     constructor(
@@ -30,7 +30,7 @@ export class StorageService {
         this.url = environment.api;
     }
 
-    setCurrentSession(session): void {
+    setCurrentSession(session: any): void {
         this.currentSession = session;
         // console.log(session.user.client);
         // this.localStorageService.setItem('loggedUser', JSON.stringify(session));
@@ -40,7 +40,7 @@ export class StorageService {
         this.isUserChanged.next(this.getCurrentUser());
     }
 
-    setUserSession(user): void {
+    setUserSession(user: User): void {
         // const session: Session = this.getCurrentSession();
         const session: Session = JSON.parse(localStorage.getItem('loggedUser'));
         session.user = user;
@@ -91,20 +91,20 @@ export class StorageService {
         );
     }
 
-    setExtraData(key, data): void {
+    setExtraData(key: string, data: any): void {
         this.localStorageService.setItem(key, data);
     }
 
-    setExtraDataSession(key, data): void {
+    setExtraDataSession(key: string, data: any): void {
         this.localSessionService.setItem(key, data);
     }
 
-    loadExtraData(key) {
+    loadExtraData(key: string) {
         const extraStr = this.localStorageService.getItem(key);
         return (extraStr) ? extraStr : null;
     }
 
-    loadExtraDataSession(key) {
+    loadExtraDataSession(key: string) {
         const extraStr = this.localSessionService.getItem(key);
         return (extraStr) ? extraStr : null;
     }

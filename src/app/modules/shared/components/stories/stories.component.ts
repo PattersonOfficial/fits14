@@ -15,10 +15,10 @@ import { takeLast } from 'rxjs/operators';
   styleUrls: ['./stories.component.css']
 })
 export class StoriesComponent implements OnInit {
-  public user: User;
-  public iconsCarouselOptions: {};
-  public storiesCarouselOptions: {};
-  modalRef: BsModalRef;
+  public user: User | undefined;
+  public iconsCarouselOptions: {} | undefined;
+  public storiesCarouselOptions: {} | undefined;
+  modalRef: BsModalRef | undefined;
 
   public title = '';
   public message = '';
@@ -31,9 +31,9 @@ export class StoriesComponent implements OnInit {
   public currentFriendStories: UserStory[] = [];
   public allUserStories = false;
   // ----------------------------------------
-  formData: FormData;
-  previewUrl;
-  format;
+  formData: FormData | undefined;
+  previewUrl: any;
+  format: any;
   public friendsUid = [];
   public usersByUid = [];
   public userStoriesBy24Hours = [];

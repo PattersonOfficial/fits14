@@ -8,7 +8,7 @@ import { StorageService } from './storage.service';
 @Injectable()
 export class AuthorizatedGuard implements CanActivate {
   public url: string;
-  public state;
+  public state: any;
 
   constructor(
     private _router: Router,
@@ -44,7 +44,7 @@ export class AuthorizatedGuard implements CanActivate {
    * @param  route Objecto con información de la ruta activa
    * @return boolean
    */
-  public isValid(route) {
+  public isValid(route: any) {
     const expectedRole = route.data.expectedRole;
     const currentUser = this._storageService.getCurrentUser();
 
