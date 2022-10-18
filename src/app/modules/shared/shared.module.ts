@@ -35,14 +35,6 @@ import { MatDialogModule } from "@angular/material/dialog";
 import { CardOpenDialogComponent } from "./components/creditcarddetail/creditcarddetail.component";
 import { ChangePlanComponent } from "./components/change-plan/change-plan.component";
 import { PlanQuestionsComponent } from "./components/planquestions/planquestions.component";
-import {
-  MatButtonModule,
-  MatDatepickerModule,
-  MatFormFieldModule,
-  MatIconModule,
-  MatProgressSpinnerModule,
-  MatStepperModule,
-} from "@angular/material";
 import { SearchPipe } from "../../pipes/search.pipe";
 import { StoriesComponent } from "./components/stories/stories.component";
 import { OwlModule } from "ngx-owl-carousel";
@@ -65,6 +57,12 @@ import { OrderSummaryComponent } from "./components/order-summary/order-summary.
 import { ModalComponent } from "./components/modal/modal.component";
 import { FitnutsExperienceComponent } from './components/fitnuts-experience/fitnuts-experience.component';
 import { CongratsComponent } from "./components/congrats/congrats.component";
+import { MatButtonModule } from '@angular/material/button';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatStepperModule } from '@angular/material/stepper';
 
 export const translationConfig = {
   loader: {

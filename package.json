@@ -38,6 +38,7 @@
     "angular-bootstrap-md": "^13.0.0",
     "angular-cropperjs": "^1.0.2",
     "angular-datatables": "^14.0.0",
+    "angular-file": "^3.6.0",
     "angular-modal-gallery": "^5.7.1",
     "angularx-social-login": "^4.1.0",
     "animate.css": "^4.1.1",

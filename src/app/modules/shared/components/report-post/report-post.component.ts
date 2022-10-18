@@ -12,20 +12,20 @@ import {Ticket} from '../../../../models/crm/support-ticket.model';
 })
 export class ReportPostComponent implements OnInit {
 
-  onHidden: EventEmitter<ModalDirective>;
+  onHidden: EventEmitter<ModalDirective> | any;
 
   public loader = false;
-  public postId: string;
+  public postId: string | null = null;
   public isModal = false;
-  public reasons: Reason[];
-  public currentReason: Reason;
+  public reasons: Reason[] = [];
+  public currentReason: Reason | any;
   public needComment = false;
-  public comment: string;
+  public comment: string | '' = '';
   public minLength: number;
   public reportSent = false;
   public serverError = false;
 
-  @ViewChild('modalRef', {static: false}) modalRef: ModalDirective;
+  @ViewChild('modalRef', {static: false}) modalRef: ModalDirective | any;
 
   constructor(
       private _crmService: CrmService,
@@ -42,7 +42,7 @@ export class ReportPostComponent implements OnInit {
     this.isModal = false;
   }
 
-  public openModal(postId): void {
+  public openModal(postId: string): void {
     this.postId = postId;
     this.isModal = true;
     this.clearAll();
@@ -51,10 +51,10 @@ export class ReportPostComponent implements OnInit {
 
   public clearAll() {
     this.loader = false;
-    this.reasons = undefined;
+    this.reasons = [];
     this.currentReason = undefined;
     this.needComment = false;
-    this.comment = undefined;
+    this.comment = '';
     this.reportSent = false;
     this.serverError = false;
   }
@@ -90,7 +90,7 @@ export class ReportPostComponent implements OnInit {
   public handleSubmit() {
     this.loader = true;
 
-    const report = new Ticket();
+    const report: any = new Ticket();
 
     report.client_id = this._storageService.getCurrentUser().client.id.toString();
     report.source_id = 2;

@@ -35,7 +35,7 @@ export class VodService {
         return this._http.get(this.url + path + '?display_in_more_vod', { headers: headers });
     }
 
-    getVodProgramData(id): Observable<any> {
+    getVodProgramData(id: any): Observable<any> {
         const path = `/vod-programs/${id}`;
         const headers = new HttpHeaders({
             'Content-Type': 'application/json'
@@ -59,7 +59,7 @@ export class VodService {
         return this._http.put(this.url + path, program, { headers: headers });
     }
 
-    deleteVodProgram(id): Observable<any> {
+    deleteVodProgram(id: any): Observable<any> {
         const path =  `/vod-programs/${id}`;
         const headers = new HttpHeaders({
             'Content-Type': 'application/json'
@@ -75,7 +75,7 @@ export class VodService {
         return this._http.get(this.url + path, { headers: headers });
     }
 
-    buyVodProgram(id): Observable<any> {
+    buyVodProgram(id: any): Observable<any> {
         const path =  `/vod-programs/${id}/buy`;
         const headers = new HttpHeaders({
             'Content-Type': 'application/json'
@@ -83,7 +83,7 @@ export class VodService {
         return this._http.get(this.url + path, { headers: headers });
     }
 
-    purchaseProgram(data): Observable<any> {
+    purchaseProgram(data: any): Observable<any> {
         const path =  `/vod-programs/add-to-list/${data.id}`;
         const headers = new HttpHeaders({
             'Content-Type': 'application/json'
@@ -91,7 +91,7 @@ export class VodService {
         return this._http.get(this.url + path, { headers: headers });
     }
 
-    removePurchasedProgram(data): Observable<any> {
+    removePurchasedProgram(data: any): Observable<any> {
         const path =  `/vod-programs/remove-from-list/${data.id}/${data.invoice.id}`;
         const headers = new HttpHeaders({
             'Content-Type': 'application/json'
