@@ -39,10 +39,10 @@ declare const BlueSnap: any;
 })
 export class RegisterComponent implements OnInit {
   @ViewChild('paymentFormElement', { static: false })
-  paymentFormElement: ElementRef;
+  paymentFormElement!: ElementRef;
   @ViewChild('stepper', { static: false })
-  stepper: MatStepper;
-  registerFields: User;
+  stepper!: MatStepper;
+  registerFields: User | any;
   step: number;
   selectCountry: any;
   selectGender: any;
@@ -51,22 +51,22 @@ export class RegisterComponent implements OnInit {
   countries: any;
   codes_dialling: any;
   mailExist: boolean;
-  showTooltipBirthDay: boolean;
+  showTooltipBirthDay!: boolean;
   phoneExist: boolean;
   passMatch: boolean;
   cPassword: string;
   memberPrice: string;
-  memberships: Memberships[];
+  memberships!: Memberships[];
   maxDate: any;
   startDate = new Date(2015, 0, 1);
   paymentFormConfig: PaymentForm = new PaymentForm();
-  paymentForm: FormGroup;
-  transactionError: string;
-  responseError: string;
-  transactionProcessing: boolean;
+  paymentForm!: FormGroup;
+  transactionError!: string;
+  responseError!: string;
+  transactionProcessing!: boolean;
   hostedPaymentPageLink = '';
   isLoaderActive = true;
-  isTransactionSuccessfully: boolean;
+  isTransactionSuccessfully!: boolean;
   dataModel: any;
   otpCode = '';
   otpError = '';
@@ -87,12 +87,12 @@ export class RegisterComponent implements OnInit {
       'align-items': 'center',
     },
   };
-  
+
   currentCountry = {
     initialCountry: this.getIPAddress(),
   };
   membership: any;
-  taxAmount: string;
+  taxAmount!: string;
   isLead = false;
   dob: any;
   year: any;
@@ -223,7 +223,7 @@ export class RegisterComponent implements OnInit {
       user_id: userId,
     };
     this._loginService.userInformation(data).subscribe(
-      (response) => {
+      (response: any) => {
         console.log({ response, email: response.user['email_verified_at'] });
         this.toastService.info(
           'Please follow the steps to complete the registration process'
@@ -260,7 +260,7 @@ export class RegisterComponent implements OnInit {
   public facebookLogin() {
     this._googleAuthService
       .signIn(FacebookLoginProvider.PROVIDER_ID)
-      .then((data) => {
+      .then((data: any) => {
         console.log({ FacebookResp: data });
         this.isSocialLogin = true;
         this.registerFields.is_social_account = 1;
@@ -302,7 +302,7 @@ export class RegisterComponent implements OnInit {
   public googleLogin() {
     this._googleAuthService
       .signIn(GoogleLoginProvider.PROVIDER_ID)
-      .then((data) => {
+      .then((data: any) => {
         console.log({ GoogleResp: data });
         this.isSocialLogin = true;
         this.registerFields.email =data.email;
@@ -407,7 +407,7 @@ export class RegisterComponent implements OnInit {
     );
   }
 
-  verifyEmailToken(stepper) {
+  verifyEmailToken(stepper: any) {
     this.spinner.show();
     const data = {
       email: this.registerFields.email,
@@ -553,10 +553,10 @@ export class RegisterComponent implements OnInit {
     const data = JSON.parse(JSON.stringify(this.registerFields));
     data.client.membership.id = LEAD_MEMBERSHIP_ID;
 
-    const user = JSON.parse(sessionStorage.getItem('user'));
+    let user = JSON.parse(sessionStorage.getItem('user'));
     if (user) {
       data.id = user.id;
-    } 
+    }
     this._registerService.saveAccount(data).subscribe(
       (response) => {
         sessionStorage.setItem('user', JSON.stringify(response.user));

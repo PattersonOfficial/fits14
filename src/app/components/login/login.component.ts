@@ -21,7 +21,6 @@ import { StorageService } from '../../services/auth/storage.service';
 import { BuilderService } from '../../modules/admin/modules/users/components/builder/builder.service';
 import { FirestoreService } from '../../services/firebase/firestore.service';
 import {
-  AuthService,
   GoogleLoginProvider,
   FacebookLoginProvider,
   SocialUser,
@@ -56,12 +55,12 @@ export class LoginComponent implements OnInit, AfterViewInit {
   public loginFields: LoginObject;
   public fbData: FacebookLoginObject;
   public submitted = false;
-  public error: { code: number; message: string } = null;
-  public capsLockIsActive: boolean;
+  public error: { code: number; message: string }  | any;
+  public capsLockIsActive: boolean = false;
   public isInvalidLogin = false;
   public loadingBox = false;
-  public user: SocialUser;
-  public loggedIn: boolean;
+  public user: SocialUser | any;
+  public loggedIn: boolean = false;
   errorMessage = '';
 
   emailFormControl = new FormControl('', [
@@ -173,8 +172,8 @@ export class LoginComponent implements OnInit, AfterViewInit {
       } else {
         return false;
       }
-    } 
-    
+    }
+
     return false;
   }
 

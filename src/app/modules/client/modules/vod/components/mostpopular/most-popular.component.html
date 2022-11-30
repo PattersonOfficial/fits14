@@ -1,9 +1,0 @@
-<div class="card">
-  <img [src]="program.thumbnail" [alt]="program.title" class="poster">
-  <div class="play">
-    <app-playvideobutton (onPlayVideo)="handlePlayClick()" [fontSize]="'20px'"></app-playvideobutton>
-  </div>
-  <p class="title">{{program.title}}</p>
-  <span class="order">{{program.order_in_popular || 1}}</span>
-  <div class="darkner"></div>
-</div>

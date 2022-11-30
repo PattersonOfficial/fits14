@@ -14,8 +14,8 @@ export class ValidateComponent implements OnInit {
   public showLogin: boolean;
 
   @Input() isValid: boolean = true;
-  @ViewChild('LoginComponent', {static: false}) loginRef: LoginComponent;
-  @ViewChild('modalValidateRef', {static: false}) modalValidateRef: ModalDirective;
+  @ViewChild('LoginComponent', {static: false}) loginRef: LoginComponent | any;
+  @ViewChild('modalValidateRef', {static: false}) modalValidateRef: ModalDirective | any;
 
   constructor(
     public _storageService: StorageService

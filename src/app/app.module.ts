@@ -1,3 +1,4 @@
+import { SharedModule } from './modules/shared/shared.module';
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule, DomSanitizer } from '@angular/platform-browser';
 
